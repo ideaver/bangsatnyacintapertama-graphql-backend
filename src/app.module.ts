@@ -10,7 +10,7 @@ import { SessionModule } from './services/session/session.module';
 import { TransactionModule } from './services/transaction/transaction.module';
 import { AccountModule } from './services/account/account.module';
 import { UserModule } from './services/user/user.module';
-import { FileModule } from './services/file/file.module';
+import { FileModule } from './services/user/user.module';
 import { AddressModule } from './services/address/address.module';
 import { OrderModule } from './services/order/order.module';
 import { InvoiceModule } from './services/invoice/invoice.module';
