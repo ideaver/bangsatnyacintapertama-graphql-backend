@@ -1,0 +1,122 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// generator fake_data {
+//   provider = "prisma-generator-fake-data"
+//   output   = "./fake-data.ts"
+// }
+
+// generator nestgraphql {
+//   provider                              = "node node_modules/prisma-nestjs-graphql"
+//   output                                = "../src/@generated"
+//   reExport                              = Single
+//   fields_Validator_from                 = "class-validator"
+//   fields_Validator_input                = true
+//   requireSingleFieldsInWhereUniqueInput = true
+//   emitSingle                            = true
+//   emitCompiled                          = true
+//   purgeOutput                           = true
+//   noTypeId                              = true
+// }
+
+model User {
+  id String @id @default(uuid())
+
+  fullName String
+
+  email String @unique
+
+  password String
+
+  whatsapp String @unique
+
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime @updatedAt
+
+  deletedAt DateTime? //implement softdelete
+
+  //-------------------------- 1 relations --------------------------------
+
+  role UserRole
+
+  guestInfo Guest?
+
+  guestInfoId String?
+
+  //-------------------------- m relations --------------------------------
+
+  @@map("users")
+}
+
+enum UserRole {
+  ADMIN
+  SUPERUSER
+  GUEST
+
+  @@map("user_roles")
+}
+
+model Guest {
+  userId String @id
+
+  category1 String?
+
+  category2 String?
+
+  personInCharge String?
+
+  seat String?
+
+  description String?
+
+  checkInAt DateTime?
+
+  lastEmailSend DateTime?
+
+  countEmailSend Int @default(0)
+
+  lastWhatsappSend DateTime?
+
+  countWhatsappSend Int @default(0)
+
+  //-------------------------- 1 relations --------------------------------
+
+  user User @relation(fields: [userId], references: [id])
+
+  lastEmailSendStatus QueueStatus @default(WAITING)
+
+  lastWhatsappSendStatus QueueStatus @default(WAITING)
+
+  confirmationStatus ConfirmationStatus @default(UNCONFIRMED)
+
+  //-------------------------- m relations --------------------------------
+
+  @@map("guests")
+}
+
+enum ConfirmationStatus {
+  UNCONFIRMED
+  CONFIRMED
+  REJECTED
+
+  @@map("confirmation_statuses")
+}
+
+enum QueueStatus {
+  WAITING
+  SENDING
+  SENT
+  FAILED
+
+  @@map("queue_statuses")
+}
