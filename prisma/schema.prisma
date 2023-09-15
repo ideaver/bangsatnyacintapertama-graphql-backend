@@ -75,31 +75,26 @@ model Guest {
 
   personInCharge String?
 
+  class String?
+
   seat String?
+
+  rejectionReason String?
 
   description String?
 
   checkInAt DateTime?
 
-  lastEmailSend DateTime?
-
-  countEmailSend Int @default(0)
-
-  lastWhatsappSend DateTime?
-
-  countWhatsappSend Int @default(0)
-
   //-------------------------- 1 relations --------------------------------
 
   user User @relation(fields: [userId], references: [id])
 
-  lastEmailSendStatus QueueStatus @default(WAITING)
-
-  lastWhatsappSendStatus QueueStatus @default(WAITING)
-
   confirmationStatus ConfirmationStatus @default(UNCONFIRMED)
 
   //-------------------------- m relations --------------------------------
+  emailQueue emailQueue[]
+
+  whatsappQueue whatsappQueue[]
 
   @@map("guests")
 }
@@ -119,4 +114,41 @@ enum QueueStatus {
   FAILED
 
   @@map("queue_statuses")
+}
+
+/// Batas Pengiriman 1000 email per hari
+model emailQueue {
+  id Int @id @default(autoincrement())
+
+  createdAt DateTime @default(now())
+
+  //-------------------------- 1 relations --------------------------------
+
+  status QueueStatus @default(WAITING)
+
+  guestId String
+
+  guest Guest @relation(fields: [guestId], references: [userId])
+
+  //-------------------------- m relations --------------------------------
+
+  @@map("email_queues")
+}
+
+model whatsappQueue {
+  id Int @id @default(autoincrement())
+
+  createdAt DateTime @default(now())
+
+  //-------------------------- 1 relations --------------------------------
+
+  status QueueStatus @default(WAITING)
+
+  guestId String
+
+  guest Guest @relation(fields: [guestId], references: [userId])
+
+  //-------------------------- m relations --------------------------------
+
+  @@map("whatsapp_queues")
 }
