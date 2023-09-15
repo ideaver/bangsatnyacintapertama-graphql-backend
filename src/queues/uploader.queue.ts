@@ -17,7 +17,7 @@ export class UploaderProcessor {
       // Delay the execution of the job
       await new Promise((resolve) => setTimeout(resolve, delayInMilliseconds));
       // Add the job to the queue with a 24-hour delay
-      await this.uploaderService.deleteOrphanedS3Objects();
+
       this.logger.log('deleteOrphanedS3Objects: Success');
     } catch (error) {
       this.logger.error('deleteOrphanedS3Objects: Failed');

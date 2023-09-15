@@ -1,11 +1,11 @@
 import { Resolver, Mutation, Args, Query } from '@nestjs/graphql';
-import { UploaderService } from './uploader.service';
 import { RatioEnum } from './enums/ratio.enum';
 // Ignore the import errors
 // @ts-ignore
 import { FileUpload, GraphQLUpload } from 'graphql-upload';
 import { UserController } from '../user/user.controller';
 import { IGraphQLError } from 'src/utils/exception/custom-graphql-error';
+import { UploaderService } from './uploader.service';
 
 @Resolver()
 export class UploaderResolver {
@@ -29,7 +29,7 @@ export class UploaderResolver {
     //validate user id
     await this.validateUserId(userId);
 
-    return await this.uploaderService.uploadSingleFile({
+    return await this.uploaderService.uploadSingleLocalFile({
       userId: userId,
       ratioForImage: ratioForImage ?? RatioEnum.SQUARE,
       file: file,
@@ -53,24 +53,11 @@ export class UploaderResolver {
     //validate user id
     await this.validateUserId(userId);
 
-    return await this.uploaderService.uploadMultipleFiles({
+    return await this.uploaderService.uploadMultipleLocalFiles({
       userId: userId,
       ratioForImage: ratioForImage ?? RatioEnum.SQUARE,
       files: uploadedFiles,
     });
-  }
-
-  @Query(() => String, {
-    nullable: true,
-    description:
-      'Bersihkan file yang tidak terpakai di S3. Hanya untuk development',
-  })
-  async deleteOrphanedS3Objects() {
-    try {
-      return await this.uploaderService.deleteOrphanedS3Objects();
-    } catch (error) {
-      throw new IGraphQLError({ code: 170006 });
-    }
   }
 
   private async validateUserId(userId: string) {

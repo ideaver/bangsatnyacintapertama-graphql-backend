@@ -1,4 +1,4 @@
-import { FileType } from '@prisma/client';
+import { FileType } from 'src/model/enums';
 
 export const MAX_FILE_SIZES: Record<string, number> = {
   [FileType.UNKNOWN]: 1024 * 1024, // 1MB for UNKNOWN files (you can adjust as needed)
@@ -6,4 +6,5 @@ export const MAX_FILE_SIZES: Record<string, number> = {
   [FileType.JPG]: 10 * 1024 * 1024, // 10MB for JPG files (adjust as needed)
   [FileType.PNG]: 10 * 1024 * 1024, // 10MB for PNG files (adjust as needed)
   [FileType.PDF]: 30 * 1024 * 1024, // 20MB for PDF files (adjust as needed)
+  [FileType.XLSX]: 30 * 1024 * 1024, // 30MB for XLSX files (adjust as needed)
 };

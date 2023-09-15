@@ -1,5 +1,5 @@
 import * as mime from 'mime-types';
-import { FileType } from 'src/@generated';
+import { FileType } from 'src/model/enums';
 
 export function detectMimeTypeFromFilename(filename: string): string | null {
   const mimeType = mime.lookup(filename);

@@ -1,4 +1,4 @@
-import { FileType } from '@prisma/client';
+import { FileType } from 'src/model/enums';
 
 export function mimeTypeToEnum(mimeType: string): FileType {
   switch (mimeType) {
