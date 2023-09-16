@@ -2,10 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { UserController } from '../user/user.controller';
 import { LoginArgs } from './dto/login.args';
 import { IGraphQLError } from 'src/utils/exception/custom-graphql-error';
+import * as bcrypt from 'bcrypt';
 import { LoginResponse } from './model/login-response.model';
 import { JwtService } from '@nestjs/jwt';
 import { User } from 'src/@generated';
-import * as Bun from 'bun';
 
 @Injectable()
 export class AuthController {
@@ -24,7 +24,7 @@ export class AuthController {
 
     if (user) {
       //if found, compare password
-      const passwordValid = await Bun.password.verify(password, user.password);
+      const passwordValid = await bcrypt.compare(password, user.password);
 
       if (passwordValid) {
         return user;
