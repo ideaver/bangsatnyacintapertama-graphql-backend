@@ -1,20 +1,25 @@
-# Use the oven/bun image as the base image
-FROM oven/bun:latest AS development
+# Use the official Node.js LTS image as the base image
+FROM node:latest AS development
+
+RUN npm install -g @nestjs/cli
 
 WORKDIR /usr/src/app
 
-# Install the "ps" command
-RUN apt-get update && apt-get install -y procps
-
 COPY package*.json ./
 
-RUN bun install
+# RUN npm install glob rimraf
+
+RUN npm install
+
+# RUN npm install --only=development
 
 COPY . .
 
-RUN bunx prisma generate
+RUN npx prisma generate
 
-RUN bun nest build
+RUN nest build
 
-# Specify the command to run your application
-CMD ["bun", "dist/src/main.js"]
+# Set the development stage as the final stage
+FROM development AS final
+
+CMD ["npm", "run", "start:dev"]

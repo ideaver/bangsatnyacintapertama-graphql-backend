@@ -1,11 +1,10 @@
 import { Process, Processor } from '@nestjs/bull';
 import { Injectable, Logger } from '@nestjs/common';
-import { UploaderService } from 'src/services/uploader/uploader.service';
 
 @Injectable()
 @Processor('uploader')
 export class UploaderProcessor {
-  constructor(private readonly uploaderService: UploaderService) {}
+  constructor() {}
   private readonly logger = new Logger(UploaderProcessor.name);
 
   // This job will run within 24 hours
