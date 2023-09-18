@@ -1,0 +1,20 @@
+# Use the oven/bun image as the base image
+FROM oven/bun:latest AS development
+
+WORKDIR /usr/src/app
+
+# Install the "ps" command
+RUN apt-get update && apt-get install -y procps
+
+COPY package*.json ./
+
+RUN bun install
+
+COPY . .
+
+RUN bunx prisma generate
+
+RUN bun nest build
+
+# Specify the command to run your application
+CMD ["bun", "dist/src/main.js"]

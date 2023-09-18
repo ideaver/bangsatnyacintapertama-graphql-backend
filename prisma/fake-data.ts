@@ -38,7 +38,6 @@ export function fakeGuest() {
     seat: undefined,
     rejectionReason: undefined,
     description: undefined,
-    checkInAt: undefined,
   };
 }
 export function fakeGuestComplete() {
@@ -51,11 +50,11 @@ export function fakeGuestComplete() {
     seat: undefined,
     rejectionReason: undefined,
     description: undefined,
-    checkInAt: undefined,
+    parties: 1,
     confirmationStatus: ConfirmationStatus.UNCONFIRMED,
   };
 }
-export function fakeemailQueueComplete() {
+export function fakeEmailQueueComplete() {
   return {
     id: faker.datatype.number(),
     createdAt: new Date(),
@@ -63,11 +62,26 @@ export function fakeemailQueueComplete() {
     guestId: faker.datatype.uuid(),
   };
 }
-export function fakewhatsappQueueComplete() {
+export function fakeWhatsappQueueComplete() {
   return {
     id: faker.datatype.number(),
     createdAt: new Date(),
     status: QueueStatus.WAITING,
     guestId: faker.datatype.uuid(),
+  };
+}
+export function fakeQrCode() {
+  return {
+    path: faker.lorem.words(5),
+    scannedAt: undefined,
+  };
+}
+export function fakeQrCodeComplete() {
+  return {
+    path: faker.lorem.words(5),
+    scannedAt: undefined,
+    createdAt: new Date(),
+    guestId: faker.datatype.uuid(),
+    scannedByUserId: undefined,
   };
 }

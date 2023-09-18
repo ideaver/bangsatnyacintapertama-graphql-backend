@@ -15,6 +15,7 @@ import { UploaderProcessor } from './queues/uploader.queue';
 import { SchedulerService } from './scheduler/scheduler.service';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { SchedulerModule } from './scheduler/scheduler.module';
+import { GuestModule } from './services/guest/guest.module';
 
 @Module({
   imports: [
@@ -47,6 +48,7 @@ import { SchedulerModule } from './scheduler/scheduler.module';
     UploaderModule,
     UserModule,
     AuthModule,
+    GuestModule
   ],
   controllers: [],
   providers: [PrismaService, UploaderProcessor, SchedulerService],

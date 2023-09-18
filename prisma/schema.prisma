@@ -54,6 +54,7 @@ model User {
   guestInfoId String?
 
   //-------------------------- m relations --------------------------------
+  QrCode QrCode[]
 
   @@map("users")
 }
@@ -83,7 +84,7 @@ model Guest {
 
   description String?
 
-  checkInAt DateTime?
+  parties Int @default(1)
 
   //-------------------------- 1 relations --------------------------------
 
@@ -92,9 +93,12 @@ model Guest {
   confirmationStatus ConfirmationStatus @default(UNCONFIRMED)
 
   //-------------------------- m relations --------------------------------
-  emailQueue emailQueue[]
 
-  whatsappQueue whatsappQueue[]
+  qrcodes QrCode[]
+
+  emailQueue EmailQueue[]
+
+  whatsappQueue WhatsappQueue[]
 
   @@map("guests")
 }
@@ -117,7 +121,7 @@ enum QueueStatus {
 }
 
 /// Batas Pengiriman 1000 email per hari
-model emailQueue {
+model EmailQueue {
   id Int @id @default(autoincrement())
 
   createdAt DateTime @default(now())
@@ -135,7 +139,7 @@ model emailQueue {
   @@map("email_queues")
 }
 
-model whatsappQueue {
+model WhatsappQueue {
   id Int @id @default(autoincrement())
 
   createdAt DateTime @default(now())
@@ -151,4 +155,26 @@ model whatsappQueue {
   //-------------------------- m relations --------------------------------
 
   @@map("whatsapp_queues")
+}
+
+model QrCode {
+  path String
+
+  scannedAt DateTime?
+
+  createdAt DateTime @default(now())
+
+  //-------------------------- 1 relations --------------------------------
+
+  guestId String @id
+
+  guest Guest @relation(fields: [guestId], references: [userId])
+
+  scannedBy User? @relation(fields: [scannedByUserId], references: [id])
+
+  scannedByUserId String?
+
+  //-------------------------- m relations --------------------------------
+
+  @@map("qrcodes")
 }
