@@ -74,10 +74,10 @@ services:
       - redis
       - mysql
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
+      test: ["CMD", "curl", "-f", "http://103.226.138.104:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
   redis:
     image: redis:latest
