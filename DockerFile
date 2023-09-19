@@ -17,7 +17,7 @@ COPY . .
 
 # RUN npx prisma generate
 
-# RUN nest build
+RUN nest build
 
 # Set the development stage as the final stage
 FROM development AS final
