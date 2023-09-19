@@ -6816,13 +6816,13 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], UserCreateManyInput.prototype, "fullName", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserCreateManyInput.prototype, "email", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], UserCreateManyInput.prototype, "password", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserCreateManyInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
@@ -6916,13 +6916,13 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], UserCreateWithoutGuestInfoInput.prototype, "fullName", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserCreateWithoutGuestInfoInput.prototype, "email", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], UserCreateWithoutGuestInfoInput.prototype, "password", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserCreateWithoutGuestInfoInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
@@ -6955,13 +6955,13 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], UserCreateWithoutQrCodeInput.prototype, "fullName", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserCreateWithoutQrCodeInput.prototype, "email", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], UserCreateWithoutQrCodeInput.prototype, "password", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserCreateWithoutQrCodeInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
@@ -6994,13 +6994,13 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], UserCreateInput.prototype, "fullName", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserCreateInput.prototype, "email", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], UserCreateInput.prototype, "password", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserCreateInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
@@ -7070,13 +7070,13 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], UserGroupBy.prototype, "fullName", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserGroupBy.prototype, "email", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], UserGroupBy.prototype, "password", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserGroupBy.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: false })
@@ -7343,13 +7343,13 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], UserOrderByWithAggregationInput.prototype, "fullName", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], UserOrderByWithAggregationInput.prototype, "email", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], UserOrderByWithAggregationInput.prototype, "password", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], UserOrderByWithAggregationInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
@@ -7388,13 +7388,13 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], UserOrderByWithRelationInput.prototype, "fullName", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], UserOrderByWithRelationInput.prototype, "email", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], UserOrderByWithRelationInput.prototype, "password", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], UserOrderByWithRelationInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
@@ -7451,13 +7451,13 @@ __decorate([
     (0, graphql_1.Field)(() => StringWithAggregatesFilter, { nullable: true })
 ], UserScalarWhereWithAggregatesInput.prototype, "fullName", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringWithAggregatesFilter, { nullable: true })
+    (0, graphql_1.Field)(() => StringNullableWithAggregatesFilter, { nullable: true })
 ], UserScalarWhereWithAggregatesInput.prototype, "email", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringWithAggregatesFilter, { nullable: true })
 ], UserScalarWhereWithAggregatesInput.prototype, "password", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringWithAggregatesFilter, { nullable: true })
+    (0, graphql_1.Field)(() => StringNullableWithAggregatesFilter, { nullable: true })
 ], UserScalarWhereWithAggregatesInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeWithAggregatesFilter, { nullable: true })
@@ -7487,13 +7487,13 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], UserUncheckedCreateWithoutGuestInfoInput.prototype, "fullName", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserUncheckedCreateWithoutGuestInfoInput.prototype, "email", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], UserUncheckedCreateWithoutGuestInfoInput.prototype, "password", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserUncheckedCreateWithoutGuestInfoInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
@@ -7526,13 +7526,13 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], UserUncheckedCreateWithoutQrCodeInput.prototype, "fullName", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserUncheckedCreateWithoutQrCodeInput.prototype, "email", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], UserUncheckedCreateWithoutQrCodeInput.prototype, "password", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserUncheckedCreateWithoutQrCodeInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
@@ -7565,13 +7565,13 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], UserUncheckedCreateInput.prototype, "fullName", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserUncheckedCreateInput.prototype, "email", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], UserUncheckedCreateInput.prototype, "password", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserUncheckedCreateInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
@@ -7607,13 +7607,13 @@ __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateManyInput.prototype, "fullName", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateManyInput.prototype, "email", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateManyInput.prototype, "password", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateManyInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
@@ -7643,13 +7643,13 @@ __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateWithoutGuestInfoInput.prototype, "fullName", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateWithoutGuestInfoInput.prototype, "email", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateWithoutGuestInfoInput.prototype, "password", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateWithoutGuestInfoInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
@@ -7682,13 +7682,13 @@ __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateWithoutQrCodeInput.prototype, "fullName", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateWithoutQrCodeInput.prototype, "email", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateWithoutQrCodeInput.prototype, "password", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateWithoutQrCodeInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
@@ -7721,13 +7721,13 @@ __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateInput.prototype, "fullName", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateInput.prototype, "email", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateInput.prototype, "password", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
@@ -7763,13 +7763,13 @@ __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateManyMutationInput.prototype, "fullName", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateManyMutationInput.prototype, "email", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateManyMutationInput.prototype, "password", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateManyMutationInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
@@ -7887,13 +7887,13 @@ __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateWithoutGuestInfoInput.prototype, "fullName", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateWithoutGuestInfoInput.prototype, "email", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateWithoutGuestInfoInput.prototype, "password", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateWithoutGuestInfoInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
@@ -7926,13 +7926,13 @@ __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateWithoutQrCodeInput.prototype, "fullName", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateWithoutQrCodeInput.prototype, "email", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateWithoutQrCodeInput.prototype, "password", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateWithoutQrCodeInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
@@ -7965,13 +7965,13 @@ __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateInput.prototype, "fullName", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateInput.prototype, "email", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateInput.prototype, "password", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
@@ -8103,13 +8103,13 @@ __decorate([
     (0, graphql_1.Field)(() => StringFilter, { nullable: true })
 ], UserWhereInput.prototype, "fullName", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
+    (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
 ], UserWhereInput.prototype, "email", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringFilter, { nullable: true })
 ], UserWhereInput.prototype, "password", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
+    (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
 ], UserWhereInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFilter, { nullable: true })
@@ -8145,13 +8145,13 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], User.prototype, "fullName", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], User.prototype, "email", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], User.prototype, "password", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], User.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: false })

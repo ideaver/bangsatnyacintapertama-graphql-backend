@@ -2217,9 +2217,9 @@ export declare class UserCount {
 export declare class UserCreateManyInput {
     id?: string;
     fullName: string;
-    email: string;
+    email?: string;
     password: string;
-    whatsapp: string;
+    whatsapp?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -2247,9 +2247,9 @@ export declare class UserCreateOrConnectWithoutQrCodeInput {
 export declare class UserCreateWithoutGuestInfoInput {
     id?: string;
     fullName: string;
-    email: string;
+    email?: string;
     password: string;
-    whatsapp: string;
+    whatsapp?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -2260,9 +2260,9 @@ export declare class UserCreateWithoutGuestInfoInput {
 export declare class UserCreateWithoutQrCodeInput {
     id?: string;
     fullName: string;
-    email: string;
+    email?: string;
     password: string;
-    whatsapp: string;
+    whatsapp?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -2273,9 +2273,9 @@ export declare class UserCreateWithoutQrCodeInput {
 export declare class UserCreateInput {
     id?: string;
     fullName: string;
-    email: string;
+    email?: string;
     password: string;
-    whatsapp: string;
+    whatsapp?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -2298,9 +2298,9 @@ export declare class UserGroupByArgs {
 export declare class UserGroupBy {
     id: string;
     fullName: string;
-    email: string;
+    email?: string;
     password: string;
-    whatsapp: string;
+    whatsapp?: string;
     createdAt: Date | string;
     updatedAt: Date | string;
     deletedAt?: Date | string;
@@ -2389,9 +2389,9 @@ export declare class UserNullableRelationFilter {
 export declare class UserOrderByWithAggregationInput {
     id?: keyof typeof SortOrder;
     fullName?: keyof typeof SortOrder;
-    email?: keyof typeof SortOrder;
+    email?: InstanceType<typeof SortOrderInput>;
     password?: keyof typeof SortOrder;
-    whatsapp?: keyof typeof SortOrder;
+    whatsapp?: InstanceType<typeof SortOrderInput>;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
     deletedAt?: InstanceType<typeof SortOrderInput>;
@@ -2404,9 +2404,9 @@ export declare class UserOrderByWithAggregationInput {
 export declare class UserOrderByWithRelationInput {
     id?: keyof typeof SortOrder;
     fullName?: keyof typeof SortOrder;
-    email?: keyof typeof SortOrder;
+    email?: InstanceType<typeof SortOrderInput>;
     password?: keyof typeof SortOrder;
-    whatsapp?: keyof typeof SortOrder;
+    whatsapp?: InstanceType<typeof SortOrderInput>;
     createdAt?: keyof typeof SortOrder;
     updatedAt?: keyof typeof SortOrder;
     deletedAt?: InstanceType<typeof SortOrderInput>;
@@ -2425,9 +2425,9 @@ export declare class UserScalarWhereWithAggregatesInput {
     NOT?: Array<UserScalarWhereWithAggregatesInput>;
     id?: InstanceType<typeof StringWithAggregatesFilter>;
     fullName?: InstanceType<typeof StringWithAggregatesFilter>;
-    email?: InstanceType<typeof StringWithAggregatesFilter>;
+    email?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     password?: InstanceType<typeof StringWithAggregatesFilter>;
-    whatsapp?: InstanceType<typeof StringWithAggregatesFilter>;
+    whatsapp?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     updatedAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     deletedAt?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
@@ -2437,9 +2437,9 @@ export declare class UserScalarWhereWithAggregatesInput {
 export declare class UserUncheckedCreateWithoutGuestInfoInput {
     id?: string;
     fullName: string;
-    email: string;
+    email?: string;
     password: string;
-    whatsapp: string;
+    whatsapp?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -2450,9 +2450,9 @@ export declare class UserUncheckedCreateWithoutGuestInfoInput {
 export declare class UserUncheckedCreateWithoutQrCodeInput {
     id?: string;
     fullName: string;
-    email: string;
+    email?: string;
     password: string;
-    whatsapp: string;
+    whatsapp?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -2463,9 +2463,9 @@ export declare class UserUncheckedCreateWithoutQrCodeInput {
 export declare class UserUncheckedCreateInput {
     id?: string;
     fullName: string;
-    email: string;
+    email?: string;
     password: string;
-    whatsapp: string;
+    whatsapp?: string;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     deletedAt?: Date | string;
@@ -2477,9 +2477,9 @@ export declare class UserUncheckedCreateInput {
 export declare class UserUncheckedUpdateManyInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    email?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -2489,9 +2489,9 @@ export declare class UserUncheckedUpdateManyInput {
 export declare class UserUncheckedUpdateWithoutGuestInfoInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    email?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -2502,9 +2502,9 @@ export declare class UserUncheckedUpdateWithoutGuestInfoInput {
 export declare class UserUncheckedUpdateWithoutQrCodeInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    email?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -2515,9 +2515,9 @@ export declare class UserUncheckedUpdateWithoutQrCodeInput {
 export declare class UserUncheckedUpdateInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    email?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -2529,9 +2529,9 @@ export declare class UserUncheckedUpdateInput {
 export declare class UserUpdateManyMutationInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    email?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -2565,9 +2565,9 @@ export declare class UserUpdateToOneWithWhereWithoutQrCodeInput {
 export declare class UserUpdateWithoutGuestInfoInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    email?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -2578,9 +2578,9 @@ export declare class UserUpdateWithoutGuestInfoInput {
 export declare class UserUpdateWithoutQrCodeInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    email?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -2591,9 +2591,9 @@ export declare class UserUpdateWithoutQrCodeInput {
 export declare class UserUpdateInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    email?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
@@ -2635,9 +2635,9 @@ export declare class UserWhereInput {
     NOT?: Array<UserWhereInput>;
     id?: InstanceType<typeof StringFilter>;
     fullName?: InstanceType<typeof StringFilter>;
-    email?: InstanceType<typeof StringFilter>;
+    email?: InstanceType<typeof StringNullableFilter>;
     password?: InstanceType<typeof StringFilter>;
-    whatsapp?: InstanceType<typeof StringFilter>;
+    whatsapp?: InstanceType<typeof StringNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     updatedAt?: InstanceType<typeof DateTimeFilter>;
     deletedAt?: InstanceType<typeof DateTimeNullableFilter>;
@@ -2649,9 +2649,9 @@ export declare class UserWhereInput {
 export declare class User {
     id: string;
     fullName: string;
-    email: string;
+    email: string | null;
     password: string;
-    whatsapp: string;
+    whatsapp: string | null;
     createdAt: Date;
     updatedAt: Date;
     deletedAt: Date | null;

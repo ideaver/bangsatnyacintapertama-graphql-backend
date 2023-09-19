@@ -6,9 +6,9 @@ import { faker } from '@faker-js/faker';
 export function fakeUser() {
   return {
     fullName: faker.lorem.words(5),
-    email: faker.internet.email(),
+    email: undefined,
     password: faker.lorem.words(5),
-    whatsapp: faker.lorem.words(5),
+    whatsapp: undefined,
     updatedAt: faker.datatype.datetime(),
     deletedAt: undefined,
     role: faker.helpers.arrayElement([UserRole.ADMIN, UserRole.SUPERUSER, UserRole.GUEST] as const),
@@ -19,9 +19,9 @@ export function fakeUserComplete() {
   return {
     id: faker.datatype.uuid(),
     fullName: faker.lorem.words(5),
-    email: faker.internet.email(),
+    email: undefined,
     password: faker.lorem.words(5),
-    whatsapp: faker.lorem.words(5),
+    whatsapp: undefined,
     createdAt: new Date(),
     updatedAt: faker.datatype.datetime(),
     deletedAt: undefined,
