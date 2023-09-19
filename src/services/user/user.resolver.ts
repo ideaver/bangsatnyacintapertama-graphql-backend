@@ -157,4 +157,12 @@ export class UserResolver {
   userCount(@Args() userCountAggregateInput: FindManyUserArgs) {
     return this.userController.count(userCountAggregateInput);
   }
+
+  @Query(() => [User], {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  UserfindManyWhereRoleIsGuestAndLatestEmailOrWhatsappStatusEqualsWaiting() {
+    return this.userController.findManyWhereRoleIsGuestAndLatestEmailOrWhatsappStatusEqualsWaiting();
+  }
 }
