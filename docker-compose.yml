@@ -29,9 +29,6 @@ services:
       - data-volume:/var/www/files:ro
     networks:
       - nestjs-network
-    depends_on:
-      - portainer
-      - mysql
 
   certbot:
     container_name: certbot
