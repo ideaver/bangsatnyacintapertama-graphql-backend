@@ -13,7 +13,7 @@
     "generate": "npx prisma-multischema && bunx prisma generate",
     "build": "bun nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "concurrently \"npx prisma db push\" \"npm run start:dev\"",
+    "start": "concurrently \"npm run start:dev\" \"npx prisma db push\"",
     "start:dev": "nest start --watch",
     "start:debug": "bun nest start --debug --watch",
     "start:prod": "bun dist/src/main.js",
