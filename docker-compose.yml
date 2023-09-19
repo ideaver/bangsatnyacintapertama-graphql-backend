@@ -45,7 +45,7 @@ services:
     depends_on:
       - nginx
 
-  dev:
+  graphql-backend:
     container_name: graphql-backend
     image: nestjs-api-dev:1.0.0
     build:
