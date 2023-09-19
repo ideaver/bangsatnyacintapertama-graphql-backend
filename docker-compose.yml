@@ -1,6 +1,20 @@
 version: '3.8'
 
 services:
+
+  mysql: 
+    image: mysql:latest
+    container_name: mysql
+    volumes:
+      - mysql-data:/var/lib/mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    env_file:
+      - .env
+    networks:
+      - nestjs-network
+
   nginx:
     container_name: nginx
     image: nginx:latest
@@ -12,6 +26,7 @@ services:
       - ./volume/nginx/conf/:/etc/nginx/conf.d/:ro
       - ./volume/certbot/www:/var/www/certbot/:ro
       - ./volume/certbot/conf/:/etc/nginx/ssl/:ro
+      - data-volume:/var/www/files:ro
 
   certbot:
     container_name: certbot
@@ -61,19 +76,6 @@ services:
     networks:
       - nestjs-network
     restart: always
-
-  mysql: 
-    image: mysql:latest
-    container_name: mysql
-    volumes:
-      - mysql-data:/var/lib/mysql
-    restart: always
-    ports:
-      - "3306:3306"
-    env_file:
-      - .env
-    networks:
-      - nestjs-network
 
 networks:
   nestjs-network:
