@@ -30,8 +30,8 @@ services:
     networks:
       - nestjs-network
     depends_on:
-      - graphql-backend
       - portainer
+      - mysql
 
   certbot:
     container_name: certbot
