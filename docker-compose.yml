@@ -70,6 +70,7 @@ services:
       - portainer
       - redis
       - mysql
+      - nginx
 
   redis:
     image: redis:latest
