@@ -16,6 +16,8 @@ import { SchedulerService } from './scheduler/scheduler.service';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { SchedulerModule } from './scheduler/scheduler.module';
 import { GuestModule } from './services/guest/guest.module';
+import { EmailQueueModule } from './services/email-queue/email-queue.module';
+import { WhatsappQueueModule } from './services/whatsapp-queue/whatsapp-queue.module';
 
 @Module({
   imports: [
@@ -48,7 +50,9 @@ import { GuestModule } from './services/guest/guest.module';
     UploaderModule,
     UserModule,
     AuthModule,
-    GuestModule
+    GuestModule,
+    EmailQueueModule,
+    WhatsappQueueModule,
   ],
   controllers: [],
   providers: [PrismaService, UploaderProcessor, SchedulerService],
