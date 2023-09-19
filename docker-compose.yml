@@ -29,6 +29,9 @@ services:
       - data-volume:/var/www/files:ro
     networks:
       - nestjs-network
+    depends_on:
+      graphql-backend:
+        condition: service_healthy
 
   certbot:
     container_name: certbot
@@ -70,7 +73,11 @@ services:
       - portainer
       - redis
       - mysql
-      - nginx
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
   redis:
     image: redis:latest
