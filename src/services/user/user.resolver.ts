@@ -112,7 +112,7 @@ export class UserResolver {
     });
   }
 
-  @Mutation(() => User, {
+  @Mutation(() => BatchPayload, {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
