@@ -27,6 +27,10 @@ services:
       - ./volume/certbot/www:/var/www/certbot/:ro
       - ./volume/certbot/conf/:/etc/nginx/ssl/:ro
       - data-volume:/var/www/files:ro
+    networks:
+      - nestjs-network
+    depends_on:
+      - graphql-backend
 
   certbot:
     container_name: certbot
@@ -65,8 +69,6 @@ services:
     depends_on:
       - redis
       - mysql  
-      - nginx
-      - portainer
 
   redis:
     image: redis:latest
