@@ -159,6 +159,8 @@ model WhatsappQueue {
 }
 
 model QrCode {
+  id Int @id @default(autoincrement())
+
   path String
 
   scannedAt DateTime?
@@ -167,7 +169,7 @@ model QrCode {
 
   //-------------------------- 1 relations --------------------------------
 
-  guestId String @id
+  guestId String
 
   guest Guest @relation(fields: [guestId], references: [userId])
 
