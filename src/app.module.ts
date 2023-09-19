@@ -18,6 +18,7 @@ import { SchedulerModule } from './scheduler/scheduler.module';
 import { GuestModule } from './services/guest/guest.module';
 import { EmailQueueModule } from './services/email-queue/email-queue.module';
 import { WhatsappQueueModule } from './services/whatsapp-queue/whatsapp-queue.module';
+import { QrCodeModule } from './services/qr-code/qr-code.module';
 
 @Module({
   imports: [
@@ -53,6 +54,7 @@ import { WhatsappQueueModule } from './services/whatsapp-queue/whatsapp-queue.mo
     GuestModule,
     EmailQueueModule,
     WhatsappQueueModule,
+    QrCodeModule,
   ],
   controllers: [],
   providers: [PrismaService, UploaderProcessor, SchedulerService],

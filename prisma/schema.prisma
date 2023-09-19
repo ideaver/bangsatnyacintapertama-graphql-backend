@@ -55,7 +55,7 @@ model User {
   guestInfoId String?
 
   //-------------------------- m relations --------------------------------
-  QrCode QrCode[]
+  scannedQrs QrCode[]
 
   @@map("users")
 }
