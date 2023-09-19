@@ -65,7 +65,8 @@ services:
     depends_on:
       - portainer
       - redis
-      - mysql  
+      - mysql
+      - nginx
 
   redis:
     image: redis:latest
