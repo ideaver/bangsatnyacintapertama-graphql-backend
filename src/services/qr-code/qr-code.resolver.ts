@@ -164,7 +164,7 @@ export class QrCodeResolver {
     description: 'Deskripsinya ada disini loh',
   })
   qrCodeScan(
-    @Args({ type: () => String })
+    @Args({ type: () => String, name: 'userId' })
     userId: string,
   ): Promise<ScanResponse> {
     return this.qrCodeController.scan();

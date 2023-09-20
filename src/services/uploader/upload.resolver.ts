@@ -3,15 +3,14 @@ import { RatioEnum } from './enums/ratio.enum';
 // Ignore the import errors
 // @ts-ignore
 import { FileUpload, GraphQLUpload } from 'graphql-upload';
-import { UserController } from '../user/user.controller';
-import { IGraphQLError } from 'src/utils/exception/custom-graphql-error';
 import { UploaderService } from './uploader.service';
+import { UploaderController } from './uploader.controller';
 
 @Resolver()
 export class UploaderResolver {
   constructor(
     private readonly uploaderService: UploaderService,
-    private readonly userController: UserController,
+    private readonly uploaderController: UploaderController,
   ) {}
 
   @Mutation(() => String, {
@@ -26,14 +25,11 @@ export class UploaderResolver {
     @Args('ratioForImage', { type: () => RatioEnum, nullable: true })
     ratioForImage?: RatioEnum,
   ) {
-    //validate user id
-    await this.validateUserId(userId);
-
-    return await this.uploaderService.uploadSingleLocalFile({
-      userId: userId,
-      ratioForImage: ratioForImage ?? RatioEnum.SQUARE,
-      file: file,
-    });
+    return await this.uploaderController.uploadSingleFile(
+      file,
+      userId,
+      ratioForImage,
+    );
   }
 
   @Mutation(() => [String], {
@@ -50,25 +46,10 @@ export class UploaderResolver {
   ) {
     const uploadedFiles = await Promise.all(files);
 
-    //validate user id
-    await this.validateUserId(userId);
-
     return await this.uploaderService.uploadMultipleLocalFiles({
       userId: userId,
       ratioForImage: ratioForImage ?? RatioEnum.SQUARE,
       files: uploadedFiles,
     });
-  }
-
-  private async validateUserId(userId: string) {
-    if (
-      !(await this.userController.findFirst({
-        select: { id: true },
-        where: { id: { equals: userId } },
-        take: 1,
-      }))
-    ) {
-      throw new IGraphQLError({ code: 10004 });
-    }
   }
 }

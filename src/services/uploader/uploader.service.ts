@@ -80,7 +80,7 @@ export class UploaderService {
   public async uploadSingleLocalFile({
     userId,
     file,
-    ratioForImage: ratio,
+    ratioForImage,
   }: {
     userId: string;
     file: Promise<FileUploadDto>;
