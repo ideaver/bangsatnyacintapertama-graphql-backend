@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
 import { IGraphQLError } from 'src/utils/exception/custom-graphql-error';
 import { Prisma } from '@prisma/client';
+import { User } from 'src/@generated';
 
 @Injectable()
 export class UserService {
@@ -23,7 +24,7 @@ export class UserService {
     }
   }
 
-  async findOne(userFindUniqueArgs: Prisma.UserFindUniqueArgs) {
+  async findOne(userFindUniqueArgs: Prisma.UserFindUniqueArgs): Promise<User> {
     try {
       return await this.prisma.user.findUnique(userFindUniqueArgs);
     } catch (err) {

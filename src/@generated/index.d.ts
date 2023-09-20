@@ -14,13 +14,14 @@ export declare enum UserScalarFieldEnum {
     createdAt = "createdAt",
     updatedAt = "updatedAt",
     deletedAt = "deletedAt",
-    role = "role",
-    guestInfoId = "guestInfoId"
+    role = "role"
 }
 export declare enum QrCodeScalarFieldEnum {
+    id = "id",
     path = "path",
     scannedAt = "scannedAt",
     createdAt = "createdAt",
+    raceConditionValue = "raceConditionValue",
     guestId = "guestId",
     scannedByUserId = "scannedByUserId"
 }
@@ -56,13 +57,14 @@ export declare enum ConfirmationStatus {
 }
 export declare enum GuestScalarFieldEnum {
     userId = "userId",
-    category1 = "category1",
-    category2 = "category2",
-    personInCharge = "personInCharge",
+    source = "source",
+    invitationName = "invitationName",
+    contactList = "contactList",
+    category = "category",
     'class' = "class",
     seat = "seat",
+    studio = "studio",
     rejectionReason = "rejectionReason",
-    description = "description",
     parties = "parties",
     confirmationStatus = "confirmationStatus"
 }
@@ -504,49 +506,55 @@ export declare class GuestAggregateArgs {
     _max?: InstanceType<typeof GuestMaxAggregateInput>;
 }
 export declare class GuestAvgAggregateInput {
+    studio?: true;
     parties?: true;
 }
 export declare class GuestAvgAggregate {
+    studio?: number;
     parties?: number;
 }
 export declare class GuestAvgOrderByAggregateInput {
+    studio?: keyof typeof SortOrder;
     parties?: keyof typeof SortOrder;
 }
 export declare class GuestCountAggregateInput {
     userId?: true;
-    category1?: true;
-    category2?: true;
-    personInCharge?: true;
+    source?: true;
+    invitationName?: true;
+    contactList?: true;
+    category?: true;
     class?: true;
     seat?: true;
+    studio?: true;
     rejectionReason?: true;
-    description?: true;
     parties?: true;
     confirmationStatus?: true;
     _all?: true;
 }
 export declare class GuestCountAggregate {
     userId: number;
-    category1: number;
-    category2: number;
-    personInCharge: number;
+    source: number;
+    invitationName: number;
+    contactList: number;
+    category: number;
     class: number;
     seat: number;
+    studio: number;
     rejectionReason: number;
-    description: number;
     parties: number;
     confirmationStatus: number;
     _all: number;
 }
 export declare class GuestCountOrderByAggregateInput {
     userId?: keyof typeof SortOrder;
-    category1?: keyof typeof SortOrder;
-    category2?: keyof typeof SortOrder;
-    personInCharge?: keyof typeof SortOrder;
+    source?: keyof typeof SortOrder;
+    invitationName?: keyof typeof SortOrder;
+    contactList?: keyof typeof SortOrder;
+    category?: keyof typeof SortOrder;
     class?: keyof typeof SortOrder;
     seat?: keyof typeof SortOrder;
+    studio?: keyof typeof SortOrder;
     rejectionReason?: keyof typeof SortOrder;
-    description?: keyof typeof SortOrder;
     parties?: keyof typeof SortOrder;
     confirmationStatus?: keyof typeof SortOrder;
 }
@@ -557,13 +565,14 @@ export declare class GuestCount {
 }
 export declare class GuestCreateManyInput {
     userId: string;
-    category1?: string;
-    category2?: string;
-    personInCharge?: string;
+    source?: string;
+    invitationName?: string;
+    contactList?: string;
+    category?: string;
     class?: string;
     seat?: string;
+    studio?: number;
     rejectionReason?: string;
-    description?: string;
     parties?: number;
     confirmationStatus?: keyof typeof ConfirmationStatus;
 }
@@ -604,13 +613,14 @@ export declare class GuestCreateOrConnectWithoutWhatsappQueueInput {
     create: InstanceType<typeof GuestCreateWithoutWhatsappQueueInput>;
 }
 export declare class GuestCreateWithoutEmailQueueInput {
-    category1?: string;
-    category2?: string;
-    personInCharge?: string;
+    source?: string;
+    invitationName?: string;
+    contactList?: string;
+    category?: string;
     class?: string;
     seat?: string;
+    studio?: number;
     rejectionReason?: string;
-    description?: string;
     parties?: number;
     confirmationStatus?: keyof typeof ConfirmationStatus;
     user: InstanceType<typeof UserCreateNestedOneWithoutGuestInfoInput>;
@@ -618,13 +628,14 @@ export declare class GuestCreateWithoutEmailQueueInput {
     whatsappQueue?: InstanceType<typeof WhatsappQueueCreateNestedManyWithoutGuestInput>;
 }
 export declare class GuestCreateWithoutQrcodesInput {
-    category1?: string;
-    category2?: string;
-    personInCharge?: string;
+    source?: string;
+    invitationName?: string;
+    contactList?: string;
+    category?: string;
     class?: string;
     seat?: string;
+    studio?: number;
     rejectionReason?: string;
-    description?: string;
     parties?: number;
     confirmationStatus?: keyof typeof ConfirmationStatus;
     user: InstanceType<typeof UserCreateNestedOneWithoutGuestInfoInput>;
@@ -632,13 +643,14 @@ export declare class GuestCreateWithoutQrcodesInput {
     whatsappQueue?: InstanceType<typeof WhatsappQueueCreateNestedManyWithoutGuestInput>;
 }
 export declare class GuestCreateWithoutUserInput {
-    category1?: string;
-    category2?: string;
-    personInCharge?: string;
+    source?: string;
+    invitationName?: string;
+    contactList?: string;
+    category?: string;
     class?: string;
     seat?: string;
+    studio?: number;
     rejectionReason?: string;
-    description?: string;
     parties?: number;
     confirmationStatus?: keyof typeof ConfirmationStatus;
     qrcodes?: InstanceType<typeof QrCodeCreateNestedManyWithoutGuestInput>;
@@ -646,13 +658,14 @@ export declare class GuestCreateWithoutUserInput {
     whatsappQueue?: InstanceType<typeof WhatsappQueueCreateNestedManyWithoutGuestInput>;
 }
 export declare class GuestCreateWithoutWhatsappQueueInput {
-    category1?: string;
-    category2?: string;
-    personInCharge?: string;
+    source?: string;
+    invitationName?: string;
+    contactList?: string;
+    category?: string;
     class?: string;
     seat?: string;
+    studio?: number;
     rejectionReason?: string;
-    description?: string;
     parties?: number;
     confirmationStatus?: keyof typeof ConfirmationStatus;
     user: InstanceType<typeof UserCreateNestedOneWithoutGuestInfoInput>;
@@ -660,13 +673,14 @@ export declare class GuestCreateWithoutWhatsappQueueInput {
     emailQueue?: InstanceType<typeof EmailQueueCreateNestedManyWithoutGuestInput>;
 }
 export declare class GuestCreateInput {
-    category1?: string;
-    category2?: string;
-    personInCharge?: string;
+    source?: string;
+    invitationName?: string;
+    contactList?: string;
+    category?: string;
     class?: string;
     seat?: string;
+    studio?: number;
     rejectionReason?: string;
-    description?: string;
     parties?: number;
     confirmationStatus?: keyof typeof ConfirmationStatus;
     user: InstanceType<typeof UserCreateNestedOneWithoutGuestInfoInput>;
@@ -689,13 +703,14 @@ export declare class GuestGroupByArgs {
 }
 export declare class GuestGroupBy {
     userId: string;
-    category1?: string;
-    category2?: string;
-    personInCharge?: string;
+    source?: string;
+    invitationName?: string;
+    contactList?: string;
+    category?: string;
     class?: string;
     seat?: string;
+    studio?: number;
     rejectionReason?: string;
-    description?: string;
     parties: number;
     confirmationStatus: keyof typeof ConfirmationStatus;
     _count?: InstanceType<typeof GuestCountAggregate>;
@@ -706,73 +721,79 @@ export declare class GuestGroupBy {
 }
 export declare class GuestMaxAggregateInput {
     userId?: true;
-    category1?: true;
-    category2?: true;
-    personInCharge?: true;
+    source?: true;
+    invitationName?: true;
+    contactList?: true;
+    category?: true;
     class?: true;
     seat?: true;
+    studio?: true;
     rejectionReason?: true;
-    description?: true;
     parties?: true;
     confirmationStatus?: true;
 }
 export declare class GuestMaxAggregate {
     userId?: string;
-    category1?: string;
-    category2?: string;
-    personInCharge?: string;
+    source?: string;
+    invitationName?: string;
+    contactList?: string;
+    category?: string;
     class?: string;
     seat?: string;
+    studio?: number;
     rejectionReason?: string;
-    description?: string;
     parties?: number;
     confirmationStatus?: keyof typeof ConfirmationStatus;
 }
 export declare class GuestMaxOrderByAggregateInput {
     userId?: keyof typeof SortOrder;
-    category1?: keyof typeof SortOrder;
-    category2?: keyof typeof SortOrder;
-    personInCharge?: keyof typeof SortOrder;
+    source?: keyof typeof SortOrder;
+    invitationName?: keyof typeof SortOrder;
+    contactList?: keyof typeof SortOrder;
+    category?: keyof typeof SortOrder;
     class?: keyof typeof SortOrder;
     seat?: keyof typeof SortOrder;
+    studio?: keyof typeof SortOrder;
     rejectionReason?: keyof typeof SortOrder;
-    description?: keyof typeof SortOrder;
     parties?: keyof typeof SortOrder;
     confirmationStatus?: keyof typeof SortOrder;
 }
 export declare class GuestMinAggregateInput {
     userId?: true;
-    category1?: true;
-    category2?: true;
-    personInCharge?: true;
+    source?: true;
+    invitationName?: true;
+    contactList?: true;
+    category?: true;
     class?: true;
     seat?: true;
+    studio?: true;
     rejectionReason?: true;
-    description?: true;
     parties?: true;
     confirmationStatus?: true;
 }
 export declare class GuestMinAggregate {
     userId?: string;
-    category1?: string;
-    category2?: string;
-    personInCharge?: string;
+    source?: string;
+    invitationName?: string;
+    contactList?: string;
+    category?: string;
     class?: string;
     seat?: string;
+    studio?: number;
     rejectionReason?: string;
-    description?: string;
     parties?: number;
     confirmationStatus?: keyof typeof ConfirmationStatus;
 }
 export declare class GuestMinOrderByAggregateInput {
     userId?: keyof typeof SortOrder;
-    category1?: keyof typeof SortOrder;
-    category2?: keyof typeof SortOrder;
-    personInCharge?: keyof typeof SortOrder;
+    source?: keyof typeof SortOrder;
+    invitationName?: keyof typeof SortOrder;
+    contactList?: keyof typeof SortOrder;
+    category?: keyof typeof SortOrder;
     class?: keyof typeof SortOrder;
     seat?: keyof typeof SortOrder;
+    studio?: keyof typeof SortOrder;
     rejectionReason?: keyof typeof SortOrder;
-    description?: keyof typeof SortOrder;
     parties?: keyof typeof SortOrder;
     confirmationStatus?: keyof typeof SortOrder;
 }
@@ -782,13 +803,14 @@ export declare class GuestNullableRelationFilter {
 }
 export declare class GuestOrderByWithAggregationInput {
     userId?: keyof typeof SortOrder;
-    category1?: InstanceType<typeof SortOrderInput>;
-    category2?: InstanceType<typeof SortOrderInput>;
-    personInCharge?: InstanceType<typeof SortOrderInput>;
+    source?: InstanceType<typeof SortOrderInput>;
+    invitationName?: InstanceType<typeof SortOrderInput>;
+    contactList?: InstanceType<typeof SortOrderInput>;
+    category?: InstanceType<typeof SortOrderInput>;
     class?: InstanceType<typeof SortOrderInput>;
     seat?: InstanceType<typeof SortOrderInput>;
+    studio?: InstanceType<typeof SortOrderInput>;
     rejectionReason?: InstanceType<typeof SortOrderInput>;
-    description?: InstanceType<typeof SortOrderInput>;
     parties?: keyof typeof SortOrder;
     confirmationStatus?: keyof typeof SortOrder;
     _count?: InstanceType<typeof GuestCountOrderByAggregateInput>;
@@ -799,13 +821,14 @@ export declare class GuestOrderByWithAggregationInput {
 }
 export declare class GuestOrderByWithRelationInput {
     userId?: keyof typeof SortOrder;
-    category1?: InstanceType<typeof SortOrderInput>;
-    category2?: InstanceType<typeof SortOrderInput>;
-    personInCharge?: InstanceType<typeof SortOrderInput>;
+    source?: InstanceType<typeof SortOrderInput>;
+    invitationName?: InstanceType<typeof SortOrderInput>;
+    contactList?: InstanceType<typeof SortOrderInput>;
+    category?: InstanceType<typeof SortOrderInput>;
     class?: InstanceType<typeof SortOrderInput>;
     seat?: InstanceType<typeof SortOrderInput>;
+    studio?: InstanceType<typeof SortOrderInput>;
     rejectionReason?: InstanceType<typeof SortOrderInput>;
-    description?: InstanceType<typeof SortOrderInput>;
     parties?: keyof typeof SortOrder;
     confirmationStatus?: keyof typeof SortOrder;
     user?: InstanceType<typeof UserOrderByWithRelationInput>;
@@ -822,23 +845,27 @@ export declare class GuestScalarWhereWithAggregatesInput {
     OR?: Array<GuestScalarWhereWithAggregatesInput>;
     NOT?: Array<GuestScalarWhereWithAggregatesInput>;
     userId?: InstanceType<typeof StringWithAggregatesFilter>;
-    category1?: InstanceType<typeof StringNullableWithAggregatesFilter>;
-    category2?: InstanceType<typeof StringNullableWithAggregatesFilter>;
-    personInCharge?: InstanceType<typeof StringNullableWithAggregatesFilter>;
+    source?: InstanceType<typeof StringNullableWithAggregatesFilter>;
+    invitationName?: InstanceType<typeof StringNullableWithAggregatesFilter>;
+    contactList?: InstanceType<typeof StringNullableWithAggregatesFilter>;
+    category?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     class?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     seat?: InstanceType<typeof StringNullableWithAggregatesFilter>;
+    studio?: InstanceType<typeof IntNullableWithAggregatesFilter>;
     rejectionReason?: InstanceType<typeof StringNullableWithAggregatesFilter>;
-    description?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     parties?: InstanceType<typeof IntWithAggregatesFilter>;
     confirmationStatus?: InstanceType<typeof EnumConfirmationStatusWithAggregatesFilter>;
 }
 export declare class GuestSumAggregateInput {
+    studio?: true;
     parties?: true;
 }
 export declare class GuestSumAggregate {
+    studio?: number;
     parties?: number;
 }
 export declare class GuestSumOrderByAggregateInput {
+    studio?: keyof typeof SortOrder;
     parties?: keyof typeof SortOrder;
 }
 export declare class GuestUncheckedCreateNestedOneWithoutUserInput {
@@ -848,13 +875,14 @@ export declare class GuestUncheckedCreateNestedOneWithoutUserInput {
 }
 export declare class GuestUncheckedCreateWithoutEmailQueueInput {
     userId: string;
-    category1?: string;
-    category2?: string;
-    personInCharge?: string;
+    source?: string;
+    invitationName?: string;
+    contactList?: string;
+    category?: string;
     class?: string;
     seat?: string;
+    studio?: number;
     rejectionReason?: string;
-    description?: string;
     parties?: number;
     confirmationStatus?: keyof typeof ConfirmationStatus;
     qrcodes?: InstanceType<typeof QrCodeUncheckedCreateNestedManyWithoutGuestInput>;
@@ -862,26 +890,28 @@ export declare class GuestUncheckedCreateWithoutEmailQueueInput {
 }
 export declare class GuestUncheckedCreateWithoutQrcodesInput {
     userId: string;
-    category1?: string;
-    category2?: string;
-    personInCharge?: string;
+    source?: string;
+    invitationName?: string;
+    contactList?: string;
+    category?: string;
     class?: string;
     seat?: string;
+    studio?: number;
     rejectionReason?: string;
-    description?: string;
     parties?: number;
     confirmationStatus?: keyof typeof ConfirmationStatus;
     emailQueue?: InstanceType<typeof EmailQueueUncheckedCreateNestedManyWithoutGuestInput>;
     whatsappQueue?: InstanceType<typeof WhatsappQueueUncheckedCreateNestedManyWithoutGuestInput>;
 }
 export declare class GuestUncheckedCreateWithoutUserInput {
-    category1?: string;
-    category2?: string;
-    personInCharge?: string;
+    source?: string;
+    invitationName?: string;
+    contactList?: string;
+    category?: string;
     class?: string;
     seat?: string;
+    studio?: number;
     rejectionReason?: string;
-    description?: string;
     parties?: number;
     confirmationStatus?: keyof typeof ConfirmationStatus;
     qrcodes?: InstanceType<typeof QrCodeUncheckedCreateNestedManyWithoutGuestInput>;
@@ -890,13 +920,14 @@ export declare class GuestUncheckedCreateWithoutUserInput {
 }
 export declare class GuestUncheckedCreateWithoutWhatsappQueueInput {
     userId: string;
-    category1?: string;
-    category2?: string;
-    personInCharge?: string;
+    source?: string;
+    invitationName?: string;
+    contactList?: string;
+    category?: string;
     class?: string;
     seat?: string;
+    studio?: number;
     rejectionReason?: string;
-    description?: string;
     parties?: number;
     confirmationStatus?: keyof typeof ConfirmationStatus;
     qrcodes?: InstanceType<typeof QrCodeUncheckedCreateNestedManyWithoutGuestInput>;
@@ -904,13 +935,14 @@ export declare class GuestUncheckedCreateWithoutWhatsappQueueInput {
 }
 export declare class GuestUncheckedCreateInput {
     userId: string;
-    category1?: string;
-    category2?: string;
-    personInCharge?: string;
+    source?: string;
+    invitationName?: string;
+    contactList?: string;
+    category?: string;
     class?: string;
     seat?: string;
+    studio?: number;
     rejectionReason?: string;
-    description?: string;
     parties?: number;
     confirmationStatus?: keyof typeof ConfirmationStatus;
     qrcodes?: InstanceType<typeof QrCodeUncheckedCreateNestedManyWithoutGuestInput>;
@@ -919,13 +951,14 @@ export declare class GuestUncheckedCreateInput {
 }
 export declare class GuestUncheckedUpdateManyInput {
     userId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    category1?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    category2?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    personInCharge?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    invitationName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    studio?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     parties?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof EnumConfirmationStatusFieldUpdateOperationsInput>;
 }
@@ -940,13 +973,14 @@ export declare class GuestUncheckedUpdateOneWithoutUserNestedInput {
 }
 export declare class GuestUncheckedUpdateWithoutEmailQueueInput {
     userId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    category1?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    category2?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    personInCharge?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    invitationName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    studio?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     parties?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof EnumConfirmationStatusFieldUpdateOperationsInput>;
     qrcodes?: InstanceType<typeof QrCodeUncheckedUpdateManyWithoutGuestNestedInput>;
@@ -954,26 +988,28 @@ export declare class GuestUncheckedUpdateWithoutEmailQueueInput {
 }
 export declare class GuestUncheckedUpdateWithoutQrcodesInput {
     userId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    category1?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    category2?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    personInCharge?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    invitationName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    studio?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     parties?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof EnumConfirmationStatusFieldUpdateOperationsInput>;
     emailQueue?: InstanceType<typeof EmailQueueUncheckedUpdateManyWithoutGuestNestedInput>;
     whatsappQueue?: InstanceType<typeof WhatsappQueueUncheckedUpdateManyWithoutGuestNestedInput>;
 }
 export declare class GuestUncheckedUpdateWithoutUserInput {
-    category1?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    category2?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    personInCharge?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    invitationName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    studio?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     parties?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof EnumConfirmationStatusFieldUpdateOperationsInput>;
     qrcodes?: InstanceType<typeof QrCodeUncheckedUpdateManyWithoutGuestNestedInput>;
@@ -982,13 +1018,14 @@ export declare class GuestUncheckedUpdateWithoutUserInput {
 }
 export declare class GuestUncheckedUpdateWithoutWhatsappQueueInput {
     userId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    category1?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    category2?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    personInCharge?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    invitationName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    studio?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     parties?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof EnumConfirmationStatusFieldUpdateOperationsInput>;
     qrcodes?: InstanceType<typeof QrCodeUncheckedUpdateManyWithoutGuestNestedInput>;
@@ -996,13 +1033,14 @@ export declare class GuestUncheckedUpdateWithoutWhatsappQueueInput {
 }
 export declare class GuestUncheckedUpdateInput {
     userId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    category1?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    category2?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    personInCharge?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    invitationName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    studio?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     parties?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof EnumConfirmationStatusFieldUpdateOperationsInput>;
     qrcodes?: InstanceType<typeof QrCodeUncheckedUpdateManyWithoutGuestNestedInput>;
@@ -1010,13 +1048,14 @@ export declare class GuestUncheckedUpdateInput {
     whatsappQueue?: InstanceType<typeof WhatsappQueueUncheckedUpdateManyWithoutGuestNestedInput>;
 }
 export declare class GuestUpdateManyMutationInput {
-    category1?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    category2?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    personInCharge?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    invitationName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    studio?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     parties?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof EnumConfirmationStatusFieldUpdateOperationsInput>;
 }
@@ -1067,13 +1106,14 @@ export declare class GuestUpdateToOneWithWhereWithoutWhatsappQueueInput {
     data: InstanceType<typeof GuestUpdateWithoutWhatsappQueueInput>;
 }
 export declare class GuestUpdateWithoutEmailQueueInput {
-    category1?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    category2?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    personInCharge?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    invitationName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    studio?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     parties?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof EnumConfirmationStatusFieldUpdateOperationsInput>;
     user?: InstanceType<typeof UserUpdateOneRequiredWithoutGuestInfoNestedInput>;
@@ -1081,13 +1121,14 @@ export declare class GuestUpdateWithoutEmailQueueInput {
     whatsappQueue?: InstanceType<typeof WhatsappQueueUpdateManyWithoutGuestNestedInput>;
 }
 export declare class GuestUpdateWithoutQrcodesInput {
-    category1?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    category2?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    personInCharge?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    invitationName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    studio?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     parties?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof EnumConfirmationStatusFieldUpdateOperationsInput>;
     user?: InstanceType<typeof UserUpdateOneRequiredWithoutGuestInfoNestedInput>;
@@ -1095,13 +1136,14 @@ export declare class GuestUpdateWithoutQrcodesInput {
     whatsappQueue?: InstanceType<typeof WhatsappQueueUpdateManyWithoutGuestNestedInput>;
 }
 export declare class GuestUpdateWithoutUserInput {
-    category1?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    category2?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    personInCharge?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    invitationName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    studio?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     parties?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof EnumConfirmationStatusFieldUpdateOperationsInput>;
     qrcodes?: InstanceType<typeof QrCodeUpdateManyWithoutGuestNestedInput>;
@@ -1109,13 +1151,14 @@ export declare class GuestUpdateWithoutUserInput {
     whatsappQueue?: InstanceType<typeof WhatsappQueueUpdateManyWithoutGuestNestedInput>;
 }
 export declare class GuestUpdateWithoutWhatsappQueueInput {
-    category1?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    category2?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    personInCharge?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    invitationName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    studio?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     parties?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof EnumConfirmationStatusFieldUpdateOperationsInput>;
     user?: InstanceType<typeof UserUpdateOneRequiredWithoutGuestInfoNestedInput>;
@@ -1123,13 +1166,14 @@ export declare class GuestUpdateWithoutWhatsappQueueInput {
     emailQueue?: InstanceType<typeof EmailQueueUpdateManyWithoutGuestNestedInput>;
 }
 export declare class GuestUpdateInput {
-    category1?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    category2?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    personInCharge?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    invitationName?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    studio?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    description?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     parties?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof EnumConfirmationStatusFieldUpdateOperationsInput>;
     user?: InstanceType<typeof UserUpdateOneRequiredWithoutGuestInfoNestedInput>;
@@ -1162,13 +1206,14 @@ export declare class GuestWhereUniqueInput {
     AND?: Array<GuestWhereInput>;
     OR?: Array<GuestWhereInput>;
     NOT?: Array<GuestWhereInput>;
-    category1?: InstanceType<typeof StringNullableFilter>;
-    category2?: InstanceType<typeof StringNullableFilter>;
-    personInCharge?: InstanceType<typeof StringNullableFilter>;
+    source?: InstanceType<typeof StringNullableFilter>;
+    invitationName?: InstanceType<typeof StringNullableFilter>;
+    contactList?: InstanceType<typeof StringNullableFilter>;
+    category?: InstanceType<typeof StringNullableFilter>;
     class?: InstanceType<typeof StringNullableFilter>;
     seat?: InstanceType<typeof StringNullableFilter>;
+    studio?: InstanceType<typeof IntNullableFilter>;
     rejectionReason?: InstanceType<typeof StringNullableFilter>;
-    description?: InstanceType<typeof StringNullableFilter>;
     parties?: InstanceType<typeof IntFilter>;
     confirmationStatus?: InstanceType<typeof EnumConfirmationStatusFilter>;
     user?: InstanceType<typeof UserRelationFilter>;
@@ -1181,13 +1226,14 @@ export declare class GuestWhereInput {
     OR?: Array<GuestWhereInput>;
     NOT?: Array<GuestWhereInput>;
     userId?: InstanceType<typeof StringFilter>;
-    category1?: InstanceType<typeof StringNullableFilter>;
-    category2?: InstanceType<typeof StringNullableFilter>;
-    personInCharge?: InstanceType<typeof StringNullableFilter>;
+    source?: InstanceType<typeof StringNullableFilter>;
+    invitationName?: InstanceType<typeof StringNullableFilter>;
+    contactList?: InstanceType<typeof StringNullableFilter>;
+    category?: InstanceType<typeof StringNullableFilter>;
     class?: InstanceType<typeof StringNullableFilter>;
     seat?: InstanceType<typeof StringNullableFilter>;
+    studio?: InstanceType<typeof IntNullableFilter>;
     rejectionReason?: InstanceType<typeof StringNullableFilter>;
-    description?: InstanceType<typeof StringNullableFilter>;
     parties?: InstanceType<typeof IntFilter>;
     confirmationStatus?: InstanceType<typeof EnumConfirmationStatusFilter>;
     user?: InstanceType<typeof UserRelationFilter>;
@@ -1197,13 +1243,14 @@ export declare class GuestWhereInput {
 }
 export declare class Guest {
     userId: string;
-    category1: string | null;
-    category2: string | null;
-    personInCharge: string | null;
+    source: string | null;
+    invitationName: string | null;
+    contactList: string | null;
+    category: string | null;
     class: string | null;
     seat: string | null;
+    studio: number | null;
     rejectionReason: string | null;
-    description: string | null;
     parties: number;
     confirmationStatus: keyof typeof ConfirmationStatus;
     user?: InstanceType<typeof User>;
@@ -1348,6 +1395,31 @@ export declare class IntFilter {
     gte?: number;
     not?: InstanceType<typeof NestedIntFilter>;
 }
+export declare class IntNullableFilter {
+    equals?: number;
+    in?: Array<number>;
+    notIn?: Array<number>;
+    lt?: number;
+    lte?: number;
+    gt?: number;
+    gte?: number;
+    not?: InstanceType<typeof NestedIntNullableFilter>;
+}
+export declare class IntNullableWithAggregatesFilter {
+    equals?: number;
+    in?: Array<number>;
+    notIn?: Array<number>;
+    lt?: number;
+    lte?: number;
+    gt?: number;
+    gte?: number;
+    not?: InstanceType<typeof NestedIntNullableWithAggregatesFilter>;
+    _count?: InstanceType<typeof NestedIntNullableFilter>;
+    _avg?: InstanceType<typeof NestedFloatNullableFilter>;
+    _sum?: InstanceType<typeof NestedIntNullableFilter>;
+    _min?: InstanceType<typeof NestedIntNullableFilter>;
+    _max?: InstanceType<typeof NestedIntNullableFilter>;
+}
 export declare class IntWithAggregatesFilter {
     equals?: number;
     in?: Array<number>;
@@ -1464,6 +1536,16 @@ export declare class NestedFloatFilter {
     gte?: number;
     not?: InstanceType<typeof NestedFloatFilter>;
 }
+export declare class NestedFloatNullableFilter {
+    equals?: number;
+    in?: Array<number>;
+    notIn?: Array<number>;
+    lt?: number;
+    lte?: number;
+    gt?: number;
+    gte?: number;
+    not?: InstanceType<typeof NestedFloatNullableFilter>;
+}
 export declare class NestedIntFilter {
     equals?: number;
     in?: Array<number>;
@@ -1483,6 +1565,21 @@ export declare class NestedIntNullableFilter {
     gt?: number;
     gte?: number;
     not?: InstanceType<typeof NestedIntNullableFilter>;
+}
+export declare class NestedIntNullableWithAggregatesFilter {
+    equals?: number;
+    in?: Array<number>;
+    notIn?: Array<number>;
+    lt?: number;
+    lte?: number;
+    gt?: number;
+    gte?: number;
+    not?: InstanceType<typeof NestedIntNullableWithAggregatesFilter>;
+    _count?: InstanceType<typeof NestedIntNullableFilter>;
+    _avg?: InstanceType<typeof NestedFloatNullableFilter>;
+    _sum?: InstanceType<typeof NestedIntNullableFilter>;
+    _min?: InstanceType<typeof NestedIntNullableFilter>;
+    _max?: InstanceType<typeof NestedIntNullableFilter>;
 }
 export declare class NestedIntWithAggregatesFilter {
     equals?: number;
@@ -1560,6 +1657,13 @@ export declare class NestedStringWithAggregatesFilter {
 export declare class NullableDateTimeFieldUpdateOperationsInput {
     set?: Date | string;
 }
+export declare class NullableIntFieldUpdateOperationsInput {
+    set?: number;
+    increment?: number;
+    decrement?: number;
+    multiply?: number;
+    divide?: number;
+}
 export declare class NullableStringFieldUpdateOperationsInput {
     set?: string;
 }
@@ -1630,6 +1734,8 @@ export declare class StringWithAggregatesFilter {
 }
 export declare class AggregateQrCode {
     _count?: InstanceType<typeof QrCodeCountAggregate>;
+    _avg?: InstanceType<typeof QrCodeAvgAggregate>;
+    _sum?: InstanceType<typeof QrCodeSumAggregate>;
     _min?: InstanceType<typeof QrCodeMinAggregate>;
     _max?: InstanceType<typeof QrCodeMaxAggregate>;
 }
@@ -1644,12 +1750,12 @@ export declare class DeleteManyQrCodeArgs {
     where?: InstanceType<typeof QrCodeWhereInput>;
 }
 export declare class DeleteOneQrCodeArgs {
-    where: Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>;
+    where: Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>;
 }
 export declare class FindFirstQrCodeOrThrowArgs {
     where?: InstanceType<typeof QrCodeWhereInput>;
     orderBy?: Array<QrCodeOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>;
+    cursor?: Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof QrCodeScalarFieldEnum>;
@@ -1657,7 +1763,7 @@ export declare class FindFirstQrCodeOrThrowArgs {
 export declare class FindFirstQrCodeArgs {
     where?: InstanceType<typeof QrCodeWhereInput>;
     orderBy?: Array<QrCodeOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>;
+    cursor?: Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof QrCodeScalarFieldEnum>;
@@ -1665,47 +1771,67 @@ export declare class FindFirstQrCodeArgs {
 export declare class FindManyQrCodeArgs {
     where?: InstanceType<typeof QrCodeWhereInput>;
     orderBy?: Array<QrCodeOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>;
+    cursor?: Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof QrCodeScalarFieldEnum>;
 }
 export declare class FindUniqueQrCodeOrThrowArgs {
-    where: Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>;
+    where: Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>;
 }
 export declare class FindUniqueQrCodeArgs {
-    where: Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>;
+    where: Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>;
 }
 export declare class QrCodeAggregateArgs {
     where?: InstanceType<typeof QrCodeWhereInput>;
     orderBy?: Array<QrCodeOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>;
+    cursor?: Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>;
     take?: number;
     skip?: number;
     _count?: InstanceType<typeof QrCodeCountAggregateInput>;
+    _avg?: InstanceType<typeof QrCodeAvgAggregateInput>;
+    _sum?: InstanceType<typeof QrCodeSumAggregateInput>;
     _min?: InstanceType<typeof QrCodeMinAggregateInput>;
     _max?: InstanceType<typeof QrCodeMaxAggregateInput>;
 }
+export declare class QrCodeAvgAggregateInput {
+    id?: true;
+    raceConditionValue?: true;
+}
+export declare class QrCodeAvgAggregate {
+    id?: number;
+    raceConditionValue?: number;
+}
+export declare class QrCodeAvgOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
+    raceConditionValue?: keyof typeof SortOrder;
+}
 export declare class QrCodeCountAggregateInput {
+    id?: true;
     path?: true;
     scannedAt?: true;
     createdAt?: true;
+    raceConditionValue?: true;
     guestId?: true;
     scannedByUserId?: true;
     _all?: true;
 }
 export declare class QrCodeCountAggregate {
+    id: number;
     path: number;
     scannedAt: number;
     createdAt: number;
+    raceConditionValue: number;
     guestId: number;
     scannedByUserId: number;
     _all: number;
 }
 export declare class QrCodeCountOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
     path?: keyof typeof SortOrder;
     scannedAt?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
+    raceConditionValue?: keyof typeof SortOrder;
     guestId?: keyof typeof SortOrder;
     scannedByUserId?: keyof typeof SortOrder;
 }
@@ -1714,9 +1840,11 @@ export declare class QrCodeCreateManyGuestInputEnvelope {
     skipDuplicates?: boolean;
 }
 export declare class QrCodeCreateManyGuestInput {
+    id?: number;
     path: string;
     scannedAt?: Date | string;
     createdAt?: Date | string;
+    raceConditionValue?: number;
     scannedByUserId?: string;
 }
 export declare class QrCodeCreateManyScannedByInputEnvelope {
@@ -1724,15 +1852,19 @@ export declare class QrCodeCreateManyScannedByInputEnvelope {
     skipDuplicates?: boolean;
 }
 export declare class QrCodeCreateManyScannedByInput {
+    id?: number;
     path: string;
     scannedAt?: Date | string;
     createdAt?: Date | string;
+    raceConditionValue?: number;
     guestId: string;
 }
 export declare class QrCodeCreateManyInput {
+    id?: number;
     path: string;
     scannedAt?: Date | string;
     createdAt?: Date | string;
+    raceConditionValue?: number;
     guestId: string;
     scannedByUserId?: string;
 }
@@ -1740,40 +1872,43 @@ export declare class QrCodeCreateNestedManyWithoutGuestInput {
     create?: Array<QrCodeCreateWithoutGuestInput>;
     connectOrCreate?: Array<QrCodeCreateOrConnectWithoutGuestInput>;
     createMany?: InstanceType<typeof QrCodeCreateManyGuestInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>>;
+    connect?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>>;
 }
 export declare class QrCodeCreateNestedManyWithoutScannedByInput {
     create?: Array<QrCodeCreateWithoutScannedByInput>;
     connectOrCreate?: Array<QrCodeCreateOrConnectWithoutScannedByInput>;
     createMany?: InstanceType<typeof QrCodeCreateManyScannedByInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>>;
+    connect?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>>;
 }
 export declare class QrCodeCreateOrConnectWithoutGuestInput {
-    where: Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>;
+    where: Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>;
     create: InstanceType<typeof QrCodeCreateWithoutGuestInput>;
 }
 export declare class QrCodeCreateOrConnectWithoutScannedByInput {
-    where: Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>;
+    where: Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>;
     create: InstanceType<typeof QrCodeCreateWithoutScannedByInput>;
 }
 export declare class QrCodeCreateWithoutGuestInput {
     path: string;
     scannedAt?: Date | string;
     createdAt?: Date | string;
-    scannedBy?: InstanceType<typeof UserCreateNestedOneWithoutQrCodeInput>;
+    raceConditionValue?: number;
+    scannedBy?: InstanceType<typeof UserCreateNestedOneWithoutScannedQrsInput>;
 }
 export declare class QrCodeCreateWithoutScannedByInput {
     path: string;
     scannedAt?: Date | string;
     createdAt?: Date | string;
+    raceConditionValue?: number;
     guest: InstanceType<typeof GuestCreateNestedOneWithoutQrcodesInput>;
 }
 export declare class QrCodeCreateInput {
     path: string;
     scannedAt?: Date | string;
     createdAt?: Date | string;
+    raceConditionValue?: number;
     guest: InstanceType<typeof GuestCreateNestedOneWithoutQrcodesInput>;
-    scannedBy?: InstanceType<typeof UserCreateNestedOneWithoutQrCodeInput>;
+    scannedBy?: InstanceType<typeof UserCreateNestedOneWithoutScannedQrsInput>;
 }
 export declare class QrCodeGroupByArgs {
     where?: InstanceType<typeof QrCodeWhereInput>;
@@ -1783,16 +1918,22 @@ export declare class QrCodeGroupByArgs {
     take?: number;
     skip?: number;
     _count?: InstanceType<typeof QrCodeCountAggregateInput>;
+    _avg?: InstanceType<typeof QrCodeAvgAggregateInput>;
+    _sum?: InstanceType<typeof QrCodeSumAggregateInput>;
     _min?: InstanceType<typeof QrCodeMinAggregateInput>;
     _max?: InstanceType<typeof QrCodeMaxAggregateInput>;
 }
 export declare class QrCodeGroupBy {
+    id: number;
     path: string;
     scannedAt?: Date | string;
     createdAt: Date | string;
+    raceConditionValue: number;
     guestId: string;
     scannedByUserId?: string;
     _count?: InstanceType<typeof QrCodeCountAggregate>;
+    _avg?: InstanceType<typeof QrCodeAvgAggregate>;
+    _sum?: InstanceType<typeof QrCodeSumAggregate>;
     _min?: InstanceType<typeof QrCodeMinAggregate>;
     _max?: InstanceType<typeof QrCodeMaxAggregate>;
 }
@@ -1802,44 +1943,56 @@ export declare class QrCodeListRelationFilter {
     none?: InstanceType<typeof QrCodeWhereInput>;
 }
 export declare class QrCodeMaxAggregateInput {
+    id?: true;
     path?: true;
     scannedAt?: true;
     createdAt?: true;
+    raceConditionValue?: true;
     guestId?: true;
     scannedByUserId?: true;
 }
 export declare class QrCodeMaxAggregate {
+    id?: number;
     path?: string;
     scannedAt?: Date | string;
     createdAt?: Date | string;
+    raceConditionValue?: number;
     guestId?: string;
     scannedByUserId?: string;
 }
 export declare class QrCodeMaxOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
     path?: keyof typeof SortOrder;
     scannedAt?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
+    raceConditionValue?: keyof typeof SortOrder;
     guestId?: keyof typeof SortOrder;
     scannedByUserId?: keyof typeof SortOrder;
 }
 export declare class QrCodeMinAggregateInput {
+    id?: true;
     path?: true;
     scannedAt?: true;
     createdAt?: true;
+    raceConditionValue?: true;
     guestId?: true;
     scannedByUserId?: true;
 }
 export declare class QrCodeMinAggregate {
+    id?: number;
     path?: string;
     scannedAt?: Date | string;
     createdAt?: Date | string;
+    raceConditionValue?: number;
     guestId?: string;
     scannedByUserId?: string;
 }
 export declare class QrCodeMinOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
     path?: keyof typeof SortOrder;
     scannedAt?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
+    raceConditionValue?: keyof typeof SortOrder;
     guestId?: keyof typeof SortOrder;
     scannedByUserId?: keyof typeof SortOrder;
 }
@@ -1847,19 +2000,25 @@ export declare class QrCodeOrderByRelationAggregateInput {
     _count?: keyof typeof SortOrder;
 }
 export declare class QrCodeOrderByWithAggregationInput {
+    id?: keyof typeof SortOrder;
     path?: keyof typeof SortOrder;
     scannedAt?: InstanceType<typeof SortOrderInput>;
     createdAt?: keyof typeof SortOrder;
+    raceConditionValue?: keyof typeof SortOrder;
     guestId?: keyof typeof SortOrder;
     scannedByUserId?: InstanceType<typeof SortOrderInput>;
     _count?: InstanceType<typeof QrCodeCountOrderByAggregateInput>;
+    _avg?: InstanceType<typeof QrCodeAvgOrderByAggregateInput>;
     _max?: InstanceType<typeof QrCodeMaxOrderByAggregateInput>;
     _min?: InstanceType<typeof QrCodeMinOrderByAggregateInput>;
+    _sum?: InstanceType<typeof QrCodeSumOrderByAggregateInput>;
 }
 export declare class QrCodeOrderByWithRelationInput {
+    id?: keyof typeof SortOrder;
     path?: keyof typeof SortOrder;
     scannedAt?: InstanceType<typeof SortOrderInput>;
     createdAt?: keyof typeof SortOrder;
+    raceConditionValue?: keyof typeof SortOrder;
     guestId?: keyof typeof SortOrder;
     scannedByUserId?: InstanceType<typeof SortOrderInput>;
     guest?: InstanceType<typeof GuestOrderByWithRelationInput>;
@@ -1869,9 +2028,11 @@ export declare class QrCodeScalarWhereWithAggregatesInput {
     AND?: Array<QrCodeScalarWhereWithAggregatesInput>;
     OR?: Array<QrCodeScalarWhereWithAggregatesInput>;
     NOT?: Array<QrCodeScalarWhereWithAggregatesInput>;
+    id?: InstanceType<typeof IntWithAggregatesFilter>;
     path?: InstanceType<typeof StringWithAggregatesFilter>;
     scannedAt?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
+    raceConditionValue?: InstanceType<typeof IntWithAggregatesFilter>;
     guestId?: InstanceType<typeof StringWithAggregatesFilter>;
     scannedByUserId?: InstanceType<typeof StringNullableWithAggregatesFilter>;
 }
@@ -1879,40 +2040,60 @@ export declare class QrCodeScalarWhereInput {
     AND?: Array<QrCodeScalarWhereInput>;
     OR?: Array<QrCodeScalarWhereInput>;
     NOT?: Array<QrCodeScalarWhereInput>;
+    id?: InstanceType<typeof IntFilter>;
     path?: InstanceType<typeof StringFilter>;
     scannedAt?: InstanceType<typeof DateTimeNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
+    raceConditionValue?: InstanceType<typeof IntFilter>;
     guestId?: InstanceType<typeof StringFilter>;
     scannedByUserId?: InstanceType<typeof StringNullableFilter>;
+}
+export declare class QrCodeSumAggregateInput {
+    id?: true;
+    raceConditionValue?: true;
+}
+export declare class QrCodeSumAggregate {
+    id?: number;
+    raceConditionValue?: number;
+}
+export declare class QrCodeSumOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
+    raceConditionValue?: keyof typeof SortOrder;
 }
 export declare class QrCodeUncheckedCreateNestedManyWithoutGuestInput {
     create?: Array<QrCodeCreateWithoutGuestInput>;
     connectOrCreate?: Array<QrCodeCreateOrConnectWithoutGuestInput>;
     createMany?: InstanceType<typeof QrCodeCreateManyGuestInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>>;
+    connect?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>>;
 }
 export declare class QrCodeUncheckedCreateNestedManyWithoutScannedByInput {
     create?: Array<QrCodeCreateWithoutScannedByInput>;
     connectOrCreate?: Array<QrCodeCreateOrConnectWithoutScannedByInput>;
     createMany?: InstanceType<typeof QrCodeCreateManyScannedByInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>>;
+    connect?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>>;
 }
 export declare class QrCodeUncheckedCreateWithoutGuestInput {
+    id?: number;
     path: string;
     scannedAt?: Date | string;
     createdAt?: Date | string;
+    raceConditionValue?: number;
     scannedByUserId?: string;
 }
 export declare class QrCodeUncheckedCreateWithoutScannedByInput {
+    id?: number;
     path: string;
     scannedAt?: Date | string;
     createdAt?: Date | string;
+    raceConditionValue?: number;
     guestId: string;
 }
 export declare class QrCodeUncheckedCreateInput {
+    id?: number;
     path: string;
     scannedAt?: Date | string;
     createdAt?: Date | string;
+    raceConditionValue?: number;
     guestId: string;
     scannedByUserId?: string;
 }
@@ -1921,18 +2102,20 @@ export declare class QrCodeUncheckedUpdateManyWithoutGuestNestedInput {
     connectOrCreate?: Array<QrCodeCreateOrConnectWithoutGuestInput>;
     upsert?: Array<QrCodeUpsertWithWhereUniqueWithoutGuestInput>;
     createMany?: InstanceType<typeof QrCodeCreateManyGuestInputEnvelope>;
-    set?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>>;
-    disconnect?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>>;
-    delete?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>>;
-    connect?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>>;
+    set?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>>;
+    disconnect?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>>;
+    delete?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>>;
+    connect?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>>;
     update?: Array<QrCodeUpdateWithWhereUniqueWithoutGuestInput>;
     updateMany?: Array<QrCodeUpdateManyWithWhereWithoutGuestInput>;
     deleteMany?: Array<QrCodeScalarWhereInput>;
 }
 export declare class QrCodeUncheckedUpdateManyWithoutGuestInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     scannedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    raceConditionValue?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     scannedByUserId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
 }
 export declare class QrCodeUncheckedUpdateManyWithoutScannedByNestedInput {
@@ -1940,43 +2123,53 @@ export declare class QrCodeUncheckedUpdateManyWithoutScannedByNestedInput {
     connectOrCreate?: Array<QrCodeCreateOrConnectWithoutScannedByInput>;
     upsert?: Array<QrCodeUpsertWithWhereUniqueWithoutScannedByInput>;
     createMany?: InstanceType<typeof QrCodeCreateManyScannedByInputEnvelope>;
-    set?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>>;
-    disconnect?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>>;
-    delete?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>>;
-    connect?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>>;
+    set?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>>;
+    disconnect?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>>;
+    delete?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>>;
+    connect?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>>;
     update?: Array<QrCodeUpdateWithWhereUniqueWithoutScannedByInput>;
     updateMany?: Array<QrCodeUpdateManyWithWhereWithoutScannedByInput>;
     deleteMany?: Array<QrCodeScalarWhereInput>;
 }
 export declare class QrCodeUncheckedUpdateManyWithoutScannedByInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     scannedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    raceConditionValue?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     guestId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
 }
 export declare class QrCodeUncheckedUpdateManyInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     scannedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    raceConditionValue?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     guestId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     scannedByUserId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
 }
 export declare class QrCodeUncheckedUpdateWithoutGuestInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     scannedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    raceConditionValue?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     scannedByUserId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
 }
 export declare class QrCodeUncheckedUpdateWithoutScannedByInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     scannedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    raceConditionValue?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     guestId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
 }
 export declare class QrCodeUncheckedUpdateInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     scannedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    raceConditionValue?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     guestId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     scannedByUserId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
 }
@@ -1984,6 +2177,7 @@ export declare class QrCodeUpdateManyMutationInput {
     path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     scannedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    raceConditionValue?: InstanceType<typeof IntFieldUpdateOperationsInput>;
 }
 export declare class QrCodeUpdateManyWithWhereWithoutGuestInput {
     where: InstanceType<typeof QrCodeScalarWhereInput>;
@@ -1998,10 +2192,10 @@ export declare class QrCodeUpdateManyWithoutGuestNestedInput {
     connectOrCreate?: Array<QrCodeCreateOrConnectWithoutGuestInput>;
     upsert?: Array<QrCodeUpsertWithWhereUniqueWithoutGuestInput>;
     createMany?: InstanceType<typeof QrCodeCreateManyGuestInputEnvelope>;
-    set?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>>;
-    disconnect?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>>;
-    delete?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>>;
-    connect?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>>;
+    set?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>>;
+    disconnect?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>>;
+    delete?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>>;
+    connect?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>>;
     update?: Array<QrCodeUpdateWithWhereUniqueWithoutGuestInput>;
     updateMany?: Array<QrCodeUpdateManyWithWhereWithoutGuestInput>;
     deleteMany?: Array<QrCodeScalarWhereInput>;
@@ -2011,59 +2205,64 @@ export declare class QrCodeUpdateManyWithoutScannedByNestedInput {
     connectOrCreate?: Array<QrCodeCreateOrConnectWithoutScannedByInput>;
     upsert?: Array<QrCodeUpsertWithWhereUniqueWithoutScannedByInput>;
     createMany?: InstanceType<typeof QrCodeCreateManyScannedByInputEnvelope>;
-    set?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>>;
-    disconnect?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>>;
-    delete?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>>;
-    connect?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>>;
+    set?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>>;
+    disconnect?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>>;
+    delete?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>>;
+    connect?: Array<Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>>;
     update?: Array<QrCodeUpdateWithWhereUniqueWithoutScannedByInput>;
     updateMany?: Array<QrCodeUpdateManyWithWhereWithoutScannedByInput>;
     deleteMany?: Array<QrCodeScalarWhereInput>;
 }
 export declare class QrCodeUpdateWithWhereUniqueWithoutGuestInput {
-    where: Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>;
+    where: Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>;
     data: InstanceType<typeof QrCodeUpdateWithoutGuestInput>;
 }
 export declare class QrCodeUpdateWithWhereUniqueWithoutScannedByInput {
-    where: Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>;
+    where: Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>;
     data: InstanceType<typeof QrCodeUpdateWithoutScannedByInput>;
 }
 export declare class QrCodeUpdateWithoutGuestInput {
     path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     scannedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    scannedBy?: InstanceType<typeof UserUpdateOneWithoutQrCodeNestedInput>;
+    raceConditionValue?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    scannedBy?: InstanceType<typeof UserUpdateOneWithoutScannedQrsNestedInput>;
 }
 export declare class QrCodeUpdateWithoutScannedByInput {
     path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     scannedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    raceConditionValue?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     guest?: InstanceType<typeof GuestUpdateOneRequiredWithoutQrcodesNestedInput>;
 }
 export declare class QrCodeUpdateInput {
     path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     scannedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    raceConditionValue?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     guest?: InstanceType<typeof GuestUpdateOneRequiredWithoutQrcodesNestedInput>;
-    scannedBy?: InstanceType<typeof UserUpdateOneWithoutQrCodeNestedInput>;
+    scannedBy?: InstanceType<typeof UserUpdateOneWithoutScannedQrsNestedInput>;
 }
 export declare class QrCodeUpsertWithWhereUniqueWithoutGuestInput {
-    where: Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>;
+    where: Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>;
     update: InstanceType<typeof QrCodeUpdateWithoutGuestInput>;
     create: InstanceType<typeof QrCodeCreateWithoutGuestInput>;
 }
 export declare class QrCodeUpsertWithWhereUniqueWithoutScannedByInput {
-    where: Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>;
+    where: Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>;
     update: InstanceType<typeof QrCodeUpdateWithoutScannedByInput>;
     create: InstanceType<typeof QrCodeCreateWithoutScannedByInput>;
 }
 export declare class QrCodeWhereUniqueInput {
-    guestId?: string;
+    id?: number;
     AND?: Array<QrCodeWhereInput>;
     OR?: Array<QrCodeWhereInput>;
     NOT?: Array<QrCodeWhereInput>;
     path?: InstanceType<typeof StringFilter>;
     scannedAt?: InstanceType<typeof DateTimeNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
+    raceConditionValue?: InstanceType<typeof IntFilter>;
+    guestId?: InstanceType<typeof StringFilter>;
     scannedByUserId?: InstanceType<typeof StringNullableFilter>;
     guest?: InstanceType<typeof GuestRelationFilter>;
     scannedBy?: InstanceType<typeof UserNullableRelationFilter>;
@@ -2072,18 +2271,22 @@ export declare class QrCodeWhereInput {
     AND?: Array<QrCodeWhereInput>;
     OR?: Array<QrCodeWhereInput>;
     NOT?: Array<QrCodeWhereInput>;
+    id?: InstanceType<typeof IntFilter>;
     path?: InstanceType<typeof StringFilter>;
     scannedAt?: InstanceType<typeof DateTimeNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
+    raceConditionValue?: InstanceType<typeof IntFilter>;
     guestId?: InstanceType<typeof StringFilter>;
     scannedByUserId?: InstanceType<typeof StringNullableFilter>;
     guest?: InstanceType<typeof GuestRelationFilter>;
     scannedBy?: InstanceType<typeof UserNullableRelationFilter>;
 }
 export declare class QrCode {
+    id: number;
     path: string;
     scannedAt: Date | null;
     createdAt: Date;
+    raceConditionValue: number;
     guestId: string;
     scannedByUserId: string | null;
     guest?: InstanceType<typeof Guest>;
@@ -2095,10 +2298,10 @@ export declare class UpdateManyQrCodeArgs {
 }
 export declare class UpdateOneQrCodeArgs {
     data: InstanceType<typeof QrCodeUpdateInput>;
-    where: Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>;
+    where: Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>;
 }
 export declare class UpsertOneQrCodeArgs {
-    where: Prisma.AtLeast<QrCodeWhereUniqueInput, 'guestId'>;
+    where: Prisma.AtLeast<QrCodeWhereUniqueInput, 'id'>;
     create: InstanceType<typeof QrCodeCreateInput>;
     update: InstanceType<typeof QrCodeUpdateInput>;
 }
@@ -2183,7 +2386,6 @@ export declare class UserCountAggregateInput {
     updatedAt?: true;
     deletedAt?: true;
     role?: true;
-    guestInfoId?: true;
     _all?: true;
 }
 export declare class UserCountAggregate {
@@ -2196,7 +2398,6 @@ export declare class UserCountAggregate {
     updatedAt: number;
     deletedAt: number;
     role: number;
-    guestInfoId: number;
     _all: number;
 }
 export declare class UserCountOrderByAggregateInput {
@@ -2209,10 +2410,9 @@ export declare class UserCountOrderByAggregateInput {
     updatedAt?: keyof typeof SortOrder;
     deletedAt?: keyof typeof SortOrder;
     role?: keyof typeof SortOrder;
-    guestInfoId?: keyof typeof SortOrder;
 }
 export declare class UserCount {
-    QrCode?: number;
+    scannedQrs?: number;
 }
 export declare class UserCreateManyInput {
     id?: string;
@@ -2224,25 +2424,24 @@ export declare class UserCreateManyInput {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     role: keyof typeof UserRole;
-    guestInfoId?: string;
 }
 export declare class UserCreateNestedOneWithoutGuestInfoInput {
     create?: InstanceType<typeof UserCreateWithoutGuestInfoInput>;
     connectOrCreate?: InstanceType<typeof UserCreateOrConnectWithoutGuestInfoInput>;
     connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email' | 'whatsapp'>;
 }
-export declare class UserCreateNestedOneWithoutQrCodeInput {
-    create?: InstanceType<typeof UserCreateWithoutQrCodeInput>;
-    connectOrCreate?: InstanceType<typeof UserCreateOrConnectWithoutQrCodeInput>;
+export declare class UserCreateNestedOneWithoutScannedQrsInput {
+    create?: InstanceType<typeof UserCreateWithoutScannedQrsInput>;
+    connectOrCreate?: InstanceType<typeof UserCreateOrConnectWithoutScannedQrsInput>;
     connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email' | 'whatsapp'>;
 }
 export declare class UserCreateOrConnectWithoutGuestInfoInput {
     where: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email' | 'whatsapp'>;
     create: InstanceType<typeof UserCreateWithoutGuestInfoInput>;
 }
-export declare class UserCreateOrConnectWithoutQrCodeInput {
+export declare class UserCreateOrConnectWithoutScannedQrsInput {
     where: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email' | 'whatsapp'>;
-    create: InstanceType<typeof UserCreateWithoutQrCodeInput>;
+    create: InstanceType<typeof UserCreateWithoutScannedQrsInput>;
 }
 export declare class UserCreateWithoutGuestInfoInput {
     id?: string;
@@ -2254,10 +2453,9 @@ export declare class UserCreateWithoutGuestInfoInput {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     role: keyof typeof UserRole;
-    guestInfoId?: string;
-    QrCode?: InstanceType<typeof QrCodeCreateNestedManyWithoutScannedByInput>;
+    scannedQrs?: InstanceType<typeof QrCodeCreateNestedManyWithoutScannedByInput>;
 }
-export declare class UserCreateWithoutQrCodeInput {
+export declare class UserCreateWithoutScannedQrsInput {
     id?: string;
     fullName: string;
     email?: string;
@@ -2267,7 +2465,6 @@ export declare class UserCreateWithoutQrCodeInput {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     role: keyof typeof UserRole;
-    guestInfoId?: string;
     guestInfo?: InstanceType<typeof GuestCreateNestedOneWithoutUserInput>;
 }
 export declare class UserCreateInput {
@@ -2280,9 +2477,8 @@ export declare class UserCreateInput {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     role: keyof typeof UserRole;
-    guestInfoId?: string;
     guestInfo?: InstanceType<typeof GuestCreateNestedOneWithoutUserInput>;
-    QrCode?: InstanceType<typeof QrCodeCreateNestedManyWithoutScannedByInput>;
+    scannedQrs?: InstanceType<typeof QrCodeCreateNestedManyWithoutScannedByInput>;
 }
 export declare class UserGroupByArgs {
     where?: InstanceType<typeof UserWhereInput>;
@@ -2305,7 +2501,6 @@ export declare class UserGroupBy {
     updatedAt: Date | string;
     deletedAt?: Date | string;
     role: keyof typeof UserRole;
-    guestInfoId?: string;
     _count?: InstanceType<typeof UserCountAggregate>;
     _min?: InstanceType<typeof UserMinAggregate>;
     _max?: InstanceType<typeof UserMaxAggregate>;
@@ -2320,7 +2515,6 @@ export declare class UserMaxAggregateInput {
     updatedAt?: true;
     deletedAt?: true;
     role?: true;
-    guestInfoId?: true;
 }
 export declare class UserMaxAggregate {
     id?: string;
@@ -2332,7 +2526,6 @@ export declare class UserMaxAggregate {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     role?: keyof typeof UserRole;
-    guestInfoId?: string;
 }
 export declare class UserMaxOrderByAggregateInput {
     id?: keyof typeof SortOrder;
@@ -2344,7 +2537,6 @@ export declare class UserMaxOrderByAggregateInput {
     updatedAt?: keyof typeof SortOrder;
     deletedAt?: keyof typeof SortOrder;
     role?: keyof typeof SortOrder;
-    guestInfoId?: keyof typeof SortOrder;
 }
 export declare class UserMinAggregateInput {
     id?: true;
@@ -2356,7 +2548,6 @@ export declare class UserMinAggregateInput {
     updatedAt?: true;
     deletedAt?: true;
     role?: true;
-    guestInfoId?: true;
 }
 export declare class UserMinAggregate {
     id?: string;
@@ -2368,7 +2559,6 @@ export declare class UserMinAggregate {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     role?: keyof typeof UserRole;
-    guestInfoId?: string;
 }
 export declare class UserMinOrderByAggregateInput {
     id?: keyof typeof SortOrder;
@@ -2380,7 +2570,6 @@ export declare class UserMinOrderByAggregateInput {
     updatedAt?: keyof typeof SortOrder;
     deletedAt?: keyof typeof SortOrder;
     role?: keyof typeof SortOrder;
-    guestInfoId?: keyof typeof SortOrder;
 }
 export declare class UserNullableRelationFilter {
     is?: InstanceType<typeof UserWhereInput>;
@@ -2396,7 +2585,6 @@ export declare class UserOrderByWithAggregationInput {
     updatedAt?: keyof typeof SortOrder;
     deletedAt?: InstanceType<typeof SortOrderInput>;
     role?: keyof typeof SortOrder;
-    guestInfoId?: InstanceType<typeof SortOrderInput>;
     _count?: InstanceType<typeof UserCountOrderByAggregateInput>;
     _max?: InstanceType<typeof UserMaxOrderByAggregateInput>;
     _min?: InstanceType<typeof UserMinOrderByAggregateInput>;
@@ -2411,9 +2599,8 @@ export declare class UserOrderByWithRelationInput {
     updatedAt?: keyof typeof SortOrder;
     deletedAt?: InstanceType<typeof SortOrderInput>;
     role?: keyof typeof SortOrder;
-    guestInfoId?: InstanceType<typeof SortOrderInput>;
     guestInfo?: InstanceType<typeof GuestOrderByWithRelationInput>;
-    QrCode?: InstanceType<typeof QrCodeOrderByRelationAggregateInput>;
+    scannedQrs?: InstanceType<typeof QrCodeOrderByRelationAggregateInput>;
 }
 export declare class UserRelationFilter {
     is?: InstanceType<typeof UserWhereInput>;
@@ -2432,7 +2619,6 @@ export declare class UserScalarWhereWithAggregatesInput {
     updatedAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     deletedAt?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
     role?: InstanceType<typeof EnumUserRoleWithAggregatesFilter>;
-    guestInfoId?: InstanceType<typeof StringNullableWithAggregatesFilter>;
 }
 export declare class UserUncheckedCreateWithoutGuestInfoInput {
     id?: string;
@@ -2444,10 +2630,9 @@ export declare class UserUncheckedCreateWithoutGuestInfoInput {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     role: keyof typeof UserRole;
-    guestInfoId?: string;
-    QrCode?: InstanceType<typeof QrCodeUncheckedCreateNestedManyWithoutScannedByInput>;
+    scannedQrs?: InstanceType<typeof QrCodeUncheckedCreateNestedManyWithoutScannedByInput>;
 }
-export declare class UserUncheckedCreateWithoutQrCodeInput {
+export declare class UserUncheckedCreateWithoutScannedQrsInput {
     id?: string;
     fullName: string;
     email?: string;
@@ -2457,7 +2642,6 @@ export declare class UserUncheckedCreateWithoutQrCodeInput {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     role: keyof typeof UserRole;
-    guestInfoId?: string;
     guestInfo?: InstanceType<typeof GuestUncheckedCreateNestedOneWithoutUserInput>;
 }
 export declare class UserUncheckedCreateInput {
@@ -2470,9 +2654,8 @@ export declare class UserUncheckedCreateInput {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     role: keyof typeof UserRole;
-    guestInfoId?: string;
     guestInfo?: InstanceType<typeof GuestUncheckedCreateNestedOneWithoutUserInput>;
-    QrCode?: InstanceType<typeof QrCodeUncheckedCreateNestedManyWithoutScannedByInput>;
+    scannedQrs?: InstanceType<typeof QrCodeUncheckedCreateNestedManyWithoutScannedByInput>;
 }
 export declare class UserUncheckedUpdateManyInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -2484,7 +2667,6 @@ export declare class UserUncheckedUpdateManyInput {
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     role?: InstanceType<typeof EnumUserRoleFieldUpdateOperationsInput>;
-    guestInfoId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
 }
 export declare class UserUncheckedUpdateWithoutGuestInfoInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -2496,10 +2678,9 @@ export declare class UserUncheckedUpdateWithoutGuestInfoInput {
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     role?: InstanceType<typeof EnumUserRoleFieldUpdateOperationsInput>;
-    guestInfoId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    QrCode?: InstanceType<typeof QrCodeUncheckedUpdateManyWithoutScannedByNestedInput>;
+    scannedQrs?: InstanceType<typeof QrCodeUncheckedUpdateManyWithoutScannedByNestedInput>;
 }
-export declare class UserUncheckedUpdateWithoutQrCodeInput {
+export declare class UserUncheckedUpdateWithoutScannedQrsInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     email?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -2509,7 +2690,6 @@ export declare class UserUncheckedUpdateWithoutQrCodeInput {
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     role?: InstanceType<typeof EnumUserRoleFieldUpdateOperationsInput>;
-    guestInfoId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     guestInfo?: InstanceType<typeof GuestUncheckedUpdateOneWithoutUserNestedInput>;
 }
 export declare class UserUncheckedUpdateInput {
@@ -2522,9 +2702,8 @@ export declare class UserUncheckedUpdateInput {
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     role?: InstanceType<typeof EnumUserRoleFieldUpdateOperationsInput>;
-    guestInfoId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     guestInfo?: InstanceType<typeof GuestUncheckedUpdateOneWithoutUserNestedInput>;
-    QrCode?: InstanceType<typeof QrCodeUncheckedUpdateManyWithoutScannedByNestedInput>;
+    scannedQrs?: InstanceType<typeof QrCodeUncheckedUpdateManyWithoutScannedByNestedInput>;
 }
 export declare class UserUpdateManyMutationInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -2536,7 +2715,6 @@ export declare class UserUpdateManyMutationInput {
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     role?: InstanceType<typeof EnumUserRoleFieldUpdateOperationsInput>;
-    guestInfoId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
 }
 export declare class UserUpdateOneRequiredWithoutGuestInfoNestedInput {
     create?: InstanceType<typeof UserCreateWithoutGuestInfoInput>;
@@ -2545,22 +2723,22 @@ export declare class UserUpdateOneRequiredWithoutGuestInfoNestedInput {
     connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email' | 'whatsapp'>;
     update?: InstanceType<typeof UserUpdateToOneWithWhereWithoutGuestInfoInput>;
 }
-export declare class UserUpdateOneWithoutQrCodeNestedInput {
-    create?: InstanceType<typeof UserCreateWithoutQrCodeInput>;
-    connectOrCreate?: InstanceType<typeof UserCreateOrConnectWithoutQrCodeInput>;
-    upsert?: InstanceType<typeof UserUpsertWithoutQrCodeInput>;
+export declare class UserUpdateOneWithoutScannedQrsNestedInput {
+    create?: InstanceType<typeof UserCreateWithoutScannedQrsInput>;
+    connectOrCreate?: InstanceType<typeof UserCreateOrConnectWithoutScannedQrsInput>;
+    upsert?: InstanceType<typeof UserUpsertWithoutScannedQrsInput>;
     disconnect?: InstanceType<typeof UserWhereInput>;
     delete?: InstanceType<typeof UserWhereInput>;
     connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email' | 'whatsapp'>;
-    update?: InstanceType<typeof UserUpdateToOneWithWhereWithoutQrCodeInput>;
+    update?: InstanceType<typeof UserUpdateToOneWithWhereWithoutScannedQrsInput>;
 }
 export declare class UserUpdateToOneWithWhereWithoutGuestInfoInput {
     where?: InstanceType<typeof UserWhereInput>;
     data: InstanceType<typeof UserUpdateWithoutGuestInfoInput>;
 }
-export declare class UserUpdateToOneWithWhereWithoutQrCodeInput {
+export declare class UserUpdateToOneWithWhereWithoutScannedQrsInput {
     where?: InstanceType<typeof UserWhereInput>;
-    data: InstanceType<typeof UserUpdateWithoutQrCodeInput>;
+    data: InstanceType<typeof UserUpdateWithoutScannedQrsInput>;
 }
 export declare class UserUpdateWithoutGuestInfoInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -2572,10 +2750,9 @@ export declare class UserUpdateWithoutGuestInfoInput {
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     role?: InstanceType<typeof EnumUserRoleFieldUpdateOperationsInput>;
-    guestInfoId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    QrCode?: InstanceType<typeof QrCodeUpdateManyWithoutScannedByNestedInput>;
+    scannedQrs?: InstanceType<typeof QrCodeUpdateManyWithoutScannedByNestedInput>;
 }
-export declare class UserUpdateWithoutQrCodeInput {
+export declare class UserUpdateWithoutScannedQrsInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     fullName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     email?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -2585,7 +2762,6 @@ export declare class UserUpdateWithoutQrCodeInput {
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     role?: InstanceType<typeof EnumUserRoleFieldUpdateOperationsInput>;
-    guestInfoId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     guestInfo?: InstanceType<typeof GuestUpdateOneWithoutUserNestedInput>;
 }
 export declare class UserUpdateInput {
@@ -2598,18 +2774,17 @@ export declare class UserUpdateInput {
     updatedAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     role?: InstanceType<typeof EnumUserRoleFieldUpdateOperationsInput>;
-    guestInfoId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     guestInfo?: InstanceType<typeof GuestUpdateOneWithoutUserNestedInput>;
-    QrCode?: InstanceType<typeof QrCodeUpdateManyWithoutScannedByNestedInput>;
+    scannedQrs?: InstanceType<typeof QrCodeUpdateManyWithoutScannedByNestedInput>;
 }
 export declare class UserUpsertWithoutGuestInfoInput {
     update: InstanceType<typeof UserUpdateWithoutGuestInfoInput>;
     create: InstanceType<typeof UserCreateWithoutGuestInfoInput>;
     where?: InstanceType<typeof UserWhereInput>;
 }
-export declare class UserUpsertWithoutQrCodeInput {
-    update: InstanceType<typeof UserUpdateWithoutQrCodeInput>;
-    create: InstanceType<typeof UserCreateWithoutQrCodeInput>;
+export declare class UserUpsertWithoutScannedQrsInput {
+    update: InstanceType<typeof UserUpdateWithoutScannedQrsInput>;
+    create: InstanceType<typeof UserCreateWithoutScannedQrsInput>;
     where?: InstanceType<typeof UserWhereInput>;
 }
 export declare class UserWhereUniqueInput {
@@ -2625,9 +2800,8 @@ export declare class UserWhereUniqueInput {
     updatedAt?: InstanceType<typeof DateTimeFilter>;
     deletedAt?: InstanceType<typeof DateTimeNullableFilter>;
     role?: InstanceType<typeof EnumUserRoleFilter>;
-    guestInfoId?: InstanceType<typeof StringNullableFilter>;
     guestInfo?: InstanceType<typeof GuestNullableRelationFilter>;
-    QrCode?: InstanceType<typeof QrCodeListRelationFilter>;
+    scannedQrs?: InstanceType<typeof QrCodeListRelationFilter>;
 }
 export declare class UserWhereInput {
     AND?: Array<UserWhereInput>;
@@ -2642,9 +2816,8 @@ export declare class UserWhereInput {
     updatedAt?: InstanceType<typeof DateTimeFilter>;
     deletedAt?: InstanceType<typeof DateTimeNullableFilter>;
     role?: InstanceType<typeof EnumUserRoleFilter>;
-    guestInfoId?: InstanceType<typeof StringNullableFilter>;
     guestInfo?: InstanceType<typeof GuestNullableRelationFilter>;
-    QrCode?: InstanceType<typeof QrCodeListRelationFilter>;
+    scannedQrs?: InstanceType<typeof QrCodeListRelationFilter>;
 }
 export declare class User {
     id: string;
@@ -2656,9 +2829,8 @@ export declare class User {
     updatedAt: Date;
     deletedAt: Date | null;
     role: keyof typeof UserRole;
-    guestInfoId: string | null;
     guestInfo?: InstanceType<typeof Guest> | null;
-    QrCode?: Array<QrCode>;
+    scannedQrs?: Array<QrCode>;
     _count?: InstanceType<typeof UserCount>;
 }
 export declare class AggregateWhatsappQueue {

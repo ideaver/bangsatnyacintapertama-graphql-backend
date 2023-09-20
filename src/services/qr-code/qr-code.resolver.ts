@@ -19,6 +19,7 @@ import {
 import { replaceNullWithUndefined } from 'src/utils/replace-null-with-undefined.function';
 import BatchPayload from 'src/model/batch-payload.model';
 import { QrCodeController } from './qr-code.controller';
+import ScanResponse from 'src/model/scan-response-status.model';
 
 interface QrCodeSelect {
   select: Prisma.QrCodeSelect;
@@ -156,5 +157,16 @@ export class QrCodeResolver {
   })
   qrCodeCount(@Args() qrCodeCountAggregateInput: FindManyQrCodeArgs) {
     return this.qrCodeController.count(qrCodeCountAggregateInput);
+  }
+
+  @Query(() => ScanResponse, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  qrCodeScan(
+    @Args({ type: () => String, name: 'userId' })
+    userId: string,
+  ): Promise<ScanResponse> {
+    return this.qrCodeController.scan();
   }
 }

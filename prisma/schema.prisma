@@ -52,8 +52,6 @@ model User {
 
   guestInfo Guest?
 
-  guestInfoId String?
-
   //-------------------------- m relations --------------------------------
   scannedQrs QrCode[]
 
@@ -71,19 +69,21 @@ enum UserRole {
 model Guest {
   userId String @id
 
-  category1 String?
+  source String?
 
-  category2 String?
+  invitationName String?
 
-  personInCharge String?
+  contactList String?
+
+  category String?
 
   class String?
 
   seat String?
 
-  rejectionReason String?
+  studio Int?
 
-  description String?
+  rejectionReason String?
 
   parties Int @default(1)
 
@@ -166,6 +166,8 @@ model QrCode {
   scannedAt DateTime?
 
   createdAt DateTime @default(now())
+
+  raceConditionValue Int @default(0)
 
   //-------------------------- 1 relations --------------------------------
 

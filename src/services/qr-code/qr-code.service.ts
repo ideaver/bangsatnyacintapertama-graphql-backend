@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
 import { IGraphQLError } from 'src/utils/exception/custom-graphql-error';
 import { Prisma } from '@prisma/client';
+import { QrCode } from 'src/@generated';
 
 @Injectable()
 export class QrCodeService {
@@ -39,7 +40,9 @@ export class QrCodeService {
     }
   }
 
-  async findFirst(qrCodeFindFirstArgs: Prisma.QrCodeFindFirstArgs) {
+  async findFirst(
+    qrCodeFindFirstArgs: Prisma.QrCodeFindFirstArgs,
+  ): Promise<QrCode> {
     try {
       return await this.prisma.qrCode.findFirst(qrCodeFindFirstArgs);
     } catch (err) {

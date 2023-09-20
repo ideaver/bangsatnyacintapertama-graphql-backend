@@ -12,7 +12,6 @@ export function fakeUser() {
     updatedAt: faker.datatype.datetime(),
     deletedAt: undefined,
     role: faker.helpers.arrayElement([UserRole.ADMIN, UserRole.SUPERUSER, UserRole.GUEST] as const),
-    guestInfoId: undefined,
   };
 }
 export function fakeUserComplete() {
@@ -26,30 +25,31 @@ export function fakeUserComplete() {
     updatedAt: faker.datatype.datetime(),
     deletedAt: undefined,
     role: faker.helpers.arrayElement([UserRole.ADMIN, UserRole.SUPERUSER, UserRole.GUEST] as const),
-    guestInfoId: undefined,
   };
 }
 export function fakeGuest() {
   return {
-    category1: undefined,
-    category2: undefined,
-    personInCharge: undefined,
+    source: undefined,
+    invitationName: undefined,
+    contactList: undefined,
+    category: undefined,
     class: undefined,
     seat: undefined,
+    studio: undefined,
     rejectionReason: undefined,
-    description: undefined,
   };
 }
 export function fakeGuestComplete() {
   return {
     userId: faker.datatype.uuid(),
-    category1: undefined,
-    category2: undefined,
-    personInCharge: undefined,
+    source: undefined,
+    invitationName: undefined,
+    contactList: undefined,
+    category: undefined,
     class: undefined,
     seat: undefined,
+    studio: undefined,
     rejectionReason: undefined,
-    description: undefined,
     parties: 1,
     confirmationStatus: ConfirmationStatus.UNCONFIRMED,
   };
@@ -78,9 +78,11 @@ export function fakeQrCode() {
 }
 export function fakeQrCodeComplete() {
   return {
+    id: faker.datatype.number(),
     path: faker.lorem.words(5),
     scannedAt: undefined,
     createdAt: new Date(),
+    raceConditionValue: 0,
     guestId: faker.datatype.uuid(),
     scannedByUserId: undefined,
   };

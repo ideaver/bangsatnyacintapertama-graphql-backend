@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { UserService } from './user.service';
 import { encryptUserPassword } from 'src/utils/bcrypt.function';
+import { User } from 'src/@generated';
 
 @Injectable()
 export class UserController {
