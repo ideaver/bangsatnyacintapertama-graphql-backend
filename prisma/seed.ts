@@ -15,6 +15,12 @@ export enum Period {
 async function main() {
   console.log('Start seeding ...');
 
+  console.log(
+    await prisma.guest.findMany({
+      where: { qrcodes: { none: {} } },
+    }),
+  );
+
   // // create fake users
   // const numberOfUsers: number = 100;
   // const users: Prisma.UserCreateManyInput[] = [];

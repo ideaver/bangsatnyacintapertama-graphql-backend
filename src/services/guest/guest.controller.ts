@@ -1,17 +1,30 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { GuestService } from './guest.service';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { GuestEvents } from '../event-listeners/enum/guest-event.enum';
 
 @Injectable()
 export class GuestController {
-  constructor(private readonly guestService: GuestService) {}
+  constructor(
+    private readonly guestService: GuestService,
+    private eventEmitter: EventEmitter2,
+  ) {}
 
   async createOne(guestCreateArgs: Prisma.GuestCreateArgs) {
     return await this.guestService.createOne(guestCreateArgs);
   }
 
   async createMany(guestCreateManyArgs: Prisma.GuestCreateManyArgs) {
-    return await this.guestService.createMany(guestCreateManyArgs);
+    // First, call the service method to create guests in the database
+    const createdGuests =
+      await this.guestService.createMany(guestCreateManyArgs);
+
+    // Then, emit the event after the database operation is complete
+    this.eventEmitter.emit(GuestEvents.CreatedMany);
+
+    // Return the created guests if needed
+    return createdGuests;
   }
 
   async findOne(guestFindUniqueArgs: Prisma.GuestFindUniqueArgs) {

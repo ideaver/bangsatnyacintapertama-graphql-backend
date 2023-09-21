@@ -3,26 +3,26 @@ import { Injectable } from '@nestjs/common';
 // @ts-ignore
 import { FileUpload } from 'graphql-upload';
 import { RatioEnum } from './enums/ratio.enum';
-import { UserController } from '../user/user.controller';
 import { IGraphQLError } from 'src/utils/exception/custom-graphql-error';
 import Excel from 'exceljs';
 import { Guest, User } from 'src/@generated';
 import { v4 as uuidV4 } from 'uuid';
 import { Prisma } from '@prisma/client';
-import { PrismaService } from 'prisma/prisma.service';
 import {
   detectMimeTypeFromFilename,
   mapFileTypeEnumFromMIME,
 } from 'src/utils/mime-types.function';
 import { FileType } from 'src/model/enums';
 import { UploaderService } from './uploader.service';
+import { GuestController } from '../guest/guest.controller';
+import { UserController } from '../user/user.controller';
 
 @Injectable()
 export class UploaderController {
   constructor(
+    private readonly guestController: GuestController,
     private readonly userController: UserController,
     private readonly uploaderService: UploaderService,
-    private prisma: PrismaService,
   ) {}
 
   async uploadSingleFile(
@@ -91,9 +91,7 @@ export class UploaderController {
       }
     });
 
-    console.log(guestCreateManyInput);
-
-    return await this.prisma.guest.createMany({
+    return await this.guestController.createMany({
       skipDuplicates: true,
       data: guestCreateManyInput,
     });
@@ -108,6 +106,9 @@ export class UploaderController {
       })
       .catch(() => {
         throw new IGraphQLError({ code: 10004 });
+      })
+      .then((user: User) => {
+        if (!user) throw new IGraphQLError({ code: 10004 });
       });
   }
 }
