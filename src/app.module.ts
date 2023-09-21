@@ -7,7 +7,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { AuthModule } from './services/auth/auth.module';
 import { UserModule } from './services/user/user.module';
-import { EmailModule } from './services/email/email.module';
+// import { EmailModule } from './services/email/email.module';
 import { ConfigsModule } from './config/config.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UploaderModule } from './services/uploader/uploader.module';
@@ -16,7 +16,7 @@ import { SchedulerService } from './scheduler/scheduler.service';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { SchedulerModule } from './scheduler/scheduler.module';
 import { GuestModule } from './services/guest/guest.module';
-import { EmailQueueModule } from './services/email-queue/email-queue.module';
+// import { EmailQueueModule } from './services/email-queue/email-queue.module';
 import { WhatsappQueueModule } from './services/whatsapp-queue/whatsapp-queue.module';
 import { QrCodeModule } from './services/qr-code/qr-code.module';
 
@@ -47,12 +47,12 @@ import { QrCodeModule } from './services/qr-code/qr-code.module';
     SchedulerModule,
     EventEmitterModule.forRoot(),
     ConfigsModule,
-    EmailModule,
+    // EmailModule,
     UploaderModule,
     UserModule,
     AuthModule,
     GuestModule,
-    EmailQueueModule,
+    // EmailQueueModule,
     WhatsappQueueModule,
     QrCodeModule,
   ],

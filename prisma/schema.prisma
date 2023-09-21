@@ -36,21 +36,17 @@ model User {
 
   email String? @unique
 
-  password String
-
-  whatsapp String? @unique
+  password String?
 
   createdAt DateTime @default(now())
 
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime? @updatedAt
 
   deletedAt DateTime? //implement softdelete
 
   //-------------------------- 1 relations --------------------------------
 
   role UserRole
-
-  guestInfo Guest?
 
   //-------------------------- m relations --------------------------------
   scannedQrs QrCode[]
@@ -67,13 +63,15 @@ enum UserRole {
 }
 
 model Guest {
-  userId String @id
+  id String @id @default(uuid())
 
   source String?
 
-  invitationName String?
+  invitationName String
 
   contactList String?
+
+  whatsapp Float? @unique
 
   category String?
 
@@ -87,11 +85,15 @@ model Guest {
 
   parties Int @default(1)
 
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime? @updatedAt
+
+  deletedAt DateTime? //implement softdelete
+
   //-------------------------- 1 relations --------------------------------
 
-  user User @relation(fields: [userId], references: [id])
-
-  confirmationStatus ConfirmationStatus @default(UNCONFIRMED)
+  confirmationStatus ConfirmationStatus? @default(UNCONFIRMED)
 
   //-------------------------- m relations --------------------------------
 
@@ -133,7 +135,7 @@ model EmailQueue {
 
   guestId String
 
-  guest Guest @relation(fields: [guestId], references: [userId])
+  guest Guest @relation(fields: [guestId], references: [id])
 
   //-------------------------- m relations --------------------------------
 
@@ -151,7 +153,7 @@ model WhatsappQueue {
 
   guestId String
 
-  guest Guest @relation(fields: [guestId], references: [userId])
+  guest Guest @relation(fields: [guestId], references: [id])
 
   //-------------------------- m relations --------------------------------
 
@@ -173,7 +175,7 @@ model QrCode {
 
   guestId String
 
-  guest Guest @relation(fields: [guestId], references: [userId])
+  guest Guest @relation(fields: [guestId], references: [id])
 
   scannedBy User? @relation(fields: [scannedByUserId], references: [id])
 

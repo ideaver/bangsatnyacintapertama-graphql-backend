@@ -49,4 +49,57 @@ export class GuestController {
   async count(guestCountArgs: Prisma.GuestCountArgs) {
     return await this.guestService.count(guestCountArgs);
   }
+
+  async findManyWhereLatestEmailOrWhatsappStatusEqualsWaiting() {
+    // First, find users with pending email queue status
+    const guestsWithPendingEmailQueue = await this.findMany({
+      where: {
+        deletedAt: { not: { equals: null } },
+        emailQueue: {
+          some: {
+            status: 'WAITING',
+          },
+        },
+      },
+      include: {
+        emailQueue: {
+          orderBy: {
+            createdAt: 'desc',
+          },
+          take: 1,
+          where: {
+            status: 'WAITING',
+          },
+        },
+      },
+    });
+
+    // Then, find users with pending WhatsApp queue status
+    const guestsWithPendingWhatsappQueue = await this.findMany({
+      where: {
+        deletedAt: { not: { equals: null } },
+        whatsappQueue: {
+          some: {
+            status: 'WAITING',
+          },
+        },
+      },
+      include: {
+        whatsappQueue: {
+          orderBy: {
+            createdAt: 'desc',
+          },
+          take: 1,
+          where: {
+            status: 'WAITING',
+          },
+        },
+      },
+    });
+
+    // Now, combine the results from both queries
+    return guestsWithPendingEmailQueue.concat(guestsWithPendingWhatsappQueue);
+
+    // The `combinedResults` array contains users with the latest pending queue status.
+  }
 }

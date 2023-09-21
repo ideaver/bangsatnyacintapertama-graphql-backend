@@ -5,17 +5,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var EmailQueueScalarWhereWithAggregatesInput_1, EmailQueueScalarWhereInput_1, EmailQueueWhereInput_1, GuestScalarWhereWithAggregatesInput_1, GuestWhereInput_1, NestedDateTimeFilter_1, NestedDateTimeNullableFilter_1, NestedDateTimeNullableWithAggregatesFilter_1, NestedDateTimeWithAggregatesFilter_1, NestedEnumConfirmationStatusFilter_1, NestedEnumConfirmationStatusWithAggregatesFilter_1, NestedEnumQueueStatusFilter_1, NestedEnumQueueStatusWithAggregatesFilter_1, NestedEnumUserRoleFilter_1, NestedEnumUserRoleWithAggregatesFilter_1, NestedFloatFilter_1, NestedFloatNullableFilter_1, NestedIntFilter_1, NestedIntNullableFilter_1, NestedIntNullableWithAggregatesFilter_1, NestedIntWithAggregatesFilter_1, NestedStringFilter_1, NestedStringNullableFilter_1, NestedStringNullableWithAggregatesFilter_1, NestedStringWithAggregatesFilter_1, QrCodeScalarWhereWithAggregatesInput_1, QrCodeScalarWhereInput_1, QrCodeWhereInput_1, UserScalarWhereWithAggregatesInput_1, UserWhereInput_1, WhatsappQueueScalarWhereWithAggregatesInput_1, WhatsappQueueScalarWhereInput_1, WhatsappQueueWhereInput_1;
+var EmailQueueScalarWhereWithAggregatesInput_1, EmailQueueScalarWhereInput_1, EmailQueueWhereInput_1, GuestScalarWhereWithAggregatesInput_1, GuestWhereInput_1, NestedDateTimeFilter_1, NestedDateTimeNullableFilter_1, NestedDateTimeNullableWithAggregatesFilter_1, NestedDateTimeWithAggregatesFilter_1, NestedEnumConfirmationStatusNullableFilter_1, NestedEnumConfirmationStatusNullableWithAggregatesFilter_1, NestedEnumQueueStatusFilter_1, NestedEnumQueueStatusWithAggregatesFilter_1, NestedEnumUserRoleFilter_1, NestedEnumUserRoleWithAggregatesFilter_1, NestedFloatFilter_1, NestedFloatNullableFilter_1, NestedFloatNullableWithAggregatesFilter_1, NestedIntFilter_1, NestedIntNullableFilter_1, NestedIntNullableWithAggregatesFilter_1, NestedIntWithAggregatesFilter_1, NestedStringFilter_1, NestedStringNullableFilter_1, NestedStringNullableWithAggregatesFilter_1, NestedStringWithAggregatesFilter_1, QrCodeScalarWhereWithAggregatesInput_1, QrCodeScalarWhereInput_1, QrCodeWhereInput_1, UserScalarWhereWithAggregatesInput_1, UserWhereInput_1, WhatsappQueueScalarWhereWithAggregatesInput_1, WhatsappQueueScalarWhereInput_1, WhatsappQueueWhereInput_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmailQueueUncheckedCreateInput = exports.EmailQueueUncheckedCreateWithoutGuestInput = exports.EmailQueueUncheckedCreateNestedManyWithoutGuestInput = exports.EmailQueueSumOrderByAggregateInput = exports.EmailQueueSumAggregate = exports.EmailQueueSumAggregateInput = exports.EmailQueueScalarWhereInput = exports.EmailQueueScalarWhereWithAggregatesInput = exports.EmailQueueOrderByWithRelationInput = exports.EmailQueueOrderByWithAggregationInput = exports.EmailQueueOrderByRelationAggregateInput = exports.EmailQueueMinOrderByAggregateInput = exports.EmailQueueMinAggregate = exports.EmailQueueMinAggregateInput = exports.EmailQueueMaxOrderByAggregateInput = exports.EmailQueueMaxAggregate = exports.EmailQueueMaxAggregateInput = exports.EmailQueueListRelationFilter = exports.EmailQueueGroupBy = exports.EmailQueueGroupByArgs = exports.EmailQueueCreateInput = exports.EmailQueueCreateWithoutGuestInput = exports.EmailQueueCreateOrConnectWithoutGuestInput = exports.EmailQueueCreateNestedManyWithoutGuestInput = exports.EmailQueueCreateManyInput = exports.EmailQueueCreateManyGuestInput = exports.EmailQueueCreateManyGuestInputEnvelope = exports.EmailQueueCountOrderByAggregateInput = exports.EmailQueueCountAggregate = exports.EmailQueueCountAggregateInput = exports.EmailQueueAvgOrderByAggregateInput = exports.EmailQueueAvgAggregate = exports.EmailQueueAvgAggregateInput = exports.EmailQueueAggregateArgs = exports.DeleteOneEmailQueueArgs = exports.DeleteManyEmailQueueArgs = exports.CreateOneEmailQueueArgs = exports.CreateManyEmailQueueArgs = exports.AggregateEmailQueue = exports.EmailQueueScalarFieldEnum = exports.GuestScalarFieldEnum = exports.ConfirmationStatus = exports.NullsOrder = exports.QueueStatus = exports.SortOrder = exports.TransactionIsolationLevel = exports.UserRole = exports.QrCodeScalarFieldEnum = exports.UserScalarFieldEnum = exports.WhatsappQueueScalarFieldEnum = void 0;
-exports.GuestCreateOrConnectWithoutWhatsappQueueInput = exports.GuestCreateOrConnectWithoutUserInput = exports.GuestCreateOrConnectWithoutQrcodesInput = exports.GuestCreateOrConnectWithoutEmailQueueInput = exports.GuestCreateNestedOneWithoutWhatsappQueueInput = exports.GuestCreateNestedOneWithoutUserInput = exports.GuestCreateNestedOneWithoutQrcodesInput = exports.GuestCreateNestedOneWithoutEmailQueueInput = exports.GuestCreateManyInput = exports.GuestCount = exports.GuestCountOrderByAggregateInput = exports.GuestCountAggregate = exports.GuestCountAggregateInput = exports.GuestAvgOrderByAggregateInput = exports.GuestAvgAggregate = exports.GuestAvgAggregateInput = exports.GuestAggregateArgs = exports.FindUniqueGuestArgs = exports.FindUniqueGuestOrThrowArgs = exports.FindManyGuestArgs = exports.FindFirstGuestArgs = exports.FindFirstGuestOrThrowArgs = exports.DeleteOneGuestArgs = exports.DeleteManyGuestArgs = exports.CreateOneGuestArgs = exports.CreateManyGuestArgs = exports.AggregateGuest = exports.UpsertOneEmailQueueArgs = exports.UpdateOneEmailQueueArgs = exports.UpdateManyEmailQueueArgs = exports.FindUniqueEmailQueueArgs = exports.FindUniqueEmailQueueOrThrowArgs = exports.FindManyEmailQueueArgs = exports.FindFirstEmailQueueArgs = exports.FindFirstEmailQueueOrThrowArgs = exports.EmailQueue = exports.EmailQueueWhereInput = exports.EmailQueueWhereUniqueInput = exports.EmailQueueUpsertWithWhereUniqueWithoutGuestInput = exports.EmailQueueUpdateInput = exports.EmailQueueUpdateWithoutGuestInput = exports.EmailQueueUpdateWithWhereUniqueWithoutGuestInput = exports.EmailQueueUpdateManyWithoutGuestNestedInput = exports.EmailQueueUpdateManyWithWhereWithoutGuestInput = exports.EmailQueueUpdateManyMutationInput = exports.EmailQueueUncheckedUpdateInput = exports.EmailQueueUncheckedUpdateWithoutGuestInput = exports.EmailQueueUncheckedUpdateManyInput = exports.EmailQueueUncheckedUpdateManyWithoutGuestInput = exports.EmailQueueUncheckedUpdateManyWithoutGuestNestedInput = void 0;
-exports.GuestUpsertWithoutQrcodesInput = exports.GuestUpsertWithoutEmailQueueInput = exports.GuestUpdateInput = exports.GuestUpdateWithoutWhatsappQueueInput = exports.GuestUpdateWithoutUserInput = exports.GuestUpdateWithoutQrcodesInput = exports.GuestUpdateWithoutEmailQueueInput = exports.GuestUpdateToOneWithWhereWithoutWhatsappQueueInput = exports.GuestUpdateToOneWithWhereWithoutUserInput = exports.GuestUpdateToOneWithWhereWithoutQrcodesInput = exports.GuestUpdateToOneWithWhereWithoutEmailQueueInput = exports.GuestUpdateOneWithoutUserNestedInput = exports.GuestUpdateOneRequiredWithoutWhatsappQueueNestedInput = exports.GuestUpdateOneRequiredWithoutQrcodesNestedInput = exports.GuestUpdateOneRequiredWithoutEmailQueueNestedInput = exports.GuestUpdateManyMutationInput = exports.GuestUncheckedUpdateInput = exports.GuestUncheckedUpdateWithoutWhatsappQueueInput = exports.GuestUncheckedUpdateWithoutUserInput = exports.GuestUncheckedUpdateWithoutQrcodesInput = exports.GuestUncheckedUpdateWithoutEmailQueueInput = exports.GuestUncheckedUpdateOneWithoutUserNestedInput = exports.GuestUncheckedUpdateManyInput = exports.GuestUncheckedCreateInput = exports.GuestUncheckedCreateWithoutWhatsappQueueInput = exports.GuestUncheckedCreateWithoutUserInput = exports.GuestUncheckedCreateWithoutQrcodesInput = exports.GuestUncheckedCreateWithoutEmailQueueInput = exports.GuestUncheckedCreateNestedOneWithoutUserInput = exports.GuestSumOrderByAggregateInput = exports.GuestSumAggregate = exports.GuestSumAggregateInput = exports.GuestScalarWhereWithAggregatesInput = exports.GuestRelationFilter = exports.GuestOrderByWithRelationInput = exports.GuestOrderByWithAggregationInput = exports.GuestNullableRelationFilter = exports.GuestMinOrderByAggregateInput = exports.GuestMinAggregate = exports.GuestMinAggregateInput = exports.GuestMaxOrderByAggregateInput = exports.GuestMaxAggregate = exports.GuestMaxAggregateInput = exports.GuestGroupBy = exports.GuestGroupByArgs = exports.GuestCreateInput = exports.GuestCreateWithoutWhatsappQueueInput = exports.GuestCreateWithoutUserInput = exports.GuestCreateWithoutQrcodesInput = exports.GuestCreateWithoutEmailQueueInput = void 0;
-exports.NullableIntFieldUpdateOperationsInput = exports.NullableDateTimeFieldUpdateOperationsInput = exports.NestedStringWithAggregatesFilter = exports.NestedStringNullableWithAggregatesFilter = exports.NestedStringNullableFilter = exports.NestedStringFilter = exports.NestedIntWithAggregatesFilter = exports.NestedIntNullableWithAggregatesFilter = exports.NestedIntNullableFilter = exports.NestedIntFilter = exports.NestedFloatNullableFilter = exports.NestedFloatFilter = exports.NestedEnumUserRoleWithAggregatesFilter = exports.NestedEnumUserRoleFilter = exports.NestedEnumQueueStatusWithAggregatesFilter = exports.NestedEnumQueueStatusFilter = exports.NestedEnumConfirmationStatusWithAggregatesFilter = exports.NestedEnumConfirmationStatusFilter = exports.NestedDateTimeWithAggregatesFilter = exports.NestedDateTimeNullableWithAggregatesFilter = exports.NestedDateTimeNullableFilter = exports.NestedDateTimeFilter = exports.IntWithAggregatesFilter = exports.IntNullableWithAggregatesFilter = exports.IntNullableFilter = exports.IntFilter = exports.IntFieldUpdateOperationsInput = exports.EnumUserRoleWithAggregatesFilter = exports.EnumUserRoleFilter = exports.EnumUserRoleFieldUpdateOperationsInput = exports.EnumQueueStatusWithAggregatesFilter = exports.EnumQueueStatusFilter = exports.EnumQueueStatusFieldUpdateOperationsInput = exports.EnumConfirmationStatusWithAggregatesFilter = exports.EnumConfirmationStatusFilter = exports.EnumConfirmationStatusFieldUpdateOperationsInput = exports.DateTimeWithAggregatesFilter = exports.DateTimeNullableWithAggregatesFilter = exports.DateTimeNullableFilter = exports.DateTimeFilter = exports.DateTimeFieldUpdateOperationsInput = exports.AffectedRows = exports.UpsertOneGuestArgs = exports.UpdateOneGuestArgs = exports.UpdateManyGuestArgs = exports.Guest = exports.GuestWhereInput = exports.GuestWhereUniqueInput = exports.GuestUpsertWithoutWhatsappQueueInput = exports.GuestUpsertWithoutUserInput = void 0;
-exports.QrCodeScalarWhereInput = exports.QrCodeScalarWhereWithAggregatesInput = exports.QrCodeOrderByWithRelationInput = exports.QrCodeOrderByWithAggregationInput = exports.QrCodeOrderByRelationAggregateInput = exports.QrCodeMinOrderByAggregateInput = exports.QrCodeMinAggregate = exports.QrCodeMinAggregateInput = exports.QrCodeMaxOrderByAggregateInput = exports.QrCodeMaxAggregate = exports.QrCodeMaxAggregateInput = exports.QrCodeListRelationFilter = exports.QrCodeGroupBy = exports.QrCodeGroupByArgs = exports.QrCodeCreateInput = exports.QrCodeCreateWithoutScannedByInput = exports.QrCodeCreateWithoutGuestInput = exports.QrCodeCreateOrConnectWithoutScannedByInput = exports.QrCodeCreateOrConnectWithoutGuestInput = exports.QrCodeCreateNestedManyWithoutScannedByInput = exports.QrCodeCreateNestedManyWithoutGuestInput = exports.QrCodeCreateManyInput = exports.QrCodeCreateManyScannedByInput = exports.QrCodeCreateManyScannedByInputEnvelope = exports.QrCodeCreateManyGuestInput = exports.QrCodeCreateManyGuestInputEnvelope = exports.QrCodeCountOrderByAggregateInput = exports.QrCodeCountAggregate = exports.QrCodeCountAggregateInput = exports.QrCodeAvgOrderByAggregateInput = exports.QrCodeAvgAggregate = exports.QrCodeAvgAggregateInput = exports.QrCodeAggregateArgs = exports.FindUniqueQrCodeArgs = exports.FindUniqueQrCodeOrThrowArgs = exports.FindManyQrCodeArgs = exports.FindFirstQrCodeArgs = exports.FindFirstQrCodeOrThrowArgs = exports.DeleteOneQrCodeArgs = exports.DeleteManyQrCodeArgs = exports.CreateOneQrCodeArgs = exports.CreateManyQrCodeArgs = exports.AggregateQrCode = exports.StringWithAggregatesFilter = exports.StringNullableWithAggregatesFilter = exports.StringNullableFilter = exports.StringFilter = exports.StringFieldUpdateOperationsInput = exports.SortOrderInput = exports.NullableStringFieldUpdateOperationsInput = void 0;
-exports.UserCountAggregate = exports.UserCountAggregateInput = exports.UserAggregateArgs = exports.UpsertOneUserArgs = exports.UpdateOneUserArgs = exports.UpdateManyUserArgs = exports.FindUniqueUserArgs = exports.FindUniqueUserOrThrowArgs = exports.FindManyUserArgs = exports.FindFirstUserArgs = exports.FindFirstUserOrThrowArgs = exports.DeleteOneUserArgs = exports.DeleteManyUserArgs = exports.CreateOneUserArgs = exports.CreateManyUserArgs = exports.AggregateUser = exports.UpsertOneQrCodeArgs = exports.UpdateOneQrCodeArgs = exports.UpdateManyQrCodeArgs = exports.QrCode = exports.QrCodeWhereInput = exports.QrCodeWhereUniqueInput = exports.QrCodeUpsertWithWhereUniqueWithoutScannedByInput = exports.QrCodeUpsertWithWhereUniqueWithoutGuestInput = exports.QrCodeUpdateInput = exports.QrCodeUpdateWithoutScannedByInput = exports.QrCodeUpdateWithoutGuestInput = exports.QrCodeUpdateWithWhereUniqueWithoutScannedByInput = exports.QrCodeUpdateWithWhereUniqueWithoutGuestInput = exports.QrCodeUpdateManyWithoutScannedByNestedInput = exports.QrCodeUpdateManyWithoutGuestNestedInput = exports.QrCodeUpdateManyWithWhereWithoutScannedByInput = exports.QrCodeUpdateManyWithWhereWithoutGuestInput = exports.QrCodeUpdateManyMutationInput = exports.QrCodeUncheckedUpdateInput = exports.QrCodeUncheckedUpdateWithoutScannedByInput = exports.QrCodeUncheckedUpdateWithoutGuestInput = exports.QrCodeUncheckedUpdateManyInput = exports.QrCodeUncheckedUpdateManyWithoutScannedByInput = exports.QrCodeUncheckedUpdateManyWithoutScannedByNestedInput = exports.QrCodeUncheckedUpdateManyWithoutGuestInput = exports.QrCodeUncheckedUpdateManyWithoutGuestNestedInput = exports.QrCodeUncheckedCreateInput = exports.QrCodeUncheckedCreateWithoutScannedByInput = exports.QrCodeUncheckedCreateWithoutGuestInput = exports.QrCodeUncheckedCreateNestedManyWithoutScannedByInput = exports.QrCodeUncheckedCreateNestedManyWithoutGuestInput = exports.QrCodeSumOrderByAggregateInput = exports.QrCodeSumAggregate = exports.QrCodeSumAggregateInput = void 0;
-exports.FindFirstWhatsappQueueArgs = exports.FindFirstWhatsappQueueOrThrowArgs = exports.DeleteOneWhatsappQueueArgs = exports.DeleteManyWhatsappQueueArgs = exports.CreateOneWhatsappQueueArgs = exports.CreateManyWhatsappQueueArgs = exports.AggregateWhatsappQueue = exports.User = exports.UserWhereInput = exports.UserWhereUniqueInput = exports.UserUpsertWithoutScannedQrsInput = exports.UserUpsertWithoutGuestInfoInput = exports.UserUpdateInput = exports.UserUpdateWithoutScannedQrsInput = exports.UserUpdateWithoutGuestInfoInput = exports.UserUpdateToOneWithWhereWithoutScannedQrsInput = exports.UserUpdateToOneWithWhereWithoutGuestInfoInput = exports.UserUpdateOneWithoutScannedQrsNestedInput = exports.UserUpdateOneRequiredWithoutGuestInfoNestedInput = exports.UserUpdateManyMutationInput = exports.UserUncheckedUpdateInput = exports.UserUncheckedUpdateWithoutScannedQrsInput = exports.UserUncheckedUpdateWithoutGuestInfoInput = exports.UserUncheckedUpdateManyInput = exports.UserUncheckedCreateInput = exports.UserUncheckedCreateWithoutScannedQrsInput = exports.UserUncheckedCreateWithoutGuestInfoInput = exports.UserScalarWhereWithAggregatesInput = exports.UserRelationFilter = exports.UserOrderByWithRelationInput = exports.UserOrderByWithAggregationInput = exports.UserNullableRelationFilter = exports.UserMinOrderByAggregateInput = exports.UserMinAggregate = exports.UserMinAggregateInput = exports.UserMaxOrderByAggregateInput = exports.UserMaxAggregate = exports.UserMaxAggregateInput = exports.UserGroupBy = exports.UserGroupByArgs = exports.UserCreateInput = exports.UserCreateWithoutScannedQrsInput = exports.UserCreateWithoutGuestInfoInput = exports.UserCreateOrConnectWithoutScannedQrsInput = exports.UserCreateOrConnectWithoutGuestInfoInput = exports.UserCreateNestedOneWithoutScannedQrsInput = exports.UserCreateNestedOneWithoutGuestInfoInput = exports.UserCreateManyInput = exports.UserCount = exports.UserCountOrderByAggregateInput = void 0;
-exports.WhatsappQueueUpdateWithoutGuestInput = exports.WhatsappQueueUpdateWithWhereUniqueWithoutGuestInput = exports.WhatsappQueueUpdateManyWithoutGuestNestedInput = exports.WhatsappQueueUpdateManyWithWhereWithoutGuestInput = exports.WhatsappQueueUpdateManyMutationInput = exports.WhatsappQueueUncheckedUpdateInput = exports.WhatsappQueueUncheckedUpdateWithoutGuestInput = exports.WhatsappQueueUncheckedUpdateManyInput = exports.WhatsappQueueUncheckedUpdateManyWithoutGuestInput = exports.WhatsappQueueUncheckedUpdateManyWithoutGuestNestedInput = exports.WhatsappQueueUncheckedCreateInput = exports.WhatsappQueueUncheckedCreateWithoutGuestInput = exports.WhatsappQueueUncheckedCreateNestedManyWithoutGuestInput = exports.WhatsappQueueSumOrderByAggregateInput = exports.WhatsappQueueSumAggregate = exports.WhatsappQueueSumAggregateInput = exports.WhatsappQueueScalarWhereInput = exports.WhatsappQueueScalarWhereWithAggregatesInput = exports.WhatsappQueueOrderByWithRelationInput = exports.WhatsappQueueOrderByWithAggregationInput = exports.WhatsappQueueOrderByRelationAggregateInput = exports.WhatsappQueueMinOrderByAggregateInput = exports.WhatsappQueueMinAggregate = exports.WhatsappQueueMinAggregateInput = exports.WhatsappQueueMaxOrderByAggregateInput = exports.WhatsappQueueMaxAggregate = exports.WhatsappQueueMaxAggregateInput = exports.WhatsappQueueListRelationFilter = exports.WhatsappQueueGroupBy = exports.WhatsappQueueGroupByArgs = exports.WhatsappQueueCreateInput = exports.WhatsappQueueCreateWithoutGuestInput = exports.WhatsappQueueCreateOrConnectWithoutGuestInput = exports.WhatsappQueueCreateNestedManyWithoutGuestInput = exports.WhatsappQueueCreateManyInput = exports.WhatsappQueueCreateManyGuestInput = exports.WhatsappQueueCreateManyGuestInputEnvelope = exports.WhatsappQueueCountOrderByAggregateInput = exports.WhatsappQueueCountAggregate = exports.WhatsappQueueCountAggregateInput = exports.WhatsappQueueAvgOrderByAggregateInput = exports.WhatsappQueueAvgAggregate = exports.WhatsappQueueAvgAggregateInput = exports.WhatsappQueueAggregateArgs = exports.UpsertOneWhatsappQueueArgs = exports.UpdateOneWhatsappQueueArgs = exports.UpdateManyWhatsappQueueArgs = exports.FindUniqueWhatsappQueueArgs = exports.FindUniqueWhatsappQueueOrThrowArgs = exports.FindManyWhatsappQueueArgs = void 0;
-exports.WhatsappQueue = exports.WhatsappQueueWhereInput = exports.WhatsappQueueWhereUniqueInput = exports.WhatsappQueueUpsertWithWhereUniqueWithoutGuestInput = exports.WhatsappQueueUpdateInput = void 0;
+exports.GuestCreateWithoutQrcodesInput = exports.GuestCreateWithoutEmailQueueInput = exports.GuestCreateOrConnectWithoutWhatsappQueueInput = exports.GuestCreateOrConnectWithoutQrcodesInput = exports.GuestCreateOrConnectWithoutEmailQueueInput = exports.GuestCreateNestedOneWithoutWhatsappQueueInput = exports.GuestCreateNestedOneWithoutQrcodesInput = exports.GuestCreateNestedOneWithoutEmailQueueInput = exports.GuestCreateManyInput = exports.GuestCount = exports.GuestCountOrderByAggregateInput = exports.GuestCountAggregate = exports.GuestCountAggregateInput = exports.GuestAvgOrderByAggregateInput = exports.GuestAvgAggregate = exports.GuestAvgAggregateInput = exports.GuestAggregateArgs = exports.FindUniqueGuestArgs = exports.FindUniqueGuestOrThrowArgs = exports.FindManyGuestArgs = exports.FindFirstGuestArgs = exports.FindFirstGuestOrThrowArgs = exports.DeleteOneGuestArgs = exports.DeleteManyGuestArgs = exports.CreateOneGuestArgs = exports.CreateManyGuestArgs = exports.AggregateGuest = exports.UpsertOneEmailQueueArgs = exports.UpdateOneEmailQueueArgs = exports.UpdateManyEmailQueueArgs = exports.FindUniqueEmailQueueArgs = exports.FindUniqueEmailQueueOrThrowArgs = exports.FindManyEmailQueueArgs = exports.FindFirstEmailQueueArgs = exports.FindFirstEmailQueueOrThrowArgs = exports.EmailQueue = exports.EmailQueueWhereInput = exports.EmailQueueWhereUniqueInput = exports.EmailQueueUpsertWithWhereUniqueWithoutGuestInput = exports.EmailQueueUpdateInput = exports.EmailQueueUpdateWithoutGuestInput = exports.EmailQueueUpdateWithWhereUniqueWithoutGuestInput = exports.EmailQueueUpdateManyWithoutGuestNestedInput = exports.EmailQueueUpdateManyWithWhereWithoutGuestInput = exports.EmailQueueUpdateManyMutationInput = exports.EmailQueueUncheckedUpdateInput = exports.EmailQueueUncheckedUpdateWithoutGuestInput = exports.EmailQueueUncheckedUpdateManyInput = exports.EmailQueueUncheckedUpdateManyWithoutGuestInput = exports.EmailQueueUncheckedUpdateManyWithoutGuestNestedInput = void 0;
+exports.DateTimeNullableFilter = exports.DateTimeFilter = exports.DateTimeFieldUpdateOperationsInput = exports.AffectedRows = exports.UpsertOneGuestArgs = exports.UpdateOneGuestArgs = exports.UpdateManyGuestArgs = exports.Guest = exports.GuestWhereInput = exports.GuestWhereUniqueInput = exports.GuestUpsertWithoutWhatsappQueueInput = exports.GuestUpsertWithoutQrcodesInput = exports.GuestUpsertWithoutEmailQueueInput = exports.GuestUpdateInput = exports.GuestUpdateWithoutWhatsappQueueInput = exports.GuestUpdateWithoutQrcodesInput = exports.GuestUpdateWithoutEmailQueueInput = exports.GuestUpdateToOneWithWhereWithoutWhatsappQueueInput = exports.GuestUpdateToOneWithWhereWithoutQrcodesInput = exports.GuestUpdateToOneWithWhereWithoutEmailQueueInput = exports.GuestUpdateOneRequiredWithoutWhatsappQueueNestedInput = exports.GuestUpdateOneRequiredWithoutQrcodesNestedInput = exports.GuestUpdateOneRequiredWithoutEmailQueueNestedInput = exports.GuestUpdateManyMutationInput = exports.GuestUncheckedUpdateInput = exports.GuestUncheckedUpdateWithoutWhatsappQueueInput = exports.GuestUncheckedUpdateWithoutQrcodesInput = exports.GuestUncheckedUpdateWithoutEmailQueueInput = exports.GuestUncheckedUpdateManyInput = exports.GuestUncheckedCreateInput = exports.GuestUncheckedCreateWithoutWhatsappQueueInput = exports.GuestUncheckedCreateWithoutQrcodesInput = exports.GuestUncheckedCreateWithoutEmailQueueInput = exports.GuestSumOrderByAggregateInput = exports.GuestSumAggregate = exports.GuestSumAggregateInput = exports.GuestScalarWhereWithAggregatesInput = exports.GuestRelationFilter = exports.GuestOrderByWithRelationInput = exports.GuestOrderByWithAggregationInput = exports.GuestMinOrderByAggregateInput = exports.GuestMinAggregate = exports.GuestMinAggregateInput = exports.GuestMaxOrderByAggregateInput = exports.GuestMaxAggregate = exports.GuestMaxAggregateInput = exports.GuestGroupBy = exports.GuestGroupByArgs = exports.GuestCreateInput = exports.GuestCreateWithoutWhatsappQueueInput = void 0;
+exports.AggregateQrCode = exports.StringWithAggregatesFilter = exports.StringNullableWithAggregatesFilter = exports.StringNullableFilter = exports.StringFilter = exports.StringFieldUpdateOperationsInput = exports.SortOrderInput = exports.NullableStringFieldUpdateOperationsInput = exports.NullableIntFieldUpdateOperationsInput = exports.NullableFloatFieldUpdateOperationsInput = exports.NullableEnumConfirmationStatusFieldUpdateOperationsInput = exports.NullableDateTimeFieldUpdateOperationsInput = exports.NestedStringWithAggregatesFilter = exports.NestedStringNullableWithAggregatesFilter = exports.NestedStringNullableFilter = exports.NestedStringFilter = exports.NestedIntWithAggregatesFilter = exports.NestedIntNullableWithAggregatesFilter = exports.NestedIntNullableFilter = exports.NestedIntFilter = exports.NestedFloatNullableWithAggregatesFilter = exports.NestedFloatNullableFilter = exports.NestedFloatFilter = exports.NestedEnumUserRoleWithAggregatesFilter = exports.NestedEnumUserRoleFilter = exports.NestedEnumQueueStatusWithAggregatesFilter = exports.NestedEnumQueueStatusFilter = exports.NestedEnumConfirmationStatusNullableWithAggregatesFilter = exports.NestedEnumConfirmationStatusNullableFilter = exports.NestedDateTimeWithAggregatesFilter = exports.NestedDateTimeNullableWithAggregatesFilter = exports.NestedDateTimeNullableFilter = exports.NestedDateTimeFilter = exports.IntWithAggregatesFilter = exports.IntNullableWithAggregatesFilter = exports.IntNullableFilter = exports.IntFilter = exports.IntFieldUpdateOperationsInput = exports.FloatNullableWithAggregatesFilter = exports.FloatNullableFilter = exports.EnumUserRoleWithAggregatesFilter = exports.EnumUserRoleFilter = exports.EnumUserRoleFieldUpdateOperationsInput = exports.EnumQueueStatusWithAggregatesFilter = exports.EnumQueueStatusFilter = exports.EnumQueueStatusFieldUpdateOperationsInput = exports.EnumConfirmationStatusNullableWithAggregatesFilter = exports.EnumConfirmationStatusNullableFilter = exports.DateTimeWithAggregatesFilter = exports.DateTimeNullableWithAggregatesFilter = void 0;
+exports.QrCodeUncheckedCreateInput = exports.QrCodeUncheckedCreateWithoutScannedByInput = exports.QrCodeUncheckedCreateWithoutGuestInput = exports.QrCodeUncheckedCreateNestedManyWithoutScannedByInput = exports.QrCodeUncheckedCreateNestedManyWithoutGuestInput = exports.QrCodeSumOrderByAggregateInput = exports.QrCodeSumAggregate = exports.QrCodeSumAggregateInput = exports.QrCodeScalarWhereInput = exports.QrCodeScalarWhereWithAggregatesInput = exports.QrCodeOrderByWithRelationInput = exports.QrCodeOrderByWithAggregationInput = exports.QrCodeOrderByRelationAggregateInput = exports.QrCodeMinOrderByAggregateInput = exports.QrCodeMinAggregate = exports.QrCodeMinAggregateInput = exports.QrCodeMaxOrderByAggregateInput = exports.QrCodeMaxAggregate = exports.QrCodeMaxAggregateInput = exports.QrCodeListRelationFilter = exports.QrCodeGroupBy = exports.QrCodeGroupByArgs = exports.QrCodeCreateInput = exports.QrCodeCreateWithoutScannedByInput = exports.QrCodeCreateWithoutGuestInput = exports.QrCodeCreateOrConnectWithoutScannedByInput = exports.QrCodeCreateOrConnectWithoutGuestInput = exports.QrCodeCreateNestedManyWithoutScannedByInput = exports.QrCodeCreateNestedManyWithoutGuestInput = exports.QrCodeCreateManyInput = exports.QrCodeCreateManyScannedByInput = exports.QrCodeCreateManyScannedByInputEnvelope = exports.QrCodeCreateManyGuestInput = exports.QrCodeCreateManyGuestInputEnvelope = exports.QrCodeCountOrderByAggregateInput = exports.QrCodeCountAggregate = exports.QrCodeCountAggregateInput = exports.QrCodeAvgOrderByAggregateInput = exports.QrCodeAvgAggregate = exports.QrCodeAvgAggregateInput = exports.QrCodeAggregateArgs = exports.FindUniqueQrCodeArgs = exports.FindUniqueQrCodeOrThrowArgs = exports.FindManyQrCodeArgs = exports.FindFirstQrCodeArgs = exports.FindFirstQrCodeOrThrowArgs = exports.DeleteOneQrCodeArgs = exports.DeleteManyQrCodeArgs = exports.CreateOneQrCodeArgs = exports.CreateManyQrCodeArgs = void 0;
+exports.UserGroupByArgs = exports.UserCreateInput = exports.UserCreateWithoutScannedQrsInput = exports.UserCreateOrConnectWithoutScannedQrsInput = exports.UserCreateNestedOneWithoutScannedQrsInput = exports.UserCreateManyInput = exports.UserCount = exports.UserCountOrderByAggregateInput = exports.UserCountAggregate = exports.UserCountAggregateInput = exports.UserAggregateArgs = exports.UpsertOneUserArgs = exports.UpdateOneUserArgs = exports.UpdateManyUserArgs = exports.FindUniqueUserArgs = exports.FindUniqueUserOrThrowArgs = exports.FindManyUserArgs = exports.FindFirstUserArgs = exports.FindFirstUserOrThrowArgs = exports.DeleteOneUserArgs = exports.DeleteManyUserArgs = exports.CreateOneUserArgs = exports.CreateManyUserArgs = exports.AggregateUser = exports.UpsertOneQrCodeArgs = exports.UpdateOneQrCodeArgs = exports.UpdateManyQrCodeArgs = exports.QrCode = exports.QrCodeWhereInput = exports.QrCodeWhereUniqueInput = exports.QrCodeUpsertWithWhereUniqueWithoutScannedByInput = exports.QrCodeUpsertWithWhereUniqueWithoutGuestInput = exports.QrCodeUpdateInput = exports.QrCodeUpdateWithoutScannedByInput = exports.QrCodeUpdateWithoutGuestInput = exports.QrCodeUpdateWithWhereUniqueWithoutScannedByInput = exports.QrCodeUpdateWithWhereUniqueWithoutGuestInput = exports.QrCodeUpdateManyWithoutScannedByNestedInput = exports.QrCodeUpdateManyWithoutGuestNestedInput = exports.QrCodeUpdateManyWithWhereWithoutScannedByInput = exports.QrCodeUpdateManyWithWhereWithoutGuestInput = exports.QrCodeUpdateManyMutationInput = exports.QrCodeUncheckedUpdateInput = exports.QrCodeUncheckedUpdateWithoutScannedByInput = exports.QrCodeUncheckedUpdateWithoutGuestInput = exports.QrCodeUncheckedUpdateManyInput = exports.QrCodeUncheckedUpdateManyWithoutScannedByInput = exports.QrCodeUncheckedUpdateManyWithoutScannedByNestedInput = exports.QrCodeUncheckedUpdateManyWithoutGuestInput = exports.QrCodeUncheckedUpdateManyWithoutGuestNestedInput = void 0;
+exports.WhatsappQueueCreateOrConnectWithoutGuestInput = exports.WhatsappQueueCreateNestedManyWithoutGuestInput = exports.WhatsappQueueCreateManyInput = exports.WhatsappQueueCreateManyGuestInput = exports.WhatsappQueueCreateManyGuestInputEnvelope = exports.WhatsappQueueCountOrderByAggregateInput = exports.WhatsappQueueCountAggregate = exports.WhatsappQueueCountAggregateInput = exports.WhatsappQueueAvgOrderByAggregateInput = exports.WhatsappQueueAvgAggregate = exports.WhatsappQueueAvgAggregateInput = exports.WhatsappQueueAggregateArgs = exports.UpsertOneWhatsappQueueArgs = exports.UpdateOneWhatsappQueueArgs = exports.UpdateManyWhatsappQueueArgs = exports.FindUniqueWhatsappQueueArgs = exports.FindUniqueWhatsappQueueOrThrowArgs = exports.FindManyWhatsappQueueArgs = exports.FindFirstWhatsappQueueArgs = exports.FindFirstWhatsappQueueOrThrowArgs = exports.DeleteOneWhatsappQueueArgs = exports.DeleteManyWhatsappQueueArgs = exports.CreateOneWhatsappQueueArgs = exports.CreateManyWhatsappQueueArgs = exports.AggregateWhatsappQueue = exports.User = exports.UserWhereInput = exports.UserWhereUniqueInput = exports.UserUpsertWithoutScannedQrsInput = exports.UserUpdateInput = exports.UserUpdateWithoutScannedQrsInput = exports.UserUpdateToOneWithWhereWithoutScannedQrsInput = exports.UserUpdateOneWithoutScannedQrsNestedInput = exports.UserUpdateManyMutationInput = exports.UserUncheckedUpdateInput = exports.UserUncheckedUpdateWithoutScannedQrsInput = exports.UserUncheckedUpdateManyInput = exports.UserUncheckedCreateInput = exports.UserUncheckedCreateWithoutScannedQrsInput = exports.UserScalarWhereWithAggregatesInput = exports.UserOrderByWithRelationInput = exports.UserOrderByWithAggregationInput = exports.UserNullableRelationFilter = exports.UserMinOrderByAggregateInput = exports.UserMinAggregate = exports.UserMinAggregateInput = exports.UserMaxOrderByAggregateInput = exports.UserMaxAggregate = exports.UserMaxAggregateInput = exports.UserGroupBy = void 0;
+exports.WhatsappQueue = exports.WhatsappQueueWhereInput = exports.WhatsappQueueWhereUniqueInput = exports.WhatsappQueueUpsertWithWhereUniqueWithoutGuestInput = exports.WhatsappQueueUpdateInput = exports.WhatsappQueueUpdateWithoutGuestInput = exports.WhatsappQueueUpdateWithWhereUniqueWithoutGuestInput = exports.WhatsappQueueUpdateManyWithoutGuestNestedInput = exports.WhatsappQueueUpdateManyWithWhereWithoutGuestInput = exports.WhatsappQueueUpdateManyMutationInput = exports.WhatsappQueueUncheckedUpdateInput = exports.WhatsappQueueUncheckedUpdateWithoutGuestInput = exports.WhatsappQueueUncheckedUpdateManyInput = exports.WhatsappQueueUncheckedUpdateManyWithoutGuestInput = exports.WhatsappQueueUncheckedUpdateManyWithoutGuestNestedInput = exports.WhatsappQueueUncheckedCreateInput = exports.WhatsappQueueUncheckedCreateWithoutGuestInput = exports.WhatsappQueueUncheckedCreateNestedManyWithoutGuestInput = exports.WhatsappQueueSumOrderByAggregateInput = exports.WhatsappQueueSumAggregate = exports.WhatsappQueueSumAggregateInput = exports.WhatsappQueueScalarWhereInput = exports.WhatsappQueueScalarWhereWithAggregatesInput = exports.WhatsappQueueOrderByWithRelationInput = exports.WhatsappQueueOrderByWithAggregationInput = exports.WhatsappQueueOrderByRelationAggregateInput = exports.WhatsappQueueMinOrderByAggregateInput = exports.WhatsappQueueMinAggregate = exports.WhatsappQueueMinAggregateInput = exports.WhatsappQueueMaxOrderByAggregateInput = exports.WhatsappQueueMaxAggregate = exports.WhatsappQueueMaxAggregateInput = exports.WhatsappQueueListRelationFilter = exports.WhatsappQueueGroupBy = exports.WhatsappQueueGroupByArgs = exports.WhatsappQueueCreateInput = exports.WhatsappQueueCreateWithoutGuestInput = void 0;
 const graphql_1 = require("@nestjs/graphql");
 const graphql_2 = require("@nestjs/graphql");
 const graphql_3 = require("@nestjs/graphql");
@@ -37,7 +36,6 @@ var UserScalarFieldEnum;
     UserScalarFieldEnum["fullName"] = "fullName";
     UserScalarFieldEnum["email"] = "email";
     UserScalarFieldEnum["password"] = "password";
-    UserScalarFieldEnum["whatsapp"] = "whatsapp";
     UserScalarFieldEnum["createdAt"] = "createdAt";
     UserScalarFieldEnum["updatedAt"] = "updatedAt";
     UserScalarFieldEnum["deletedAt"] = "deletedAt";
@@ -91,16 +89,20 @@ var ConfirmationStatus;
 })(ConfirmationStatus = exports.ConfirmationStatus || (exports.ConfirmationStatus = {}));
 var GuestScalarFieldEnum;
 (function (GuestScalarFieldEnum) {
-    GuestScalarFieldEnum["userId"] = "userId";
+    GuestScalarFieldEnum["id"] = "id";
     GuestScalarFieldEnum["source"] = "source";
     GuestScalarFieldEnum["invitationName"] = "invitationName";
     GuestScalarFieldEnum["contactList"] = "contactList";
+    GuestScalarFieldEnum["whatsapp"] = "whatsapp";
     GuestScalarFieldEnum["category"] = "category";
     GuestScalarFieldEnum["class"] = "class";
     GuestScalarFieldEnum["seat"] = "seat";
     GuestScalarFieldEnum["studio"] = "studio";
     GuestScalarFieldEnum["rejectionReason"] = "rejectionReason";
     GuestScalarFieldEnum["parties"] = "parties";
+    GuestScalarFieldEnum["createdAt"] = "createdAt";
+    GuestScalarFieldEnum["updatedAt"] = "updatedAt";
+    GuestScalarFieldEnum["deletedAt"] = "deletedAt";
     GuestScalarFieldEnum["confirmationStatus"] = "confirmationStatus";
 })(GuestScalarFieldEnum = exports.GuestScalarFieldEnum || (exports.GuestScalarFieldEnum = {}));
 var EmailQueueScalarFieldEnum;
@@ -1486,6 +1488,9 @@ let GuestAvgAggregateInput = class GuestAvgAggregateInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], GuestAvgAggregateInput.prototype, "whatsapp", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], GuestAvgAggregateInput.prototype, "studio", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
@@ -1496,6 +1501,9 @@ GuestAvgAggregateInput = __decorate([
 exports.GuestAvgAggregateInput = GuestAvgAggregateInput;
 let GuestAvgAggregate = class GuestAvgAggregate {
 };
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], GuestAvgAggregate.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
 ], GuestAvgAggregate.prototype, "studio", void 0);
@@ -1510,6 +1518,9 @@ let GuestAvgOrderByAggregateInput = class GuestAvgOrderByAggregateInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], GuestAvgOrderByAggregateInput.prototype, "whatsapp", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], GuestAvgOrderByAggregateInput.prototype, "studio", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
@@ -1522,7 +1533,7 @@ let GuestCountAggregateInput = class GuestCountAggregateInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], GuestCountAggregateInput.prototype, "userId", void 0);
+], GuestCountAggregateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], GuestCountAggregateInput.prototype, "source", void 0);
@@ -1532,6 +1543,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], GuestCountAggregateInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], GuestCountAggregateInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], GuestCountAggregateInput.prototype, "category", void 0);
@@ -1552,6 +1566,15 @@ __decorate([
 ], GuestCountAggregateInput.prototype, "parties", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], GuestCountAggregateInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], GuestCountAggregateInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], GuestCountAggregateInput.prototype, "deletedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], GuestCountAggregateInput.prototype, "confirmationStatus", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
@@ -1564,7 +1587,7 @@ let GuestCountAggregate = class GuestCountAggregate {
 };
 __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: false })
-], GuestCountAggregate.prototype, "userId", void 0);
+], GuestCountAggregate.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: false })
 ], GuestCountAggregate.prototype, "source", void 0);
@@ -1574,6 +1597,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: false })
 ], GuestCountAggregate.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: false })
+], GuestCountAggregate.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: false })
 ], GuestCountAggregate.prototype, "category", void 0);
@@ -1594,6 +1620,15 @@ __decorate([
 ], GuestCountAggregate.prototype, "parties", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: false })
+], GuestCountAggregate.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: false })
+], GuestCountAggregate.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: false })
+], GuestCountAggregate.prototype, "deletedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: false })
 ], GuestCountAggregate.prototype, "confirmationStatus", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: false })
@@ -1606,7 +1641,7 @@ let GuestCountOrderByAggregateInput = class GuestCountOrderByAggregateInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], GuestCountOrderByAggregateInput.prototype, "userId", void 0);
+], GuestCountOrderByAggregateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], GuestCountOrderByAggregateInput.prototype, "source", void 0);
@@ -1616,6 +1651,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], GuestCountOrderByAggregateInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], GuestCountOrderByAggregateInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], GuestCountOrderByAggregateInput.prototype, "category", void 0);
@@ -1634,6 +1672,15 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], GuestCountOrderByAggregateInput.prototype, "parties", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], GuestCountOrderByAggregateInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], GuestCountOrderByAggregateInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], GuestCountOrderByAggregateInput.prototype, "deletedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], GuestCountOrderByAggregateInput.prototype, "confirmationStatus", void 0);
@@ -1659,17 +1706,20 @@ exports.GuestCount = GuestCount;
 let GuestCreateManyInput = class GuestCreateManyInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
-], GuestCreateManyInput.prototype, "userId", void 0);
+    (0, graphql_1.Field)(() => String, { nullable: true })
+], GuestCreateManyInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestCreateManyInput.prototype, "source", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
+    (0, graphql_1.Field)(() => String, { nullable: false })
 ], GuestCreateManyInput.prototype, "invitationName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestCreateManyInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], GuestCreateManyInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestCreateManyInput.prototype, "category", void 0);
@@ -1688,6 +1738,15 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
 ], GuestCreateManyInput.prototype, "parties", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestCreateManyInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestCreateManyInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestCreateManyInput.prototype, "deletedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestCreateManyInput.prototype, "confirmationStatus", void 0);
@@ -1731,24 +1790,6 @@ GuestCreateNestedOneWithoutQrcodesInput = __decorate([
     (0, graphql_5.InputType)()
 ], GuestCreateNestedOneWithoutQrcodesInput);
 exports.GuestCreateNestedOneWithoutQrcodesInput = GuestCreateNestedOneWithoutQrcodesInput;
-let GuestCreateNestedOneWithoutUserInput = class GuestCreateNestedOneWithoutUserInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => GuestCreateWithoutUserInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => GuestCreateWithoutUserInput)
-], GuestCreateNestedOneWithoutUserInput.prototype, "create", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestCreateOrConnectWithoutUserInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => GuestCreateOrConnectWithoutUserInput)
-], GuestCreateNestedOneWithoutUserInput.prototype, "connectOrCreate", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestWhereUniqueInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => GuestWhereUniqueInput)
-], GuestCreateNestedOneWithoutUserInput.prototype, "connect", void 0);
-GuestCreateNestedOneWithoutUserInput = __decorate([
-    (0, graphql_5.InputType)()
-], GuestCreateNestedOneWithoutUserInput);
-exports.GuestCreateNestedOneWithoutUserInput = GuestCreateNestedOneWithoutUserInput;
 let GuestCreateNestedOneWithoutWhatsappQueueInput = class GuestCreateNestedOneWithoutWhatsappQueueInput {
 };
 __decorate([
@@ -1795,20 +1836,6 @@ GuestCreateOrConnectWithoutQrcodesInput = __decorate([
     (0, graphql_5.InputType)()
 ], GuestCreateOrConnectWithoutQrcodesInput);
 exports.GuestCreateOrConnectWithoutQrcodesInput = GuestCreateOrConnectWithoutQrcodesInput;
-let GuestCreateOrConnectWithoutUserInput = class GuestCreateOrConnectWithoutUserInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => GuestWhereUniqueInput, { nullable: false }),
-    (0, class_transformer_1.Type)(() => GuestWhereUniqueInput)
-], GuestCreateOrConnectWithoutUserInput.prototype, "where", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestCreateWithoutUserInput, { nullable: false }),
-    (0, class_transformer_1.Type)(() => GuestCreateWithoutUserInput)
-], GuestCreateOrConnectWithoutUserInput.prototype, "create", void 0);
-GuestCreateOrConnectWithoutUserInput = __decorate([
-    (0, graphql_5.InputType)()
-], GuestCreateOrConnectWithoutUserInput);
-exports.GuestCreateOrConnectWithoutUserInput = GuestCreateOrConnectWithoutUserInput;
 let GuestCreateOrConnectWithoutWhatsappQueueInput = class GuestCreateOrConnectWithoutWhatsappQueueInput {
 };
 __decorate([
@@ -1827,13 +1854,19 @@ let GuestCreateWithoutEmailQueueInput = class GuestCreateWithoutEmailQueueInput 
 };
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], GuestCreateWithoutEmailQueueInput.prototype, "source", void 0);
+], GuestCreateWithoutEmailQueueInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
+], GuestCreateWithoutEmailQueueInput.prototype, "source", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { nullable: false })
 ], GuestCreateWithoutEmailQueueInput.prototype, "invitationName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestCreateWithoutEmailQueueInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], GuestCreateWithoutEmailQueueInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestCreateWithoutEmailQueueInput.prototype, "category", void 0);
@@ -1853,11 +1886,17 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
 ], GuestCreateWithoutEmailQueueInput.prototype, "parties", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestCreateWithoutEmailQueueInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestCreateWithoutEmailQueueInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestCreateWithoutEmailQueueInput.prototype, "deletedAt", void 0);
+__decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestCreateWithoutEmailQueueInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => UserCreateNestedOneWithoutGuestInfoInput, { nullable: false })
-], GuestCreateWithoutEmailQueueInput.prototype, "user", void 0);
 __decorate([
     (0, graphql_1.Field)(() => QrCodeCreateNestedManyWithoutGuestInput, { nullable: true })
 ], GuestCreateWithoutEmailQueueInput.prototype, "qrcodes", void 0);
@@ -1872,13 +1911,19 @@ let GuestCreateWithoutQrcodesInput = class GuestCreateWithoutQrcodesInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], GuestCreateWithoutQrcodesInput.prototype, "source", void 0);
+], GuestCreateWithoutQrcodesInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
+], GuestCreateWithoutQrcodesInput.prototype, "source", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { nullable: false })
 ], GuestCreateWithoutQrcodesInput.prototype, "invitationName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestCreateWithoutQrcodesInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], GuestCreateWithoutQrcodesInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestCreateWithoutQrcodesInput.prototype, "category", void 0);
@@ -1898,11 +1943,17 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
 ], GuestCreateWithoutQrcodesInput.prototype, "parties", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestCreateWithoutQrcodesInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestCreateWithoutQrcodesInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestCreateWithoutQrcodesInput.prototype, "deletedAt", void 0);
+__decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestCreateWithoutQrcodesInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => UserCreateNestedOneWithoutGuestInfoInput, { nullable: false })
-], GuestCreateWithoutQrcodesInput.prototype, "user", void 0);
 __decorate([
     (0, graphql_1.Field)(() => EmailQueueCreateNestedManyWithoutGuestInput, { nullable: true })
 ], GuestCreateWithoutQrcodesInput.prototype, "emailQueue", void 0);
@@ -1913,62 +1964,23 @@ GuestCreateWithoutQrcodesInput = __decorate([
     (0, graphql_5.InputType)()
 ], GuestCreateWithoutQrcodesInput);
 exports.GuestCreateWithoutQrcodesInput = GuestCreateWithoutQrcodesInput;
-let GuestCreateWithoutUserInput = class GuestCreateWithoutUserInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], GuestCreateWithoutUserInput.prototype, "source", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], GuestCreateWithoutUserInput.prototype, "invitationName", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], GuestCreateWithoutUserInput.prototype, "contactList", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], GuestCreateWithoutUserInput.prototype, "category", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], GuestCreateWithoutUserInput.prototype, "class", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], GuestCreateWithoutUserInput.prototype, "seat", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestCreateWithoutUserInput.prototype, "studio", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], GuestCreateWithoutUserInput.prototype, "rejectionReason", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestCreateWithoutUserInput.prototype, "parties", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
-], GuestCreateWithoutUserInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => QrCodeCreateNestedManyWithoutGuestInput, { nullable: true })
-], GuestCreateWithoutUserInput.prototype, "qrcodes", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => EmailQueueCreateNestedManyWithoutGuestInput, { nullable: true })
-], GuestCreateWithoutUserInput.prototype, "emailQueue", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => WhatsappQueueCreateNestedManyWithoutGuestInput, { nullable: true })
-], GuestCreateWithoutUserInput.prototype, "whatsappQueue", void 0);
-GuestCreateWithoutUserInput = __decorate([
-    (0, graphql_5.InputType)()
-], GuestCreateWithoutUserInput);
-exports.GuestCreateWithoutUserInput = GuestCreateWithoutUserInput;
 let GuestCreateWithoutWhatsappQueueInput = class GuestCreateWithoutWhatsappQueueInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], GuestCreateWithoutWhatsappQueueInput.prototype, "source", void 0);
+], GuestCreateWithoutWhatsappQueueInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
+], GuestCreateWithoutWhatsappQueueInput.prototype, "source", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { nullable: false })
 ], GuestCreateWithoutWhatsappQueueInput.prototype, "invitationName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestCreateWithoutWhatsappQueueInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], GuestCreateWithoutWhatsappQueueInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestCreateWithoutWhatsappQueueInput.prototype, "category", void 0);
@@ -1988,11 +2000,17 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
 ], GuestCreateWithoutWhatsappQueueInput.prototype, "parties", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestCreateWithoutWhatsappQueueInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestCreateWithoutWhatsappQueueInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestCreateWithoutWhatsappQueueInput.prototype, "deletedAt", void 0);
+__decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestCreateWithoutWhatsappQueueInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => UserCreateNestedOneWithoutGuestInfoInput, { nullable: false })
-], GuestCreateWithoutWhatsappQueueInput.prototype, "user", void 0);
 __decorate([
     (0, graphql_1.Field)(() => QrCodeCreateNestedManyWithoutGuestInput, { nullable: true })
 ], GuestCreateWithoutWhatsappQueueInput.prototype, "qrcodes", void 0);
@@ -2007,13 +2025,19 @@ let GuestCreateInput = class GuestCreateInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], GuestCreateInput.prototype, "source", void 0);
+], GuestCreateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
+], GuestCreateInput.prototype, "source", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { nullable: false })
 ], GuestCreateInput.prototype, "invitationName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestCreateInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], GuestCreateInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestCreateInput.prototype, "category", void 0);
@@ -2033,11 +2057,17 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
 ], GuestCreateInput.prototype, "parties", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestCreateInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestCreateInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestCreateInput.prototype, "deletedAt", void 0);
+__decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestCreateInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => UserCreateNestedOneWithoutGuestInfoInput, { nullable: false })
-], GuestCreateInput.prototype, "user", void 0);
 __decorate([
     (0, graphql_1.Field)(() => QrCodeCreateNestedManyWithoutGuestInput, { nullable: true })
 ], GuestCreateInput.prototype, "qrcodes", void 0);
@@ -2095,16 +2125,19 @@ let GuestGroupBy = class GuestGroupBy {
 };
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
-], GuestGroupBy.prototype, "userId", void 0);
+], GuestGroupBy.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestGroupBy.prototype, "source", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
+    (0, graphql_1.Field)(() => String, { nullable: false })
 ], GuestGroupBy.prototype, "invitationName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestGroupBy.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], GuestGroupBy.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestGroupBy.prototype, "category", void 0);
@@ -2124,7 +2157,16 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: false })
 ], GuestGroupBy.prototype, "parties", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: false })
+    (0, graphql_1.Field)(() => Date, { nullable: false })
+], GuestGroupBy.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestGroupBy.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestGroupBy.prototype, "deletedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestGroupBy.prototype, "confirmationStatus", void 0);
 __decorate([
     (0, graphql_1.Field)(() => GuestCountAggregate, { nullable: true })
@@ -2149,7 +2191,7 @@ let GuestMaxAggregateInput = class GuestMaxAggregateInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], GuestMaxAggregateInput.prototype, "userId", void 0);
+], GuestMaxAggregateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], GuestMaxAggregateInput.prototype, "source", void 0);
@@ -2159,6 +2201,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], GuestMaxAggregateInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], GuestMaxAggregateInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], GuestMaxAggregateInput.prototype, "category", void 0);
@@ -2179,6 +2224,15 @@ __decorate([
 ], GuestMaxAggregateInput.prototype, "parties", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], GuestMaxAggregateInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], GuestMaxAggregateInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], GuestMaxAggregateInput.prototype, "deletedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], GuestMaxAggregateInput.prototype, "confirmationStatus", void 0);
 GuestMaxAggregateInput = __decorate([
     (0, graphql_5.InputType)()
@@ -2188,7 +2242,7 @@ let GuestMaxAggregate = class GuestMaxAggregate {
 };
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], GuestMaxAggregate.prototype, "userId", void 0);
+], GuestMaxAggregate.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestMaxAggregate.prototype, "source", void 0);
@@ -2198,6 +2252,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestMaxAggregate.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], GuestMaxAggregate.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestMaxAggregate.prototype, "category", void 0);
@@ -2217,6 +2274,15 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
 ], GuestMaxAggregate.prototype, "parties", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestMaxAggregate.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestMaxAggregate.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestMaxAggregate.prototype, "deletedAt", void 0);
+__decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestMaxAggregate.prototype, "confirmationStatus", void 0);
 GuestMaxAggregate = __decorate([
@@ -2227,7 +2293,7 @@ let GuestMaxOrderByAggregateInput = class GuestMaxOrderByAggregateInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], GuestMaxOrderByAggregateInput.prototype, "userId", void 0);
+], GuestMaxOrderByAggregateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], GuestMaxOrderByAggregateInput.prototype, "source", void 0);
@@ -2237,6 +2303,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], GuestMaxOrderByAggregateInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], GuestMaxOrderByAggregateInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], GuestMaxOrderByAggregateInput.prototype, "category", void 0);
@@ -2257,6 +2326,15 @@ __decorate([
 ], GuestMaxOrderByAggregateInput.prototype, "parties", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], GuestMaxOrderByAggregateInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], GuestMaxOrderByAggregateInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], GuestMaxOrderByAggregateInput.prototype, "deletedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], GuestMaxOrderByAggregateInput.prototype, "confirmationStatus", void 0);
 GuestMaxOrderByAggregateInput = __decorate([
     (0, graphql_5.InputType)()
@@ -2266,7 +2344,7 @@ let GuestMinAggregateInput = class GuestMinAggregateInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], GuestMinAggregateInput.prototype, "userId", void 0);
+], GuestMinAggregateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], GuestMinAggregateInput.prototype, "source", void 0);
@@ -2276,6 +2354,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], GuestMinAggregateInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], GuestMinAggregateInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], GuestMinAggregateInput.prototype, "category", void 0);
@@ -2296,6 +2377,15 @@ __decorate([
 ], GuestMinAggregateInput.prototype, "parties", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], GuestMinAggregateInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], GuestMinAggregateInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], GuestMinAggregateInput.prototype, "deletedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], GuestMinAggregateInput.prototype, "confirmationStatus", void 0);
 GuestMinAggregateInput = __decorate([
     (0, graphql_5.InputType)()
@@ -2305,7 +2395,7 @@ let GuestMinAggregate = class GuestMinAggregate {
 };
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], GuestMinAggregate.prototype, "userId", void 0);
+], GuestMinAggregate.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestMinAggregate.prototype, "source", void 0);
@@ -2315,6 +2405,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestMinAggregate.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], GuestMinAggregate.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestMinAggregate.prototype, "category", void 0);
@@ -2334,6 +2427,15 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
 ], GuestMinAggregate.prototype, "parties", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestMinAggregate.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestMinAggregate.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestMinAggregate.prototype, "deletedAt", void 0);
+__decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestMinAggregate.prototype, "confirmationStatus", void 0);
 GuestMinAggregate = __decorate([
@@ -2344,7 +2446,7 @@ let GuestMinOrderByAggregateInput = class GuestMinOrderByAggregateInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], GuestMinOrderByAggregateInput.prototype, "userId", void 0);
+], GuestMinOrderByAggregateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], GuestMinOrderByAggregateInput.prototype, "source", void 0);
@@ -2354,6 +2456,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], GuestMinOrderByAggregateInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], GuestMinOrderByAggregateInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], GuestMinOrderByAggregateInput.prototype, "category", void 0);
@@ -2374,37 +2479,37 @@ __decorate([
 ], GuestMinOrderByAggregateInput.prototype, "parties", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], GuestMinOrderByAggregateInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], GuestMinOrderByAggregateInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], GuestMinOrderByAggregateInput.prototype, "deletedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], GuestMinOrderByAggregateInput.prototype, "confirmationStatus", void 0);
 GuestMinOrderByAggregateInput = __decorate([
     (0, graphql_5.InputType)()
 ], GuestMinOrderByAggregateInput);
 exports.GuestMinOrderByAggregateInput = GuestMinOrderByAggregateInput;
-let GuestNullableRelationFilter = class GuestNullableRelationFilter {
-};
-__decorate([
-    (0, graphql_1.Field)(() => GuestWhereInput, { nullable: true })
-], GuestNullableRelationFilter.prototype, "is", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestWhereInput, { nullable: true })
-], GuestNullableRelationFilter.prototype, "isNot", void 0);
-GuestNullableRelationFilter = __decorate([
-    (0, graphql_5.InputType)()
-], GuestNullableRelationFilter);
-exports.GuestNullableRelationFilter = GuestNullableRelationFilter;
 let GuestOrderByWithAggregationInput = class GuestOrderByWithAggregationInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], GuestOrderByWithAggregationInput.prototype, "userId", void 0);
+], GuestOrderByWithAggregationInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], GuestOrderByWithAggregationInput.prototype, "source", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], GuestOrderByWithAggregationInput.prototype, "invitationName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], GuestOrderByWithAggregationInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
+], GuestOrderByWithAggregationInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], GuestOrderByWithAggregationInput.prototype, "category", void 0);
@@ -2425,6 +2530,15 @@ __decorate([
 ], GuestOrderByWithAggregationInput.prototype, "parties", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], GuestOrderByWithAggregationInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
+], GuestOrderByWithAggregationInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
+], GuestOrderByWithAggregationInput.prototype, "deletedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], GuestOrderByWithAggregationInput.prototype, "confirmationStatus", void 0);
 __decorate([
     (0, graphql_1.Field)(() => GuestCountOrderByAggregateInput, { nullable: true })
@@ -2449,16 +2563,19 @@ let GuestOrderByWithRelationInput = class GuestOrderByWithRelationInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], GuestOrderByWithRelationInput.prototype, "userId", void 0);
+], GuestOrderByWithRelationInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], GuestOrderByWithRelationInput.prototype, "source", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], GuestOrderByWithRelationInput.prototype, "invitationName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], GuestOrderByWithRelationInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
+], GuestOrderByWithRelationInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], GuestOrderByWithRelationInput.prototype, "category", void 0);
@@ -2479,10 +2596,16 @@ __decorate([
 ], GuestOrderByWithRelationInput.prototype, "parties", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], GuestOrderByWithRelationInput.prototype, "confirmationStatus", void 0);
+], GuestOrderByWithRelationInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => UserOrderByWithRelationInput, { nullable: true })
-], GuestOrderByWithRelationInput.prototype, "user", void 0);
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
+], GuestOrderByWithRelationInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
+], GuestOrderByWithRelationInput.prototype, "deletedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
+], GuestOrderByWithRelationInput.prototype, "confirmationStatus", void 0);
 __decorate([
     (0, graphql_1.Field)(() => QrCodeOrderByRelationAggregateInput, { nullable: true })
 ], GuestOrderByWithRelationInput.prototype, "qrcodes", void 0);
@@ -2521,16 +2644,19 @@ __decorate([
 ], GuestScalarWhereWithAggregatesInput.prototype, "NOT", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringWithAggregatesFilter, { nullable: true })
-], GuestScalarWhereWithAggregatesInput.prototype, "userId", void 0);
+], GuestScalarWhereWithAggregatesInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringNullableWithAggregatesFilter, { nullable: true })
 ], GuestScalarWhereWithAggregatesInput.prototype, "source", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringNullableWithAggregatesFilter, { nullable: true })
+    (0, graphql_1.Field)(() => StringWithAggregatesFilter, { nullable: true })
 ], GuestScalarWhereWithAggregatesInput.prototype, "invitationName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringNullableWithAggregatesFilter, { nullable: true })
 ], GuestScalarWhereWithAggregatesInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => FloatNullableWithAggregatesFilter, { nullable: true })
+], GuestScalarWhereWithAggregatesInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringNullableWithAggregatesFilter, { nullable: true })
 ], GuestScalarWhereWithAggregatesInput.prototype, "category", void 0);
@@ -2550,7 +2676,16 @@ __decorate([
     (0, graphql_1.Field)(() => IntWithAggregatesFilter, { nullable: true })
 ], GuestScalarWhereWithAggregatesInput.prototype, "parties", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumConfirmationStatusWithAggregatesFilter, { nullable: true })
+    (0, graphql_1.Field)(() => DateTimeWithAggregatesFilter, { nullable: true })
+], GuestScalarWhereWithAggregatesInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => DateTimeNullableWithAggregatesFilter, { nullable: true })
+], GuestScalarWhereWithAggregatesInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => DateTimeNullableWithAggregatesFilter, { nullable: true })
+], GuestScalarWhereWithAggregatesInput.prototype, "deletedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => EnumConfirmationStatusNullableWithAggregatesFilter, { nullable: true })
 ], GuestScalarWhereWithAggregatesInput.prototype, "confirmationStatus", void 0);
 GuestScalarWhereWithAggregatesInput = GuestScalarWhereWithAggregatesInput_1 = __decorate([
     (0, graphql_5.InputType)()
@@ -2558,6 +2693,9 @@ GuestScalarWhereWithAggregatesInput = GuestScalarWhereWithAggregatesInput_1 = __
 exports.GuestScalarWhereWithAggregatesInput = GuestScalarWhereWithAggregatesInput;
 let GuestSumAggregateInput = class GuestSumAggregateInput {
 };
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], GuestSumAggregateInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], GuestSumAggregateInput.prototype, "studio", void 0);
@@ -2570,6 +2708,9 @@ GuestSumAggregateInput = __decorate([
 exports.GuestSumAggregateInput = GuestSumAggregateInput;
 let GuestSumAggregate = class GuestSumAggregate {
 };
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], GuestSumAggregate.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
 ], GuestSumAggregate.prototype, "studio", void 0);
@@ -2584,6 +2725,9 @@ let GuestSumOrderByAggregateInput = class GuestSumOrderByAggregateInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], GuestSumOrderByAggregateInput.prototype, "whatsapp", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], GuestSumOrderByAggregateInput.prototype, "studio", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
@@ -2592,38 +2736,23 @@ GuestSumOrderByAggregateInput = __decorate([
     (0, graphql_5.InputType)()
 ], GuestSumOrderByAggregateInput);
 exports.GuestSumOrderByAggregateInput = GuestSumOrderByAggregateInput;
-let GuestUncheckedCreateNestedOneWithoutUserInput = class GuestUncheckedCreateNestedOneWithoutUserInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => GuestCreateWithoutUserInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => GuestCreateWithoutUserInput)
-], GuestUncheckedCreateNestedOneWithoutUserInput.prototype, "create", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestCreateOrConnectWithoutUserInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => GuestCreateOrConnectWithoutUserInput)
-], GuestUncheckedCreateNestedOneWithoutUserInput.prototype, "connectOrCreate", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestWhereUniqueInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => GuestWhereUniqueInput)
-], GuestUncheckedCreateNestedOneWithoutUserInput.prototype, "connect", void 0);
-GuestUncheckedCreateNestedOneWithoutUserInput = __decorate([
-    (0, graphql_5.InputType)()
-], GuestUncheckedCreateNestedOneWithoutUserInput);
-exports.GuestUncheckedCreateNestedOneWithoutUserInput = GuestUncheckedCreateNestedOneWithoutUserInput;
 let GuestUncheckedCreateWithoutEmailQueueInput = class GuestUncheckedCreateWithoutEmailQueueInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
-], GuestUncheckedCreateWithoutEmailQueueInput.prototype, "userId", void 0);
+    (0, graphql_1.Field)(() => String, { nullable: true })
+], GuestUncheckedCreateWithoutEmailQueueInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestUncheckedCreateWithoutEmailQueueInput.prototype, "source", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
+    (0, graphql_1.Field)(() => String, { nullable: false })
 ], GuestUncheckedCreateWithoutEmailQueueInput.prototype, "invitationName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestUncheckedCreateWithoutEmailQueueInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], GuestUncheckedCreateWithoutEmailQueueInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestUncheckedCreateWithoutEmailQueueInput.prototype, "category", void 0);
@@ -2643,6 +2772,15 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
 ], GuestUncheckedCreateWithoutEmailQueueInput.prototype, "parties", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestUncheckedCreateWithoutEmailQueueInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestUncheckedCreateWithoutEmailQueueInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestUncheckedCreateWithoutEmailQueueInput.prototype, "deletedAt", void 0);
+__decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestUncheckedCreateWithoutEmailQueueInput.prototype, "confirmationStatus", void 0);
 __decorate([
@@ -2658,17 +2796,20 @@ exports.GuestUncheckedCreateWithoutEmailQueueInput = GuestUncheckedCreateWithout
 let GuestUncheckedCreateWithoutQrcodesInput = class GuestUncheckedCreateWithoutQrcodesInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
-], GuestUncheckedCreateWithoutQrcodesInput.prototype, "userId", void 0);
+    (0, graphql_1.Field)(() => String, { nullable: true })
+], GuestUncheckedCreateWithoutQrcodesInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestUncheckedCreateWithoutQrcodesInput.prototype, "source", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
+    (0, graphql_1.Field)(() => String, { nullable: false })
 ], GuestUncheckedCreateWithoutQrcodesInput.prototype, "invitationName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestUncheckedCreateWithoutQrcodesInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], GuestUncheckedCreateWithoutQrcodesInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestUncheckedCreateWithoutQrcodesInput.prototype, "category", void 0);
@@ -2688,6 +2829,15 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
 ], GuestUncheckedCreateWithoutQrcodesInput.prototype, "parties", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestUncheckedCreateWithoutQrcodesInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestUncheckedCreateWithoutQrcodesInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestUncheckedCreateWithoutQrcodesInput.prototype, "deletedAt", void 0);
+__decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestUncheckedCreateWithoutQrcodesInput.prototype, "confirmationStatus", void 0);
 __decorate([
@@ -2700,65 +2850,23 @@ GuestUncheckedCreateWithoutQrcodesInput = __decorate([
     (0, graphql_5.InputType)()
 ], GuestUncheckedCreateWithoutQrcodesInput);
 exports.GuestUncheckedCreateWithoutQrcodesInput = GuestUncheckedCreateWithoutQrcodesInput;
-let GuestUncheckedCreateWithoutUserInput = class GuestUncheckedCreateWithoutUserInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], GuestUncheckedCreateWithoutUserInput.prototype, "source", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], GuestUncheckedCreateWithoutUserInput.prototype, "invitationName", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], GuestUncheckedCreateWithoutUserInput.prototype, "contactList", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], GuestUncheckedCreateWithoutUserInput.prototype, "category", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], GuestUncheckedCreateWithoutUserInput.prototype, "class", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], GuestUncheckedCreateWithoutUserInput.prototype, "seat", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestUncheckedCreateWithoutUserInput.prototype, "studio", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], GuestUncheckedCreateWithoutUserInput.prototype, "rejectionReason", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestUncheckedCreateWithoutUserInput.prototype, "parties", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
-], GuestUncheckedCreateWithoutUserInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => QrCodeUncheckedCreateNestedManyWithoutGuestInput, { nullable: true })
-], GuestUncheckedCreateWithoutUserInput.prototype, "qrcodes", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => EmailQueueUncheckedCreateNestedManyWithoutGuestInput, { nullable: true })
-], GuestUncheckedCreateWithoutUserInput.prototype, "emailQueue", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => WhatsappQueueUncheckedCreateNestedManyWithoutGuestInput, { nullable: true })
-], GuestUncheckedCreateWithoutUserInput.prototype, "whatsappQueue", void 0);
-GuestUncheckedCreateWithoutUserInput = __decorate([
-    (0, graphql_5.InputType)()
-], GuestUncheckedCreateWithoutUserInput);
-exports.GuestUncheckedCreateWithoutUserInput = GuestUncheckedCreateWithoutUserInput;
 let GuestUncheckedCreateWithoutWhatsappQueueInput = class GuestUncheckedCreateWithoutWhatsappQueueInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
-], GuestUncheckedCreateWithoutWhatsappQueueInput.prototype, "userId", void 0);
+    (0, graphql_1.Field)(() => String, { nullable: true })
+], GuestUncheckedCreateWithoutWhatsappQueueInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestUncheckedCreateWithoutWhatsappQueueInput.prototype, "source", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
+    (0, graphql_1.Field)(() => String, { nullable: false })
 ], GuestUncheckedCreateWithoutWhatsappQueueInput.prototype, "invitationName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestUncheckedCreateWithoutWhatsappQueueInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], GuestUncheckedCreateWithoutWhatsappQueueInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestUncheckedCreateWithoutWhatsappQueueInput.prototype, "category", void 0);
@@ -2778,6 +2886,15 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
 ], GuestUncheckedCreateWithoutWhatsappQueueInput.prototype, "parties", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestUncheckedCreateWithoutWhatsappQueueInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestUncheckedCreateWithoutWhatsappQueueInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestUncheckedCreateWithoutWhatsappQueueInput.prototype, "deletedAt", void 0);
+__decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestUncheckedCreateWithoutWhatsappQueueInput.prototype, "confirmationStatus", void 0);
 __decorate([
@@ -2793,17 +2910,20 @@ exports.GuestUncheckedCreateWithoutWhatsappQueueInput = GuestUncheckedCreateWith
 let GuestUncheckedCreateInput = class GuestUncheckedCreateInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
-], GuestUncheckedCreateInput.prototype, "userId", void 0);
+    (0, graphql_1.Field)(() => String, { nullable: true })
+], GuestUncheckedCreateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestUncheckedCreateInput.prototype, "source", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
+    (0, graphql_1.Field)(() => String, { nullable: false })
 ], GuestUncheckedCreateInput.prototype, "invitationName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestUncheckedCreateInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], GuestUncheckedCreateInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestUncheckedCreateInput.prototype, "category", void 0);
@@ -2822,6 +2942,15 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
 ], GuestUncheckedCreateInput.prototype, "parties", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestUncheckedCreateInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestUncheckedCreateInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], GuestUncheckedCreateInput.prototype, "deletedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestUncheckedCreateInput.prototype, "confirmationStatus", void 0);
@@ -2842,16 +2971,19 @@ let GuestUncheckedUpdateManyInput = class GuestUncheckedUpdateManyInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateManyInput.prototype, "userId", void 0);
+], GuestUncheckedUpdateManyInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateManyInput.prototype, "source", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateManyInput.prototype, "invitationName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateManyInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableFloatFieldUpdateOperationsInput, { nullable: true })
+], GuestUncheckedUpdateManyInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateManyInput.prototype, "category", void 0);
@@ -2871,60 +3003,38 @@ __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateManyInput.prototype, "parties", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUncheckedUpdateManyInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUncheckedUpdateManyInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUncheckedUpdateManyInput.prototype, "deletedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateManyInput.prototype, "confirmationStatus", void 0);
 GuestUncheckedUpdateManyInput = __decorate([
     (0, graphql_5.InputType)()
 ], GuestUncheckedUpdateManyInput);
 exports.GuestUncheckedUpdateManyInput = GuestUncheckedUpdateManyInput;
-let GuestUncheckedUpdateOneWithoutUserNestedInput = class GuestUncheckedUpdateOneWithoutUserNestedInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => GuestCreateWithoutUserInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => GuestCreateWithoutUserInput)
-], GuestUncheckedUpdateOneWithoutUserNestedInput.prototype, "create", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestCreateOrConnectWithoutUserInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => GuestCreateOrConnectWithoutUserInput)
-], GuestUncheckedUpdateOneWithoutUserNestedInput.prototype, "connectOrCreate", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestUpsertWithoutUserInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => GuestUpsertWithoutUserInput)
-], GuestUncheckedUpdateOneWithoutUserNestedInput.prototype, "upsert", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestWhereInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => GuestWhereInput)
-], GuestUncheckedUpdateOneWithoutUserNestedInput.prototype, "disconnect", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestWhereInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => GuestWhereInput)
-], GuestUncheckedUpdateOneWithoutUserNestedInput.prototype, "delete", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestWhereUniqueInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => GuestWhereUniqueInput)
-], GuestUncheckedUpdateOneWithoutUserNestedInput.prototype, "connect", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestUpdateToOneWithWhereWithoutUserInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => GuestUpdateToOneWithWhereWithoutUserInput)
-], GuestUncheckedUpdateOneWithoutUserNestedInput.prototype, "update", void 0);
-GuestUncheckedUpdateOneWithoutUserNestedInput = __decorate([
-    (0, graphql_5.InputType)()
-], GuestUncheckedUpdateOneWithoutUserNestedInput);
-exports.GuestUncheckedUpdateOneWithoutUserNestedInput = GuestUncheckedUpdateOneWithoutUserNestedInput;
 let GuestUncheckedUpdateWithoutEmailQueueInput = class GuestUncheckedUpdateWithoutEmailQueueInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateWithoutEmailQueueInput.prototype, "userId", void 0);
+], GuestUncheckedUpdateWithoutEmailQueueInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutEmailQueueInput.prototype, "source", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutEmailQueueInput.prototype, "invitationName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutEmailQueueInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableFloatFieldUpdateOperationsInput, { nullable: true })
+], GuestUncheckedUpdateWithoutEmailQueueInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutEmailQueueInput.prototype, "category", void 0);
@@ -2944,7 +3054,16 @@ __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutEmailQueueInput.prototype, "parties", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUncheckedUpdateWithoutEmailQueueInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUncheckedUpdateWithoutEmailQueueInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUncheckedUpdateWithoutEmailQueueInput.prototype, "deletedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutEmailQueueInput.prototype, "confirmationStatus", void 0);
 __decorate([
     (0, graphql_1.Field)(() => QrCodeUncheckedUpdateManyWithoutGuestNestedInput, { nullable: true })
@@ -2960,16 +3079,19 @@ let GuestUncheckedUpdateWithoutQrcodesInput = class GuestUncheckedUpdateWithoutQ
 };
 __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateWithoutQrcodesInput.prototype, "userId", void 0);
+], GuestUncheckedUpdateWithoutQrcodesInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutQrcodesInput.prototype, "source", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutQrcodesInput.prototype, "invitationName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutQrcodesInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableFloatFieldUpdateOperationsInput, { nullable: true })
+], GuestUncheckedUpdateWithoutQrcodesInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutQrcodesInput.prototype, "category", void 0);
@@ -2989,7 +3111,16 @@ __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutQrcodesInput.prototype, "parties", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUncheckedUpdateWithoutQrcodesInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUncheckedUpdateWithoutQrcodesInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUncheckedUpdateWithoutQrcodesInput.prototype, "deletedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutQrcodesInput.prototype, "confirmationStatus", void 0);
 __decorate([
     (0, graphql_1.Field)(() => EmailQueueUncheckedUpdateManyWithoutGuestNestedInput, { nullable: true })
@@ -3001,65 +3132,23 @@ GuestUncheckedUpdateWithoutQrcodesInput = __decorate([
     (0, graphql_5.InputType)()
 ], GuestUncheckedUpdateWithoutQrcodesInput);
 exports.GuestUncheckedUpdateWithoutQrcodesInput = GuestUncheckedUpdateWithoutQrcodesInput;
-let GuestUncheckedUpdateWithoutUserInput = class GuestUncheckedUpdateWithoutUserInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateWithoutUserInput.prototype, "source", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateWithoutUserInput.prototype, "invitationName", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateWithoutUserInput.prototype, "contactList", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateWithoutUserInput.prototype, "category", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateWithoutUserInput.prototype, "class", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateWithoutUserInput.prototype, "seat", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateWithoutUserInput.prototype, "studio", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateWithoutUserInput.prototype, "rejectionReason", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateWithoutUserInput.prototype, "parties", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => EnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateWithoutUserInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => QrCodeUncheckedUpdateManyWithoutGuestNestedInput, { nullable: true })
-], GuestUncheckedUpdateWithoutUserInput.prototype, "qrcodes", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => EmailQueueUncheckedUpdateManyWithoutGuestNestedInput, { nullable: true })
-], GuestUncheckedUpdateWithoutUserInput.prototype, "emailQueue", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => WhatsappQueueUncheckedUpdateManyWithoutGuestNestedInput, { nullable: true })
-], GuestUncheckedUpdateWithoutUserInput.prototype, "whatsappQueue", void 0);
-GuestUncheckedUpdateWithoutUserInput = __decorate([
-    (0, graphql_5.InputType)()
-], GuestUncheckedUpdateWithoutUserInput);
-exports.GuestUncheckedUpdateWithoutUserInput = GuestUncheckedUpdateWithoutUserInput;
 let GuestUncheckedUpdateWithoutWhatsappQueueInput = class GuestUncheckedUpdateWithoutWhatsappQueueInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateWithoutWhatsappQueueInput.prototype, "userId", void 0);
+], GuestUncheckedUpdateWithoutWhatsappQueueInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutWhatsappQueueInput.prototype, "source", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutWhatsappQueueInput.prototype, "invitationName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutWhatsappQueueInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableFloatFieldUpdateOperationsInput, { nullable: true })
+], GuestUncheckedUpdateWithoutWhatsappQueueInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutWhatsappQueueInput.prototype, "category", void 0);
@@ -3079,7 +3168,16 @@ __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutWhatsappQueueInput.prototype, "parties", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUncheckedUpdateWithoutWhatsappQueueInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUncheckedUpdateWithoutWhatsappQueueInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUncheckedUpdateWithoutWhatsappQueueInput.prototype, "deletedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutWhatsappQueueInput.prototype, "confirmationStatus", void 0);
 __decorate([
     (0, graphql_1.Field)(() => QrCodeUncheckedUpdateManyWithoutGuestNestedInput, { nullable: true })
@@ -3095,16 +3193,19 @@ let GuestUncheckedUpdateInput = class GuestUncheckedUpdateInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateInput.prototype, "userId", void 0);
+], GuestUncheckedUpdateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateInput.prototype, "source", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateInput.prototype, "invitationName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableFloatFieldUpdateOperationsInput, { nullable: true })
+], GuestUncheckedUpdateInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateInput.prototype, "category", void 0);
@@ -3124,7 +3225,16 @@ __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateInput.prototype, "parties", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUncheckedUpdateInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUncheckedUpdateInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUncheckedUpdateInput.prototype, "deletedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateInput.prototype, "confirmationStatus", void 0);
 __decorate([
     (0, graphql_1.Field)(() => QrCodeUncheckedUpdateManyWithoutGuestNestedInput, { nullable: true })
@@ -3142,14 +3252,20 @@ exports.GuestUncheckedUpdateInput = GuestUncheckedUpdateInput;
 let GuestUpdateManyMutationInput = class GuestUpdateManyMutationInput {
 };
 __decorate([
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateManyMutationInput.prototype, "id", void 0);
+__decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateManyMutationInput.prototype, "source", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateManyMutationInput.prototype, "invitationName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateManyMutationInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableFloatFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateManyMutationInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateManyMutationInput.prototype, "category", void 0);
@@ -3169,7 +3285,16 @@ __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateManyMutationInput.prototype, "parties", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateManyMutationInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateManyMutationInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateManyMutationInput.prototype, "deletedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateManyMutationInput.prototype, "confirmationStatus", void 0);
 GuestUpdateManyMutationInput = __decorate([
     (0, graphql_5.InputType)()
@@ -3253,40 +3378,6 @@ GuestUpdateOneRequiredWithoutWhatsappQueueNestedInput = __decorate([
     (0, graphql_5.InputType)()
 ], GuestUpdateOneRequiredWithoutWhatsappQueueNestedInput);
 exports.GuestUpdateOneRequiredWithoutWhatsappQueueNestedInput = GuestUpdateOneRequiredWithoutWhatsappQueueNestedInput;
-let GuestUpdateOneWithoutUserNestedInput = class GuestUpdateOneWithoutUserNestedInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => GuestCreateWithoutUserInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => GuestCreateWithoutUserInput)
-], GuestUpdateOneWithoutUserNestedInput.prototype, "create", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestCreateOrConnectWithoutUserInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => GuestCreateOrConnectWithoutUserInput)
-], GuestUpdateOneWithoutUserNestedInput.prototype, "connectOrCreate", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestUpsertWithoutUserInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => GuestUpsertWithoutUserInput)
-], GuestUpdateOneWithoutUserNestedInput.prototype, "upsert", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestWhereInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => GuestWhereInput)
-], GuestUpdateOneWithoutUserNestedInput.prototype, "disconnect", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestWhereInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => GuestWhereInput)
-], GuestUpdateOneWithoutUserNestedInput.prototype, "delete", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestWhereUniqueInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => GuestWhereUniqueInput)
-], GuestUpdateOneWithoutUserNestedInput.prototype, "connect", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestUpdateToOneWithWhereWithoutUserInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => GuestUpdateToOneWithWhereWithoutUserInput)
-], GuestUpdateOneWithoutUserNestedInput.prototype, "update", void 0);
-GuestUpdateOneWithoutUserNestedInput = __decorate([
-    (0, graphql_5.InputType)()
-], GuestUpdateOneWithoutUserNestedInput);
-exports.GuestUpdateOneWithoutUserNestedInput = GuestUpdateOneWithoutUserNestedInput;
 let GuestUpdateToOneWithWhereWithoutEmailQueueInput = class GuestUpdateToOneWithWhereWithoutEmailQueueInput {
 };
 __decorate([
@@ -3315,20 +3406,6 @@ GuestUpdateToOneWithWhereWithoutQrcodesInput = __decorate([
     (0, graphql_5.InputType)()
 ], GuestUpdateToOneWithWhereWithoutQrcodesInput);
 exports.GuestUpdateToOneWithWhereWithoutQrcodesInput = GuestUpdateToOneWithWhereWithoutQrcodesInput;
-let GuestUpdateToOneWithWhereWithoutUserInput = class GuestUpdateToOneWithWhereWithoutUserInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => GuestWhereInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => GuestWhereInput)
-], GuestUpdateToOneWithWhereWithoutUserInput.prototype, "where", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestUpdateWithoutUserInput, { nullable: false }),
-    (0, class_transformer_1.Type)(() => GuestUpdateWithoutUserInput)
-], GuestUpdateToOneWithWhereWithoutUserInput.prototype, "data", void 0);
-GuestUpdateToOneWithWhereWithoutUserInput = __decorate([
-    (0, graphql_5.InputType)()
-], GuestUpdateToOneWithWhereWithoutUserInput);
-exports.GuestUpdateToOneWithWhereWithoutUserInput = GuestUpdateToOneWithWhereWithoutUserInput;
 let GuestUpdateToOneWithWhereWithoutWhatsappQueueInput = class GuestUpdateToOneWithWhereWithoutWhatsappQueueInput {
 };
 __decorate([
@@ -3346,14 +3423,20 @@ exports.GuestUpdateToOneWithWhereWithoutWhatsappQueueInput = GuestUpdateToOneWit
 let GuestUpdateWithoutEmailQueueInput = class GuestUpdateWithoutEmailQueueInput {
 };
 __decorate([
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateWithoutEmailQueueInput.prototype, "id", void 0);
+__decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateWithoutEmailQueueInput.prototype, "source", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateWithoutEmailQueueInput.prototype, "invitationName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateWithoutEmailQueueInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableFloatFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateWithoutEmailQueueInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateWithoutEmailQueueInput.prototype, "category", void 0);
@@ -3373,11 +3456,17 @@ __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateWithoutEmailQueueInput.prototype, "parties", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateWithoutEmailQueueInput.prototype, "confirmationStatus", void 0);
+    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateWithoutEmailQueueInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => UserUpdateOneRequiredWithoutGuestInfoNestedInput, { nullable: true })
-], GuestUpdateWithoutEmailQueueInput.prototype, "user", void 0);
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateWithoutEmailQueueInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateWithoutEmailQueueInput.prototype, "deletedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateWithoutEmailQueueInput.prototype, "confirmationStatus", void 0);
 __decorate([
     (0, graphql_1.Field)(() => QrCodeUpdateManyWithoutGuestNestedInput, { nullable: true })
 ], GuestUpdateWithoutEmailQueueInput.prototype, "qrcodes", void 0);
@@ -3391,14 +3480,20 @@ exports.GuestUpdateWithoutEmailQueueInput = GuestUpdateWithoutEmailQueueInput;
 let GuestUpdateWithoutQrcodesInput = class GuestUpdateWithoutQrcodesInput {
 };
 __decorate([
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateWithoutQrcodesInput.prototype, "id", void 0);
+__decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateWithoutQrcodesInput.prototype, "source", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateWithoutQrcodesInput.prototype, "invitationName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateWithoutQrcodesInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableFloatFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateWithoutQrcodesInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateWithoutQrcodesInput.prototype, "category", void 0);
@@ -3418,11 +3513,17 @@ __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateWithoutQrcodesInput.prototype, "parties", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateWithoutQrcodesInput.prototype, "confirmationStatus", void 0);
+    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateWithoutQrcodesInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => UserUpdateOneRequiredWithoutGuestInfoNestedInput, { nullable: true })
-], GuestUpdateWithoutQrcodesInput.prototype, "user", void 0);
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateWithoutQrcodesInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateWithoutQrcodesInput.prototype, "deletedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateWithoutQrcodesInput.prototype, "confirmationStatus", void 0);
 __decorate([
     (0, graphql_1.Field)(() => EmailQueueUpdateManyWithoutGuestNestedInput, { nullable: true })
 ], GuestUpdateWithoutQrcodesInput.prototype, "emailQueue", void 0);
@@ -3433,62 +3534,23 @@ GuestUpdateWithoutQrcodesInput = __decorate([
     (0, graphql_5.InputType)()
 ], GuestUpdateWithoutQrcodesInput);
 exports.GuestUpdateWithoutQrcodesInput = GuestUpdateWithoutQrcodesInput;
-let GuestUpdateWithoutUserInput = class GuestUpdateWithoutUserInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateWithoutUserInput.prototype, "source", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateWithoutUserInput.prototype, "invitationName", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateWithoutUserInput.prototype, "contactList", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateWithoutUserInput.prototype, "category", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateWithoutUserInput.prototype, "class", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateWithoutUserInput.prototype, "seat", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateWithoutUserInput.prototype, "studio", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateWithoutUserInput.prototype, "rejectionReason", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateWithoutUserInput.prototype, "parties", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => EnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateWithoutUserInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => QrCodeUpdateManyWithoutGuestNestedInput, { nullable: true })
-], GuestUpdateWithoutUserInput.prototype, "qrcodes", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => EmailQueueUpdateManyWithoutGuestNestedInput, { nullable: true })
-], GuestUpdateWithoutUserInput.prototype, "emailQueue", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => WhatsappQueueUpdateManyWithoutGuestNestedInput, { nullable: true })
-], GuestUpdateWithoutUserInput.prototype, "whatsappQueue", void 0);
-GuestUpdateWithoutUserInput = __decorate([
-    (0, graphql_5.InputType)()
-], GuestUpdateWithoutUserInput);
-exports.GuestUpdateWithoutUserInput = GuestUpdateWithoutUserInput;
 let GuestUpdateWithoutWhatsappQueueInput = class GuestUpdateWithoutWhatsappQueueInput {
 };
+__decorate([
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateWithoutWhatsappQueueInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateWithoutWhatsappQueueInput.prototype, "source", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateWithoutWhatsappQueueInput.prototype, "invitationName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateWithoutWhatsappQueueInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableFloatFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateWithoutWhatsappQueueInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateWithoutWhatsappQueueInput.prototype, "category", void 0);
@@ -3508,11 +3570,17 @@ __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateWithoutWhatsappQueueInput.prototype, "parties", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateWithoutWhatsappQueueInput.prototype, "confirmationStatus", void 0);
+    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateWithoutWhatsappQueueInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => UserUpdateOneRequiredWithoutGuestInfoNestedInput, { nullable: true })
-], GuestUpdateWithoutWhatsappQueueInput.prototype, "user", void 0);
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateWithoutWhatsappQueueInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateWithoutWhatsappQueueInput.prototype, "deletedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateWithoutWhatsappQueueInput.prototype, "confirmationStatus", void 0);
 __decorate([
     (0, graphql_1.Field)(() => QrCodeUpdateManyWithoutGuestNestedInput, { nullable: true })
 ], GuestUpdateWithoutWhatsappQueueInput.prototype, "qrcodes", void 0);
@@ -3526,14 +3594,20 @@ exports.GuestUpdateWithoutWhatsappQueueInput = GuestUpdateWithoutWhatsappQueueIn
 let GuestUpdateInput = class GuestUpdateInput {
 };
 __decorate([
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateInput.prototype, "id", void 0);
+__decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateInput.prototype, "source", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateInput.prototype, "invitationName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableFloatFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateInput.prototype, "category", void 0);
@@ -3553,11 +3627,17 @@ __decorate([
     (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateInput.prototype, "parties", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateInput.prototype, "confirmationStatus", void 0);
+    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => UserUpdateOneRequiredWithoutGuestInfoNestedInput, { nullable: true })
-], GuestUpdateInput.prototype, "user", void 0);
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateInput.prototype, "deletedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
+], GuestUpdateInput.prototype, "confirmationStatus", void 0);
 __decorate([
     (0, graphql_1.Field)(() => QrCodeUpdateManyWithoutGuestNestedInput, { nullable: true })
 ], GuestUpdateInput.prototype, "qrcodes", void 0);
@@ -3607,24 +3687,6 @@ GuestUpsertWithoutQrcodesInput = __decorate([
     (0, graphql_5.InputType)()
 ], GuestUpsertWithoutQrcodesInput);
 exports.GuestUpsertWithoutQrcodesInput = GuestUpsertWithoutQrcodesInput;
-let GuestUpsertWithoutUserInput = class GuestUpsertWithoutUserInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => GuestUpdateWithoutUserInput, { nullable: false }),
-    (0, class_transformer_1.Type)(() => GuestUpdateWithoutUserInput)
-], GuestUpsertWithoutUserInput.prototype, "update", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestCreateWithoutUserInput, { nullable: false }),
-    (0, class_transformer_1.Type)(() => GuestCreateWithoutUserInput)
-], GuestUpsertWithoutUserInput.prototype, "create", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestWhereInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => GuestWhereInput)
-], GuestUpsertWithoutUserInput.prototype, "where", void 0);
-GuestUpsertWithoutUserInput = __decorate([
-    (0, graphql_5.InputType)()
-], GuestUpsertWithoutUserInput);
-exports.GuestUpsertWithoutUserInput = GuestUpsertWithoutUserInput;
 let GuestUpsertWithoutWhatsappQueueInput = class GuestUpsertWithoutWhatsappQueueInput {
 };
 __decorate([
@@ -3647,7 +3709,10 @@ let GuestWhereUniqueInput = class GuestWhereUniqueInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], GuestWhereUniqueInput.prototype, "userId", void 0);
+], GuestWhereUniqueInput.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], GuestWhereUniqueInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => [GuestWhereInput], { nullable: true })
 ], GuestWhereUniqueInput.prototype, "AND", void 0);
@@ -3661,7 +3726,7 @@ __decorate([
     (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
 ], GuestWhereUniqueInput.prototype, "source", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
+    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
 ], GuestWhereUniqueInput.prototype, "invitationName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
@@ -3685,11 +3750,17 @@ __decorate([
     (0, graphql_1.Field)(() => IntFilter, { nullable: true })
 ], GuestWhereUniqueInput.prototype, "parties", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumConfirmationStatusFilter, { nullable: true })
-], GuestWhereUniqueInput.prototype, "confirmationStatus", void 0);
+    (0, graphql_1.Field)(() => DateTimeFilter, { nullable: true })
+], GuestWhereUniqueInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => UserRelationFilter, { nullable: true })
-], GuestWhereUniqueInput.prototype, "user", void 0);
+    (0, graphql_1.Field)(() => DateTimeNullableFilter, { nullable: true })
+], GuestWhereUniqueInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => DateTimeNullableFilter, { nullable: true })
+], GuestWhereUniqueInput.prototype, "deletedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => EnumConfirmationStatusNullableFilter, { nullable: true })
+], GuestWhereUniqueInput.prototype, "confirmationStatus", void 0);
 __decorate([
     (0, graphql_1.Field)(() => QrCodeListRelationFilter, { nullable: true })
 ], GuestWhereUniqueInput.prototype, "qrcodes", void 0);
@@ -3716,16 +3787,19 @@ __decorate([
 ], GuestWhereInput.prototype, "NOT", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringFilter, { nullable: true })
-], GuestWhereInput.prototype, "userId", void 0);
+], GuestWhereInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
 ], GuestWhereInput.prototype, "source", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
+    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
 ], GuestWhereInput.prototype, "invitationName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
 ], GuestWhereInput.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => FloatNullableFilter, { nullable: true })
+], GuestWhereInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
 ], GuestWhereInput.prototype, "category", void 0);
@@ -3745,11 +3819,17 @@ __decorate([
     (0, graphql_1.Field)(() => IntFilter, { nullable: true })
 ], GuestWhereInput.prototype, "parties", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => EnumConfirmationStatusFilter, { nullable: true })
-], GuestWhereInput.prototype, "confirmationStatus", void 0);
+    (0, graphql_1.Field)(() => DateTimeFilter, { nullable: true })
+], GuestWhereInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => UserRelationFilter, { nullable: true })
-], GuestWhereInput.prototype, "user", void 0);
+    (0, graphql_1.Field)(() => DateTimeNullableFilter, { nullable: true })
+], GuestWhereInput.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => DateTimeNullableFilter, { nullable: true })
+], GuestWhereInput.prototype, "deletedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => EnumConfirmationStatusNullableFilter, { nullable: true })
+], GuestWhereInput.prototype, "confirmationStatus", void 0);
 __decorate([
     (0, graphql_1.Field)(() => QrCodeListRelationFilter, { nullable: true })
 ], GuestWhereInput.prototype, "qrcodes", void 0);
@@ -3767,16 +3847,19 @@ let Guest = class Guest {
 };
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
-], Guest.prototype, "userId", void 0);
+], Guest.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], Guest.prototype, "source", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
+    (0, graphql_1.Field)(() => String, { nullable: false })
 ], Guest.prototype, "invitationName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], Guest.prototype, "contactList", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], Guest.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], Guest.prototype, "category", void 0);
@@ -3796,11 +3879,17 @@ __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: false, defaultValue: 1 })
 ], Guest.prototype, "parties", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: false, defaultValue: 'UNCONFIRMED' })
-], Guest.prototype, "confirmationStatus", void 0);
+    (0, graphql_1.Field)(() => Date, { nullable: false })
+], Guest.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => User, { nullable: false })
-], Guest.prototype, "user", void 0);
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], Guest.prototype, "updatedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Date, { nullable: true })
+], Guest.prototype, "deletedAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true, defaultValue: 'UNCONFIRMED' })
+], Guest.prototype, "confirmationStatus", void 0);
 __decorate([
     (0, graphql_1.Field)(() => [QrCode], { nullable: true })
 ], Guest.prototype, "qrcodes", void 0);
@@ -4019,60 +4108,51 @@ DateTimeWithAggregatesFilter = __decorate([
     (0, graphql_5.InputType)()
 ], DateTimeWithAggregatesFilter);
 exports.DateTimeWithAggregatesFilter = DateTimeWithAggregatesFilter;
-let EnumConfirmationStatusFieldUpdateOperationsInput = class EnumConfirmationStatusFieldUpdateOperationsInput {
+let EnumConfirmationStatusNullableFilter = class EnumConfirmationStatusNullableFilter {
 };
 __decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
-], EnumConfirmationStatusFieldUpdateOperationsInput.prototype, "set", void 0);
-EnumConfirmationStatusFieldUpdateOperationsInput = __decorate([
+], EnumConfirmationStatusNullableFilter.prototype, "equals", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => [ConfirmationStatus], { nullable: true })
+], EnumConfirmationStatusNullableFilter.prototype, "in", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => [ConfirmationStatus], { nullable: true })
+], EnumConfirmationStatusNullableFilter.prototype, "notIn", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NestedEnumConfirmationStatusNullableFilter, { nullable: true })
+], EnumConfirmationStatusNullableFilter.prototype, "not", void 0);
+EnumConfirmationStatusNullableFilter = __decorate([
     (0, graphql_5.InputType)()
-], EnumConfirmationStatusFieldUpdateOperationsInput);
-exports.EnumConfirmationStatusFieldUpdateOperationsInput = EnumConfirmationStatusFieldUpdateOperationsInput;
-let EnumConfirmationStatusFilter = class EnumConfirmationStatusFilter {
+], EnumConfirmationStatusNullableFilter);
+exports.EnumConfirmationStatusNullableFilter = EnumConfirmationStatusNullableFilter;
+let EnumConfirmationStatusNullableWithAggregatesFilter = class EnumConfirmationStatusNullableWithAggregatesFilter {
 };
 __decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
-], EnumConfirmationStatusFilter.prototype, "equals", void 0);
+], EnumConfirmationStatusNullableWithAggregatesFilter.prototype, "equals", void 0);
 __decorate([
     (0, graphql_1.Field)(() => [ConfirmationStatus], { nullable: true })
-], EnumConfirmationStatusFilter.prototype, "in", void 0);
+], EnumConfirmationStatusNullableWithAggregatesFilter.prototype, "in", void 0);
 __decorate([
     (0, graphql_1.Field)(() => [ConfirmationStatus], { nullable: true })
-], EnumConfirmationStatusFilter.prototype, "notIn", void 0);
+], EnumConfirmationStatusNullableWithAggregatesFilter.prototype, "notIn", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NestedEnumConfirmationStatusFilter, { nullable: true })
-], EnumConfirmationStatusFilter.prototype, "not", void 0);
-EnumConfirmationStatusFilter = __decorate([
+    (0, graphql_1.Field)(() => NestedEnumConfirmationStatusNullableWithAggregatesFilter, { nullable: true })
+], EnumConfirmationStatusNullableWithAggregatesFilter.prototype, "not", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NestedIntNullableFilter, { nullable: true })
+], EnumConfirmationStatusNullableWithAggregatesFilter.prototype, "_count", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NestedEnumConfirmationStatusNullableFilter, { nullable: true })
+], EnumConfirmationStatusNullableWithAggregatesFilter.prototype, "_min", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NestedEnumConfirmationStatusNullableFilter, { nullable: true })
+], EnumConfirmationStatusNullableWithAggregatesFilter.prototype, "_max", void 0);
+EnumConfirmationStatusNullableWithAggregatesFilter = __decorate([
     (0, graphql_5.InputType)()
-], EnumConfirmationStatusFilter);
-exports.EnumConfirmationStatusFilter = EnumConfirmationStatusFilter;
-let EnumConfirmationStatusWithAggregatesFilter = class EnumConfirmationStatusWithAggregatesFilter {
-};
-__decorate([
-    (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
-], EnumConfirmationStatusWithAggregatesFilter.prototype, "equals", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => [ConfirmationStatus], { nullable: true })
-], EnumConfirmationStatusWithAggregatesFilter.prototype, "in", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => [ConfirmationStatus], { nullable: true })
-], EnumConfirmationStatusWithAggregatesFilter.prototype, "notIn", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NestedEnumConfirmationStatusWithAggregatesFilter, { nullable: true })
-], EnumConfirmationStatusWithAggregatesFilter.prototype, "not", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NestedIntFilter, { nullable: true })
-], EnumConfirmationStatusWithAggregatesFilter.prototype, "_count", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NestedEnumConfirmationStatusFilter, { nullable: true })
-], EnumConfirmationStatusWithAggregatesFilter.prototype, "_min", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NestedEnumConfirmationStatusFilter, { nullable: true })
-], EnumConfirmationStatusWithAggregatesFilter.prototype, "_max", void 0);
-EnumConfirmationStatusWithAggregatesFilter = __decorate([
-    (0, graphql_5.InputType)()
-], EnumConfirmationStatusWithAggregatesFilter);
-exports.EnumConfirmationStatusWithAggregatesFilter = EnumConfirmationStatusWithAggregatesFilter;
+], EnumConfirmationStatusNullableWithAggregatesFilter);
+exports.EnumConfirmationStatusNullableWithAggregatesFilter = EnumConfirmationStatusNullableWithAggregatesFilter;
 let EnumQueueStatusFieldUpdateOperationsInput = class EnumQueueStatusFieldUpdateOperationsInput {
 };
 __decorate([
@@ -4181,6 +4261,81 @@ EnumUserRoleWithAggregatesFilter = __decorate([
     (0, graphql_5.InputType)()
 ], EnumUserRoleWithAggregatesFilter);
 exports.EnumUserRoleWithAggregatesFilter = EnumUserRoleWithAggregatesFilter;
+let FloatNullableFilter = class FloatNullableFilter {
+};
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], FloatNullableFilter.prototype, "equals", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => [graphql_6.Float], { nullable: true })
+], FloatNullableFilter.prototype, "in", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => [graphql_6.Float], { nullable: true })
+], FloatNullableFilter.prototype, "notIn", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], FloatNullableFilter.prototype, "lt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], FloatNullableFilter.prototype, "lte", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], FloatNullableFilter.prototype, "gt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], FloatNullableFilter.prototype, "gte", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NestedFloatNullableFilter, { nullable: true })
+], FloatNullableFilter.prototype, "not", void 0);
+FloatNullableFilter = __decorate([
+    (0, graphql_5.InputType)()
+], FloatNullableFilter);
+exports.FloatNullableFilter = FloatNullableFilter;
+let FloatNullableWithAggregatesFilter = class FloatNullableWithAggregatesFilter {
+};
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], FloatNullableWithAggregatesFilter.prototype, "equals", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => [graphql_6.Float], { nullable: true })
+], FloatNullableWithAggregatesFilter.prototype, "in", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => [graphql_6.Float], { nullable: true })
+], FloatNullableWithAggregatesFilter.prototype, "notIn", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], FloatNullableWithAggregatesFilter.prototype, "lt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], FloatNullableWithAggregatesFilter.prototype, "lte", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], FloatNullableWithAggregatesFilter.prototype, "gt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], FloatNullableWithAggregatesFilter.prototype, "gte", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NestedFloatNullableWithAggregatesFilter, { nullable: true })
+], FloatNullableWithAggregatesFilter.prototype, "not", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NestedIntNullableFilter, { nullable: true })
+], FloatNullableWithAggregatesFilter.prototype, "_count", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NestedFloatNullableFilter, { nullable: true })
+], FloatNullableWithAggregatesFilter.prototype, "_avg", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NestedFloatNullableFilter, { nullable: true })
+], FloatNullableWithAggregatesFilter.prototype, "_sum", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NestedFloatNullableFilter, { nullable: true })
+], FloatNullableWithAggregatesFilter.prototype, "_min", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NestedFloatNullableFilter, { nullable: true })
+], FloatNullableWithAggregatesFilter.prototype, "_max", void 0);
+FloatNullableWithAggregatesFilter = __decorate([
+    (0, graphql_5.InputType)()
+], FloatNullableWithAggregatesFilter);
+exports.FloatNullableWithAggregatesFilter = FloatNullableWithAggregatesFilter;
 let IntFieldUpdateOperationsInput = class IntFieldUpdateOperationsInput {
 };
 __decorate([
@@ -4490,51 +4645,51 @@ NestedDateTimeWithAggregatesFilter = NestedDateTimeWithAggregatesFilter_1 = __de
     (0, graphql_5.InputType)()
 ], NestedDateTimeWithAggregatesFilter);
 exports.NestedDateTimeWithAggregatesFilter = NestedDateTimeWithAggregatesFilter;
-let NestedEnumConfirmationStatusFilter = NestedEnumConfirmationStatusFilter_1 = class NestedEnumConfirmationStatusFilter {
+let NestedEnumConfirmationStatusNullableFilter = NestedEnumConfirmationStatusNullableFilter_1 = class NestedEnumConfirmationStatusNullableFilter {
 };
 __decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
-], NestedEnumConfirmationStatusFilter.prototype, "equals", void 0);
+], NestedEnumConfirmationStatusNullableFilter.prototype, "equals", void 0);
 __decorate([
     (0, graphql_1.Field)(() => [ConfirmationStatus], { nullable: true })
-], NestedEnumConfirmationStatusFilter.prototype, "in", void 0);
+], NestedEnumConfirmationStatusNullableFilter.prototype, "in", void 0);
 __decorate([
     (0, graphql_1.Field)(() => [ConfirmationStatus], { nullable: true })
-], NestedEnumConfirmationStatusFilter.prototype, "notIn", void 0);
+], NestedEnumConfirmationStatusNullableFilter.prototype, "notIn", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NestedEnumConfirmationStatusFilter_1, { nullable: true })
-], NestedEnumConfirmationStatusFilter.prototype, "not", void 0);
-NestedEnumConfirmationStatusFilter = NestedEnumConfirmationStatusFilter_1 = __decorate([
+    (0, graphql_1.Field)(() => NestedEnumConfirmationStatusNullableFilter_1, { nullable: true })
+], NestedEnumConfirmationStatusNullableFilter.prototype, "not", void 0);
+NestedEnumConfirmationStatusNullableFilter = NestedEnumConfirmationStatusNullableFilter_1 = __decorate([
     (0, graphql_5.InputType)()
-], NestedEnumConfirmationStatusFilter);
-exports.NestedEnumConfirmationStatusFilter = NestedEnumConfirmationStatusFilter;
-let NestedEnumConfirmationStatusWithAggregatesFilter = NestedEnumConfirmationStatusWithAggregatesFilter_1 = class NestedEnumConfirmationStatusWithAggregatesFilter {
+], NestedEnumConfirmationStatusNullableFilter);
+exports.NestedEnumConfirmationStatusNullableFilter = NestedEnumConfirmationStatusNullableFilter;
+let NestedEnumConfirmationStatusNullableWithAggregatesFilter = NestedEnumConfirmationStatusNullableWithAggregatesFilter_1 = class NestedEnumConfirmationStatusNullableWithAggregatesFilter {
 };
 __decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
-], NestedEnumConfirmationStatusWithAggregatesFilter.prototype, "equals", void 0);
+], NestedEnumConfirmationStatusNullableWithAggregatesFilter.prototype, "equals", void 0);
 __decorate([
     (0, graphql_1.Field)(() => [ConfirmationStatus], { nullable: true })
-], NestedEnumConfirmationStatusWithAggregatesFilter.prototype, "in", void 0);
+], NestedEnumConfirmationStatusNullableWithAggregatesFilter.prototype, "in", void 0);
 __decorate([
     (0, graphql_1.Field)(() => [ConfirmationStatus], { nullable: true })
-], NestedEnumConfirmationStatusWithAggregatesFilter.prototype, "notIn", void 0);
+], NestedEnumConfirmationStatusNullableWithAggregatesFilter.prototype, "notIn", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NestedEnumConfirmationStatusWithAggregatesFilter_1, { nullable: true })
-], NestedEnumConfirmationStatusWithAggregatesFilter.prototype, "not", void 0);
+    (0, graphql_1.Field)(() => NestedEnumConfirmationStatusNullableWithAggregatesFilter_1, { nullable: true })
+], NestedEnumConfirmationStatusNullableWithAggregatesFilter.prototype, "not", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NestedIntFilter, { nullable: true })
-], NestedEnumConfirmationStatusWithAggregatesFilter.prototype, "_count", void 0);
+    (0, graphql_1.Field)(() => NestedIntNullableFilter, { nullable: true })
+], NestedEnumConfirmationStatusNullableWithAggregatesFilter.prototype, "_count", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NestedEnumConfirmationStatusFilter, { nullable: true })
-], NestedEnumConfirmationStatusWithAggregatesFilter.prototype, "_min", void 0);
+    (0, graphql_1.Field)(() => NestedEnumConfirmationStatusNullableFilter, { nullable: true })
+], NestedEnumConfirmationStatusNullableWithAggregatesFilter.prototype, "_min", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NestedEnumConfirmationStatusFilter, { nullable: true })
-], NestedEnumConfirmationStatusWithAggregatesFilter.prototype, "_max", void 0);
-NestedEnumConfirmationStatusWithAggregatesFilter = NestedEnumConfirmationStatusWithAggregatesFilter_1 = __decorate([
+    (0, graphql_1.Field)(() => NestedEnumConfirmationStatusNullableFilter, { nullable: true })
+], NestedEnumConfirmationStatusNullableWithAggregatesFilter.prototype, "_max", void 0);
+NestedEnumConfirmationStatusNullableWithAggregatesFilter = NestedEnumConfirmationStatusNullableWithAggregatesFilter_1 = __decorate([
     (0, graphql_5.InputType)()
-], NestedEnumConfirmationStatusWithAggregatesFilter);
-exports.NestedEnumConfirmationStatusWithAggregatesFilter = NestedEnumConfirmationStatusWithAggregatesFilter;
+], NestedEnumConfirmationStatusNullableWithAggregatesFilter);
+exports.NestedEnumConfirmationStatusNullableWithAggregatesFilter = NestedEnumConfirmationStatusNullableWithAggregatesFilter;
 let NestedEnumQueueStatusFilter = NestedEnumQueueStatusFilter_1 = class NestedEnumQueueStatusFilter {
 };
 __decorate([
@@ -4685,6 +4840,51 @@ NestedFloatNullableFilter = NestedFloatNullableFilter_1 = __decorate([
     (0, graphql_5.InputType)()
 ], NestedFloatNullableFilter);
 exports.NestedFloatNullableFilter = NestedFloatNullableFilter;
+let NestedFloatNullableWithAggregatesFilter = NestedFloatNullableWithAggregatesFilter_1 = class NestedFloatNullableWithAggregatesFilter {
+};
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], NestedFloatNullableWithAggregatesFilter.prototype, "equals", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => [graphql_6.Float], { nullable: true })
+], NestedFloatNullableWithAggregatesFilter.prototype, "in", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => [graphql_6.Float], { nullable: true })
+], NestedFloatNullableWithAggregatesFilter.prototype, "notIn", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], NestedFloatNullableWithAggregatesFilter.prototype, "lt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], NestedFloatNullableWithAggregatesFilter.prototype, "lte", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], NestedFloatNullableWithAggregatesFilter.prototype, "gt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], NestedFloatNullableWithAggregatesFilter.prototype, "gte", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NestedFloatNullableWithAggregatesFilter_1, { nullable: true })
+], NestedFloatNullableWithAggregatesFilter.prototype, "not", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NestedIntNullableFilter, { nullable: true })
+], NestedFloatNullableWithAggregatesFilter.prototype, "_count", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NestedFloatNullableFilter, { nullable: true })
+], NestedFloatNullableWithAggregatesFilter.prototype, "_avg", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NestedFloatNullableFilter, { nullable: true })
+], NestedFloatNullableWithAggregatesFilter.prototype, "_sum", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NestedFloatNullableFilter, { nullable: true })
+], NestedFloatNullableWithAggregatesFilter.prototype, "_min", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NestedFloatNullableFilter, { nullable: true })
+], NestedFloatNullableWithAggregatesFilter.prototype, "_max", void 0);
+NestedFloatNullableWithAggregatesFilter = NestedFloatNullableWithAggregatesFilter_1 = __decorate([
+    (0, graphql_5.InputType)()
+], NestedFloatNullableWithAggregatesFilter);
+exports.NestedFloatNullableWithAggregatesFilter = NestedFloatNullableWithAggregatesFilter;
 let NestedIntFilter = NestedIntFilter_1 = class NestedIntFilter {
 };
 __decorate([
@@ -5018,6 +5218,36 @@ NullableDateTimeFieldUpdateOperationsInput = __decorate([
     (0, graphql_5.InputType)()
 ], NullableDateTimeFieldUpdateOperationsInput);
 exports.NullableDateTimeFieldUpdateOperationsInput = NullableDateTimeFieldUpdateOperationsInput;
+let NullableEnumConfirmationStatusFieldUpdateOperationsInput = class NullableEnumConfirmationStatusFieldUpdateOperationsInput {
+};
+__decorate([
+    (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
+], NullableEnumConfirmationStatusFieldUpdateOperationsInput.prototype, "set", void 0);
+NullableEnumConfirmationStatusFieldUpdateOperationsInput = __decorate([
+    (0, graphql_5.InputType)()
+], NullableEnumConfirmationStatusFieldUpdateOperationsInput);
+exports.NullableEnumConfirmationStatusFieldUpdateOperationsInput = NullableEnumConfirmationStatusFieldUpdateOperationsInput;
+let NullableFloatFieldUpdateOperationsInput = class NullableFloatFieldUpdateOperationsInput {
+};
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], NullableFloatFieldUpdateOperationsInput.prototype, "set", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], NullableFloatFieldUpdateOperationsInput.prototype, "increment", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], NullableFloatFieldUpdateOperationsInput.prototype, "decrement", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], NullableFloatFieldUpdateOperationsInput.prototype, "multiply", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], NullableFloatFieldUpdateOperationsInput.prototype, "divide", void 0);
+NullableFloatFieldUpdateOperationsInput = __decorate([
+    (0, graphql_5.InputType)()
+], NullableFloatFieldUpdateOperationsInput);
+exports.NullableFloatFieldUpdateOperationsInput = NullableFloatFieldUpdateOperationsInput;
 let NullableIntFieldUpdateOperationsInput = class NullableIntFieldUpdateOperationsInput {
 };
 __decorate([
@@ -7306,9 +7536,6 @@ __decorate([
 ], UserCountAggregateInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], UserCountAggregateInput.prototype, "whatsapp", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], UserCountAggregateInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
@@ -7342,9 +7569,6 @@ __decorate([
 ], UserCountAggregate.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: false })
-], UserCountAggregate.prototype, "whatsapp", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: false })
 ], UserCountAggregate.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: false })
@@ -7376,9 +7600,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], UserCountOrderByAggregateInput.prototype, "password", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], UserCountOrderByAggregateInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], UserCountOrderByAggregateInput.prototype, "createdAt", void 0);
@@ -7416,11 +7637,8 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserCreateManyInput.prototype, "email", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
-], UserCreateManyInput.prototype, "password", void 0);
-__decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], UserCreateManyInput.prototype, "whatsapp", void 0);
+], UserCreateManyInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], UserCreateManyInput.prototype, "createdAt", void 0);
@@ -7437,24 +7655,6 @@ UserCreateManyInput = __decorate([
     (0, graphql_5.InputType)()
 ], UserCreateManyInput);
 exports.UserCreateManyInput = UserCreateManyInput;
-let UserCreateNestedOneWithoutGuestInfoInput = class UserCreateNestedOneWithoutGuestInfoInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => UserCreateWithoutGuestInfoInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => UserCreateWithoutGuestInfoInput)
-], UserCreateNestedOneWithoutGuestInfoInput.prototype, "create", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => UserCreateOrConnectWithoutGuestInfoInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => UserCreateOrConnectWithoutGuestInfoInput)
-], UserCreateNestedOneWithoutGuestInfoInput.prototype, "connectOrCreate", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => UserWhereUniqueInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => UserWhereUniqueInput)
-], UserCreateNestedOneWithoutGuestInfoInput.prototype, "connect", void 0);
-UserCreateNestedOneWithoutGuestInfoInput = __decorate([
-    (0, graphql_5.InputType)()
-], UserCreateNestedOneWithoutGuestInfoInput);
-exports.UserCreateNestedOneWithoutGuestInfoInput = UserCreateNestedOneWithoutGuestInfoInput;
 let UserCreateNestedOneWithoutScannedQrsInput = class UserCreateNestedOneWithoutScannedQrsInput {
 };
 __decorate([
@@ -7473,20 +7673,6 @@ UserCreateNestedOneWithoutScannedQrsInput = __decorate([
     (0, graphql_5.InputType)()
 ], UserCreateNestedOneWithoutScannedQrsInput);
 exports.UserCreateNestedOneWithoutScannedQrsInput = UserCreateNestedOneWithoutScannedQrsInput;
-let UserCreateOrConnectWithoutGuestInfoInput = class UserCreateOrConnectWithoutGuestInfoInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => UserWhereUniqueInput, { nullable: false }),
-    (0, class_transformer_1.Type)(() => UserWhereUniqueInput)
-], UserCreateOrConnectWithoutGuestInfoInput.prototype, "where", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => UserCreateWithoutGuestInfoInput, { nullable: false }),
-    (0, class_transformer_1.Type)(() => UserCreateWithoutGuestInfoInput)
-], UserCreateOrConnectWithoutGuestInfoInput.prototype, "create", void 0);
-UserCreateOrConnectWithoutGuestInfoInput = __decorate([
-    (0, graphql_5.InputType)()
-], UserCreateOrConnectWithoutGuestInfoInput);
-exports.UserCreateOrConnectWithoutGuestInfoInput = UserCreateOrConnectWithoutGuestInfoInput;
 let UserCreateOrConnectWithoutScannedQrsInput = class UserCreateOrConnectWithoutScannedQrsInput {
 };
 __decorate([
@@ -7501,42 +7687,6 @@ UserCreateOrConnectWithoutScannedQrsInput = __decorate([
     (0, graphql_5.InputType)()
 ], UserCreateOrConnectWithoutScannedQrsInput);
 exports.UserCreateOrConnectWithoutScannedQrsInput = UserCreateOrConnectWithoutScannedQrsInput;
-let UserCreateWithoutGuestInfoInput = class UserCreateWithoutGuestInfoInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], UserCreateWithoutGuestInfoInput.prototype, "id", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
-], UserCreateWithoutGuestInfoInput.prototype, "fullName", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], UserCreateWithoutGuestInfoInput.prototype, "email", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
-], UserCreateWithoutGuestInfoInput.prototype, "password", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], UserCreateWithoutGuestInfoInput.prototype, "whatsapp", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: true })
-], UserCreateWithoutGuestInfoInput.prototype, "createdAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: true })
-], UserCreateWithoutGuestInfoInput.prototype, "updatedAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: true })
-], UserCreateWithoutGuestInfoInput.prototype, "deletedAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => UserRole, { nullable: false })
-], UserCreateWithoutGuestInfoInput.prototype, "role", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => QrCodeCreateNestedManyWithoutScannedByInput, { nullable: true })
-], UserCreateWithoutGuestInfoInput.prototype, "scannedQrs", void 0);
-UserCreateWithoutGuestInfoInput = __decorate([
-    (0, graphql_5.InputType)()
-], UserCreateWithoutGuestInfoInput);
-exports.UserCreateWithoutGuestInfoInput = UserCreateWithoutGuestInfoInput;
 let UserCreateWithoutScannedQrsInput = class UserCreateWithoutScannedQrsInput {
 };
 __decorate([
@@ -7549,11 +7699,8 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserCreateWithoutScannedQrsInput.prototype, "email", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
-], UserCreateWithoutScannedQrsInput.prototype, "password", void 0);
-__decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], UserCreateWithoutScannedQrsInput.prototype, "whatsapp", void 0);
+], UserCreateWithoutScannedQrsInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], UserCreateWithoutScannedQrsInput.prototype, "createdAt", void 0);
@@ -7566,9 +7713,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => UserRole, { nullable: false })
 ], UserCreateWithoutScannedQrsInput.prototype, "role", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestCreateNestedOneWithoutUserInput, { nullable: true })
-], UserCreateWithoutScannedQrsInput.prototype, "guestInfo", void 0);
 UserCreateWithoutScannedQrsInput = __decorate([
     (0, graphql_5.InputType)()
 ], UserCreateWithoutScannedQrsInput);
@@ -7585,11 +7729,8 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserCreateInput.prototype, "email", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
-], UserCreateInput.prototype, "password", void 0);
-__decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], UserCreateInput.prototype, "whatsapp", void 0);
+], UserCreateInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], UserCreateInput.prototype, "createdAt", void 0);
@@ -7602,9 +7743,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => UserRole, { nullable: false })
 ], UserCreateInput.prototype, "role", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestCreateNestedOneWithoutUserInput, { nullable: true })
-], UserCreateInput.prototype, "guestInfo", void 0);
 __decorate([
     (0, graphql_1.Field)(() => QrCodeCreateNestedManyWithoutScannedByInput, { nullable: true })
 ], UserCreateInput.prototype, "scannedQrs", void 0);
@@ -7658,16 +7796,13 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserGroupBy.prototype, "email", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
-], UserGroupBy.prototype, "password", void 0);
-__decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], UserGroupBy.prototype, "whatsapp", void 0);
+], UserGroupBy.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: false })
 ], UserGroupBy.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: false })
+    (0, graphql_1.Field)(() => Date, { nullable: true })
 ], UserGroupBy.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
@@ -7704,9 +7839,6 @@ __decorate([
 ], UserMaxAggregateInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], UserMaxAggregateInput.prototype, "whatsapp", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], UserMaxAggregateInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
@@ -7735,9 +7867,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserMaxAggregate.prototype, "password", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], UserMaxAggregate.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], UserMaxAggregate.prototype, "createdAt", void 0);
@@ -7770,9 +7899,6 @@ __decorate([
 ], UserMaxOrderByAggregateInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], UserMaxOrderByAggregateInput.prototype, "whatsapp", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], UserMaxOrderByAggregateInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
@@ -7801,9 +7927,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], UserMinAggregateInput.prototype, "password", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], UserMinAggregateInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], UserMinAggregateInput.prototype, "createdAt", void 0);
@@ -7835,9 +7958,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserMinAggregate.prototype, "password", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], UserMinAggregate.prototype, "whatsapp", void 0);
-__decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], UserMinAggregate.prototype, "createdAt", void 0);
 __decorate([
@@ -7867,9 +7987,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], UserMinOrderByAggregateInput.prototype, "password", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], UserMinOrderByAggregateInput.prototype, "whatsapp", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], UserMinOrderByAggregateInput.prototype, "createdAt", void 0);
@@ -7910,16 +8027,13 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], UserOrderByWithAggregationInput.prototype, "email", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], UserOrderByWithAggregationInput.prototype, "password", void 0);
-__decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
-], UserOrderByWithAggregationInput.prototype, "whatsapp", void 0);
+], UserOrderByWithAggregationInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], UserOrderByWithAggregationInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], UserOrderByWithAggregationInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
@@ -7952,16 +8066,13 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], UserOrderByWithRelationInput.prototype, "email", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], UserOrderByWithRelationInput.prototype, "password", void 0);
-__decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
-], UserOrderByWithRelationInput.prototype, "whatsapp", void 0);
+], UserOrderByWithRelationInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], UserOrderByWithRelationInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], UserOrderByWithRelationInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
@@ -7970,27 +8081,12 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], UserOrderByWithRelationInput.prototype, "role", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => GuestOrderByWithRelationInput, { nullable: true })
-], UserOrderByWithRelationInput.prototype, "guestInfo", void 0);
-__decorate([
     (0, graphql_1.Field)(() => QrCodeOrderByRelationAggregateInput, { nullable: true })
 ], UserOrderByWithRelationInput.prototype, "scannedQrs", void 0);
 UserOrderByWithRelationInput = __decorate([
     (0, graphql_5.InputType)()
 ], UserOrderByWithRelationInput);
 exports.UserOrderByWithRelationInput = UserOrderByWithRelationInput;
-let UserRelationFilter = class UserRelationFilter {
-};
-__decorate([
-    (0, graphql_1.Field)(() => UserWhereInput, { nullable: true })
-], UserRelationFilter.prototype, "is", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => UserWhereInput, { nullable: true })
-], UserRelationFilter.prototype, "isNot", void 0);
-UserRelationFilter = __decorate([
-    (0, graphql_5.InputType)()
-], UserRelationFilter);
-exports.UserRelationFilter = UserRelationFilter;
 let UserScalarWhereWithAggregatesInput = UserScalarWhereWithAggregatesInput_1 = class UserScalarWhereWithAggregatesInput {
 };
 __decorate([
@@ -8012,16 +8108,13 @@ __decorate([
     (0, graphql_1.Field)(() => StringNullableWithAggregatesFilter, { nullable: true })
 ], UserScalarWhereWithAggregatesInput.prototype, "email", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringWithAggregatesFilter, { nullable: true })
-], UserScalarWhereWithAggregatesInput.prototype, "password", void 0);
-__decorate([
     (0, graphql_1.Field)(() => StringNullableWithAggregatesFilter, { nullable: true })
-], UserScalarWhereWithAggregatesInput.prototype, "whatsapp", void 0);
+], UserScalarWhereWithAggregatesInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeWithAggregatesFilter, { nullable: true })
 ], UserScalarWhereWithAggregatesInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => DateTimeWithAggregatesFilter, { nullable: true })
+    (0, graphql_1.Field)(() => DateTimeNullableWithAggregatesFilter, { nullable: true })
 ], UserScalarWhereWithAggregatesInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeNullableWithAggregatesFilter, { nullable: true })
@@ -8033,42 +8126,6 @@ UserScalarWhereWithAggregatesInput = UserScalarWhereWithAggregatesInput_1 = __de
     (0, graphql_5.InputType)()
 ], UserScalarWhereWithAggregatesInput);
 exports.UserScalarWhereWithAggregatesInput = UserScalarWhereWithAggregatesInput;
-let UserUncheckedCreateWithoutGuestInfoInput = class UserUncheckedCreateWithoutGuestInfoInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], UserUncheckedCreateWithoutGuestInfoInput.prototype, "id", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
-], UserUncheckedCreateWithoutGuestInfoInput.prototype, "fullName", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], UserUncheckedCreateWithoutGuestInfoInput.prototype, "email", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
-], UserUncheckedCreateWithoutGuestInfoInput.prototype, "password", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], UserUncheckedCreateWithoutGuestInfoInput.prototype, "whatsapp", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: true })
-], UserUncheckedCreateWithoutGuestInfoInput.prototype, "createdAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: true })
-], UserUncheckedCreateWithoutGuestInfoInput.prototype, "updatedAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: true })
-], UserUncheckedCreateWithoutGuestInfoInput.prototype, "deletedAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => UserRole, { nullable: false })
-], UserUncheckedCreateWithoutGuestInfoInput.prototype, "role", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => QrCodeUncheckedCreateNestedManyWithoutScannedByInput, { nullable: true })
-], UserUncheckedCreateWithoutGuestInfoInput.prototype, "scannedQrs", void 0);
-UserUncheckedCreateWithoutGuestInfoInput = __decorate([
-    (0, graphql_5.InputType)()
-], UserUncheckedCreateWithoutGuestInfoInput);
-exports.UserUncheckedCreateWithoutGuestInfoInput = UserUncheckedCreateWithoutGuestInfoInput;
 let UserUncheckedCreateWithoutScannedQrsInput = class UserUncheckedCreateWithoutScannedQrsInput {
 };
 __decorate([
@@ -8081,11 +8138,8 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserUncheckedCreateWithoutScannedQrsInput.prototype, "email", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
-], UserUncheckedCreateWithoutScannedQrsInput.prototype, "password", void 0);
-__decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], UserUncheckedCreateWithoutScannedQrsInput.prototype, "whatsapp", void 0);
+], UserUncheckedCreateWithoutScannedQrsInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], UserUncheckedCreateWithoutScannedQrsInput.prototype, "createdAt", void 0);
@@ -8098,9 +8152,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => UserRole, { nullable: false })
 ], UserUncheckedCreateWithoutScannedQrsInput.prototype, "role", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestUncheckedCreateNestedOneWithoutUserInput, { nullable: true })
-], UserUncheckedCreateWithoutScannedQrsInput.prototype, "guestInfo", void 0);
 UserUncheckedCreateWithoutScannedQrsInput = __decorate([
     (0, graphql_5.InputType)()
 ], UserUncheckedCreateWithoutScannedQrsInput);
@@ -8117,11 +8168,8 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserUncheckedCreateInput.prototype, "email", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
-], UserUncheckedCreateInput.prototype, "password", void 0);
-__decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], UserUncheckedCreateInput.prototype, "whatsapp", void 0);
+], UserUncheckedCreateInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], UserUncheckedCreateInput.prototype, "createdAt", void 0);
@@ -8134,9 +8182,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => UserRole, { nullable: false })
 ], UserUncheckedCreateInput.prototype, "role", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestUncheckedCreateNestedOneWithoutUserInput, { nullable: true })
-], UserUncheckedCreateInput.prototype, "guestInfo", void 0);
 __decorate([
     (0, graphql_1.Field)(() => QrCodeUncheckedCreateNestedManyWithoutScannedByInput, { nullable: true })
 ], UserUncheckedCreateInput.prototype, "scannedQrs", void 0);
@@ -8156,16 +8201,13 @@ __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateManyInput.prototype, "email", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
-], UserUncheckedUpdateManyInput.prototype, "password", void 0);
-__decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], UserUncheckedUpdateManyInput.prototype, "whatsapp", void 0);
+], UserUncheckedUpdateManyInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateManyInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateManyInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
@@ -8177,42 +8219,6 @@ UserUncheckedUpdateManyInput = __decorate([
     (0, graphql_5.InputType)()
 ], UserUncheckedUpdateManyInput);
 exports.UserUncheckedUpdateManyInput = UserUncheckedUpdateManyInput;
-let UserUncheckedUpdateWithoutGuestInfoInput = class UserUncheckedUpdateWithoutGuestInfoInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
-], UserUncheckedUpdateWithoutGuestInfoInput.prototype, "id", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
-], UserUncheckedUpdateWithoutGuestInfoInput.prototype, "fullName", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], UserUncheckedUpdateWithoutGuestInfoInput.prototype, "email", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
-], UserUncheckedUpdateWithoutGuestInfoInput.prototype, "password", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], UserUncheckedUpdateWithoutGuestInfoInput.prototype, "whatsapp", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-], UserUncheckedUpdateWithoutGuestInfoInput.prototype, "createdAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-], UserUncheckedUpdateWithoutGuestInfoInput.prototype, "updatedAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
-], UserUncheckedUpdateWithoutGuestInfoInput.prototype, "deletedAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => EnumUserRoleFieldUpdateOperationsInput, { nullable: true })
-], UserUncheckedUpdateWithoutGuestInfoInput.prototype, "role", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => QrCodeUncheckedUpdateManyWithoutScannedByNestedInput, { nullable: true })
-], UserUncheckedUpdateWithoutGuestInfoInput.prototype, "scannedQrs", void 0);
-UserUncheckedUpdateWithoutGuestInfoInput = __decorate([
-    (0, graphql_5.InputType)()
-], UserUncheckedUpdateWithoutGuestInfoInput);
-exports.UserUncheckedUpdateWithoutGuestInfoInput = UserUncheckedUpdateWithoutGuestInfoInput;
 let UserUncheckedUpdateWithoutScannedQrsInput = class UserUncheckedUpdateWithoutScannedQrsInput {
 };
 __decorate([
@@ -8225,16 +8231,13 @@ __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateWithoutScannedQrsInput.prototype, "email", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
-], UserUncheckedUpdateWithoutScannedQrsInput.prototype, "password", void 0);
-__decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], UserUncheckedUpdateWithoutScannedQrsInput.prototype, "whatsapp", void 0);
+], UserUncheckedUpdateWithoutScannedQrsInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateWithoutScannedQrsInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateWithoutScannedQrsInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
@@ -8242,9 +8245,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => EnumUserRoleFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateWithoutScannedQrsInput.prototype, "role", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestUncheckedUpdateOneWithoutUserNestedInput, { nullable: true })
-], UserUncheckedUpdateWithoutScannedQrsInput.prototype, "guestInfo", void 0);
 UserUncheckedUpdateWithoutScannedQrsInput = __decorate([
     (0, graphql_5.InputType)()
 ], UserUncheckedUpdateWithoutScannedQrsInput);
@@ -8261,16 +8261,13 @@ __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateInput.prototype, "email", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
-], UserUncheckedUpdateInput.prototype, "password", void 0);
-__decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], UserUncheckedUpdateInput.prototype, "whatsapp", void 0);
+], UserUncheckedUpdateInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
@@ -8278,9 +8275,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => EnumUserRoleFieldUpdateOperationsInput, { nullable: true })
 ], UserUncheckedUpdateInput.prototype, "role", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestUncheckedUpdateOneWithoutUserNestedInput, { nullable: true })
-], UserUncheckedUpdateInput.prototype, "guestInfo", void 0);
 __decorate([
     (0, graphql_1.Field)(() => QrCodeUncheckedUpdateManyWithoutScannedByNestedInput, { nullable: true })
 ], UserUncheckedUpdateInput.prototype, "scannedQrs", void 0);
@@ -8300,16 +8294,13 @@ __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateManyMutationInput.prototype, "email", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
-], UserUpdateManyMutationInput.prototype, "password", void 0);
-__decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], UserUpdateManyMutationInput.prototype, "whatsapp", void 0);
+], UserUpdateManyMutationInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateManyMutationInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateManyMutationInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
@@ -8321,32 +8312,6 @@ UserUpdateManyMutationInput = __decorate([
     (0, graphql_5.InputType)()
 ], UserUpdateManyMutationInput);
 exports.UserUpdateManyMutationInput = UserUpdateManyMutationInput;
-let UserUpdateOneRequiredWithoutGuestInfoNestedInput = class UserUpdateOneRequiredWithoutGuestInfoNestedInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => UserCreateWithoutGuestInfoInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => UserCreateWithoutGuestInfoInput)
-], UserUpdateOneRequiredWithoutGuestInfoNestedInput.prototype, "create", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => UserCreateOrConnectWithoutGuestInfoInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => UserCreateOrConnectWithoutGuestInfoInput)
-], UserUpdateOneRequiredWithoutGuestInfoNestedInput.prototype, "connectOrCreate", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => UserUpsertWithoutGuestInfoInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => UserUpsertWithoutGuestInfoInput)
-], UserUpdateOneRequiredWithoutGuestInfoNestedInput.prototype, "upsert", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => UserWhereUniqueInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => UserWhereUniqueInput)
-], UserUpdateOneRequiredWithoutGuestInfoNestedInput.prototype, "connect", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => UserUpdateToOneWithWhereWithoutGuestInfoInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => UserUpdateToOneWithWhereWithoutGuestInfoInput)
-], UserUpdateOneRequiredWithoutGuestInfoNestedInput.prototype, "update", void 0);
-UserUpdateOneRequiredWithoutGuestInfoNestedInput = __decorate([
-    (0, graphql_5.InputType)()
-], UserUpdateOneRequiredWithoutGuestInfoNestedInput);
-exports.UserUpdateOneRequiredWithoutGuestInfoNestedInput = UserUpdateOneRequiredWithoutGuestInfoNestedInput;
 let UserUpdateOneWithoutScannedQrsNestedInput = class UserUpdateOneWithoutScannedQrsNestedInput {
 };
 __decorate([
@@ -8381,20 +8346,6 @@ UserUpdateOneWithoutScannedQrsNestedInput = __decorate([
     (0, graphql_5.InputType)()
 ], UserUpdateOneWithoutScannedQrsNestedInput);
 exports.UserUpdateOneWithoutScannedQrsNestedInput = UserUpdateOneWithoutScannedQrsNestedInput;
-let UserUpdateToOneWithWhereWithoutGuestInfoInput = class UserUpdateToOneWithWhereWithoutGuestInfoInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => UserWhereInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => UserWhereInput)
-], UserUpdateToOneWithWhereWithoutGuestInfoInput.prototype, "where", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => UserUpdateWithoutGuestInfoInput, { nullable: false }),
-    (0, class_transformer_1.Type)(() => UserUpdateWithoutGuestInfoInput)
-], UserUpdateToOneWithWhereWithoutGuestInfoInput.prototype, "data", void 0);
-UserUpdateToOneWithWhereWithoutGuestInfoInput = __decorate([
-    (0, graphql_5.InputType)()
-], UserUpdateToOneWithWhereWithoutGuestInfoInput);
-exports.UserUpdateToOneWithWhereWithoutGuestInfoInput = UserUpdateToOneWithWhereWithoutGuestInfoInput;
 let UserUpdateToOneWithWhereWithoutScannedQrsInput = class UserUpdateToOneWithWhereWithoutScannedQrsInput {
 };
 __decorate([
@@ -8409,42 +8360,6 @@ UserUpdateToOneWithWhereWithoutScannedQrsInput = __decorate([
     (0, graphql_5.InputType)()
 ], UserUpdateToOneWithWhereWithoutScannedQrsInput);
 exports.UserUpdateToOneWithWhereWithoutScannedQrsInput = UserUpdateToOneWithWhereWithoutScannedQrsInput;
-let UserUpdateWithoutGuestInfoInput = class UserUpdateWithoutGuestInfoInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
-], UserUpdateWithoutGuestInfoInput.prototype, "id", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
-], UserUpdateWithoutGuestInfoInput.prototype, "fullName", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], UserUpdateWithoutGuestInfoInput.prototype, "email", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
-], UserUpdateWithoutGuestInfoInput.prototype, "password", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], UserUpdateWithoutGuestInfoInput.prototype, "whatsapp", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-], UserUpdateWithoutGuestInfoInput.prototype, "createdAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-], UserUpdateWithoutGuestInfoInput.prototype, "updatedAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
-], UserUpdateWithoutGuestInfoInput.prototype, "deletedAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => EnumUserRoleFieldUpdateOperationsInput, { nullable: true })
-], UserUpdateWithoutGuestInfoInput.prototype, "role", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => QrCodeUpdateManyWithoutScannedByNestedInput, { nullable: true })
-], UserUpdateWithoutGuestInfoInput.prototype, "scannedQrs", void 0);
-UserUpdateWithoutGuestInfoInput = __decorate([
-    (0, graphql_5.InputType)()
-], UserUpdateWithoutGuestInfoInput);
-exports.UserUpdateWithoutGuestInfoInput = UserUpdateWithoutGuestInfoInput;
 let UserUpdateWithoutScannedQrsInput = class UserUpdateWithoutScannedQrsInput {
 };
 __decorate([
@@ -8457,16 +8372,13 @@ __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateWithoutScannedQrsInput.prototype, "email", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
-], UserUpdateWithoutScannedQrsInput.prototype, "password", void 0);
-__decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], UserUpdateWithoutScannedQrsInput.prototype, "whatsapp", void 0);
+], UserUpdateWithoutScannedQrsInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateWithoutScannedQrsInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateWithoutScannedQrsInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
@@ -8474,9 +8386,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => EnumUserRoleFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateWithoutScannedQrsInput.prototype, "role", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestUpdateOneWithoutUserNestedInput, { nullable: true })
-], UserUpdateWithoutScannedQrsInput.prototype, "guestInfo", void 0);
 UserUpdateWithoutScannedQrsInput = __decorate([
     (0, graphql_5.InputType)()
 ], UserUpdateWithoutScannedQrsInput);
@@ -8493,16 +8402,13 @@ __decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateInput.prototype, "email", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
-], UserUpdateInput.prototype, "password", void 0);
-__decorate([
     (0, graphql_1.Field)(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-], UserUpdateInput.prototype, "whatsapp", void 0);
+], UserUpdateInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
@@ -8511,33 +8417,12 @@ __decorate([
     (0, graphql_1.Field)(() => EnumUserRoleFieldUpdateOperationsInput, { nullable: true })
 ], UserUpdateInput.prototype, "role", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => GuestUpdateOneWithoutUserNestedInput, { nullable: true })
-], UserUpdateInput.prototype, "guestInfo", void 0);
-__decorate([
     (0, graphql_1.Field)(() => QrCodeUpdateManyWithoutScannedByNestedInput, { nullable: true })
 ], UserUpdateInput.prototype, "scannedQrs", void 0);
 UserUpdateInput = __decorate([
     (0, graphql_5.InputType)()
 ], UserUpdateInput);
 exports.UserUpdateInput = UserUpdateInput;
-let UserUpsertWithoutGuestInfoInput = class UserUpsertWithoutGuestInfoInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => UserUpdateWithoutGuestInfoInput, { nullable: false }),
-    (0, class_transformer_1.Type)(() => UserUpdateWithoutGuestInfoInput)
-], UserUpsertWithoutGuestInfoInput.prototype, "update", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => UserCreateWithoutGuestInfoInput, { nullable: false }),
-    (0, class_transformer_1.Type)(() => UserCreateWithoutGuestInfoInput)
-], UserUpsertWithoutGuestInfoInput.prototype, "create", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => UserWhereInput, { nullable: true }),
-    (0, class_transformer_1.Type)(() => UserWhereInput)
-], UserUpsertWithoutGuestInfoInput.prototype, "where", void 0);
-UserUpsertWithoutGuestInfoInput = __decorate([
-    (0, graphql_5.InputType)()
-], UserUpsertWithoutGuestInfoInput);
-exports.UserUpsertWithoutGuestInfoInput = UserUpsertWithoutGuestInfoInput;
 let UserUpsertWithoutScannedQrsInput = class UserUpsertWithoutScannedQrsInput {
 };
 __decorate([
@@ -8565,9 +8450,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], UserWhereUniqueInput.prototype, "email", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true })
-], UserWhereUniqueInput.prototype, "whatsapp", void 0);
-__decorate([
     (0, graphql_1.Field)(() => [UserWhereInput], { nullable: true })
 ], UserWhereUniqueInput.prototype, "AND", void 0);
 __decorate([
@@ -8580,13 +8462,13 @@ __decorate([
     (0, graphql_1.Field)(() => StringFilter, { nullable: true })
 ], UserWhereUniqueInput.prototype, "fullName", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
+    (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
 ], UserWhereUniqueInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFilter, { nullable: true })
 ], UserWhereUniqueInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => DateTimeFilter, { nullable: true })
+    (0, graphql_1.Field)(() => DateTimeNullableFilter, { nullable: true })
 ], UserWhereUniqueInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeNullableFilter, { nullable: true })
@@ -8594,9 +8476,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => EnumUserRoleFilter, { nullable: true })
 ], UserWhereUniqueInput.prototype, "role", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestNullableRelationFilter, { nullable: true })
-], UserWhereUniqueInput.prototype, "guestInfo", void 0);
 __decorate([
     (0, graphql_1.Field)(() => QrCodeListRelationFilter, { nullable: true })
 ], UserWhereUniqueInput.prototype, "scannedQrs", void 0);
@@ -8625,16 +8504,13 @@ __decorate([
     (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
 ], UserWhereInput.prototype, "email", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
-], UserWhereInput.prototype, "password", void 0);
-__decorate([
     (0, graphql_1.Field)(() => StringNullableFilter, { nullable: true })
-], UserWhereInput.prototype, "whatsapp", void 0);
+], UserWhereInput.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFilter, { nullable: true })
 ], UserWhereInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => DateTimeFilter, { nullable: true })
+    (0, graphql_1.Field)(() => DateTimeNullableFilter, { nullable: true })
 ], UserWhereInput.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeNullableFilter, { nullable: true })
@@ -8642,9 +8518,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => EnumUserRoleFilter, { nullable: true })
 ], UserWhereInput.prototype, "role", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => GuestNullableRelationFilter, { nullable: true })
-], UserWhereInput.prototype, "guestInfo", void 0);
 __decorate([
     (0, graphql_1.Field)(() => QrCodeListRelationFilter, { nullable: true })
 ], UserWhereInput.prototype, "scannedQrs", void 0);
@@ -8664,16 +8537,13 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], User.prototype, "email", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: false })
-], User.prototype, "password", void 0);
-__decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
-], User.prototype, "whatsapp", void 0);
+], User.prototype, "password", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: false })
 ], User.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Date, { nullable: false })
+    (0, graphql_1.Field)(() => Date, { nullable: true })
 ], User.prototype, "updatedAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
@@ -8681,9 +8551,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => UserRole, { nullable: false })
 ], User.prototype, "role", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Guest, { nullable: true })
-], User.prototype, "guestInfo", void 0);
 __decorate([
     (0, graphql_1.Field)(() => [QrCode], { nullable: true })
 ], User.prototype, "scannedQrs", void 0);

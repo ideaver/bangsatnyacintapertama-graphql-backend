@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
 import { IGraphQLError } from 'src/utils/exception/custom-graphql-error';
 import { Prisma } from '@prisma/client';
+import { Guest } from 'src/@generated';
 
 @Injectable()
 export class GuestService {
@@ -31,7 +32,9 @@ export class GuestService {
     }
   }
 
-  async findMany(guestFindManyArgs: Prisma.GuestFindManyArgs) {
+  async findMany(
+    guestFindManyArgs: Prisma.GuestFindManyArgs,
+  ): Promise<Guest[]> {
     try {
       return await this.prisma.guest.findMany(guestFindManyArgs);
     } catch (err) {

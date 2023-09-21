@@ -7,9 +7,8 @@ export function fakeUser() {
   return {
     fullName: faker.lorem.words(5),
     email: undefined,
-    password: faker.lorem.words(5),
-    whatsapp: undefined,
-    updatedAt: faker.datatype.datetime(),
+    password: undefined,
+    updatedAt: undefined,
     deletedAt: undefined,
     role: faker.helpers.arrayElement([UserRole.ADMIN, UserRole.SUPERUSER, UserRole.GUEST] as const),
   };
@@ -19,10 +18,9 @@ export function fakeUserComplete() {
     id: faker.datatype.uuid(),
     fullName: faker.lorem.words(5),
     email: undefined,
-    password: faker.lorem.words(5),
-    whatsapp: undefined,
+    password: undefined,
     createdAt: new Date(),
-    updatedAt: faker.datatype.datetime(),
+    updatedAt: undefined,
     deletedAt: undefined,
     role: faker.helpers.arrayElement([UserRole.ADMIN, UserRole.SUPERUSER, UserRole.GUEST] as const),
   };
@@ -30,27 +28,34 @@ export function fakeUserComplete() {
 export function fakeGuest() {
   return {
     source: undefined,
-    invitationName: undefined,
+    invitationName: faker.lorem.words(5),
     contactList: undefined,
+    whatsapp: undefined,
     category: undefined,
     class: undefined,
     seat: undefined,
     studio: undefined,
     rejectionReason: undefined,
+    updatedAt: undefined,
+    deletedAt: undefined,
   };
 }
 export function fakeGuestComplete() {
   return {
-    userId: faker.datatype.uuid(),
+    id: faker.datatype.uuid(),
     source: undefined,
-    invitationName: undefined,
+    invitationName: faker.lorem.words(5),
     contactList: undefined,
+    whatsapp: undefined,
     category: undefined,
     class: undefined,
     seat: undefined,
     studio: undefined,
     rejectionReason: undefined,
     parties: 1,
+    createdAt: new Date(),
+    updatedAt: undefined,
+    deletedAt: undefined,
     confirmationStatus: ConfirmationStatus.UNCONFIRMED,
   };
 }

@@ -16,6 +16,8 @@ export function mapFileTypeEnumFromMIME(mimeType: string | null): FileType {
       return FileType.PNG;
     case 'application/pdf':
       return FileType.PDF;
+    case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+      return FileType.XLSX;
     default:
       return FileType.UNKNOWN;
   }

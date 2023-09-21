@@ -2,14 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type AggregateEmailQueue {
-  _count: EmailQueueCountAggregate
-  _avg: EmailQueueAvgAggregate
-  _sum: EmailQueueSumAggregate
-  _min: EmailQueueMinAggregate
-  _max: EmailQueueMaxAggregate
-}
-
 type EmailQueueAvgAggregate {
   id: Float
 }
@@ -70,21 +62,26 @@ type AggregateGuest {
 }
 
 type GuestAvgAggregate {
+  whatsapp: Float
   studio: Float
   parties: Float
 }
 
 type GuestCountAggregate {
-  userId: Int!
+  id: Int!
   source: Int!
   invitationName: Int!
   contactList: Int!
+  whatsapp: Int!
   category: Int!
   class: Int!
   seat: Int!
   studio: Int!
   rejectionReason: Int!
   parties: Int!
+  createdAt: Int!
+  updatedAt: Int!
+  deletedAt: Int!
   confirmationStatus: Int!
   _all: Int!
 }
@@ -96,16 +93,20 @@ type GuestCount {
 }
 
 type GuestMaxAggregate {
-  userId: String
+  id: String
   source: String
   invitationName: String
   contactList: String
+  whatsapp: Float
   category: String
   class: String
   seat: String
   studio: Int
   rejectionReason: String
   parties: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
   confirmationStatus: ConfirmationStatus
 }
 
@@ -116,37 +117,45 @@ enum ConfirmationStatus {
 }
 
 type GuestMinAggregate {
-  userId: String
+  id: String
   source: String
   invitationName: String
   contactList: String
+  whatsapp: Float
   category: String
   class: String
   seat: String
   studio: Int
   rejectionReason: String
   parties: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
   confirmationStatus: ConfirmationStatus
 }
 
 type GuestSumAggregate {
+  whatsapp: Float
   studio: Int
   parties: Int
 }
 
 type Guest {
-  userId: String!
+  id: String!
   source: String
-  invitationName: String
+  invitationName: String!
   contactList: String
+  whatsapp: Float
   category: String
   class: String
   seat: String
   studio: Int
   rejectionReason: String
   parties: Int!
-  confirmationStatus: ConfirmationStatus!
-  user: User!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  confirmationStatus: ConfirmationStatus
   qrcodes: [QrCode!]
   emailQueue: [EmailQueue!]
   whatsappQueue: [WhatsappQueue!]
@@ -225,7 +234,6 @@ type UserCountAggregate {
   fullName: Int!
   email: Int!
   password: Int!
-  whatsapp: Int!
   createdAt: Int!
   updatedAt: Int!
   deletedAt: Int!
@@ -242,7 +250,6 @@ type UserMaxAggregate {
   fullName: String
   email: String
   password: String
-  whatsapp: String
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
@@ -260,7 +267,6 @@ type UserMinAggregate {
   fullName: String
   email: String
   password: String
-  whatsapp: String
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
@@ -271,13 +277,11 @@ type User {
   id: String!
   fullName: String!
   email: String
-  password: String!
-  whatsapp: String
+  password: String
   createdAt: DateTime!
-  updatedAt: DateTime!
+  updatedAt: DateTime
   deletedAt: DateTime
   role: UserRole!
-  guestInfo: Guest
   scannedQrs: [QrCode!]
   _count: UserCount!
 }
@@ -379,21 +383,6 @@ type Query {
   guestCount(where: GuestWhereInput, orderBy: [GuestOrderByWithRelationInput!], cursor: GuestWhereUniqueInput, take: Int, skip: Int, distinct: [GuestScalarFieldEnum!]): Float
 
   """Deskripsinya ada disini loh"""
-  emailQueueFindOne(where: EmailQueueWhereUniqueInput!): EmailQueue
-
-  """Deskripsinya ada disini loh"""
-  emailQueueFindMany(where: EmailQueueWhereInput, orderBy: [EmailQueueOrderByWithRelationInput!], cursor: EmailQueueWhereUniqueInput, take: Int, skip: Int, distinct: [EmailQueueScalarFieldEnum!]): [EmailQueue!]
-
-  """Deskripsinya ada disini loh"""
-  emailQueueFindFirst(where: EmailQueueWhereInput, orderBy: [EmailQueueOrderByWithRelationInput!], cursor: EmailQueueWhereUniqueInput, take: Int, skip: Int, distinct: [EmailQueueScalarFieldEnum!]): EmailQueue
-
-  """Deskripsinya ada disini loh"""
-  emailQueueAggregate(where: EmailQueueWhereInput, orderBy: [EmailQueueOrderByWithRelationInput!], cursor: EmailQueueWhereUniqueInput, take: Int, skip: Int, _count: EmailQueueCountAggregateInput, _avg: EmailQueueAvgAggregateInput, _sum: EmailQueueSumAggregateInput, _min: EmailQueueMinAggregateInput, _max: EmailQueueMaxAggregateInput): AggregateEmailQueue
-
-  """Deskripsinya ada disini loh"""
-  emailQueueCount(where: EmailQueueWhereInput, orderBy: [EmailQueueOrderByWithRelationInput!], cursor: EmailQueueWhereUniqueInput, take: Int, skip: Int, distinct: [EmailQueueScalarFieldEnum!]): Float
-
-  """Deskripsinya ada disini loh"""
   whatsappQueueFindOne(where: WhatsappQueueWhereUniqueInput!): WhatsappQueue
 
   """Deskripsinya ada disini loh"""
@@ -430,17 +419,15 @@ type Query {
 input UserWhereUniqueInput {
   id: String
   email: String
-  whatsapp: String
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]
   fullName: StringFilter
-  password: StringFilter
+  password: StringNullableFilter
   createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
+  updatedAt: DateTimeNullableFilter
   deletedAt: DateTimeNullableFilter
   role: EnumUserRoleFilter
-  guestInfo: GuestNullableRelationFilter
   scannedQrs: QrCodeListRelationFilter
 }
 
@@ -451,13 +438,11 @@ input UserWhereInput {
   id: StringFilter
   fullName: StringFilter
   email: StringNullableFilter
-  password: StringFilter
-  whatsapp: StringNullableFilter
+  password: StringNullableFilter
   createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
+  updatedAt: DateTimeNullableFilter
   deletedAt: DateTimeNullableFilter
   role: EnumUserRoleFilter
-  guestInfo: GuestNullableRelationFilter
   scannedQrs: QrCodeListRelationFilter
 }
 
@@ -575,52 +560,25 @@ input NestedEnumUserRoleFilter {
   not: NestedEnumUserRoleFilter
 }
 
-input GuestNullableRelationFilter {
-  is: GuestWhereInput
-  isNot: GuestWhereInput
+input QrCodeListRelationFilter {
+  every: QrCodeWhereInput
+  some: QrCodeWhereInput
+  none: QrCodeWhereInput
 }
 
-input GuestWhereInput {
-  AND: [GuestWhereInput!]
-  OR: [GuestWhereInput!]
-  NOT: [GuestWhereInput!]
-  userId: StringFilter
-  source: StringNullableFilter
-  invitationName: StringNullableFilter
-  contactList: StringNullableFilter
-  category: StringNullableFilter
-  class: StringNullableFilter
-  seat: StringNullableFilter
-  studio: IntNullableFilter
-  rejectionReason: StringNullableFilter
-  parties: IntFilter
-  confirmationStatus: EnumConfirmationStatusFilter
-  user: UserRelationFilter
-  qrcodes: QrCodeListRelationFilter
-  emailQueue: EmailQueueListRelationFilter
-  whatsappQueue: WhatsappQueueListRelationFilter
-}
-
-input IntNullableFilter {
-  equals: Int
-  in: [Int!]
-  notIn: [Int!]
-  lt: Int
-  lte: Int
-  gt: Int
-  gte: Int
-  not: NestedIntNullableFilter
-}
-
-input NestedIntNullableFilter {
-  equals: Int
-  in: [Int!]
-  notIn: [Int!]
-  lt: Int
-  lte: Int
-  gt: Int
-  gte: Int
-  not: NestedIntNullableFilter
+input QrCodeWhereInput {
+  AND: [QrCodeWhereInput!]
+  OR: [QrCodeWhereInput!]
+  NOT: [QrCodeWhereInput!]
+  id: IntFilter
+  path: StringFilter
+  scannedAt: DateTimeNullableFilter
+  createdAt: DateTimeFilter
+  raceConditionValue: IntFilter
+  guestId: StringFilter
+  scannedByUserId: StringNullableFilter
+  guest: GuestRelationFilter
+  scannedBy: UserNullableRelationFilter
 }
 
 input IntFilter {
@@ -645,54 +603,91 @@ input NestedIntFilter {
   not: NestedIntFilter
 }
 
-input EnumConfirmationStatusFilter {
-  equals: ConfirmationStatus
-  in: [ConfirmationStatus!]
-  notIn: [ConfirmationStatus!]
-  not: NestedEnumConfirmationStatusFilter
-}
-
-input NestedEnumConfirmationStatusFilter {
-  equals: ConfirmationStatus
-  in: [ConfirmationStatus!]
-  notIn: [ConfirmationStatus!]
-  not: NestedEnumConfirmationStatusFilter
-}
-
-input UserRelationFilter {
-  is: UserWhereInput
-  isNot: UserWhereInput
-}
-
-input QrCodeListRelationFilter {
-  every: QrCodeWhereInput
-  some: QrCodeWhereInput
-  none: QrCodeWhereInput
-}
-
-input QrCodeWhereInput {
-  AND: [QrCodeWhereInput!]
-  OR: [QrCodeWhereInput!]
-  NOT: [QrCodeWhereInput!]
-  id: IntFilter
-  path: StringFilter
-  scannedAt: DateTimeNullableFilter
-  createdAt: DateTimeFilter
-  raceConditionValue: IntFilter
-  guestId: StringFilter
-  scannedByUserId: StringNullableFilter
-  guest: GuestRelationFilter
-  scannedBy: UserNullableRelationFilter
-}
-
 input GuestRelationFilter {
   is: GuestWhereInput
   isNot: GuestWhereInput
 }
 
-input UserNullableRelationFilter {
-  is: UserWhereInput
-  isNot: UserWhereInput
+input GuestWhereInput {
+  AND: [GuestWhereInput!]
+  OR: [GuestWhereInput!]
+  NOT: [GuestWhereInput!]
+  id: StringFilter
+  source: StringNullableFilter
+  invitationName: StringFilter
+  contactList: StringNullableFilter
+  whatsapp: FloatNullableFilter
+  category: StringNullableFilter
+  class: StringNullableFilter
+  seat: StringNullableFilter
+  studio: IntNullableFilter
+  rejectionReason: StringNullableFilter
+  parties: IntFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeNullableFilter
+  deletedAt: DateTimeNullableFilter
+  confirmationStatus: EnumConfirmationStatusNullableFilter
+  qrcodes: QrCodeListRelationFilter
+  emailQueue: EmailQueueListRelationFilter
+  whatsappQueue: WhatsappQueueListRelationFilter
+}
+
+input FloatNullableFilter {
+  equals: Float
+  in: [Float!]
+  notIn: [Float!]
+  lt: Float
+  lte: Float
+  gt: Float
+  gte: Float
+  not: NestedFloatNullableFilter
+}
+
+input NestedFloatNullableFilter {
+  equals: Float
+  in: [Float!]
+  notIn: [Float!]
+  lt: Float
+  lte: Float
+  gt: Float
+  gte: Float
+  not: NestedFloatNullableFilter
+}
+
+input IntNullableFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntNullableFilter
+}
+
+input NestedIntNullableFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntNullableFilter
+}
+
+input EnumConfirmationStatusNullableFilter {
+  equals: ConfirmationStatus
+  in: [ConfirmationStatus!]
+  notIn: [ConfirmationStatus!]
+  not: NestedEnumConfirmationStatusNullableFilter
+}
+
+input NestedEnumConfirmationStatusNullableFilter {
+  equals: ConfirmationStatus
+  in: [ConfirmationStatus!]
+  notIn: [ConfirmationStatus!]
+  not: NestedEnumConfirmationStatusNullableFilter
 }
 
 input EmailQueueListRelationFilter {
@@ -743,17 +738,20 @@ input WhatsappQueueWhereInput {
   guest: GuestRelationFilter
 }
 
+input UserNullableRelationFilter {
+  is: UserWhereInput
+  isNot: UserWhereInput
+}
+
 input UserOrderByWithRelationInput {
   id: SortOrder
   fullName: SortOrder
   email: SortOrderInput
-  password: SortOrder
-  whatsapp: SortOrderInput
+  password: SortOrderInput
   createdAt: SortOrder
-  updatedAt: SortOrder
+  updatedAt: SortOrderInput
   deletedAt: SortOrderInput
   role: SortOrder
-  guestInfo: GuestOrderByWithRelationInput
   scannedQrs: QrCodeOrderByRelationAggregateInput
 }
 
@@ -772,33 +770,7 @@ enum NullsOrder {
   last
 }
 
-input GuestOrderByWithRelationInput {
-  userId: SortOrder
-  source: SortOrderInput
-  invitationName: SortOrderInput
-  contactList: SortOrderInput
-  category: SortOrderInput
-  class: SortOrderInput
-  seat: SortOrderInput
-  studio: SortOrderInput
-  rejectionReason: SortOrderInput
-  parties: SortOrder
-  confirmationStatus: SortOrder
-  user: UserOrderByWithRelationInput
-  qrcodes: QrCodeOrderByRelationAggregateInput
-  emailQueue: EmailQueueOrderByRelationAggregateInput
-  whatsappQueue: WhatsappQueueOrderByRelationAggregateInput
-}
-
 input QrCodeOrderByRelationAggregateInput {
-  _count: SortOrder
-}
-
-input EmailQueueOrderByRelationAggregateInput {
-  _count: SortOrder
-}
-
-input WhatsappQueueOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
@@ -807,7 +779,6 @@ enum UserScalarFieldEnum {
   fullName
   email
   password
-  whatsapp
   createdAt
   updatedAt
   deletedAt
@@ -819,7 +790,6 @@ input UserCountAggregateInput {
   fullName: Boolean
   email: Boolean
   password: Boolean
-  whatsapp: Boolean
   createdAt: Boolean
   updatedAt: Boolean
   deletedAt: Boolean
@@ -832,7 +802,6 @@ input UserMinAggregateInput {
   fullName: Boolean
   email: Boolean
   password: Boolean
-  whatsapp: Boolean
   createdAt: Boolean
   updatedAt: Boolean
   deletedAt: Boolean
@@ -844,7 +813,6 @@ input UserMaxAggregateInput {
   fullName: Boolean
   email: Boolean
   password: Boolean
-  whatsapp: Boolean
   createdAt: Boolean
   updatedAt: Boolean
   deletedAt: Boolean
@@ -852,12 +820,13 @@ input UserMaxAggregateInput {
 }
 
 input GuestWhereUniqueInput {
-  userId: String
+  id: String
+  whatsapp: Float
   AND: [GuestWhereInput!]
   OR: [GuestWhereInput!]
   NOT: [GuestWhereInput!]
   source: StringNullableFilter
-  invitationName: StringNullableFilter
+  invitationName: StringFilter
   contactList: StringNullableFilter
   category: StringNullableFilter
   class: StringNullableFilter
@@ -865,134 +834,127 @@ input GuestWhereUniqueInput {
   studio: IntNullableFilter
   rejectionReason: StringNullableFilter
   parties: IntFilter
-  confirmationStatus: EnumConfirmationStatusFilter
-  user: UserRelationFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeNullableFilter
+  deletedAt: DateTimeNullableFilter
+  confirmationStatus: EnumConfirmationStatusNullableFilter
   qrcodes: QrCodeListRelationFilter
   emailQueue: EmailQueueListRelationFilter
   whatsappQueue: WhatsappQueueListRelationFilter
 }
 
+input GuestOrderByWithRelationInput {
+  id: SortOrder
+  source: SortOrderInput
+  invitationName: SortOrder
+  contactList: SortOrderInput
+  whatsapp: SortOrderInput
+  category: SortOrderInput
+  class: SortOrderInput
+  seat: SortOrderInput
+  studio: SortOrderInput
+  rejectionReason: SortOrderInput
+  parties: SortOrder
+  createdAt: SortOrder
+  updatedAt: SortOrderInput
+  deletedAt: SortOrderInput
+  confirmationStatus: SortOrderInput
+  qrcodes: QrCodeOrderByRelationAggregateInput
+  emailQueue: EmailQueueOrderByRelationAggregateInput
+  whatsappQueue: WhatsappQueueOrderByRelationAggregateInput
+}
+
+input EmailQueueOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input WhatsappQueueOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
 enum GuestScalarFieldEnum {
-  userId
+  id
   source
   invitationName
   contactList
+  whatsapp
   category
   class
   seat
   studio
   rejectionReason
   parties
+  createdAt
+  updatedAt
+  deletedAt
   confirmationStatus
 }
 
 input GuestCountAggregateInput {
-  userId: Boolean
+  id: Boolean
   source: Boolean
   invitationName: Boolean
   contactList: Boolean
+  whatsapp: Boolean
   category: Boolean
   class: Boolean
   seat: Boolean
   studio: Boolean
   rejectionReason: Boolean
   parties: Boolean
+  createdAt: Boolean
+  updatedAt: Boolean
+  deletedAt: Boolean
   confirmationStatus: Boolean
   _all: Boolean
 }
 
 input GuestAvgAggregateInput {
+  whatsapp: Boolean
   studio: Boolean
   parties: Boolean
 }
 
 input GuestSumAggregateInput {
+  whatsapp: Boolean
   studio: Boolean
   parties: Boolean
 }
 
 input GuestMinAggregateInput {
-  userId: Boolean
+  id: Boolean
   source: Boolean
   invitationName: Boolean
   contactList: Boolean
+  whatsapp: Boolean
   category: Boolean
   class: Boolean
   seat: Boolean
   studio: Boolean
   rejectionReason: Boolean
   parties: Boolean
+  createdAt: Boolean
+  updatedAt: Boolean
+  deletedAt: Boolean
   confirmationStatus: Boolean
 }
 
 input GuestMaxAggregateInput {
-  userId: Boolean
+  id: Boolean
   source: Boolean
   invitationName: Boolean
   contactList: Boolean
+  whatsapp: Boolean
   category: Boolean
   class: Boolean
   seat: Boolean
   studio: Boolean
   rejectionReason: Boolean
   parties: Boolean
+  createdAt: Boolean
+  updatedAt: Boolean
+  deletedAt: Boolean
   confirmationStatus: Boolean
-}
-
-input EmailQueueWhereUniqueInput {
-  id: Int
-  AND: [EmailQueueWhereInput!]
-  OR: [EmailQueueWhereInput!]
-  NOT: [EmailQueueWhereInput!]
-  createdAt: DateTimeFilter
-  status: EnumQueueStatusFilter
-  guestId: StringFilter
-  guest: GuestRelationFilter
-}
-
-input EmailQueueOrderByWithRelationInput {
-  id: SortOrder
-  createdAt: SortOrder
-  status: SortOrder
-  guestId: SortOrder
-  guest: GuestOrderByWithRelationInput
-}
-
-enum EmailQueueScalarFieldEnum {
-  id
-  createdAt
-  status
-  guestId
-}
-
-input EmailQueueCountAggregateInput {
-  id: Boolean
-  createdAt: Boolean
-  status: Boolean
-  guestId: Boolean
-  _all: Boolean
-}
-
-input EmailQueueAvgAggregateInput {
-  id: Boolean
-}
-
-input EmailQueueSumAggregateInput {
-  id: Boolean
-}
-
-input EmailQueueMinAggregateInput {
-  id: Boolean
-  createdAt: Boolean
-  status: Boolean
-  guestId: Boolean
-}
-
-input EmailQueueMaxAggregateInput {
-  id: Boolean
-  createdAt: Boolean
-  status: Boolean
-  guestId: Boolean
 }
 
 input WhatsappQueueWhereUniqueInput {
@@ -1130,7 +1092,15 @@ input QrCodeMaxAggregateInput {
 }
 
 type Mutation {
-  authPasswordReset(email: String!): String!
+  """
+  Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress
+  """
+  uploadSingleFile(file: Upload, userId: String!, ratioForImage: RatioEnum): BatchPayload
+
+  """
+  Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress
+  """
+  uploadMultiFile(files: [Upload!], userId: String!, ratioForImage: RatioEnum): [String!]
 
   """Deskripsinya ada disini loh"""
   userCreateOne(data: UserCreateInput!): User
@@ -1150,17 +1120,6 @@ type Mutation {
   """Deskripsinya ada disini loh"""
   userDeleteMany(where: UserWhereInput): Boolean!
 
-  """
-  Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress
-  """
-  uploadSingleFile(file: Upload, userId: String!, ratioForImage: RatioEnum): String
-
-  """
-  Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress
-  """
-  uploadMultiFile(files: [Upload!], userId: String!, ratioForImage: RatioEnum): [String!]
-  authLogin(loginArgs: LoginArgs!): LoginResponse
-
   """Deskripsinya ada disini loh"""
   guestCreateOne(data: GuestCreateInput!): Guest
 
@@ -1178,24 +1137,7 @@ type Mutation {
 
   """Deskripsinya ada disini loh"""
   guestDeleteMany(where: GuestWhereInput): Boolean!
-
-  """Deskripsinya ada disini loh"""
-  emailQueueCreateOne(data: EmailQueueCreateInput!): EmailQueue
-
-  """Deskripsinya ada disini loh"""
-  emailQueueCreateMany(data: [EmailQueueCreateManyInput!]!, skipDuplicates: Boolean): BatchPayload
-
-  """Deskripsinya ada disini loh"""
-  emailQueueUpdateOne(data: EmailQueueUpdateInput!, where: EmailQueueWhereUniqueInput!): EmailQueue
-
-  """Deskripsinya ada disini loh"""
-  emailQueueUpdateMany(data: EmailQueueUpdateManyMutationInput!, where: EmailQueueWhereInput): BatchPayload
-
-  """Deskripsinya ada disini loh"""
-  emailQueueDelete(where: EmailQueueWhereUniqueInput!): Boolean!
-
-  """Deskripsinya ada disini loh"""
-  emailQueueDeleteMany(where: EmailQueueWhereInput): Boolean!
+  authLogin(loginArgs: LoginArgs!): LoginResponse
 
   """Deskripsinya ada disini loh"""
   whatsappQueueCreateOne(data: WhatsappQueueCreateInput!): WhatsappQueue
@@ -1234,98 +1176,74 @@ type Mutation {
   qrCodeDeleteMany(where: QrCodeWhereInput): Boolean!
 }
 
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+"""
+Available ratios for images, SQUARE = 192x192, MODERN = 1920X1080 MODER_PORTRAIT = 1080x1920, OLD = 1400x1050, OLD_PORTRAIT = 1050x1400, BANNER = 1128x192, ULTRA_WIDE = 2560x1080, SUPER_WIDE = 3840x1080
+"""
+enum RatioEnum {
+  SQUARE
+  MODERN
+  MODERN_PORTRAIT
+  OLD
+  OLD_PORTRAIT
+  BANNER
+  ULTRA_WIDE
+  SUPER_WIDE
+}
+
 input UserCreateInput {
   id: String
   fullName: String!
   email: String
-  password: String!
-  whatsapp: String
+  password: String
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
   role: UserRole!
-  guestInfo: GuestCreateNestedOneWithoutUserInput
   scannedQrs: QrCodeCreateNestedManyWithoutScannedByInput
 }
 
-input GuestCreateNestedOneWithoutUserInput {
-  create: GuestCreateWithoutUserInput
-  connectOrCreate: GuestCreateOrConnectWithoutUserInput
+input QrCodeCreateNestedManyWithoutScannedByInput {
+  create: [QrCodeCreateWithoutScannedByInput!]
+  connectOrCreate: [QrCodeCreateOrConnectWithoutScannedByInput!]
+  createMany: QrCodeCreateManyScannedByInputEnvelope
+  connect: [QrCodeWhereUniqueInput!]
+}
+
+input QrCodeCreateWithoutScannedByInput {
+  path: String!
+  scannedAt: DateTime
+  createdAt: DateTime
+  raceConditionValue: Int
+  guest: GuestCreateNestedOneWithoutQrcodesInput!
+}
+
+input GuestCreateNestedOneWithoutQrcodesInput {
+  create: GuestCreateWithoutQrcodesInput
+  connectOrCreate: GuestCreateOrConnectWithoutQrcodesInput
   connect: GuestWhereUniqueInput
 }
 
-input GuestCreateWithoutUserInput {
+input GuestCreateWithoutQrcodesInput {
+  id: String
   source: String
-  invitationName: String
+  invitationName: String!
   contactList: String
+  whatsapp: Float
   category: String
   class: String
   seat: String
   studio: Int
   rejectionReason: String
   parties: Int
-  confirmationStatus: ConfirmationStatus
-  qrcodes: QrCodeCreateNestedManyWithoutGuestInput
-  emailQueue: EmailQueueCreateNestedManyWithoutGuestInput
-  whatsappQueue: WhatsappQueueCreateNestedManyWithoutGuestInput
-}
-
-input QrCodeCreateNestedManyWithoutGuestInput {
-  create: [QrCodeCreateWithoutGuestInput!]
-  connectOrCreate: [QrCodeCreateOrConnectWithoutGuestInput!]
-  createMany: QrCodeCreateManyGuestInputEnvelope
-  connect: [QrCodeWhereUniqueInput!]
-}
-
-input QrCodeCreateWithoutGuestInput {
-  path: String!
-  scannedAt: DateTime
-  createdAt: DateTime
-  raceConditionValue: Int
-  scannedBy: UserCreateNestedOneWithoutScannedQrsInput
-}
-
-input UserCreateNestedOneWithoutScannedQrsInput {
-  create: UserCreateWithoutScannedQrsInput
-  connectOrCreate: UserCreateOrConnectWithoutScannedQrsInput
-  connect: UserWhereUniqueInput
-}
-
-input UserCreateWithoutScannedQrsInput {
-  id: String
-  fullName: String!
-  email: String
-  password: String!
-  whatsapp: String
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
-  role: UserRole!
-  guestInfo: GuestCreateNestedOneWithoutUserInput
-}
-
-input UserCreateOrConnectWithoutScannedQrsInput {
-  where: UserWhereUniqueInput!
-  create: UserCreateWithoutScannedQrsInput!
-}
-
-input QrCodeCreateOrConnectWithoutGuestInput {
-  where: QrCodeWhereUniqueInput!
-  create: QrCodeCreateWithoutGuestInput!
-}
-
-input QrCodeCreateManyGuestInputEnvelope {
-  data: [QrCodeCreateManyGuestInput!]!
-  skipDuplicates: Boolean
-}
-
-input QrCodeCreateManyGuestInput {
-  id: Int
-  path: String!
-  scannedAt: DateTime
-  createdAt: DateTime
-  raceConditionValue: Int
-  scannedByUserId: String
+  confirmationStatus: ConfirmationStatus
+  emailQueue: EmailQueueCreateNestedManyWithoutGuestInput
+  whatsappQueue: WhatsappQueueCreateNestedManyWithoutGuestInput
 }
 
 input EmailQueueCreateNestedManyWithoutGuestInput {
@@ -1343,6 +1261,17 @@ input EmailQueueCreateWithoutGuestInput {
 input EmailQueueCreateOrConnectWithoutGuestInput {
   where: EmailQueueWhereUniqueInput!
   create: EmailQueueCreateWithoutGuestInput!
+}
+
+input EmailQueueWhereUniqueInput {
+  id: Int
+  AND: [EmailQueueWhereInput!]
+  OR: [EmailQueueWhereInput!]
+  NOT: [EmailQueueWhereInput!]
+  createdAt: DateTimeFilter
+  status: EnumQueueStatusFilter
+  guestId: StringFilter
+  guest: GuestRelationFilter
 }
 
 input EmailQueueCreateManyGuestInputEnvelope {
@@ -1384,72 +1313,6 @@ input WhatsappQueueCreateManyGuestInput {
   status: QueueStatus
 }
 
-input GuestCreateOrConnectWithoutUserInput {
-  where: GuestWhereUniqueInput!
-  create: GuestCreateWithoutUserInput!
-}
-
-input QrCodeCreateNestedManyWithoutScannedByInput {
-  create: [QrCodeCreateWithoutScannedByInput!]
-  connectOrCreate: [QrCodeCreateOrConnectWithoutScannedByInput!]
-  createMany: QrCodeCreateManyScannedByInputEnvelope
-  connect: [QrCodeWhereUniqueInput!]
-}
-
-input QrCodeCreateWithoutScannedByInput {
-  path: String!
-  scannedAt: DateTime
-  createdAt: DateTime
-  raceConditionValue: Int
-  guest: GuestCreateNestedOneWithoutQrcodesInput!
-}
-
-input GuestCreateNestedOneWithoutQrcodesInput {
-  create: GuestCreateWithoutQrcodesInput
-  connectOrCreate: GuestCreateOrConnectWithoutQrcodesInput
-  connect: GuestWhereUniqueInput
-}
-
-input GuestCreateWithoutQrcodesInput {
-  source: String
-  invitationName: String
-  contactList: String
-  category: String
-  class: String
-  seat: String
-  studio: Int
-  rejectionReason: String
-  parties: Int
-  confirmationStatus: ConfirmationStatus
-  user: UserCreateNestedOneWithoutGuestInfoInput!
-  emailQueue: EmailQueueCreateNestedManyWithoutGuestInput
-  whatsappQueue: WhatsappQueueCreateNestedManyWithoutGuestInput
-}
-
-input UserCreateNestedOneWithoutGuestInfoInput {
-  create: UserCreateWithoutGuestInfoInput
-  connectOrCreate: UserCreateOrConnectWithoutGuestInfoInput
-  connect: UserWhereUniqueInput
-}
-
-input UserCreateWithoutGuestInfoInput {
-  id: String
-  fullName: String!
-  email: String
-  password: String!
-  whatsapp: String
-  createdAt: DateTime
-  updatedAt: DateTime
-  deletedAt: DateTime
-  role: UserRole!
-  scannedQrs: QrCodeCreateNestedManyWithoutScannedByInput
-}
-
-input UserCreateOrConnectWithoutGuestInfoInput {
-  where: UserWhereUniqueInput!
-  create: UserCreateWithoutGuestInfoInput!
-}
-
 input GuestCreateOrConnectWithoutQrcodesInput {
   where: GuestWhereUniqueInput!
   create: GuestCreateWithoutQrcodesInput!
@@ -1478,8 +1341,7 @@ input UserCreateManyInput {
   id: String
   fullName: String!
   email: String
-  password: String!
-  whatsapp: String
+  password: String
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
@@ -1490,13 +1352,11 @@ input UserUpdateInput {
   id: StringFieldUpdateOperationsInput
   fullName: StringFieldUpdateOperationsInput
   email: NullableStringFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
-  whatsapp: NullableStringFieldUpdateOperationsInput
+  password: NullableStringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: NullableDateTimeFieldUpdateOperationsInput
   deletedAt: NullableDateTimeFieldUpdateOperationsInput
   role: EnumUserRoleFieldUpdateOperationsInput
-  guestInfo: GuestUpdateOneWithoutUserNestedInput
   scannedQrs: QrCodeUpdateManyWithoutScannedByNestedInput
 }
 
@@ -1520,44 +1380,32 @@ input EnumUserRoleFieldUpdateOperationsInput {
   set: UserRole
 }
 
-input GuestUpdateOneWithoutUserNestedInput {
-  create: GuestCreateWithoutUserInput
-  connectOrCreate: GuestCreateOrConnectWithoutUserInput
-  upsert: GuestUpsertWithoutUserInput
-  disconnect: GuestWhereInput
-  delete: GuestWhereInput
-  connect: GuestWhereUniqueInput
-  update: GuestUpdateToOneWithWhereWithoutUserInput
+input QrCodeUpdateManyWithoutScannedByNestedInput {
+  create: [QrCodeCreateWithoutScannedByInput!]
+  connectOrCreate: [QrCodeCreateOrConnectWithoutScannedByInput!]
+  upsert: [QrCodeUpsertWithWhereUniqueWithoutScannedByInput!]
+  createMany: QrCodeCreateManyScannedByInputEnvelope
+  set: [QrCodeWhereUniqueInput!]
+  disconnect: [QrCodeWhereUniqueInput!]
+  delete: [QrCodeWhereUniqueInput!]
+  connect: [QrCodeWhereUniqueInput!]
+  update: [QrCodeUpdateWithWhereUniqueWithoutScannedByInput!]
+  updateMany: [QrCodeUpdateManyWithWhereWithoutScannedByInput!]
+  deleteMany: [QrCodeScalarWhereInput!]
 }
 
-input GuestUpsertWithoutUserInput {
-  update: GuestUpdateWithoutUserInput!
-  create: GuestCreateWithoutUserInput!
-  where: GuestWhereInput
+input QrCodeUpsertWithWhereUniqueWithoutScannedByInput {
+  where: QrCodeWhereUniqueInput!
+  update: QrCodeUpdateWithoutScannedByInput!
+  create: QrCodeCreateWithoutScannedByInput!
 }
 
-input GuestUpdateWithoutUserInput {
-  source: NullableStringFieldUpdateOperationsInput
-  invitationName: NullableStringFieldUpdateOperationsInput
-  contactList: NullableStringFieldUpdateOperationsInput
-  category: NullableStringFieldUpdateOperationsInput
-  class: NullableStringFieldUpdateOperationsInput
-  seat: NullableStringFieldUpdateOperationsInput
-  studio: NullableIntFieldUpdateOperationsInput
-  rejectionReason: NullableStringFieldUpdateOperationsInput
-  parties: IntFieldUpdateOperationsInput
-  confirmationStatus: EnumConfirmationStatusFieldUpdateOperationsInput
-  qrcodes: QrCodeUpdateManyWithoutGuestNestedInput
-  emailQueue: EmailQueueUpdateManyWithoutGuestNestedInput
-  whatsappQueue: WhatsappQueueUpdateManyWithoutGuestNestedInput
-}
-
-input NullableIntFieldUpdateOperationsInput {
-  set: Int
-  increment: Int
-  decrement: Int
-  multiply: Int
-  divide: Int
+input QrCodeUpdateWithoutScannedByInput {
+  path: StringFieldUpdateOperationsInput
+  scannedAt: NullableDateTimeFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  raceConditionValue: IntFieldUpdateOperationsInput
+  guest: GuestUpdateOneRequiredWithoutQrcodesNestedInput
 }
 
 input IntFieldUpdateOperationsInput {
@@ -1568,100 +1416,58 @@ input IntFieldUpdateOperationsInput {
   divide: Int
 }
 
-input EnumConfirmationStatusFieldUpdateOperationsInput {
-  set: ConfirmationStatus
+input GuestUpdateOneRequiredWithoutQrcodesNestedInput {
+  create: GuestCreateWithoutQrcodesInput
+  connectOrCreate: GuestCreateOrConnectWithoutQrcodesInput
+  upsert: GuestUpsertWithoutQrcodesInput
+  connect: GuestWhereUniqueInput
+  update: GuestUpdateToOneWithWhereWithoutQrcodesInput
 }
 
-input QrCodeUpdateManyWithoutGuestNestedInput {
-  create: [QrCodeCreateWithoutGuestInput!]
-  connectOrCreate: [QrCodeCreateOrConnectWithoutGuestInput!]
-  upsert: [QrCodeUpsertWithWhereUniqueWithoutGuestInput!]
-  createMany: QrCodeCreateManyGuestInputEnvelope
-  set: [QrCodeWhereUniqueInput!]
-  disconnect: [QrCodeWhereUniqueInput!]
-  delete: [QrCodeWhereUniqueInput!]
-  connect: [QrCodeWhereUniqueInput!]
-  update: [QrCodeUpdateWithWhereUniqueWithoutGuestInput!]
-  updateMany: [QrCodeUpdateManyWithWhereWithoutGuestInput!]
-  deleteMany: [QrCodeScalarWhereInput!]
+input GuestUpsertWithoutQrcodesInput {
+  update: GuestUpdateWithoutQrcodesInput!
+  create: GuestCreateWithoutQrcodesInput!
+  where: GuestWhereInput
 }
 
-input QrCodeUpsertWithWhereUniqueWithoutGuestInput {
-  where: QrCodeWhereUniqueInput!
-  update: QrCodeUpdateWithoutGuestInput!
-  create: QrCodeCreateWithoutGuestInput!
-}
-
-input QrCodeUpdateWithoutGuestInput {
-  path: StringFieldUpdateOperationsInput
-  scannedAt: NullableDateTimeFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  raceConditionValue: IntFieldUpdateOperationsInput
-  scannedBy: UserUpdateOneWithoutScannedQrsNestedInput
-}
-
-input UserUpdateOneWithoutScannedQrsNestedInput {
-  create: UserCreateWithoutScannedQrsInput
-  connectOrCreate: UserCreateOrConnectWithoutScannedQrsInput
-  upsert: UserUpsertWithoutScannedQrsInput
-  disconnect: UserWhereInput
-  delete: UserWhereInput
-  connect: UserWhereUniqueInput
-  update: UserUpdateToOneWithWhereWithoutScannedQrsInput
-}
-
-input UserUpsertWithoutScannedQrsInput {
-  update: UserUpdateWithoutScannedQrsInput!
-  create: UserCreateWithoutScannedQrsInput!
-  where: UserWhereInput
-}
-
-input UserUpdateWithoutScannedQrsInput {
+input GuestUpdateWithoutQrcodesInput {
   id: StringFieldUpdateOperationsInput
-  fullName: StringFieldUpdateOperationsInput
-  email: NullableStringFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
-  whatsapp: NullableStringFieldUpdateOperationsInput
+  source: NullableStringFieldUpdateOperationsInput
+  invitationName: StringFieldUpdateOperationsInput
+  contactList: NullableStringFieldUpdateOperationsInput
+  whatsapp: NullableFloatFieldUpdateOperationsInput
+  category: NullableStringFieldUpdateOperationsInput
+  class: NullableStringFieldUpdateOperationsInput
+  seat: NullableStringFieldUpdateOperationsInput
+  studio: NullableIntFieldUpdateOperationsInput
+  rejectionReason: NullableStringFieldUpdateOperationsInput
+  parties: IntFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: NullableDateTimeFieldUpdateOperationsInput
   deletedAt: NullableDateTimeFieldUpdateOperationsInput
-  role: EnumUserRoleFieldUpdateOperationsInput
-  guestInfo: GuestUpdateOneWithoutUserNestedInput
+  confirmationStatus: NullableEnumConfirmationStatusFieldUpdateOperationsInput
+  emailQueue: EmailQueueUpdateManyWithoutGuestNestedInput
+  whatsappQueue: WhatsappQueueUpdateManyWithoutGuestNestedInput
 }
 
-input UserUpdateToOneWithWhereWithoutScannedQrsInput {
-  where: UserWhereInput
-  data: UserUpdateWithoutScannedQrsInput!
+input NullableFloatFieldUpdateOperationsInput {
+  set: Float
+  increment: Float
+  decrement: Float
+  multiply: Float
+  divide: Float
 }
 
-input QrCodeUpdateWithWhereUniqueWithoutGuestInput {
-  where: QrCodeWhereUniqueInput!
-  data: QrCodeUpdateWithoutGuestInput!
+input NullableIntFieldUpdateOperationsInput {
+  set: Int
+  increment: Int
+  decrement: Int
+  multiply: Int
+  divide: Int
 }
 
-input QrCodeUpdateManyWithWhereWithoutGuestInput {
-  where: QrCodeScalarWhereInput!
-  data: QrCodeUpdateManyMutationInput!
-}
-
-input QrCodeScalarWhereInput {
-  AND: [QrCodeScalarWhereInput!]
-  OR: [QrCodeScalarWhereInput!]
-  NOT: [QrCodeScalarWhereInput!]
-  id: IntFilter
-  path: StringFilter
-  scannedAt: DateTimeNullableFilter
-  createdAt: DateTimeFilter
-  raceConditionValue: IntFilter
-  guestId: StringFilter
-  scannedByUserId: StringNullableFilter
-}
-
-input QrCodeUpdateManyMutationInput {
-  path: StringFieldUpdateOperationsInput
-  scannedAt: NullableDateTimeFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  raceConditionValue: IntFieldUpdateOperationsInput
+input NullableEnumConfirmationStatusFieldUpdateOperationsInput {
+  set: ConfirmationStatus
 }
 
 input EmailQueueUpdateManyWithoutGuestNestedInput {
@@ -1768,101 +1574,6 @@ input WhatsappQueueUpdateManyMutationInput {
   status: EnumQueueStatusFieldUpdateOperationsInput
 }
 
-input GuestUpdateToOneWithWhereWithoutUserInput {
-  where: GuestWhereInput
-  data: GuestUpdateWithoutUserInput!
-}
-
-input QrCodeUpdateManyWithoutScannedByNestedInput {
-  create: [QrCodeCreateWithoutScannedByInput!]
-  connectOrCreate: [QrCodeCreateOrConnectWithoutScannedByInput!]
-  upsert: [QrCodeUpsertWithWhereUniqueWithoutScannedByInput!]
-  createMany: QrCodeCreateManyScannedByInputEnvelope
-  set: [QrCodeWhereUniqueInput!]
-  disconnect: [QrCodeWhereUniqueInput!]
-  delete: [QrCodeWhereUniqueInput!]
-  connect: [QrCodeWhereUniqueInput!]
-  update: [QrCodeUpdateWithWhereUniqueWithoutScannedByInput!]
-  updateMany: [QrCodeUpdateManyWithWhereWithoutScannedByInput!]
-  deleteMany: [QrCodeScalarWhereInput!]
-}
-
-input QrCodeUpsertWithWhereUniqueWithoutScannedByInput {
-  where: QrCodeWhereUniqueInput!
-  update: QrCodeUpdateWithoutScannedByInput!
-  create: QrCodeCreateWithoutScannedByInput!
-}
-
-input QrCodeUpdateWithoutScannedByInput {
-  path: StringFieldUpdateOperationsInput
-  scannedAt: NullableDateTimeFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  raceConditionValue: IntFieldUpdateOperationsInput
-  guest: GuestUpdateOneRequiredWithoutQrcodesNestedInput
-}
-
-input GuestUpdateOneRequiredWithoutQrcodesNestedInput {
-  create: GuestCreateWithoutQrcodesInput
-  connectOrCreate: GuestCreateOrConnectWithoutQrcodesInput
-  upsert: GuestUpsertWithoutQrcodesInput
-  connect: GuestWhereUniqueInput
-  update: GuestUpdateToOneWithWhereWithoutQrcodesInput
-}
-
-input GuestUpsertWithoutQrcodesInput {
-  update: GuestUpdateWithoutQrcodesInput!
-  create: GuestCreateWithoutQrcodesInput!
-  where: GuestWhereInput
-}
-
-input GuestUpdateWithoutQrcodesInput {
-  source: NullableStringFieldUpdateOperationsInput
-  invitationName: NullableStringFieldUpdateOperationsInput
-  contactList: NullableStringFieldUpdateOperationsInput
-  category: NullableStringFieldUpdateOperationsInput
-  class: NullableStringFieldUpdateOperationsInput
-  seat: NullableStringFieldUpdateOperationsInput
-  studio: NullableIntFieldUpdateOperationsInput
-  rejectionReason: NullableStringFieldUpdateOperationsInput
-  parties: IntFieldUpdateOperationsInput
-  confirmationStatus: EnumConfirmationStatusFieldUpdateOperationsInput
-  user: UserUpdateOneRequiredWithoutGuestInfoNestedInput
-  emailQueue: EmailQueueUpdateManyWithoutGuestNestedInput
-  whatsappQueue: WhatsappQueueUpdateManyWithoutGuestNestedInput
-}
-
-input UserUpdateOneRequiredWithoutGuestInfoNestedInput {
-  create: UserCreateWithoutGuestInfoInput
-  connectOrCreate: UserCreateOrConnectWithoutGuestInfoInput
-  upsert: UserUpsertWithoutGuestInfoInput
-  connect: UserWhereUniqueInput
-  update: UserUpdateToOneWithWhereWithoutGuestInfoInput
-}
-
-input UserUpsertWithoutGuestInfoInput {
-  update: UserUpdateWithoutGuestInfoInput!
-  create: UserCreateWithoutGuestInfoInput!
-  where: UserWhereInput
-}
-
-input UserUpdateWithoutGuestInfoInput {
-  id: StringFieldUpdateOperationsInput
-  fullName: StringFieldUpdateOperationsInput
-  email: NullableStringFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
-  whatsapp: NullableStringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-  deletedAt: NullableDateTimeFieldUpdateOperationsInput
-  role: EnumUserRoleFieldUpdateOperationsInput
-  scannedQrs: QrCodeUpdateManyWithoutScannedByNestedInput
-}
-
-input UserUpdateToOneWithWhereWithoutGuestInfoInput {
-  where: UserWhereInput
-  data: UserUpdateWithoutGuestInfoInput!
-}
-
 input GuestUpdateToOneWithWhereWithoutQrcodesInput {
   where: GuestWhereInput
   data: GuestUpdateWithoutQrcodesInput!
@@ -1878,33 +1589,239 @@ input QrCodeUpdateManyWithWhereWithoutScannedByInput {
   data: QrCodeUpdateManyMutationInput!
 }
 
+input QrCodeScalarWhereInput {
+  AND: [QrCodeScalarWhereInput!]
+  OR: [QrCodeScalarWhereInput!]
+  NOT: [QrCodeScalarWhereInput!]
+  id: IntFilter
+  path: StringFilter
+  scannedAt: DateTimeNullableFilter
+  createdAt: DateTimeFilter
+  raceConditionValue: IntFilter
+  guestId: StringFilter
+  scannedByUserId: StringNullableFilter
+}
+
+input QrCodeUpdateManyMutationInput {
+  path: StringFieldUpdateOperationsInput
+  scannedAt: NullableDateTimeFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  raceConditionValue: IntFieldUpdateOperationsInput
+}
+
 input UserUpdateManyMutationInput {
   id: StringFieldUpdateOperationsInput
   fullName: StringFieldUpdateOperationsInput
   email: NullableStringFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
-  whatsapp: NullableStringFieldUpdateOperationsInput
+  password: NullableStringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: NullableDateTimeFieldUpdateOperationsInput
   deletedAt: NullableDateTimeFieldUpdateOperationsInput
   role: EnumUserRoleFieldUpdateOperationsInput
 }
 
-"""The `Upload` scalar type represents a file upload."""
-scalar Upload
+input GuestCreateInput {
+  id: String
+  source: String
+  invitationName: String!
+  contactList: String
+  whatsapp: Float
+  category: String
+  class: String
+  seat: String
+  studio: Int
+  rejectionReason: String
+  parties: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  confirmationStatus: ConfirmationStatus
+  qrcodes: QrCodeCreateNestedManyWithoutGuestInput
+  emailQueue: EmailQueueCreateNestedManyWithoutGuestInput
+  whatsappQueue: WhatsappQueueCreateNestedManyWithoutGuestInput
+}
 
-"""
-Available ratios for images, SQUARE = 192x192, MODERN = 1920X1080 MODER_PORTRAIT = 1080x1920, OLD = 1400x1050, OLD_PORTRAIT = 1050x1400, BANNER = 1128x192, ULTRA_WIDE = 2560x1080, SUPER_WIDE = 3840x1080
-"""
-enum RatioEnum {
-  SQUARE
-  MODERN
-  MODERN_PORTRAIT
-  OLD
-  OLD_PORTRAIT
-  BANNER
-  ULTRA_WIDE
-  SUPER_WIDE
+input QrCodeCreateNestedManyWithoutGuestInput {
+  create: [QrCodeCreateWithoutGuestInput!]
+  connectOrCreate: [QrCodeCreateOrConnectWithoutGuestInput!]
+  createMany: QrCodeCreateManyGuestInputEnvelope
+  connect: [QrCodeWhereUniqueInput!]
+}
+
+input QrCodeCreateWithoutGuestInput {
+  path: String!
+  scannedAt: DateTime
+  createdAt: DateTime
+  raceConditionValue: Int
+  scannedBy: UserCreateNestedOneWithoutScannedQrsInput
+}
+
+input UserCreateNestedOneWithoutScannedQrsInput {
+  create: UserCreateWithoutScannedQrsInput
+  connectOrCreate: UserCreateOrConnectWithoutScannedQrsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutScannedQrsInput {
+  id: String
+  fullName: String!
+  email: String
+  password: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  role: UserRole!
+}
+
+input UserCreateOrConnectWithoutScannedQrsInput {
+  where: UserWhereUniqueInput!
+  create: UserCreateWithoutScannedQrsInput!
+}
+
+input QrCodeCreateOrConnectWithoutGuestInput {
+  where: QrCodeWhereUniqueInput!
+  create: QrCodeCreateWithoutGuestInput!
+}
+
+input QrCodeCreateManyGuestInputEnvelope {
+  data: [QrCodeCreateManyGuestInput!]!
+  skipDuplicates: Boolean
+}
+
+input QrCodeCreateManyGuestInput {
+  id: Int
+  path: String!
+  scannedAt: DateTime
+  createdAt: DateTime
+  raceConditionValue: Int
+  scannedByUserId: String
+}
+
+input GuestCreateManyInput {
+  id: String
+  source: String
+  invitationName: String!
+  contactList: String
+  whatsapp: Float
+  category: String
+  class: String
+  seat: String
+  studio: Int
+  rejectionReason: String
+  parties: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  confirmationStatus: ConfirmationStatus
+}
+
+input GuestUpdateInput {
+  id: StringFieldUpdateOperationsInput
+  source: NullableStringFieldUpdateOperationsInput
+  invitationName: StringFieldUpdateOperationsInput
+  contactList: NullableStringFieldUpdateOperationsInput
+  whatsapp: NullableFloatFieldUpdateOperationsInput
+  category: NullableStringFieldUpdateOperationsInput
+  class: NullableStringFieldUpdateOperationsInput
+  seat: NullableStringFieldUpdateOperationsInput
+  studio: NullableIntFieldUpdateOperationsInput
+  rejectionReason: NullableStringFieldUpdateOperationsInput
+  parties: IntFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: NullableDateTimeFieldUpdateOperationsInput
+  deletedAt: NullableDateTimeFieldUpdateOperationsInput
+  confirmationStatus: NullableEnumConfirmationStatusFieldUpdateOperationsInput
+  qrcodes: QrCodeUpdateManyWithoutGuestNestedInput
+  emailQueue: EmailQueueUpdateManyWithoutGuestNestedInput
+  whatsappQueue: WhatsappQueueUpdateManyWithoutGuestNestedInput
+}
+
+input QrCodeUpdateManyWithoutGuestNestedInput {
+  create: [QrCodeCreateWithoutGuestInput!]
+  connectOrCreate: [QrCodeCreateOrConnectWithoutGuestInput!]
+  upsert: [QrCodeUpsertWithWhereUniqueWithoutGuestInput!]
+  createMany: QrCodeCreateManyGuestInputEnvelope
+  set: [QrCodeWhereUniqueInput!]
+  disconnect: [QrCodeWhereUniqueInput!]
+  delete: [QrCodeWhereUniqueInput!]
+  connect: [QrCodeWhereUniqueInput!]
+  update: [QrCodeUpdateWithWhereUniqueWithoutGuestInput!]
+  updateMany: [QrCodeUpdateManyWithWhereWithoutGuestInput!]
+  deleteMany: [QrCodeScalarWhereInput!]
+}
+
+input QrCodeUpsertWithWhereUniqueWithoutGuestInput {
+  where: QrCodeWhereUniqueInput!
+  update: QrCodeUpdateWithoutGuestInput!
+  create: QrCodeCreateWithoutGuestInput!
+}
+
+input QrCodeUpdateWithoutGuestInput {
+  path: StringFieldUpdateOperationsInput
+  scannedAt: NullableDateTimeFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  raceConditionValue: IntFieldUpdateOperationsInput
+  scannedBy: UserUpdateOneWithoutScannedQrsNestedInput
+}
+
+input UserUpdateOneWithoutScannedQrsNestedInput {
+  create: UserCreateWithoutScannedQrsInput
+  connectOrCreate: UserCreateOrConnectWithoutScannedQrsInput
+  upsert: UserUpsertWithoutScannedQrsInput
+  disconnect: UserWhereInput
+  delete: UserWhereInput
+  connect: UserWhereUniqueInput
+  update: UserUpdateToOneWithWhereWithoutScannedQrsInput
+}
+
+input UserUpsertWithoutScannedQrsInput {
+  update: UserUpdateWithoutScannedQrsInput!
+  create: UserCreateWithoutScannedQrsInput!
+  where: UserWhereInput
+}
+
+input UserUpdateWithoutScannedQrsInput {
+  id: StringFieldUpdateOperationsInput
+  fullName: StringFieldUpdateOperationsInput
+  email: NullableStringFieldUpdateOperationsInput
+  password: NullableStringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: NullableDateTimeFieldUpdateOperationsInput
+  deletedAt: NullableDateTimeFieldUpdateOperationsInput
+  role: EnumUserRoleFieldUpdateOperationsInput
+}
+
+input UserUpdateToOneWithWhereWithoutScannedQrsInput {
+  where: UserWhereInput
+  data: UserUpdateWithoutScannedQrsInput!
+}
+
+input QrCodeUpdateWithWhereUniqueWithoutGuestInput {
+  where: QrCodeWhereUniqueInput!
+  data: QrCodeUpdateWithoutGuestInput!
+}
+
+input QrCodeUpdateManyWithWhereWithoutGuestInput {
+  where: QrCodeScalarWhereInput!
+  data: QrCodeUpdateManyMutationInput!
+}
+
+input GuestUpdateManyMutationInput {
+  id: StringFieldUpdateOperationsInput
+  source: NullableStringFieldUpdateOperationsInput
+  invitationName: StringFieldUpdateOperationsInput
+  contactList: NullableStringFieldUpdateOperationsInput
+  whatsapp: NullableFloatFieldUpdateOperationsInput
+  category: NullableStringFieldUpdateOperationsInput
+  class: NullableStringFieldUpdateOperationsInput
+  seat: NullableStringFieldUpdateOperationsInput
+  studio: NullableIntFieldUpdateOperationsInput
+  rejectionReason: NullableStringFieldUpdateOperationsInput
+  parties: IntFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: NullableDateTimeFieldUpdateOperationsInput
+  deletedAt: NullableDateTimeFieldUpdateOperationsInput
+  confirmationStatus: NullableEnumConfirmationStatusFieldUpdateOperationsInput
 }
 
 input LoginArgs {
@@ -1913,148 +1830,6 @@ input LoginArgs {
 
   """Masukkan password"""
   password: String!
-}
-
-input GuestCreateInput {
-  source: String
-  invitationName: String
-  contactList: String
-  category: String
-  class: String
-  seat: String
-  studio: Int
-  rejectionReason: String
-  parties: Int
-  confirmationStatus: ConfirmationStatus
-  user: UserCreateNestedOneWithoutGuestInfoInput!
-  qrcodes: QrCodeCreateNestedManyWithoutGuestInput
-  emailQueue: EmailQueueCreateNestedManyWithoutGuestInput
-  whatsappQueue: WhatsappQueueCreateNestedManyWithoutGuestInput
-}
-
-input GuestCreateManyInput {
-  userId: String!
-  source: String
-  invitationName: String
-  contactList: String
-  category: String
-  class: String
-  seat: String
-  studio: Int
-  rejectionReason: String
-  parties: Int
-  confirmationStatus: ConfirmationStatus
-}
-
-input GuestUpdateInput {
-  source: NullableStringFieldUpdateOperationsInput
-  invitationName: NullableStringFieldUpdateOperationsInput
-  contactList: NullableStringFieldUpdateOperationsInput
-  category: NullableStringFieldUpdateOperationsInput
-  class: NullableStringFieldUpdateOperationsInput
-  seat: NullableStringFieldUpdateOperationsInput
-  studio: NullableIntFieldUpdateOperationsInput
-  rejectionReason: NullableStringFieldUpdateOperationsInput
-  parties: IntFieldUpdateOperationsInput
-  confirmationStatus: EnumConfirmationStatusFieldUpdateOperationsInput
-  user: UserUpdateOneRequiredWithoutGuestInfoNestedInput
-  qrcodes: QrCodeUpdateManyWithoutGuestNestedInput
-  emailQueue: EmailQueueUpdateManyWithoutGuestNestedInput
-  whatsappQueue: WhatsappQueueUpdateManyWithoutGuestNestedInput
-}
-
-input GuestUpdateManyMutationInput {
-  source: NullableStringFieldUpdateOperationsInput
-  invitationName: NullableStringFieldUpdateOperationsInput
-  contactList: NullableStringFieldUpdateOperationsInput
-  category: NullableStringFieldUpdateOperationsInput
-  class: NullableStringFieldUpdateOperationsInput
-  seat: NullableStringFieldUpdateOperationsInput
-  studio: NullableIntFieldUpdateOperationsInput
-  rejectionReason: NullableStringFieldUpdateOperationsInput
-  parties: IntFieldUpdateOperationsInput
-  confirmationStatus: EnumConfirmationStatusFieldUpdateOperationsInput
-}
-
-input EmailQueueCreateInput {
-  createdAt: DateTime
-  status: QueueStatus
-  guest: GuestCreateNestedOneWithoutEmailQueueInput!
-}
-
-input GuestCreateNestedOneWithoutEmailQueueInput {
-  create: GuestCreateWithoutEmailQueueInput
-  connectOrCreate: GuestCreateOrConnectWithoutEmailQueueInput
-  connect: GuestWhereUniqueInput
-}
-
-input GuestCreateWithoutEmailQueueInput {
-  source: String
-  invitationName: String
-  contactList: String
-  category: String
-  class: String
-  seat: String
-  studio: Int
-  rejectionReason: String
-  parties: Int
-  confirmationStatus: ConfirmationStatus
-  user: UserCreateNestedOneWithoutGuestInfoInput!
-  qrcodes: QrCodeCreateNestedManyWithoutGuestInput
-  whatsappQueue: WhatsappQueueCreateNestedManyWithoutGuestInput
-}
-
-input GuestCreateOrConnectWithoutEmailQueueInput {
-  where: GuestWhereUniqueInput!
-  create: GuestCreateWithoutEmailQueueInput!
-}
-
-input EmailQueueCreateManyInput {
-  id: Int
-  createdAt: DateTime
-  status: QueueStatus
-  guestId: String!
-}
-
-input EmailQueueUpdateInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
-  status: EnumQueueStatusFieldUpdateOperationsInput
-  guest: GuestUpdateOneRequiredWithoutEmailQueueNestedInput
-}
-
-input GuestUpdateOneRequiredWithoutEmailQueueNestedInput {
-  create: GuestCreateWithoutEmailQueueInput
-  connectOrCreate: GuestCreateOrConnectWithoutEmailQueueInput
-  upsert: GuestUpsertWithoutEmailQueueInput
-  connect: GuestWhereUniqueInput
-  update: GuestUpdateToOneWithWhereWithoutEmailQueueInput
-}
-
-input GuestUpsertWithoutEmailQueueInput {
-  update: GuestUpdateWithoutEmailQueueInput!
-  create: GuestCreateWithoutEmailQueueInput!
-  where: GuestWhereInput
-}
-
-input GuestUpdateWithoutEmailQueueInput {
-  source: NullableStringFieldUpdateOperationsInput
-  invitationName: NullableStringFieldUpdateOperationsInput
-  contactList: NullableStringFieldUpdateOperationsInput
-  category: NullableStringFieldUpdateOperationsInput
-  class: NullableStringFieldUpdateOperationsInput
-  seat: NullableStringFieldUpdateOperationsInput
-  studio: NullableIntFieldUpdateOperationsInput
-  rejectionReason: NullableStringFieldUpdateOperationsInput
-  parties: IntFieldUpdateOperationsInput
-  confirmationStatus: EnumConfirmationStatusFieldUpdateOperationsInput
-  user: UserUpdateOneRequiredWithoutGuestInfoNestedInput
-  qrcodes: QrCodeUpdateManyWithoutGuestNestedInput
-  whatsappQueue: WhatsappQueueUpdateManyWithoutGuestNestedInput
-}
-
-input GuestUpdateToOneWithWhereWithoutEmailQueueInput {
-  where: GuestWhereInput
-  data: GuestUpdateWithoutEmailQueueInput!
 }
 
 input WhatsappQueueCreateInput {
@@ -2070,17 +1845,21 @@ input GuestCreateNestedOneWithoutWhatsappQueueInput {
 }
 
 input GuestCreateWithoutWhatsappQueueInput {
+  id: String
   source: String
-  invitationName: String
+  invitationName: String!
   contactList: String
+  whatsapp: Float
   category: String
   class: String
   seat: String
   studio: Int
   rejectionReason: String
   parties: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
   confirmationStatus: ConfirmationStatus
-  user: UserCreateNestedOneWithoutGuestInfoInput!
   qrcodes: QrCodeCreateNestedManyWithoutGuestInput
   emailQueue: EmailQueueCreateNestedManyWithoutGuestInput
 }
@@ -2118,17 +1897,21 @@ input GuestUpsertWithoutWhatsappQueueInput {
 }
 
 input GuestUpdateWithoutWhatsappQueueInput {
+  id: StringFieldUpdateOperationsInput
   source: NullableStringFieldUpdateOperationsInput
-  invitationName: NullableStringFieldUpdateOperationsInput
+  invitationName: StringFieldUpdateOperationsInput
   contactList: NullableStringFieldUpdateOperationsInput
+  whatsapp: NullableFloatFieldUpdateOperationsInput
   category: NullableStringFieldUpdateOperationsInput
   class: NullableStringFieldUpdateOperationsInput
   seat: NullableStringFieldUpdateOperationsInput
   studio: NullableIntFieldUpdateOperationsInput
   rejectionReason: NullableStringFieldUpdateOperationsInput
   parties: IntFieldUpdateOperationsInput
-  confirmationStatus: EnumConfirmationStatusFieldUpdateOperationsInput
-  user: UserUpdateOneRequiredWithoutGuestInfoNestedInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: NullableDateTimeFieldUpdateOperationsInput
+  deletedAt: NullableDateTimeFieldUpdateOperationsInput
+  confirmationStatus: NullableEnumConfirmationStatusFieldUpdateOperationsInput
   qrcodes: QrCodeUpdateManyWithoutGuestNestedInput
   emailQueue: EmailQueueUpdateManyWithoutGuestNestedInput
 }

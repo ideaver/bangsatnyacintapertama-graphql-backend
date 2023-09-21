@@ -5,6 +5,7 @@ import { RatioEnum } from './enums/ratio.enum';
 import { FileUpload, GraphQLUpload } from 'graphql-upload';
 import { UploaderService } from './uploader.service';
 import { UploaderController } from './uploader.controller';
+import BatchPayload from 'src/model/batch-payload.model';
 
 @Resolver()
 export class UploaderResolver {
@@ -13,7 +14,7 @@ export class UploaderResolver {
     private readonly uploaderController: UploaderController,
   ) {}
 
-  @Mutation(() => String, {
+  @Mutation(() => BatchPayload, {
     nullable: true,
     description:
       'Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress',
