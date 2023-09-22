@@ -19,6 +19,7 @@ import { GuestModule } from './services/guest/guest.module';
 // import { EmailQueueModule } from './services/email-queue/email-queue.module';
 import { WhatsappQueueModule } from './services/whatsapp-queue/whatsapp-queue.module';
 import { QrCodeModule } from './services/qr-code/qr-code.module';
+import { InvitationImageModule } from './services/invitation-image/invitation-image.module';
 
 @Module({
   imports: [
@@ -55,6 +56,7 @@ import { QrCodeModule } from './services/qr-code/qr-code.module';
     // EmailQueueModule,
     WhatsappQueueModule,
     QrCodeModule,
+    InvitationImageModule,
   ],
   controllers: [],
   providers: [PrismaService, UploaderProcessor, SchedulerService],

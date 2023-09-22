@@ -5,6 +5,7 @@ import { GuestController } from './guest.controller';
 import { GuestListener } from '../event-listeners/guest.listener';
 import { QrCodeModule } from '../qr-code/qr-code.module';
 import { PrismaService } from 'prisma/prisma.service';
+import { InvitationImageModule } from '../invitation-image/invitation-image.module';
 
 @Module({
   providers: [
@@ -14,7 +15,7 @@ import { PrismaService } from 'prisma/prisma.service';
     GuestService,
     GuestListener,
   ],
-  imports: [QrCodeModule],
+  imports: [QrCodeModule, InvitationImageModule],
   exports: [GuestController],
 })
 export class GuestModule {}

@@ -88,6 +88,7 @@ type GuestCountAggregate {
 
 type GuestCount {
   qrcodes: Int!
+  invitationImages: Int!
   emailQueue: Int!
   whatsappQueue: Int!
 }
@@ -157,9 +158,56 @@ type Guest {
   deletedAt: DateTime
   confirmationStatus: ConfirmationStatus
   qrcodes: [QrCode!]
+  invitationImages: [InvitationImage!]
   emailQueue: [EmailQueue!]
   whatsappQueue: [WhatsappQueue!]
   _count: GuestCount!
+}
+
+type AggregateInvitationImage {
+  _count: InvitationImageCountAggregate
+  _avg: InvitationImageAvgAggregate
+  _sum: InvitationImageSumAggregate
+  _min: InvitationImageMinAggregate
+  _max: InvitationImageMaxAggregate
+}
+
+type InvitationImageAvgAggregate {
+  id: Float
+}
+
+type InvitationImageCountAggregate {
+  id: Int!
+  path: Int!
+  createdAt: Int!
+  guestId: Int!
+  _all: Int!
+}
+
+type InvitationImageMaxAggregate {
+  id: Int
+  path: String
+  createdAt: DateTime
+  guestId: String
+}
+
+type InvitationImageMinAggregate {
+  id: Int
+  path: String
+  createdAt: DateTime
+  guestId: String
+}
+
+type InvitationImageSumAggregate {
+  id: Int
+}
+
+type InvitationImage {
+  id: Int!
+  path: String!
+  createdAt: DateTime!
+  guestId: String!
+  guest: Guest!
 }
 
 type AggregateQrCode {
@@ -401,6 +449,21 @@ type Query {
   UserfindManyWhereRoleIsGuestAndLatestEmailOrWhatsappStatusEqualsWaiting: [User!]
 
   """Deskripsinya ada disini loh"""
+  invitationImageFindOne(where: InvitationImageWhereUniqueInput!): InvitationImage
+
+  """Deskripsinya ada disini loh"""
+  invitationImageFindMany(where: InvitationImageWhereInput, orderBy: [InvitationImageOrderByWithRelationInput!], cursor: InvitationImageWhereUniqueInput, take: Int, skip: Int, distinct: [InvitationImageScalarFieldEnum!]): [InvitationImage!]
+
+  """Deskripsinya ada disini loh"""
+  invitationImageFindFirst(where: InvitationImageWhereInput, orderBy: [InvitationImageOrderByWithRelationInput!], cursor: InvitationImageWhereUniqueInput, take: Int, skip: Int, distinct: [InvitationImageScalarFieldEnum!]): InvitationImage
+
+  """Deskripsinya ada disini loh"""
+  invitationImageAggregate(where: InvitationImageWhereInput, orderBy: [InvitationImageOrderByWithRelationInput!], cursor: InvitationImageWhereUniqueInput, take: Int, skip: Int, _count: InvitationImageCountAggregateInput, _avg: InvitationImageAvgAggregateInput, _sum: InvitationImageSumAggregateInput, _min: InvitationImageMinAggregateInput, _max: InvitationImageMaxAggregateInput): AggregateInvitationImage
+
+  """Deskripsinya ada disini loh"""
+  invitationImageCount(where: InvitationImageWhereInput, orderBy: [InvitationImageOrderByWithRelationInput!], cursor: InvitationImageWhereUniqueInput, take: Int, skip: Int, distinct: [InvitationImageScalarFieldEnum!]): Float
+
+  """Deskripsinya ada disini loh"""
   whatsappQueueFindOne(where: WhatsappQueueWhereUniqueInput!): WhatsappQueue
 
   """Deskripsinya ada disini loh"""
@@ -436,6 +499,7 @@ input GuestWhereUniqueInput {
   deletedAt: DateTimeNullableFilter
   confirmationStatus: EnumConfirmationStatusNullableFilter
   qrcodes: QrCodeListRelationFilter
+  invitationImages: InvitationImageListRelationFilter
   emailQueue: EmailQueueListRelationFilter
   whatsappQueue: WhatsappQueueListRelationFilter
 }
@@ -460,6 +524,7 @@ input GuestWhereInput {
   deletedAt: DateTimeNullableFilter
   confirmationStatus: EnumConfirmationStatusNullableFilter
   qrcodes: QrCodeListRelationFilter
+  invitationImages: InvitationImageListRelationFilter
   emailQueue: EmailQueueListRelationFilter
   whatsappQueue: WhatsappQueueListRelationFilter
 }
@@ -704,6 +769,23 @@ input NestedEnumUserRoleFilter {
   not: NestedEnumUserRoleFilter
 }
 
+input InvitationImageListRelationFilter {
+  every: InvitationImageWhereInput
+  some: InvitationImageWhereInput
+  none: InvitationImageWhereInput
+}
+
+input InvitationImageWhereInput {
+  AND: [InvitationImageWhereInput!]
+  OR: [InvitationImageWhereInput!]
+  NOT: [InvitationImageWhereInput!]
+  id: IntFilter
+  path: StringFilter
+  createdAt: DateTimeFilter
+  guestId: StringFilter
+  guest: GuestRelationFilter
+}
+
 input EmailQueueListRelationFilter {
   every: EmailQueueWhereInput
   some: EmailQueueWhereInput
@@ -769,6 +851,7 @@ input GuestOrderByWithRelationInput {
   deletedAt: SortOrderInput
   confirmationStatus: SortOrderInput
   qrcodes: QrCodeOrderByRelationAggregateInput
+  invitationImages: InvitationImageOrderByRelationAggregateInput
   emailQueue: EmailQueueOrderByRelationAggregateInput
   whatsappQueue: WhatsappQueueOrderByRelationAggregateInput
 }
@@ -789,6 +872,10 @@ enum NullsOrder {
 }
 
 input QrCodeOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input InvitationImageOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
@@ -1035,6 +1122,62 @@ input UserMaxAggregateInput {
   role: Boolean
 }
 
+input InvitationImageWhereUniqueInput {
+  id: Int
+  AND: [InvitationImageWhereInput!]
+  OR: [InvitationImageWhereInput!]
+  NOT: [InvitationImageWhereInput!]
+  path: StringFilter
+  createdAt: DateTimeFilter
+  guestId: StringFilter
+  guest: GuestRelationFilter
+}
+
+input InvitationImageOrderByWithRelationInput {
+  id: SortOrder
+  path: SortOrder
+  createdAt: SortOrder
+  guestId: SortOrder
+  guest: GuestOrderByWithRelationInput
+}
+
+enum InvitationImageScalarFieldEnum {
+  id
+  path
+  createdAt
+  guestId
+}
+
+input InvitationImageCountAggregateInput {
+  id: Boolean
+  path: Boolean
+  createdAt: Boolean
+  guestId: Boolean
+  _all: Boolean
+}
+
+input InvitationImageAvgAggregateInput {
+  id: Boolean
+}
+
+input InvitationImageSumAggregateInput {
+  id: Boolean
+}
+
+input InvitationImageMinAggregateInput {
+  id: Boolean
+  path: Boolean
+  createdAt: Boolean
+  guestId: Boolean
+}
+
+input InvitationImageMaxAggregateInput {
+  id: Boolean
+  path: Boolean
+  createdAt: Boolean
+  guestId: Boolean
+}
+
 input WhatsappQueueWhereUniqueInput {
   id: Int
   AND: [WhatsappQueueWhereInput!]
@@ -1155,6 +1298,24 @@ type Mutation {
 
   """Deskripsinya ada disini loh"""
   userDeleteMany(where: UserWhereInput): Boolean!
+
+  """Deskripsinya ada disini loh"""
+  invitationImageCreateOne(data: InvitationImageCreateInput!): InvitationImage
+
+  """Deskripsinya ada disini loh"""
+  invitationImageCreateMany(data: [InvitationImageCreateManyInput!]!, skipDuplicates: Boolean): BatchPayload
+
+  """Deskripsinya ada disini loh"""
+  invitationImageUpdateOne(data: InvitationImageUpdateInput!, where: InvitationImageWhereUniqueInput!): InvitationImage
+
+  """Deskripsinya ada disini loh"""
+  invitationImageUpdateMany(data: InvitationImageUpdateManyMutationInput!, where: InvitationImageWhereInput): BatchPayload
+
+  """Deskripsinya ada disini loh"""
+  invitationImageDelete(where: InvitationImageWhereUniqueInput!): Boolean!
+
+  """Deskripsinya ada disini loh"""
+  invitationImageDeleteMany(where: InvitationImageWhereInput): Boolean!
   authLogin(loginArgs: LoginArgs!): LoginResponse
 
   """Deskripsinya ada disini loh"""
@@ -1210,6 +1371,7 @@ input GuestCreateInput {
   deletedAt: DateTime
   confirmationStatus: ConfirmationStatus
   qrcodes: QrCodeCreateNestedManyWithoutGuestInput
+  invitationImages: InvitationImageCreateNestedManyWithoutGuestInput
   emailQueue: EmailQueueCreateNestedManyWithoutGuestInput
   whatsappQueue: WhatsappQueueCreateNestedManyWithoutGuestInput
 }
@@ -1268,6 +1430,34 @@ input QrCodeCreateManyGuestInput {
   createdAt: DateTime
   raceConditionValue: Int
   scannedByUserId: String
+}
+
+input InvitationImageCreateNestedManyWithoutGuestInput {
+  create: [InvitationImageCreateWithoutGuestInput!]
+  connectOrCreate: [InvitationImageCreateOrConnectWithoutGuestInput!]
+  createMany: InvitationImageCreateManyGuestInputEnvelope
+  connect: [InvitationImageWhereUniqueInput!]
+}
+
+input InvitationImageCreateWithoutGuestInput {
+  path: String!
+  createdAt: DateTime
+}
+
+input InvitationImageCreateOrConnectWithoutGuestInput {
+  where: InvitationImageWhereUniqueInput!
+  create: InvitationImageCreateWithoutGuestInput!
+}
+
+input InvitationImageCreateManyGuestInputEnvelope {
+  data: [InvitationImageCreateManyGuestInput!]!
+  skipDuplicates: Boolean
+}
+
+input InvitationImageCreateManyGuestInput {
+  id: Int
+  path: String!
+  createdAt: DateTime
 }
 
 input EmailQueueCreateNestedManyWithoutGuestInput {
@@ -1372,6 +1562,7 @@ input GuestUpdateInput {
   deletedAt: NullableDateTimeFieldUpdateOperationsInput
   confirmationStatus: NullableEnumConfirmationStatusFieldUpdateOperationsInput
   qrcodes: QrCodeUpdateManyWithoutGuestNestedInput
+  invitationImages: InvitationImageUpdateManyWithoutGuestNestedInput
   emailQueue: EmailQueueUpdateManyWithoutGuestNestedInput
   whatsappQueue: WhatsappQueueUpdateManyWithoutGuestNestedInput
 }
@@ -1512,6 +1703,56 @@ input QrCodeUpdateManyMutationInput {
   scannedAt: NullableDateTimeFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   raceConditionValue: IntFieldUpdateOperationsInput
+}
+
+input InvitationImageUpdateManyWithoutGuestNestedInput {
+  create: [InvitationImageCreateWithoutGuestInput!]
+  connectOrCreate: [InvitationImageCreateOrConnectWithoutGuestInput!]
+  upsert: [InvitationImageUpsertWithWhereUniqueWithoutGuestInput!]
+  createMany: InvitationImageCreateManyGuestInputEnvelope
+  set: [InvitationImageWhereUniqueInput!]
+  disconnect: [InvitationImageWhereUniqueInput!]
+  delete: [InvitationImageWhereUniqueInput!]
+  connect: [InvitationImageWhereUniqueInput!]
+  update: [InvitationImageUpdateWithWhereUniqueWithoutGuestInput!]
+  updateMany: [InvitationImageUpdateManyWithWhereWithoutGuestInput!]
+  deleteMany: [InvitationImageScalarWhereInput!]
+}
+
+input InvitationImageUpsertWithWhereUniqueWithoutGuestInput {
+  where: InvitationImageWhereUniqueInput!
+  update: InvitationImageUpdateWithoutGuestInput!
+  create: InvitationImageCreateWithoutGuestInput!
+}
+
+input InvitationImageUpdateWithoutGuestInput {
+  path: StringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+}
+
+input InvitationImageUpdateWithWhereUniqueWithoutGuestInput {
+  where: InvitationImageWhereUniqueInput!
+  data: InvitationImageUpdateWithoutGuestInput!
+}
+
+input InvitationImageUpdateManyWithWhereWithoutGuestInput {
+  where: InvitationImageScalarWhereInput!
+  data: InvitationImageUpdateManyMutationInput!
+}
+
+input InvitationImageScalarWhereInput {
+  AND: [InvitationImageScalarWhereInput!]
+  OR: [InvitationImageScalarWhereInput!]
+  NOT: [InvitationImageScalarWhereInput!]
+  id: IntFilter
+  path: StringFilter
+  createdAt: DateTimeFilter
+  guestId: StringFilter
+}
+
+input InvitationImageUpdateManyMutationInput {
+  path: StringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
 }
 
 input EmailQueueUpdateManyWithoutGuestNestedInput {
@@ -1667,6 +1908,7 @@ input GuestCreateWithoutQrcodesInput {
   updatedAt: DateTime
   deletedAt: DateTime
   confirmationStatus: ConfirmationStatus
+  invitationImages: InvitationImageCreateNestedManyWithoutGuestInput
   emailQueue: EmailQueueCreateNestedManyWithoutGuestInput
   whatsappQueue: WhatsappQueueCreateNestedManyWithoutGuestInput
 }
@@ -1725,6 +1967,7 @@ input GuestUpdateWithoutQrcodesInput {
   updatedAt: NullableDateTimeFieldUpdateOperationsInput
   deletedAt: NullableDateTimeFieldUpdateOperationsInput
   confirmationStatus: NullableEnumConfirmationStatusFieldUpdateOperationsInput
+  invitationImages: InvitationImageUpdateManyWithoutGuestNestedInput
   emailQueue: EmailQueueUpdateManyWithoutGuestNestedInput
   whatsappQueue: WhatsappQueueUpdateManyWithoutGuestNestedInput
 }
@@ -1852,6 +2095,97 @@ input UserUpdateManyMutationInput {
   role: EnumUserRoleFieldUpdateOperationsInput
 }
 
+input InvitationImageCreateInput {
+  path: String!
+  createdAt: DateTime
+  guest: GuestCreateNestedOneWithoutInvitationImagesInput!
+}
+
+input GuestCreateNestedOneWithoutInvitationImagesInput {
+  create: GuestCreateWithoutInvitationImagesInput
+  connectOrCreate: GuestCreateOrConnectWithoutInvitationImagesInput
+  connect: GuestWhereUniqueInput
+}
+
+input GuestCreateWithoutInvitationImagesInput {
+  id: String
+  source: String
+  invitationName: String!
+  contactList: String
+  whatsapp: Float
+  category: String
+  class: String
+  seat: String
+  studio: Int
+  rejectionReason: String
+  parties: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  confirmationStatus: ConfirmationStatus
+  qrcodes: QrCodeCreateNestedManyWithoutGuestInput
+  emailQueue: EmailQueueCreateNestedManyWithoutGuestInput
+  whatsappQueue: WhatsappQueueCreateNestedManyWithoutGuestInput
+}
+
+input GuestCreateOrConnectWithoutInvitationImagesInput {
+  where: GuestWhereUniqueInput!
+  create: GuestCreateWithoutInvitationImagesInput!
+}
+
+input InvitationImageCreateManyInput {
+  id: Int
+  path: String!
+  createdAt: DateTime
+  guestId: String!
+}
+
+input InvitationImageUpdateInput {
+  path: StringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  guest: GuestUpdateOneRequiredWithoutInvitationImagesNestedInput
+}
+
+input GuestUpdateOneRequiredWithoutInvitationImagesNestedInput {
+  create: GuestCreateWithoutInvitationImagesInput
+  connectOrCreate: GuestCreateOrConnectWithoutInvitationImagesInput
+  upsert: GuestUpsertWithoutInvitationImagesInput
+  connect: GuestWhereUniqueInput
+  update: GuestUpdateToOneWithWhereWithoutInvitationImagesInput
+}
+
+input GuestUpsertWithoutInvitationImagesInput {
+  update: GuestUpdateWithoutInvitationImagesInput!
+  create: GuestCreateWithoutInvitationImagesInput!
+  where: GuestWhereInput
+}
+
+input GuestUpdateWithoutInvitationImagesInput {
+  id: StringFieldUpdateOperationsInput
+  source: NullableStringFieldUpdateOperationsInput
+  invitationName: StringFieldUpdateOperationsInput
+  contactList: NullableStringFieldUpdateOperationsInput
+  whatsapp: NullableFloatFieldUpdateOperationsInput
+  category: NullableStringFieldUpdateOperationsInput
+  class: NullableStringFieldUpdateOperationsInput
+  seat: NullableStringFieldUpdateOperationsInput
+  studio: NullableIntFieldUpdateOperationsInput
+  rejectionReason: NullableStringFieldUpdateOperationsInput
+  parties: IntFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: NullableDateTimeFieldUpdateOperationsInput
+  deletedAt: NullableDateTimeFieldUpdateOperationsInput
+  confirmationStatus: NullableEnumConfirmationStatusFieldUpdateOperationsInput
+  qrcodes: QrCodeUpdateManyWithoutGuestNestedInput
+  emailQueue: EmailQueueUpdateManyWithoutGuestNestedInput
+  whatsappQueue: WhatsappQueueUpdateManyWithoutGuestNestedInput
+}
+
+input GuestUpdateToOneWithWhereWithoutInvitationImagesInput {
+  where: GuestWhereInput
+  data: GuestUpdateWithoutInvitationImagesInput!
+}
+
 input LoginArgs {
   """Masukkan email"""
   email: String!
@@ -1889,6 +2223,7 @@ input GuestCreateWithoutWhatsappQueueInput {
   deletedAt: DateTime
   confirmationStatus: ConfirmationStatus
   qrcodes: QrCodeCreateNestedManyWithoutGuestInput
+  invitationImages: InvitationImageCreateNestedManyWithoutGuestInput
   emailQueue: EmailQueueCreateNestedManyWithoutGuestInput
 }
 
@@ -1941,6 +2276,7 @@ input GuestUpdateWithoutWhatsappQueueInput {
   deletedAt: NullableDateTimeFieldUpdateOperationsInput
   confirmationStatus: NullableEnumConfirmationStatusFieldUpdateOperationsInput
   qrcodes: QrCodeUpdateManyWithoutGuestNestedInput
+  invitationImages: InvitationImageUpdateManyWithoutGuestNestedInput
   emailQueue: EmailQueueUpdateManyWithoutGuestNestedInput
 }
 

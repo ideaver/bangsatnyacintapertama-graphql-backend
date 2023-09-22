@@ -92,3 +92,16 @@ export function fakeQrCodeComplete() {
     scannedByUserId: undefined,
   };
 }
+export function fakeInvitationImage() {
+  return {
+    path: faker.lorem.words(5),
+  };
+}
+export function fakeInvitationImageComplete() {
+  return {
+    id: faker.datatype.number(),
+    path: faker.lorem.words(5),
+    createdAt: new Date(),
+    guestId: faker.datatype.uuid(),
+  };
+}

@@ -99,6 +99,8 @@ model Guest {
 
   qrcodes QrCode[]
 
+  invitationImages InvitationImage[]
+
   emailQueue EmailQueue[]
 
   whatsappQueue WhatsappQueue[]
@@ -184,4 +186,22 @@ model QrCode {
   //-------------------------- m relations --------------------------------
 
   @@map("qrcodes")
+}
+
+model InvitationImage {
+  id Int @id @default(autoincrement())
+
+  path String
+
+  createdAt DateTime @default(now())
+
+  //-------------------------- 1 relations --------------------------------
+
+  guestId String
+
+  guest Guest @relation(fields: [guestId], references: [id])
+
+  //-------------------------- m relations --------------------------------
+
+  @@map("invitation_images")
 }

@@ -54,6 +54,12 @@ export declare enum ConfirmationStatus {
     CONFIRMED = "CONFIRMED",
     REJECTED = "REJECTED"
 }
+export declare enum InvitationImageScalarFieldEnum {
+    id = "id",
+    path = "path",
+    createdAt = "createdAt",
+    guestId = "guestId"
+}
 export declare enum GuestScalarFieldEnum {
     id = "id",
     source = "source",
@@ -578,6 +584,7 @@ export declare class GuestCountOrderByAggregateInput {
 }
 export declare class GuestCount {
     qrcodes?: number;
+    invitationImages?: number;
     emailQueue?: number;
     whatsappQueue?: number;
 }
@@ -603,6 +610,11 @@ export declare class GuestCreateNestedOneWithoutEmailQueueInput {
     connectOrCreate?: InstanceType<typeof GuestCreateOrConnectWithoutEmailQueueInput>;
     connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'whatsapp'>;
 }
+export declare class GuestCreateNestedOneWithoutInvitationImagesInput {
+    create?: InstanceType<typeof GuestCreateWithoutInvitationImagesInput>;
+    connectOrCreate?: InstanceType<typeof GuestCreateOrConnectWithoutInvitationImagesInput>;
+    connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'whatsapp'>;
+}
 export declare class GuestCreateNestedOneWithoutQrcodesInput {
     create?: InstanceType<typeof GuestCreateWithoutQrcodesInput>;
     connectOrCreate?: InstanceType<typeof GuestCreateOrConnectWithoutQrcodesInput>;
@@ -616,6 +628,10 @@ export declare class GuestCreateNestedOneWithoutWhatsappQueueInput {
 export declare class GuestCreateOrConnectWithoutEmailQueueInput {
     where: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'whatsapp'>;
     create: InstanceType<typeof GuestCreateWithoutEmailQueueInput>;
+}
+export declare class GuestCreateOrConnectWithoutInvitationImagesInput {
+    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'whatsapp'>;
+    create: InstanceType<typeof GuestCreateWithoutInvitationImagesInput>;
 }
 export declare class GuestCreateOrConnectWithoutQrcodesInput {
     where: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'whatsapp'>;
@@ -642,6 +658,27 @@ export declare class GuestCreateWithoutEmailQueueInput {
     deletedAt?: Date | string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
     qrcodes?: InstanceType<typeof QrCodeCreateNestedManyWithoutGuestInput>;
+    invitationImages?: InstanceType<typeof InvitationImageCreateNestedManyWithoutGuestInput>;
+    whatsappQueue?: InstanceType<typeof WhatsappQueueCreateNestedManyWithoutGuestInput>;
+}
+export declare class GuestCreateWithoutInvitationImagesInput {
+    id?: string;
+    source?: string;
+    invitationName: string;
+    contactList?: string;
+    whatsapp?: number;
+    category?: string;
+    class?: string;
+    seat?: string;
+    studio?: number;
+    rejectionReason?: string;
+    parties?: number;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    deletedAt?: Date | string;
+    confirmationStatus?: keyof typeof ConfirmationStatus;
+    qrcodes?: InstanceType<typeof QrCodeCreateNestedManyWithoutGuestInput>;
+    emailQueue?: InstanceType<typeof EmailQueueCreateNestedManyWithoutGuestInput>;
     whatsappQueue?: InstanceType<typeof WhatsappQueueCreateNestedManyWithoutGuestInput>;
 }
 export declare class GuestCreateWithoutQrcodesInput {
@@ -660,6 +697,7 @@ export declare class GuestCreateWithoutQrcodesInput {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
+    invitationImages?: InstanceType<typeof InvitationImageCreateNestedManyWithoutGuestInput>;
     emailQueue?: InstanceType<typeof EmailQueueCreateNestedManyWithoutGuestInput>;
     whatsappQueue?: InstanceType<typeof WhatsappQueueCreateNestedManyWithoutGuestInput>;
 }
@@ -680,6 +718,7 @@ export declare class GuestCreateWithoutWhatsappQueueInput {
     deletedAt?: Date | string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
     qrcodes?: InstanceType<typeof QrCodeCreateNestedManyWithoutGuestInput>;
+    invitationImages?: InstanceType<typeof InvitationImageCreateNestedManyWithoutGuestInput>;
     emailQueue?: InstanceType<typeof EmailQueueCreateNestedManyWithoutGuestInput>;
 }
 export declare class GuestCreateInput {
@@ -699,6 +738,7 @@ export declare class GuestCreateInput {
     deletedAt?: Date | string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
     qrcodes?: InstanceType<typeof QrCodeCreateNestedManyWithoutGuestInput>;
+    invitationImages?: InstanceType<typeof InvitationImageCreateNestedManyWithoutGuestInput>;
     emailQueue?: InstanceType<typeof EmailQueueCreateNestedManyWithoutGuestInput>;
     whatsappQueue?: InstanceType<typeof WhatsappQueueCreateNestedManyWithoutGuestInput>;
 }
@@ -878,6 +918,7 @@ export declare class GuestOrderByWithRelationInput {
     deletedAt?: InstanceType<typeof SortOrderInput>;
     confirmationStatus?: InstanceType<typeof SortOrderInput>;
     qrcodes?: InstanceType<typeof QrCodeOrderByRelationAggregateInput>;
+    invitationImages?: InstanceType<typeof InvitationImageOrderByRelationAggregateInput>;
     emailQueue?: InstanceType<typeof EmailQueueOrderByRelationAggregateInput>;
     whatsappQueue?: InstanceType<typeof WhatsappQueueOrderByRelationAggregateInput>;
 }
@@ -937,6 +978,27 @@ export declare class GuestUncheckedCreateWithoutEmailQueueInput {
     deletedAt?: Date | string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
     qrcodes?: InstanceType<typeof QrCodeUncheckedCreateNestedManyWithoutGuestInput>;
+    invitationImages?: InstanceType<typeof InvitationImageUncheckedCreateNestedManyWithoutGuestInput>;
+    whatsappQueue?: InstanceType<typeof WhatsappQueueUncheckedCreateNestedManyWithoutGuestInput>;
+}
+export declare class GuestUncheckedCreateWithoutInvitationImagesInput {
+    id?: string;
+    source?: string;
+    invitationName: string;
+    contactList?: string;
+    whatsapp?: number;
+    category?: string;
+    class?: string;
+    seat?: string;
+    studio?: number;
+    rejectionReason?: string;
+    parties?: number;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    deletedAt?: Date | string;
+    confirmationStatus?: keyof typeof ConfirmationStatus;
+    qrcodes?: InstanceType<typeof QrCodeUncheckedCreateNestedManyWithoutGuestInput>;
+    emailQueue?: InstanceType<typeof EmailQueueUncheckedCreateNestedManyWithoutGuestInput>;
     whatsappQueue?: InstanceType<typeof WhatsappQueueUncheckedCreateNestedManyWithoutGuestInput>;
 }
 export declare class GuestUncheckedCreateWithoutQrcodesInput {
@@ -955,6 +1017,7 @@ export declare class GuestUncheckedCreateWithoutQrcodesInput {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
+    invitationImages?: InstanceType<typeof InvitationImageUncheckedCreateNestedManyWithoutGuestInput>;
     emailQueue?: InstanceType<typeof EmailQueueUncheckedCreateNestedManyWithoutGuestInput>;
     whatsappQueue?: InstanceType<typeof WhatsappQueueUncheckedCreateNestedManyWithoutGuestInput>;
 }
@@ -975,6 +1038,7 @@ export declare class GuestUncheckedCreateWithoutWhatsappQueueInput {
     deletedAt?: Date | string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
     qrcodes?: InstanceType<typeof QrCodeUncheckedCreateNestedManyWithoutGuestInput>;
+    invitationImages?: InstanceType<typeof InvitationImageUncheckedCreateNestedManyWithoutGuestInput>;
     emailQueue?: InstanceType<typeof EmailQueueUncheckedCreateNestedManyWithoutGuestInput>;
 }
 export declare class GuestUncheckedCreateInput {
@@ -994,6 +1058,7 @@ export declare class GuestUncheckedCreateInput {
     deletedAt?: Date | string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
     qrcodes?: InstanceType<typeof QrCodeUncheckedCreateNestedManyWithoutGuestInput>;
+    invitationImages?: InstanceType<typeof InvitationImageUncheckedCreateNestedManyWithoutGuestInput>;
     emailQueue?: InstanceType<typeof EmailQueueUncheckedCreateNestedManyWithoutGuestInput>;
     whatsappQueue?: InstanceType<typeof WhatsappQueueUncheckedCreateNestedManyWithoutGuestInput>;
 }
@@ -1031,6 +1096,27 @@ export declare class GuestUncheckedUpdateWithoutEmailQueueInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
     qrcodes?: InstanceType<typeof QrCodeUncheckedUpdateManyWithoutGuestNestedInput>;
+    invitationImages?: InstanceType<typeof InvitationImageUncheckedUpdateManyWithoutGuestNestedInput>;
+    whatsappQueue?: InstanceType<typeof WhatsappQueueUncheckedUpdateManyWithoutGuestNestedInput>;
+}
+export declare class GuestUncheckedUpdateWithoutInvitationImagesInput {
+    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    invitationName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
+    category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    studio?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    parties?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
+    qrcodes?: InstanceType<typeof QrCodeUncheckedUpdateManyWithoutGuestNestedInput>;
+    emailQueue?: InstanceType<typeof EmailQueueUncheckedUpdateManyWithoutGuestNestedInput>;
     whatsappQueue?: InstanceType<typeof WhatsappQueueUncheckedUpdateManyWithoutGuestNestedInput>;
 }
 export declare class GuestUncheckedUpdateWithoutQrcodesInput {
@@ -1049,6 +1135,7 @@ export declare class GuestUncheckedUpdateWithoutQrcodesInput {
     updatedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
+    invitationImages?: InstanceType<typeof InvitationImageUncheckedUpdateManyWithoutGuestNestedInput>;
     emailQueue?: InstanceType<typeof EmailQueueUncheckedUpdateManyWithoutGuestNestedInput>;
     whatsappQueue?: InstanceType<typeof WhatsappQueueUncheckedUpdateManyWithoutGuestNestedInput>;
 }
@@ -1069,6 +1156,7 @@ export declare class GuestUncheckedUpdateWithoutWhatsappQueueInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
     qrcodes?: InstanceType<typeof QrCodeUncheckedUpdateManyWithoutGuestNestedInput>;
+    invitationImages?: InstanceType<typeof InvitationImageUncheckedUpdateManyWithoutGuestNestedInput>;
     emailQueue?: InstanceType<typeof EmailQueueUncheckedUpdateManyWithoutGuestNestedInput>;
 }
 export declare class GuestUncheckedUpdateInput {
@@ -1088,6 +1176,7 @@ export declare class GuestUncheckedUpdateInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
     qrcodes?: InstanceType<typeof QrCodeUncheckedUpdateManyWithoutGuestNestedInput>;
+    invitationImages?: InstanceType<typeof InvitationImageUncheckedUpdateManyWithoutGuestNestedInput>;
     emailQueue?: InstanceType<typeof EmailQueueUncheckedUpdateManyWithoutGuestNestedInput>;
     whatsappQueue?: InstanceType<typeof WhatsappQueueUncheckedUpdateManyWithoutGuestNestedInput>;
 }
@@ -1115,6 +1204,13 @@ export declare class GuestUpdateOneRequiredWithoutEmailQueueNestedInput {
     connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'whatsapp'>;
     update?: InstanceType<typeof GuestUpdateToOneWithWhereWithoutEmailQueueInput>;
 }
+export declare class GuestUpdateOneRequiredWithoutInvitationImagesNestedInput {
+    create?: InstanceType<typeof GuestCreateWithoutInvitationImagesInput>;
+    connectOrCreate?: InstanceType<typeof GuestCreateOrConnectWithoutInvitationImagesInput>;
+    upsert?: InstanceType<typeof GuestUpsertWithoutInvitationImagesInput>;
+    connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'whatsapp'>;
+    update?: InstanceType<typeof GuestUpdateToOneWithWhereWithoutInvitationImagesInput>;
+}
 export declare class GuestUpdateOneRequiredWithoutQrcodesNestedInput {
     create?: InstanceType<typeof GuestCreateWithoutQrcodesInput>;
     connectOrCreate?: InstanceType<typeof GuestCreateOrConnectWithoutQrcodesInput>;
@@ -1132,6 +1228,10 @@ export declare class GuestUpdateOneRequiredWithoutWhatsappQueueNestedInput {
 export declare class GuestUpdateToOneWithWhereWithoutEmailQueueInput {
     where?: InstanceType<typeof GuestWhereInput>;
     data: InstanceType<typeof GuestUpdateWithoutEmailQueueInput>;
+}
+export declare class GuestUpdateToOneWithWhereWithoutInvitationImagesInput {
+    where?: InstanceType<typeof GuestWhereInput>;
+    data: InstanceType<typeof GuestUpdateWithoutInvitationImagesInput>;
 }
 export declare class GuestUpdateToOneWithWhereWithoutQrcodesInput {
     where?: InstanceType<typeof GuestWhereInput>;
@@ -1158,6 +1258,27 @@ export declare class GuestUpdateWithoutEmailQueueInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
     qrcodes?: InstanceType<typeof QrCodeUpdateManyWithoutGuestNestedInput>;
+    invitationImages?: InstanceType<typeof InvitationImageUpdateManyWithoutGuestNestedInput>;
+    whatsappQueue?: InstanceType<typeof WhatsappQueueUpdateManyWithoutGuestNestedInput>;
+}
+export declare class GuestUpdateWithoutInvitationImagesInput {
+    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    invitationName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
+    category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    studio?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    parties?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    updatedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
+    confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
+    qrcodes?: InstanceType<typeof QrCodeUpdateManyWithoutGuestNestedInput>;
+    emailQueue?: InstanceType<typeof EmailQueueUpdateManyWithoutGuestNestedInput>;
     whatsappQueue?: InstanceType<typeof WhatsappQueueUpdateManyWithoutGuestNestedInput>;
 }
 export declare class GuestUpdateWithoutQrcodesInput {
@@ -1176,6 +1297,7 @@ export declare class GuestUpdateWithoutQrcodesInput {
     updatedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
+    invitationImages?: InstanceType<typeof InvitationImageUpdateManyWithoutGuestNestedInput>;
     emailQueue?: InstanceType<typeof EmailQueueUpdateManyWithoutGuestNestedInput>;
     whatsappQueue?: InstanceType<typeof WhatsappQueueUpdateManyWithoutGuestNestedInput>;
 }
@@ -1196,6 +1318,7 @@ export declare class GuestUpdateWithoutWhatsappQueueInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
     qrcodes?: InstanceType<typeof QrCodeUpdateManyWithoutGuestNestedInput>;
+    invitationImages?: InstanceType<typeof InvitationImageUpdateManyWithoutGuestNestedInput>;
     emailQueue?: InstanceType<typeof EmailQueueUpdateManyWithoutGuestNestedInput>;
 }
 export declare class GuestUpdateInput {
@@ -1215,12 +1338,18 @@ export declare class GuestUpdateInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
     qrcodes?: InstanceType<typeof QrCodeUpdateManyWithoutGuestNestedInput>;
+    invitationImages?: InstanceType<typeof InvitationImageUpdateManyWithoutGuestNestedInput>;
     emailQueue?: InstanceType<typeof EmailQueueUpdateManyWithoutGuestNestedInput>;
     whatsappQueue?: InstanceType<typeof WhatsappQueueUpdateManyWithoutGuestNestedInput>;
 }
 export declare class GuestUpsertWithoutEmailQueueInput {
     update: InstanceType<typeof GuestUpdateWithoutEmailQueueInput>;
     create: InstanceType<typeof GuestCreateWithoutEmailQueueInput>;
+    where?: InstanceType<typeof GuestWhereInput>;
+}
+export declare class GuestUpsertWithoutInvitationImagesInput {
+    update: InstanceType<typeof GuestUpdateWithoutInvitationImagesInput>;
+    create: InstanceType<typeof GuestCreateWithoutInvitationImagesInput>;
     where?: InstanceType<typeof GuestWhereInput>;
 }
 export declare class GuestUpsertWithoutQrcodesInput {
@@ -1253,6 +1382,7 @@ export declare class GuestWhereUniqueInput {
     deletedAt?: InstanceType<typeof DateTimeNullableFilter>;
     confirmationStatus?: InstanceType<typeof EnumConfirmationStatusNullableFilter>;
     qrcodes?: InstanceType<typeof QrCodeListRelationFilter>;
+    invitationImages?: InstanceType<typeof InvitationImageListRelationFilter>;
     emailQueue?: InstanceType<typeof EmailQueueListRelationFilter>;
     whatsappQueue?: InstanceType<typeof WhatsappQueueListRelationFilter>;
 }
@@ -1276,6 +1406,7 @@ export declare class GuestWhereInput {
     deletedAt?: InstanceType<typeof DateTimeNullableFilter>;
     confirmationStatus?: InstanceType<typeof EnumConfirmationStatusNullableFilter>;
     qrcodes?: InstanceType<typeof QrCodeListRelationFilter>;
+    invitationImages?: InstanceType<typeof InvitationImageListRelationFilter>;
     emailQueue?: InstanceType<typeof EmailQueueListRelationFilter>;
     whatsappQueue?: InstanceType<typeof WhatsappQueueListRelationFilter>;
 }
@@ -1296,6 +1427,7 @@ export declare class Guest {
     deletedAt: Date | null;
     confirmationStatus: keyof typeof ConfirmationStatus | null;
     qrcodes?: Array<QrCode>;
+    invitationImages?: Array<InvitationImage>;
     emailQueue?: Array<EmailQueue>;
     whatsappQueue?: Array<WhatsappQueue>;
     _count?: InstanceType<typeof GuestCount>;
@@ -1312,6 +1444,375 @@ export declare class UpsertOneGuestArgs {
     where: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'whatsapp'>;
     create: InstanceType<typeof GuestCreateInput>;
     update: InstanceType<typeof GuestUpdateInput>;
+}
+export declare class AggregateInvitationImage {
+    _count?: InstanceType<typeof InvitationImageCountAggregate>;
+    _avg?: InstanceType<typeof InvitationImageAvgAggregate>;
+    _sum?: InstanceType<typeof InvitationImageSumAggregate>;
+    _min?: InstanceType<typeof InvitationImageMinAggregate>;
+    _max?: InstanceType<typeof InvitationImageMaxAggregate>;
+}
+export declare class CreateManyInvitationImageArgs {
+    data: Array<InvitationImageCreateManyInput>;
+    skipDuplicates?: boolean;
+}
+export declare class CreateOneInvitationImageArgs {
+    data: InstanceType<typeof InvitationImageCreateInput>;
+}
+export declare class DeleteManyInvitationImageArgs {
+    where?: InstanceType<typeof InvitationImageWhereInput>;
+}
+export declare class DeleteOneInvitationImageArgs {
+    where: Prisma.AtLeast<InvitationImageWhereUniqueInput, 'id'>;
+}
+export declare class FindFirstInvitationImageOrThrowArgs {
+    where?: InstanceType<typeof InvitationImageWhereInput>;
+    orderBy?: Array<InvitationImageOrderByWithRelationInput>;
+    cursor?: Prisma.AtLeast<InvitationImageWhereUniqueInput, 'id'>;
+    take?: number;
+    skip?: number;
+    distinct?: Array<keyof typeof InvitationImageScalarFieldEnum>;
+}
+export declare class FindFirstInvitationImageArgs {
+    where?: InstanceType<typeof InvitationImageWhereInput>;
+    orderBy?: Array<InvitationImageOrderByWithRelationInput>;
+    cursor?: Prisma.AtLeast<InvitationImageWhereUniqueInput, 'id'>;
+    take?: number;
+    skip?: number;
+    distinct?: Array<keyof typeof InvitationImageScalarFieldEnum>;
+}
+export declare class FindManyInvitationImageArgs {
+    where?: InstanceType<typeof InvitationImageWhereInput>;
+    orderBy?: Array<InvitationImageOrderByWithRelationInput>;
+    cursor?: Prisma.AtLeast<InvitationImageWhereUniqueInput, 'id'>;
+    take?: number;
+    skip?: number;
+    distinct?: Array<keyof typeof InvitationImageScalarFieldEnum>;
+}
+export declare class FindUniqueInvitationImageOrThrowArgs {
+    where: Prisma.AtLeast<InvitationImageWhereUniqueInput, 'id'>;
+}
+export declare class FindUniqueInvitationImageArgs {
+    where: Prisma.AtLeast<InvitationImageWhereUniqueInput, 'id'>;
+}
+export declare class InvitationImageAggregateArgs {
+    where?: InstanceType<typeof InvitationImageWhereInput>;
+    orderBy?: Array<InvitationImageOrderByWithRelationInput>;
+    cursor?: Prisma.AtLeast<InvitationImageWhereUniqueInput, 'id'>;
+    take?: number;
+    skip?: number;
+    _count?: InstanceType<typeof InvitationImageCountAggregateInput>;
+    _avg?: InstanceType<typeof InvitationImageAvgAggregateInput>;
+    _sum?: InstanceType<typeof InvitationImageSumAggregateInput>;
+    _min?: InstanceType<typeof InvitationImageMinAggregateInput>;
+    _max?: InstanceType<typeof InvitationImageMaxAggregateInput>;
+}
+export declare class InvitationImageAvgAggregateInput {
+    id?: true;
+}
+export declare class InvitationImageAvgAggregate {
+    id?: number;
+}
+export declare class InvitationImageAvgOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
+}
+export declare class InvitationImageCountAggregateInput {
+    id?: true;
+    path?: true;
+    createdAt?: true;
+    guestId?: true;
+    _all?: true;
+}
+export declare class InvitationImageCountAggregate {
+    id: number;
+    path: number;
+    createdAt: number;
+    guestId: number;
+    _all: number;
+}
+export declare class InvitationImageCountOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
+    path?: keyof typeof SortOrder;
+    createdAt?: keyof typeof SortOrder;
+    guestId?: keyof typeof SortOrder;
+}
+export declare class InvitationImageCreateManyGuestInputEnvelope {
+    data: Array<InvitationImageCreateManyGuestInput>;
+    skipDuplicates?: boolean;
+}
+export declare class InvitationImageCreateManyGuestInput {
+    id?: number;
+    path: string;
+    createdAt?: Date | string;
+}
+export declare class InvitationImageCreateManyInput {
+    id?: number;
+    path: string;
+    createdAt?: Date | string;
+    guestId: string;
+}
+export declare class InvitationImageCreateNestedManyWithoutGuestInput {
+    create?: Array<InvitationImageCreateWithoutGuestInput>;
+    connectOrCreate?: Array<InvitationImageCreateOrConnectWithoutGuestInput>;
+    createMany?: InstanceType<typeof InvitationImageCreateManyGuestInputEnvelope>;
+    connect?: Array<Prisma.AtLeast<InvitationImageWhereUniqueInput, 'id'>>;
+}
+export declare class InvitationImageCreateOrConnectWithoutGuestInput {
+    where: Prisma.AtLeast<InvitationImageWhereUniqueInput, 'id'>;
+    create: InstanceType<typeof InvitationImageCreateWithoutGuestInput>;
+}
+export declare class InvitationImageCreateWithoutGuestInput {
+    path: string;
+    createdAt?: Date | string;
+}
+export declare class InvitationImageCreateInput {
+    path: string;
+    createdAt?: Date | string;
+    guest: InstanceType<typeof GuestCreateNestedOneWithoutInvitationImagesInput>;
+}
+export declare class InvitationImageGroupByArgs {
+    where?: InstanceType<typeof InvitationImageWhereInput>;
+    orderBy?: Array<InvitationImageOrderByWithAggregationInput>;
+    by: Array<keyof typeof InvitationImageScalarFieldEnum>;
+    having?: InstanceType<typeof InvitationImageScalarWhereWithAggregatesInput>;
+    take?: number;
+    skip?: number;
+    _count?: InstanceType<typeof InvitationImageCountAggregateInput>;
+    _avg?: InstanceType<typeof InvitationImageAvgAggregateInput>;
+    _sum?: InstanceType<typeof InvitationImageSumAggregateInput>;
+    _min?: InstanceType<typeof InvitationImageMinAggregateInput>;
+    _max?: InstanceType<typeof InvitationImageMaxAggregateInput>;
+}
+export declare class InvitationImageGroupBy {
+    id: number;
+    path: string;
+    createdAt: Date | string;
+    guestId: string;
+    _count?: InstanceType<typeof InvitationImageCountAggregate>;
+    _avg?: InstanceType<typeof InvitationImageAvgAggregate>;
+    _sum?: InstanceType<typeof InvitationImageSumAggregate>;
+    _min?: InstanceType<typeof InvitationImageMinAggregate>;
+    _max?: InstanceType<typeof InvitationImageMaxAggregate>;
+}
+export declare class InvitationImageListRelationFilter {
+    every?: InstanceType<typeof InvitationImageWhereInput>;
+    some?: InstanceType<typeof InvitationImageWhereInput>;
+    none?: InstanceType<typeof InvitationImageWhereInput>;
+}
+export declare class InvitationImageMaxAggregateInput {
+    id?: true;
+    path?: true;
+    createdAt?: true;
+    guestId?: true;
+}
+export declare class InvitationImageMaxAggregate {
+    id?: number;
+    path?: string;
+    createdAt?: Date | string;
+    guestId?: string;
+}
+export declare class InvitationImageMaxOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
+    path?: keyof typeof SortOrder;
+    createdAt?: keyof typeof SortOrder;
+    guestId?: keyof typeof SortOrder;
+}
+export declare class InvitationImageMinAggregateInput {
+    id?: true;
+    path?: true;
+    createdAt?: true;
+    guestId?: true;
+}
+export declare class InvitationImageMinAggregate {
+    id?: number;
+    path?: string;
+    createdAt?: Date | string;
+    guestId?: string;
+}
+export declare class InvitationImageMinOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
+    path?: keyof typeof SortOrder;
+    createdAt?: keyof typeof SortOrder;
+    guestId?: keyof typeof SortOrder;
+}
+export declare class InvitationImageOrderByRelationAggregateInput {
+    _count?: keyof typeof SortOrder;
+}
+export declare class InvitationImageOrderByWithAggregationInput {
+    id?: keyof typeof SortOrder;
+    path?: keyof typeof SortOrder;
+    createdAt?: keyof typeof SortOrder;
+    guestId?: keyof typeof SortOrder;
+    _count?: InstanceType<typeof InvitationImageCountOrderByAggregateInput>;
+    _avg?: InstanceType<typeof InvitationImageAvgOrderByAggregateInput>;
+    _max?: InstanceType<typeof InvitationImageMaxOrderByAggregateInput>;
+    _min?: InstanceType<typeof InvitationImageMinOrderByAggregateInput>;
+    _sum?: InstanceType<typeof InvitationImageSumOrderByAggregateInput>;
+}
+export declare class InvitationImageOrderByWithRelationInput {
+    id?: keyof typeof SortOrder;
+    path?: keyof typeof SortOrder;
+    createdAt?: keyof typeof SortOrder;
+    guestId?: keyof typeof SortOrder;
+    guest?: InstanceType<typeof GuestOrderByWithRelationInput>;
+}
+export declare class InvitationImageScalarWhereWithAggregatesInput {
+    AND?: Array<InvitationImageScalarWhereWithAggregatesInput>;
+    OR?: Array<InvitationImageScalarWhereWithAggregatesInput>;
+    NOT?: Array<InvitationImageScalarWhereWithAggregatesInput>;
+    id?: InstanceType<typeof IntWithAggregatesFilter>;
+    path?: InstanceType<typeof StringWithAggregatesFilter>;
+    createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
+    guestId?: InstanceType<typeof StringWithAggregatesFilter>;
+}
+export declare class InvitationImageScalarWhereInput {
+    AND?: Array<InvitationImageScalarWhereInput>;
+    OR?: Array<InvitationImageScalarWhereInput>;
+    NOT?: Array<InvitationImageScalarWhereInput>;
+    id?: InstanceType<typeof IntFilter>;
+    path?: InstanceType<typeof StringFilter>;
+    createdAt?: InstanceType<typeof DateTimeFilter>;
+    guestId?: InstanceType<typeof StringFilter>;
+}
+export declare class InvitationImageSumAggregateInput {
+    id?: true;
+}
+export declare class InvitationImageSumAggregate {
+    id?: number;
+}
+export declare class InvitationImageSumOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
+}
+export declare class InvitationImageUncheckedCreateNestedManyWithoutGuestInput {
+    create?: Array<InvitationImageCreateWithoutGuestInput>;
+    connectOrCreate?: Array<InvitationImageCreateOrConnectWithoutGuestInput>;
+    createMany?: InstanceType<typeof InvitationImageCreateManyGuestInputEnvelope>;
+    connect?: Array<Prisma.AtLeast<InvitationImageWhereUniqueInput, 'id'>>;
+}
+export declare class InvitationImageUncheckedCreateWithoutGuestInput {
+    id?: number;
+    path: string;
+    createdAt?: Date | string;
+}
+export declare class InvitationImageUncheckedCreateInput {
+    id?: number;
+    path: string;
+    createdAt?: Date | string;
+    guestId: string;
+}
+export declare class InvitationImageUncheckedUpdateManyWithoutGuestNestedInput {
+    create?: Array<InvitationImageCreateWithoutGuestInput>;
+    connectOrCreate?: Array<InvitationImageCreateOrConnectWithoutGuestInput>;
+    upsert?: Array<InvitationImageUpsertWithWhereUniqueWithoutGuestInput>;
+    createMany?: InstanceType<typeof InvitationImageCreateManyGuestInputEnvelope>;
+    set?: Array<Prisma.AtLeast<InvitationImageWhereUniqueInput, 'id'>>;
+    disconnect?: Array<Prisma.AtLeast<InvitationImageWhereUniqueInput, 'id'>>;
+    delete?: Array<Prisma.AtLeast<InvitationImageWhereUniqueInput, 'id'>>;
+    connect?: Array<Prisma.AtLeast<InvitationImageWhereUniqueInput, 'id'>>;
+    update?: Array<InvitationImageUpdateWithWhereUniqueWithoutGuestInput>;
+    updateMany?: Array<InvitationImageUpdateManyWithWhereWithoutGuestInput>;
+    deleteMany?: Array<InvitationImageScalarWhereInput>;
+}
+export declare class InvitationImageUncheckedUpdateManyWithoutGuestInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+}
+export declare class InvitationImageUncheckedUpdateManyInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    guestId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+}
+export declare class InvitationImageUncheckedUpdateWithoutGuestInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+}
+export declare class InvitationImageUncheckedUpdateInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    guestId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+}
+export declare class InvitationImageUpdateManyMutationInput {
+    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+}
+export declare class InvitationImageUpdateManyWithWhereWithoutGuestInput {
+    where: InstanceType<typeof InvitationImageScalarWhereInput>;
+    data: InstanceType<typeof InvitationImageUpdateManyMutationInput>;
+}
+export declare class InvitationImageUpdateManyWithoutGuestNestedInput {
+    create?: Array<InvitationImageCreateWithoutGuestInput>;
+    connectOrCreate?: Array<InvitationImageCreateOrConnectWithoutGuestInput>;
+    upsert?: Array<InvitationImageUpsertWithWhereUniqueWithoutGuestInput>;
+    createMany?: InstanceType<typeof InvitationImageCreateManyGuestInputEnvelope>;
+    set?: Array<Prisma.AtLeast<InvitationImageWhereUniqueInput, 'id'>>;
+    disconnect?: Array<Prisma.AtLeast<InvitationImageWhereUniqueInput, 'id'>>;
+    delete?: Array<Prisma.AtLeast<InvitationImageWhereUniqueInput, 'id'>>;
+    connect?: Array<Prisma.AtLeast<InvitationImageWhereUniqueInput, 'id'>>;
+    update?: Array<InvitationImageUpdateWithWhereUniqueWithoutGuestInput>;
+    updateMany?: Array<InvitationImageUpdateManyWithWhereWithoutGuestInput>;
+    deleteMany?: Array<InvitationImageScalarWhereInput>;
+}
+export declare class InvitationImageUpdateWithWhereUniqueWithoutGuestInput {
+    where: Prisma.AtLeast<InvitationImageWhereUniqueInput, 'id'>;
+    data: InstanceType<typeof InvitationImageUpdateWithoutGuestInput>;
+}
+export declare class InvitationImageUpdateWithoutGuestInput {
+    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+}
+export declare class InvitationImageUpdateInput {
+    path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    guest?: InstanceType<typeof GuestUpdateOneRequiredWithoutInvitationImagesNestedInput>;
+}
+export declare class InvitationImageUpsertWithWhereUniqueWithoutGuestInput {
+    where: Prisma.AtLeast<InvitationImageWhereUniqueInput, 'id'>;
+    update: InstanceType<typeof InvitationImageUpdateWithoutGuestInput>;
+    create: InstanceType<typeof InvitationImageCreateWithoutGuestInput>;
+}
+export declare class InvitationImageWhereUniqueInput {
+    id?: number;
+    AND?: Array<InvitationImageWhereInput>;
+    OR?: Array<InvitationImageWhereInput>;
+    NOT?: Array<InvitationImageWhereInput>;
+    path?: InstanceType<typeof StringFilter>;
+    createdAt?: InstanceType<typeof DateTimeFilter>;
+    guestId?: InstanceType<typeof StringFilter>;
+    guest?: InstanceType<typeof GuestRelationFilter>;
+}
+export declare class InvitationImageWhereInput {
+    AND?: Array<InvitationImageWhereInput>;
+    OR?: Array<InvitationImageWhereInput>;
+    NOT?: Array<InvitationImageWhereInput>;
+    id?: InstanceType<typeof IntFilter>;
+    path?: InstanceType<typeof StringFilter>;
+    createdAt?: InstanceType<typeof DateTimeFilter>;
+    guestId?: InstanceType<typeof StringFilter>;
+    guest?: InstanceType<typeof GuestRelationFilter>;
+}
+export declare class InvitationImage {
+    id: number;
+    path: string;
+    createdAt: Date;
+    guestId: string;
+    guest?: InstanceType<typeof Guest>;
+}
+export declare class UpdateManyInvitationImageArgs {
+    data: InstanceType<typeof InvitationImageUpdateManyMutationInput>;
+    where?: InstanceType<typeof InvitationImageWhereInput>;
+}
+export declare class UpdateOneInvitationImageArgs {
+    data: InstanceType<typeof InvitationImageUpdateInput>;
+    where: Prisma.AtLeast<InvitationImageWhereUniqueInput, 'id'>;
+}
+export declare class UpsertOneInvitationImageArgs {
+    where: Prisma.AtLeast<InvitationImageWhereUniqueInput, 'id'>;
+    create: InstanceType<typeof InvitationImageCreateInput>;
+    update: InstanceType<typeof InvitationImageUpdateInput>;
 }
 export declare class AffectedRows {
     count: number;
