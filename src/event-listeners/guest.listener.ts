@@ -1,15 +1,15 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { GuestEvents } from './enum/guest-event.enum';
-import { GuestController } from '../guest/guest.controller';
+import { GuestController } from '../services/guest/guest.controller';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as qrCode from 'qrcode';
-import { QrCodeController } from '../qr-code/qr-code.controller';
+import { QrCodeController } from '../services/qr-code/qr-code.controller';
 import { Prisma } from '@prisma/client';
 import sharp from 'sharp';
 import { Guest } from 'src/@generated';
-import { InvitationImageController } from '../invitation-image/invitation-image.controller';
+import { InvitationImageController } from '../services/invitation-image/invitation-image.controller';
 
 @Injectable()
 export class GuestListener {
@@ -34,6 +34,9 @@ export class GuestListener {
       // Define template and output folder paths
       const templateImagePath = 'files/template/template.jpeg';
       const outputFolder = 'files/invitation';
+
+      let invitationImagesCreateManyData: Prisma.InvitationImageCreateManyInput[] =
+        [];
 
       // Process each QR code data
       for (const qrCodeData of qrCodeDataToInsert) {
@@ -60,12 +63,17 @@ export class GuestListener {
         }_invitation.png`;
         const outputPath = path.join(outputFolder, mergedImageFileName);
 
-        // Save the merged image path to the database
-        await this.saveInvitationImageToDatabase(
-          qrCodeData.guestId,
-          outputPath,
-        );
+        // Save the merged invitation image path to the database
+        invitationImagesCreateManyData.push({
+          path: outputPath,
+          guestId: qrCodeData.guestId,
+        });
       }
+
+      // Insert InvitationImages into the database
+      await this.invitationImagesController.createMany({
+        data: invitationImagesCreateManyData,
+      });
 
       // Insert QR codes into the database
       await this.insertQrCodes(qrCodeDataToInsert);
@@ -178,19 +186,6 @@ export class GuestListener {
         },
       ])
       .toFile(outputPath);
-  }
-
-  // Save the merged invitation image path to the database
-  private async saveInvitationImageToDatabase(
-    guestId: string,
-    imagePath: string,
-  ) {
-    await this.invitationImagesController.createOne({
-      data: {
-        path: imagePath,
-        guest: { connect: { id: guestId } },
-      },
-    });
   }
 
   // Truncate or pad guestNameText to a maximum of 9 characters with spacing

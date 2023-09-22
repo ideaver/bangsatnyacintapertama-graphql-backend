@@ -13,6 +13,11 @@
         "include": "../src/services/email/templates/",
         "outDir": "dist/src/",
         "watchAssets": true
+      },
+      {
+        "include": "../files/",
+        "outDir": "dist/files/",
+        "watchAssets": true
       }
     ],
     "deleteOutDir": true

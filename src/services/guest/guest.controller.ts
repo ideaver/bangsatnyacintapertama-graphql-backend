@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { GuestService } from './guest.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import { GuestEvents } from '../event-listeners/enum/guest-event.enum';
+import { GuestEvents } from '../../event-listeners/enum/guest-event.enum';
 
 @Injectable()
 export class GuestController {
