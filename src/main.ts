@@ -3,6 +3,8 @@ import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
 import { IExceptionFilter } from './utils/exception/custom-exception-filter';
 import { ConfigService } from '@nestjs/config';
+import * as express from 'express'; // Import the 'express' module
+import { join } from 'path'; // Import the 'path' module
 // Ignore the import error
 // @ts-ignore
 import { graphqlUploadExpress } from 'graphql-upload';
@@ -15,6 +17,12 @@ async function bootstrap() {
 
   const port = configService.get<number>('APP_PORT');
   const environment = configService.get<string>('NODE_ENV');
+
+  // // Define the path to the static folder you want to expose
+  // const staticFolder = join(__dirname, '..', 'public'); // Adjust the folder path as needed
+
+  // // Serve static files from the 'public' folder at the root URL
+  // app.use(express.static(staticFolder));
   app.enableCors();
   app.use(
     graphqlUploadExpress({

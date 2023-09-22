@@ -81,6 +81,7 @@ export const errorCodes: Record<number, string> = {
   //S3 & uploader
   160001: 'Gagal Upload File. Silahkan coba lagi',
   160002: 'Harap upload gambar dengan format .jpg, .jpeg, atau .png',
+  160003: 'Tidak ditemukan file yang harus diproses',
   170001: 'Invalid bucket name in URL',
   170002: 'Invalid URL format for getting file metadata',
   170003: 'Gagal hapus file di storage',

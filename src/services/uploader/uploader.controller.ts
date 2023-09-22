@@ -31,9 +31,13 @@ export class UploaderController {
     ratioForImage?: RatioEnum,
   ) {
     // Validate user id
-    await this.validateUserId(userId);
+    // await this.validateUserId(userId);
 
     const { filename } = await file;
+
+    if (!filename) {
+      throw new IGraphQLError({ code: 160003 });
+    }
 
     // Identify the file type based on the file's extension or MIME type
     let fileExt = detectMimeTypeFromFilename(filename);
