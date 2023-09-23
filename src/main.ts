@@ -18,11 +18,10 @@ async function bootstrap() {
   const port = configService.get<number>('APP_PORT');
   const environment = configService.get<string>('NODE_ENV');
 
-  // // Define the path to the static folder you want to expose
-  // const staticFolder = join(__dirname, '..', 'public'); // Adjust the folder path as needed
+  const staticFolder = join(__dirname, '..', 'files', 'invitation');
 
-  // // Serve static files from the 'public' folder at the root URL
-  // app.use(express.static(staticFolder));
+  // Serve static files from the 'files/invitation' folder at /files/invitation URL
+  app.use('/files/invitation', express.static(staticFolder));
   app.enableCors();
   app.use(
     graphqlUploadExpress({
