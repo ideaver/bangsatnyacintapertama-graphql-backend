@@ -5,7 +5,7 @@ import { FileUpload } from 'graphql-upload';
 import { RatioEnum } from './enums/ratio.enum';
 import { IGraphQLError } from 'src/utils/exception/custom-graphql-error';
 import Excel from 'exceljs';
-import { Guest, User } from 'src/@generated';
+import { User } from 'src/@generated';
 import { v4 as uuidV4 } from 'uuid';
 import { Prisma } from '@prisma/client';
 import {
@@ -35,6 +35,7 @@ export class UploaderController {
 
     const { filename } = await file;
 
+    // If the file name is null, throw an error
     if (!filename) {
       throw new IGraphQLError({ code: 160003 });
     }
@@ -68,22 +69,39 @@ export class UploaderController {
     await workbook.xlsx.read(stream);
 
     const worksheet = workbook.getWorksheet(1);
+
     const guestCreateManyInput: Prisma.GuestCreateManyInput[] = [];
+
+    let previousGuest: Prisma.GuestCreateManyInput | undefined;
 
     worksheet.eachRow((row, rowNumber) => {
       const uuid = uuidV4();
+      const excel = {
+        source: row.getCell(1).text,
+        invitationName: row.getCell(2).text,
+        contactList: row.getCell(3).text,
+        category: row.getCell(4).text,
+        whatsapp: row.getCell(5).text ? parseInt(row.getCell(5).text) : null,
+        studio: row.getCell(6).text,
+        seat: row.getCell(7).text,
+        showTime: row.getCell(8).text,
+      };
+
       if (rowNumber > 1) {
-        const guest: Guest = {
+        const guest: Prisma.GuestCreateManyInput = {
           id: uuid,
-          invitationName: row.getCell(2).text,
-          whatsapp: row.getCell(5).text ? parseInt(row.getCell(5).text) : null,
-          source: row.getCell(1).text,
-          contactList: row.getCell(3).text,
-          category: row.getCell(4).text,
-          class: row.getCell(9).text,
-          seat: row.getCell(8).text,
-          studio: row.getCell(7).text ? parseInt(row.getCell(7).text) : null,
-          parties: row.getCell(6).text ? parseInt(row.getCell(6).text) : 1,
+          invitationName: excel.invitationName,
+          whatsapp: excel.whatsapp,
+          source: excel.source,
+          contactList: excel.contactList,
+          category: excel.category,
+          seat: excel.seat,
+          studio: excel.studio,
+          showTime: excel.showTime,
+          groupMemberOfId:
+            previousGuest && excel.whatsapp === previousGuest.whatsapp
+              ? previousGuest.id
+              : undefined,
           confirmationStatus: null,
           rejectionReason: null,
           createdAt: new Date(),
@@ -91,12 +109,16 @@ export class UploaderController {
           deletedAt: null,
         };
 
+        if (previousGuest && excel.whatsapp === previousGuest.whatsapp) {
+        } else {
+          previousGuest = guest;
+        }
+
         guestCreateManyInput.push(guest);
       }
     });
 
     return await this.guestController.createMany({
-      skipDuplicates: true,
       data: guestCreateManyInput,
     });
   }

@@ -54,8 +54,9 @@ export class GuestListener {
           qrCodeData.path,
           outputFolder,
           qrCodeData,
-          this.limitGuestName(guest.invitationName), // Use guest's invitationName
+          guest.invitationName, // Use guest's invitationName
           `STUDIO ${guest.studio} / ${guest.seat}`, // Use guest's studio and seat
+          guest.showTime, // Use guest's showTime
         );
 
         const mergedImageFileName = `${qrCodeData.guestId}_Party${
@@ -93,24 +94,24 @@ export class GuestListener {
   private async generateAndSaveQrCodesToFolder(guests: Guest[]) {
     const qrCodeDataToInsert: Prisma.QrCodeCreateManyInput[] = [];
 
-    for (const guest of guests) {
-      const qrCodeData = guest.id;
+    // for (const guest of guests) {
+    //   const qrCodeData = guest.id;
 
-      for (let i = 1; i <= guest.parties; i++) {
-        const qrCodeUrl = await qrCode.toDataURL(qrCodeData);
-        const qrCodeFolder = 'files/qrcodes';
-        const qrCodeFileName = `${guest.id}_Party${i}.png`;
-        const qrCodeFilePath = path.join(qrCodeFolder, qrCodeFileName);
+    //   for (let i = 1; i <= guest.parties; i++) {
+    //     const qrCodeUrl = await qrCode.toDataURL(qrCodeData);
+    //     const qrCodeFolder = 'files/qrcodes';
+    //     const qrCodeFileName = `${guest.id}_Party${i}.png`;
+    //     const qrCodeFilePath = path.join(qrCodeFolder, qrCodeFileName);
 
-        fs.mkdirSync(qrCodeFolder, { recursive: true });
-        fs.writeFileSync(qrCodeFilePath, qrCodeUrl.split(',')[1], 'base64');
+    //     fs.mkdirSync(qrCodeFolder, { recursive: true });
+    //     fs.writeFileSync(qrCodeFilePath, qrCodeUrl.split(',')[1], 'base64');
 
-        qrCodeDataToInsert.push({
-          path: qrCodeFilePath,
-          guestId: guest.id,
-        });
-      }
-    }
+    //     qrCodeDataToInsert.push({
+    //       path: qrCodeFilePath,
+    //       guestId: guest.id,
+    //     });
+    //   }
+    // }
 
     return qrCodeDataToInsert;
   }
@@ -132,6 +133,7 @@ export class GuestListener {
     qrCodeData: Prisma.QrCodeCreateManyInput,
     guestNameText: string,
     studioAndSeatText?: string,
+    showTimeText?: string,
   ) {
     const mergedImageFileName = `${qrCodeData.guestId}_Party${
       qrCodeData.path.match(/Party(\d+)\.png/)[1]
@@ -165,12 +167,31 @@ export class GuestListener {
 
     const seatBuffer = Buffer.from(seatSvg);
 
+    const showTimeSvg = `
+    <svg width="200" height="52" xmlns="http://www.w3.org/2000/svg">
+  <!-- Text content -->
+  <text x="10" y="20" font-family="Concert One" font-size="12" font-weight="bold" fill="#ED235D">
+    SHOWTIME
+  </text>
+  <text x="10" y="40" font-family="Concert One" font-size="20" font-weight="bold" fill="#ED235D">
+  ${showTimeText}
+  </text>
+</svg>
+    `;
+
+    const showTimeBuffer = Buffer.from(showTimeSvg);
+
     await sharp(templateImagePath)
       .composite([
         {
           input: guestNameBuffer,
           top: 145,
           left: 57,
+        },
+        {
+          input: showTimeBuffer,
+          top: 1120,
+          left: 200,
         },
         studioAndSeatText
           ? {
@@ -188,16 +209,16 @@ export class GuestListener {
       .toFile(outputPath);
   }
 
-  // Truncate or pad guestNameText to a maximum of 9 characters with spacing
-  private limitGuestName(guestNameText: string): string {
-    const maxLength = 9;
-    if (guestNameText.length > maxLength) {
-      // Truncate if longer than maxLength
-      guestNameText = guestNameText.slice(0, maxLength);
-    } else {
-      // Pad with spaces if shorter than maxLength
-      guestNameText = guestNameText.padEnd(maxLength, ' ');
-    }
-    return guestNameText;
-  }
+  // // Truncate or pad guestNameText to a maximum of 9 characters with spacing
+  // private limitGuestName(guestNameText: string): string {
+  //   const maxLength = 12;
+  //   if (guestNameText.length > maxLength) {
+  //     // Truncate if longer than maxLength
+  //     guestNameText = guestNameText.slice(0, maxLength);
+  //   } else {
+  //     // Pad with spaces if shorter than maxLength
+  //     guestNameText = guestNameText.padEnd(maxLength, ' ');
+  //   }
+  //   return guestNameText;
+  // }
 }

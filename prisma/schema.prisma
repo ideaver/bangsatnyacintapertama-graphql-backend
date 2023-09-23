@@ -71,7 +71,7 @@ model Guest {
 
   contactList String?
 
-  whatsapp Float? @unique
+  whatsapp Float
 
   category String?
 
@@ -79,11 +79,11 @@ model Guest {
 
   seat String?
 
-  studio Int?
+  studio String?
+
+  showTime String?
 
   rejectionReason String?
-
-  parties Int @default(1)
 
   createdAt DateTime @default(now())
 
@@ -93,9 +93,15 @@ model Guest {
 
   //-------------------------- 1 relations --------------------------------
 
+  groupMemberOfId String?
+
+  groupMemberOf Guest? @relation("GroupMembers", fields: [groupMemberOfId], references: [id])
+
   confirmationStatus ConfirmationStatus? @default(UNCONFIRMED)
 
   //-------------------------- m relations --------------------------------
+
+  groupMembers Guest[] @relation("GroupMembers")
 
   qrcodes QrCode[]
 

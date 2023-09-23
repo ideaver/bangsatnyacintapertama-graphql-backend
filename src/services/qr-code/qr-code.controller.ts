@@ -55,11 +55,11 @@ export class QrCodeController {
     return await this.qrCodeService.count(qrCodeCountArgs);
   }
 
-  async scan(userId: string): Promise<ScanResponse> {
+  async scan(guestId: string): Promise<ScanResponse> {
     // get the first qr code that matches the user id and has not been scanned
     const qrCode = await this.qrCodeService.findFirst({
       where: {
-        guestId: { equals: userId },
+        guestId: { equals: guestId },
         scannedAt: { equals: null },
       },
       include: { guest: true, scannedBy: true },

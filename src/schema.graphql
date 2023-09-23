@@ -63,8 +63,6 @@ type AggregateGuest {
 
 type GuestAvgAggregate {
   whatsapp: Float
-  studio: Float
-  parties: Float
 }
 
 type GuestCountAggregate {
@@ -77,16 +75,18 @@ type GuestCountAggregate {
   class: Int!
   seat: Int!
   studio: Int!
+  showTime: Int!
   rejectionReason: Int!
-  parties: Int!
   createdAt: Int!
   updatedAt: Int!
   deletedAt: Int!
+  groupMemberOfId: Int!
   confirmationStatus: Int!
   _all: Int!
 }
 
 type GuestCount {
+  groupMembers: Int!
   qrcodes: Int!
   invitationImages: Int!
   emailQueue: Int!
@@ -102,12 +102,13 @@ type GuestMaxAggregate {
   category: String
   class: String
   seat: String
-  studio: Int
+  studio: String
+  showTime: String
   rejectionReason: String
-  parties: Int
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
+  groupMemberOfId: String
   confirmationStatus: ConfirmationStatus
 }
 
@@ -126,19 +127,18 @@ type GuestMinAggregate {
   category: String
   class: String
   seat: String
-  studio: Int
+  studio: String
+  showTime: String
   rejectionReason: String
-  parties: Int
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
+  groupMemberOfId: String
   confirmationStatus: ConfirmationStatus
 }
 
 type GuestSumAggregate {
   whatsapp: Float
-  studio: Int
-  parties: Int
 }
 
 type Guest {
@@ -146,17 +146,20 @@ type Guest {
   source: String
   invitationName: String!
   contactList: String
-  whatsapp: Float
+  whatsapp: Float!
   category: String
   class: String
   seat: String
-  studio: Int
+  studio: String
+  showTime: String
   rejectionReason: String
-  parties: Int!
   createdAt: DateTime!
   updatedAt: DateTime
   deletedAt: DateTime
+  groupMemberOfId: String
   confirmationStatus: ConfirmationStatus
+  groupMemberOf: Guest
+  groupMembers: [Guest!]
   qrcodes: [QrCode!]
   invitationImages: [InvitationImage!]
   emailQueue: [EmailQueue!]
@@ -428,7 +431,7 @@ type Query {
   qrCodeCount(where: QrCodeWhereInput, orderBy: [QrCodeOrderByWithRelationInput!], cursor: QrCodeWhereUniqueInput, take: Int, skip: Int, distinct: [QrCodeScalarFieldEnum!]): Float
 
   """Deskripsinya ada disini loh"""
-  qrCodeScan(userId: String!): ScanResponse
+  qrCodeScan(guestId: String!): ScanResponse
 
   """Deskripsinya ada disini loh"""
   userFindOne(where: UserWhereUniqueInput!): User
@@ -481,23 +484,26 @@ type Query {
 
 input GuestWhereUniqueInput {
   id: String
-  whatsapp: Float
   AND: [GuestWhereInput!]
   OR: [GuestWhereInput!]
   NOT: [GuestWhereInput!]
   source: StringNullableFilter
   invitationName: StringFilter
   contactList: StringNullableFilter
+  whatsapp: FloatFilter
   category: StringNullableFilter
   class: StringNullableFilter
   seat: StringNullableFilter
-  studio: IntNullableFilter
+  studio: StringNullableFilter
+  showTime: StringNullableFilter
   rejectionReason: StringNullableFilter
-  parties: IntFilter
   createdAt: DateTimeFilter
   updatedAt: DateTimeNullableFilter
   deletedAt: DateTimeNullableFilter
+  groupMemberOfId: StringNullableFilter
   confirmationStatus: EnumConfirmationStatusNullableFilter
+  groupMemberOf: GuestNullableRelationFilter
+  groupMembers: GuestListRelationFilter
   qrcodes: QrCodeListRelationFilter
   invitationImages: InvitationImageListRelationFilter
   emailQueue: EmailQueueListRelationFilter
@@ -512,17 +518,20 @@ input GuestWhereInput {
   source: StringNullableFilter
   invitationName: StringFilter
   contactList: StringNullableFilter
-  whatsapp: FloatNullableFilter
+  whatsapp: FloatFilter
   category: StringNullableFilter
   class: StringNullableFilter
   seat: StringNullableFilter
-  studio: IntNullableFilter
+  studio: StringNullableFilter
+  showTime: StringNullableFilter
   rejectionReason: StringNullableFilter
-  parties: IntFilter
   createdAt: DateTimeFilter
   updatedAt: DateTimeNullableFilter
   deletedAt: DateTimeNullableFilter
+  groupMemberOfId: StringNullableFilter
   confirmationStatus: EnumConfirmationStatusNullableFilter
+  groupMemberOf: GuestNullableRelationFilter
+  groupMembers: GuestListRelationFilter
   qrcodes: QrCodeListRelationFilter
   invitationImages: InvitationImageListRelationFilter
   emailQueue: EmailQueueListRelationFilter
@@ -585,7 +594,7 @@ input NestedStringNullableFilter {
   not: NestedStringNullableFilter
 }
 
-input FloatNullableFilter {
+input FloatFilter {
   equals: Float
   in: [Float!]
   notIn: [Float!]
@@ -593,10 +602,10 @@ input FloatNullableFilter {
   lte: Float
   gt: Float
   gte: Float
-  not: NestedFloatNullableFilter
+  not: NestedFloatFilter
 }
 
-input NestedFloatNullableFilter {
+input NestedFloatFilter {
   equals: Float
   in: [Float!]
   notIn: [Float!]
@@ -604,51 +613,7 @@ input NestedFloatNullableFilter {
   lte: Float
   gt: Float
   gte: Float
-  not: NestedFloatNullableFilter
-}
-
-input IntNullableFilter {
-  equals: Int
-  in: [Int!]
-  notIn: [Int!]
-  lt: Int
-  lte: Int
-  gt: Int
-  gte: Int
-  not: NestedIntNullableFilter
-}
-
-input NestedIntNullableFilter {
-  equals: Int
-  in: [Int!]
-  notIn: [Int!]
-  lt: Int
-  lte: Int
-  gt: Int
-  gte: Int
-  not: NestedIntNullableFilter
-}
-
-input IntFilter {
-  equals: Int
-  in: [Int!]
-  notIn: [Int!]
-  lt: Int
-  lte: Int
-  gt: Int
-  gte: Int
-  not: NestedIntFilter
-}
-
-input NestedIntFilter {
-  equals: Int
-  in: [Int!]
-  notIn: [Int!]
-  lt: Int
-  lte: Int
-  gt: Int
-  gte: Int
-  not: NestedIntFilter
+  not: NestedFloatFilter
 }
 
 input DateTimeFilter {
@@ -709,6 +674,17 @@ input NestedEnumConfirmationStatusNullableFilter {
   not: NestedEnumConfirmationStatusNullableFilter
 }
 
+input GuestNullableRelationFilter {
+  is: GuestWhereInput
+  isNot: GuestWhereInput
+}
+
+input GuestListRelationFilter {
+  every: GuestWhereInput
+  some: GuestWhereInput
+  none: GuestWhereInput
+}
+
 input QrCodeListRelationFilter {
   every: QrCodeWhereInput
   some: QrCodeWhereInput
@@ -728,6 +704,28 @@ input QrCodeWhereInput {
   scannedByUserId: StringNullableFilter
   guest: GuestRelationFilter
   scannedBy: UserNullableRelationFilter
+}
+
+input IntFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntFilter
+}
+
+input NestedIntFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: NestedIntFilter
 }
 
 input GuestRelationFilter {
@@ -839,17 +837,20 @@ input GuestOrderByWithRelationInput {
   source: SortOrderInput
   invitationName: SortOrder
   contactList: SortOrderInput
-  whatsapp: SortOrderInput
+  whatsapp: SortOrder
   category: SortOrderInput
   class: SortOrderInput
   seat: SortOrderInput
   studio: SortOrderInput
+  showTime: SortOrderInput
   rejectionReason: SortOrderInput
-  parties: SortOrder
   createdAt: SortOrder
   updatedAt: SortOrderInput
   deletedAt: SortOrderInput
+  groupMemberOfId: SortOrderInput
   confirmationStatus: SortOrderInput
+  groupMemberOf: GuestOrderByWithRelationInput
+  groupMembers: GuestOrderByRelationAggregateInput
   qrcodes: QrCodeOrderByRelationAggregateInput
   invitationImages: InvitationImageOrderByRelationAggregateInput
   emailQueue: EmailQueueOrderByRelationAggregateInput
@@ -869,6 +870,10 @@ input SortOrderInput {
 enum NullsOrder {
   first
   last
+}
+
+input GuestOrderByRelationAggregateInput {
+  _count: SortOrder
 }
 
 input QrCodeOrderByRelationAggregateInput {
@@ -897,11 +902,12 @@ enum GuestScalarFieldEnum {
   class
   seat
   studio
+  showTime
   rejectionReason
-  parties
   createdAt
   updatedAt
   deletedAt
+  groupMemberOfId
   confirmationStatus
 }
 
@@ -915,25 +921,22 @@ input GuestCountAggregateInput {
   class: Boolean
   seat: Boolean
   studio: Boolean
+  showTime: Boolean
   rejectionReason: Boolean
-  parties: Boolean
   createdAt: Boolean
   updatedAt: Boolean
   deletedAt: Boolean
+  groupMemberOfId: Boolean
   confirmationStatus: Boolean
   _all: Boolean
 }
 
 input GuestAvgAggregateInput {
   whatsapp: Boolean
-  studio: Boolean
-  parties: Boolean
 }
 
 input GuestSumAggregateInput {
   whatsapp: Boolean
-  studio: Boolean
-  parties: Boolean
 }
 
 input GuestMinAggregateInput {
@@ -946,11 +949,12 @@ input GuestMinAggregateInput {
   class: Boolean
   seat: Boolean
   studio: Boolean
+  showTime: Boolean
   rejectionReason: Boolean
-  parties: Boolean
   createdAt: Boolean
   updatedAt: Boolean
   deletedAt: Boolean
+  groupMemberOfId: Boolean
   confirmationStatus: Boolean
 }
 
@@ -964,11 +968,12 @@ input GuestMaxAggregateInput {
   class: Boolean
   seat: Boolean
   studio: Boolean
+  showTime: Boolean
   rejectionReason: Boolean
-  parties: Boolean
   createdAt: Boolean
   updatedAt: Boolean
   deletedAt: Boolean
+  groupMemberOfId: Boolean
   confirmationStatus: Boolean
 }
 
@@ -1359,17 +1364,48 @@ input GuestCreateInput {
   source: String
   invitationName: String!
   contactList: String
-  whatsapp: Float
+  whatsapp: Float!
   category: String
   class: String
   seat: String
-  studio: Int
+  studio: String
+  showTime: String
   rejectionReason: String
-  parties: Int
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
   confirmationStatus: ConfirmationStatus
+  groupMemberOf: GuestCreateNestedOneWithoutGroupMembersInput
+  groupMembers: GuestCreateNestedManyWithoutGroupMemberOfInput
+  qrcodes: QrCodeCreateNestedManyWithoutGuestInput
+  invitationImages: InvitationImageCreateNestedManyWithoutGuestInput
+  emailQueue: EmailQueueCreateNestedManyWithoutGuestInput
+  whatsappQueue: WhatsappQueueCreateNestedManyWithoutGuestInput
+}
+
+input GuestCreateNestedOneWithoutGroupMembersInput {
+  create: GuestCreateWithoutGroupMembersInput
+  connectOrCreate: GuestCreateOrConnectWithoutGroupMembersInput
+  connect: GuestWhereUniqueInput
+}
+
+input GuestCreateWithoutGroupMembersInput {
+  id: String
+  source: String
+  invitationName: String!
+  contactList: String
+  whatsapp: Float!
+  category: String
+  class: String
+  seat: String
+  studio: String
+  showTime: String
+  rejectionReason: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  confirmationStatus: ConfirmationStatus
+  groupMemberOf: GuestCreateNestedOneWithoutGroupMembersInput
   qrcodes: QrCodeCreateNestedManyWithoutGuestInput
   invitationImages: InvitationImageCreateNestedManyWithoutGuestInput
   emailQueue: EmailQueueCreateNestedManyWithoutGuestInput
@@ -1527,21 +1563,85 @@ input WhatsappQueueCreateManyGuestInput {
   status: QueueStatus
 }
 
+input GuestCreateOrConnectWithoutGroupMembersInput {
+  where: GuestWhereUniqueInput!
+  create: GuestCreateWithoutGroupMembersInput!
+}
+
+input GuestCreateNestedManyWithoutGroupMemberOfInput {
+  create: [GuestCreateWithoutGroupMemberOfInput!]
+  connectOrCreate: [GuestCreateOrConnectWithoutGroupMemberOfInput!]
+  createMany: GuestCreateManyGroupMemberOfInputEnvelope
+  connect: [GuestWhereUniqueInput!]
+}
+
+input GuestCreateWithoutGroupMemberOfInput {
+  id: String
+  source: String
+  invitationName: String!
+  contactList: String
+  whatsapp: Float!
+  category: String
+  class: String
+  seat: String
+  studio: String
+  showTime: String
+  rejectionReason: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  confirmationStatus: ConfirmationStatus
+  groupMembers: GuestCreateNestedManyWithoutGroupMemberOfInput
+  qrcodes: QrCodeCreateNestedManyWithoutGuestInput
+  invitationImages: InvitationImageCreateNestedManyWithoutGuestInput
+  emailQueue: EmailQueueCreateNestedManyWithoutGuestInput
+  whatsappQueue: WhatsappQueueCreateNestedManyWithoutGuestInput
+}
+
+input GuestCreateOrConnectWithoutGroupMemberOfInput {
+  where: GuestWhereUniqueInput!
+  create: GuestCreateWithoutGroupMemberOfInput!
+}
+
+input GuestCreateManyGroupMemberOfInputEnvelope {
+  data: [GuestCreateManyGroupMemberOfInput!]!
+  skipDuplicates: Boolean
+}
+
+input GuestCreateManyGroupMemberOfInput {
+  id: String
+  source: String
+  invitationName: String!
+  contactList: String
+  whatsapp: Float!
+  category: String
+  class: String
+  seat: String
+  studio: String
+  showTime: String
+  rejectionReason: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+  confirmationStatus: ConfirmationStatus
+}
+
 input GuestCreateManyInput {
   id: String
   source: String
   invitationName: String!
   contactList: String
-  whatsapp: Float
+  whatsapp: Float!
   category: String
   class: String
   seat: String
-  studio: Int
+  studio: String
+  showTime: String
   rejectionReason: String
-  parties: Int
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
+  groupMemberOfId: String
   confirmationStatus: ConfirmationStatus
 }
 
@@ -1550,17 +1650,19 @@ input GuestUpdateInput {
   source: NullableStringFieldUpdateOperationsInput
   invitationName: StringFieldUpdateOperationsInput
   contactList: NullableStringFieldUpdateOperationsInput
-  whatsapp: NullableFloatFieldUpdateOperationsInput
+  whatsapp: FloatFieldUpdateOperationsInput
   category: NullableStringFieldUpdateOperationsInput
   class: NullableStringFieldUpdateOperationsInput
   seat: NullableStringFieldUpdateOperationsInput
-  studio: NullableIntFieldUpdateOperationsInput
+  studio: NullableStringFieldUpdateOperationsInput
+  showTime: NullableStringFieldUpdateOperationsInput
   rejectionReason: NullableStringFieldUpdateOperationsInput
-  parties: IntFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   updatedAt: NullableDateTimeFieldUpdateOperationsInput
   deletedAt: NullableDateTimeFieldUpdateOperationsInput
   confirmationStatus: NullableEnumConfirmationStatusFieldUpdateOperationsInput
+  groupMemberOf: GuestUpdateOneWithoutGroupMembersNestedInput
+  groupMembers: GuestUpdateManyWithoutGroupMemberOfNestedInput
   qrcodes: QrCodeUpdateManyWithoutGuestNestedInput
   invitationImages: InvitationImageUpdateManyWithoutGuestNestedInput
   emailQueue: EmailQueueUpdateManyWithoutGuestNestedInput
@@ -1575,28 +1677,12 @@ input NullableStringFieldUpdateOperationsInput {
   set: String
 }
 
-input NullableFloatFieldUpdateOperationsInput {
+input FloatFieldUpdateOperationsInput {
   set: Float
   increment: Float
   decrement: Float
   multiply: Float
   divide: Float
-}
-
-input NullableIntFieldUpdateOperationsInput {
-  set: Int
-  increment: Int
-  decrement: Int
-  multiply: Int
-  divide: Int
-}
-
-input IntFieldUpdateOperationsInput {
-  set: Int
-  increment: Int
-  decrement: Int
-  multiply: Int
-  divide: Int
 }
 
 input DateTimeFieldUpdateOperationsInput {
@@ -1609,6 +1695,45 @@ input NullableDateTimeFieldUpdateOperationsInput {
 
 input NullableEnumConfirmationStatusFieldUpdateOperationsInput {
   set: ConfirmationStatus
+}
+
+input GuestUpdateOneWithoutGroupMembersNestedInput {
+  create: GuestCreateWithoutGroupMembersInput
+  connectOrCreate: GuestCreateOrConnectWithoutGroupMembersInput
+  upsert: GuestUpsertWithoutGroupMembersInput
+  disconnect: GuestWhereInput
+  delete: GuestWhereInput
+  connect: GuestWhereUniqueInput
+  update: GuestUpdateToOneWithWhereWithoutGroupMembersInput
+}
+
+input GuestUpsertWithoutGroupMembersInput {
+  update: GuestUpdateWithoutGroupMembersInput!
+  create: GuestCreateWithoutGroupMembersInput!
+  where: GuestWhereInput
+}
+
+input GuestUpdateWithoutGroupMembersInput {
+  id: StringFieldUpdateOperationsInput
+  source: NullableStringFieldUpdateOperationsInput
+  invitationName: StringFieldUpdateOperationsInput
+  contactList: NullableStringFieldUpdateOperationsInput
+  whatsapp: FloatFieldUpdateOperationsInput
+  category: NullableStringFieldUpdateOperationsInput
+  class: NullableStringFieldUpdateOperationsInput
+  seat: NullableStringFieldUpdateOperationsInput
+  studio: NullableStringFieldUpdateOperationsInput
+  showTime: NullableStringFieldUpdateOperationsInput
+  rejectionReason: NullableStringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: NullableDateTimeFieldUpdateOperationsInput
+  deletedAt: NullableDateTimeFieldUpdateOperationsInput
+  confirmationStatus: NullableEnumConfirmationStatusFieldUpdateOperationsInput
+  groupMemberOf: GuestUpdateOneWithoutGroupMembersNestedInput
+  qrcodes: QrCodeUpdateManyWithoutGuestNestedInput
+  invitationImages: InvitationImageUpdateManyWithoutGuestNestedInput
+  emailQueue: EmailQueueUpdateManyWithoutGuestNestedInput
+  whatsappQueue: WhatsappQueueUpdateManyWithoutGuestNestedInput
 }
 
 input QrCodeUpdateManyWithoutGuestNestedInput {
@@ -1637,6 +1762,14 @@ input QrCodeUpdateWithoutGuestInput {
   createdAt: DateTimeFieldUpdateOperationsInput
   raceConditionValue: IntFieldUpdateOperationsInput
   scannedBy: UserUpdateOneWithoutScannedQrsNestedInput
+}
+
+input IntFieldUpdateOperationsInput {
+  set: Int
+  increment: Int
+  decrement: Int
+  multiply: Int
+  divide: Int
 }
 
 input UserUpdateOneWithoutScannedQrsNestedInput {
@@ -1859,18 +1992,98 @@ input WhatsappQueueUpdateManyMutationInput {
   status: EnumQueueStatusFieldUpdateOperationsInput
 }
 
+input GuestUpdateToOneWithWhereWithoutGroupMembersInput {
+  where: GuestWhereInput
+  data: GuestUpdateWithoutGroupMembersInput!
+}
+
+input GuestUpdateManyWithoutGroupMemberOfNestedInput {
+  create: [GuestCreateWithoutGroupMemberOfInput!]
+  connectOrCreate: [GuestCreateOrConnectWithoutGroupMemberOfInput!]
+  upsert: [GuestUpsertWithWhereUniqueWithoutGroupMemberOfInput!]
+  createMany: GuestCreateManyGroupMemberOfInputEnvelope
+  set: [GuestWhereUniqueInput!]
+  disconnect: [GuestWhereUniqueInput!]
+  delete: [GuestWhereUniqueInput!]
+  connect: [GuestWhereUniqueInput!]
+  update: [GuestUpdateWithWhereUniqueWithoutGroupMemberOfInput!]
+  updateMany: [GuestUpdateManyWithWhereWithoutGroupMemberOfInput!]
+  deleteMany: [GuestScalarWhereInput!]
+}
+
+input GuestUpsertWithWhereUniqueWithoutGroupMemberOfInput {
+  where: GuestWhereUniqueInput!
+  update: GuestUpdateWithoutGroupMemberOfInput!
+  create: GuestCreateWithoutGroupMemberOfInput!
+}
+
+input GuestUpdateWithoutGroupMemberOfInput {
+  id: StringFieldUpdateOperationsInput
+  source: NullableStringFieldUpdateOperationsInput
+  invitationName: StringFieldUpdateOperationsInput
+  contactList: NullableStringFieldUpdateOperationsInput
+  whatsapp: FloatFieldUpdateOperationsInput
+  category: NullableStringFieldUpdateOperationsInput
+  class: NullableStringFieldUpdateOperationsInput
+  seat: NullableStringFieldUpdateOperationsInput
+  studio: NullableStringFieldUpdateOperationsInput
+  showTime: NullableStringFieldUpdateOperationsInput
+  rejectionReason: NullableStringFieldUpdateOperationsInput
+  createdAt: DateTimeFieldUpdateOperationsInput
+  updatedAt: NullableDateTimeFieldUpdateOperationsInput
+  deletedAt: NullableDateTimeFieldUpdateOperationsInput
+  confirmationStatus: NullableEnumConfirmationStatusFieldUpdateOperationsInput
+  groupMembers: GuestUpdateManyWithoutGroupMemberOfNestedInput
+  qrcodes: QrCodeUpdateManyWithoutGuestNestedInput
+  invitationImages: InvitationImageUpdateManyWithoutGuestNestedInput
+  emailQueue: EmailQueueUpdateManyWithoutGuestNestedInput
+  whatsappQueue: WhatsappQueueUpdateManyWithoutGuestNestedInput
+}
+
+input GuestUpdateWithWhereUniqueWithoutGroupMemberOfInput {
+  where: GuestWhereUniqueInput!
+  data: GuestUpdateWithoutGroupMemberOfInput!
+}
+
+input GuestUpdateManyWithWhereWithoutGroupMemberOfInput {
+  where: GuestScalarWhereInput!
+  data: GuestUpdateManyMutationInput!
+}
+
+input GuestScalarWhereInput {
+  AND: [GuestScalarWhereInput!]
+  OR: [GuestScalarWhereInput!]
+  NOT: [GuestScalarWhereInput!]
+  id: StringFilter
+  source: StringNullableFilter
+  invitationName: StringFilter
+  contactList: StringNullableFilter
+  whatsapp: FloatFilter
+  category: StringNullableFilter
+  class: StringNullableFilter
+  seat: StringNullableFilter
+  studio: StringNullableFilter
+  showTime: StringNullableFilter
+  rejectionReason: StringNullableFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeNullableFilter
+  deletedAt: DateTimeNullableFilter
+  groupMemberOfId: StringNullableFilter
+  confirmationStatus: EnumConfirmationStatusNullableFilter
+}
+
 input GuestUpdateManyMutationInput {
   id: StringFieldUpdateOperationsInput
   source: NullableStringFieldUpdateOperationsInput
   invitationName: StringFieldUpdateOperationsInput
   contactList: NullableStringFieldUpdateOperationsInput
-  whatsapp: NullableFloatFieldUpdateOperationsInput
+  whatsapp: FloatFieldUpdateOperationsInput
   category: NullableStringFieldUpdateOperationsInput
   class: NullableStringFieldUpdateOperationsInput
   seat: NullableStringFieldUpdateOperationsInput
-  studio: NullableIntFieldUpdateOperationsInput
+  studio: NullableStringFieldUpdateOperationsInput
+  showTime: NullableStringFieldUpdateOperationsInput
   rejectionReason: NullableStringFieldUpdateOperationsInput
-  parties: IntFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   updatedAt: NullableDateTimeFieldUpdateOperationsInput
   deletedAt: NullableDateTimeFieldUpdateOperationsInput
@@ -1897,17 +2110,19 @@ input GuestCreateWithoutQrcodesInput {
   source: String
   invitationName: String!
   contactList: String
-  whatsapp: Float
+  whatsapp: Float!
   category: String
   class: String
   seat: String
-  studio: Int
+  studio: String
+  showTime: String
   rejectionReason: String
-  parties: Int
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
   confirmationStatus: ConfirmationStatus
+  groupMemberOf: GuestCreateNestedOneWithoutGroupMembersInput
+  groupMembers: GuestCreateNestedManyWithoutGroupMemberOfInput
   invitationImages: InvitationImageCreateNestedManyWithoutGuestInput
   emailQueue: EmailQueueCreateNestedManyWithoutGuestInput
   whatsappQueue: WhatsappQueueCreateNestedManyWithoutGuestInput
@@ -1956,17 +2171,19 @@ input GuestUpdateWithoutQrcodesInput {
   source: NullableStringFieldUpdateOperationsInput
   invitationName: StringFieldUpdateOperationsInput
   contactList: NullableStringFieldUpdateOperationsInput
-  whatsapp: NullableFloatFieldUpdateOperationsInput
+  whatsapp: FloatFieldUpdateOperationsInput
   category: NullableStringFieldUpdateOperationsInput
   class: NullableStringFieldUpdateOperationsInput
   seat: NullableStringFieldUpdateOperationsInput
-  studio: NullableIntFieldUpdateOperationsInput
+  studio: NullableStringFieldUpdateOperationsInput
+  showTime: NullableStringFieldUpdateOperationsInput
   rejectionReason: NullableStringFieldUpdateOperationsInput
-  parties: IntFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   updatedAt: NullableDateTimeFieldUpdateOperationsInput
   deletedAt: NullableDateTimeFieldUpdateOperationsInput
   confirmationStatus: NullableEnumConfirmationStatusFieldUpdateOperationsInput
+  groupMemberOf: GuestUpdateOneWithoutGroupMembersNestedInput
+  groupMembers: GuestUpdateManyWithoutGroupMemberOfNestedInput
   invitationImages: InvitationImageUpdateManyWithoutGuestNestedInput
   emailQueue: EmailQueueUpdateManyWithoutGuestNestedInput
   whatsappQueue: WhatsappQueueUpdateManyWithoutGuestNestedInput
@@ -2112,17 +2329,19 @@ input GuestCreateWithoutInvitationImagesInput {
   source: String
   invitationName: String!
   contactList: String
-  whatsapp: Float
+  whatsapp: Float!
   category: String
   class: String
   seat: String
-  studio: Int
+  studio: String
+  showTime: String
   rejectionReason: String
-  parties: Int
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
   confirmationStatus: ConfirmationStatus
+  groupMemberOf: GuestCreateNestedOneWithoutGroupMembersInput
+  groupMembers: GuestCreateNestedManyWithoutGroupMemberOfInput
   qrcodes: QrCodeCreateNestedManyWithoutGuestInput
   emailQueue: EmailQueueCreateNestedManyWithoutGuestInput
   whatsappQueue: WhatsappQueueCreateNestedManyWithoutGuestInput
@@ -2165,17 +2384,19 @@ input GuestUpdateWithoutInvitationImagesInput {
   source: NullableStringFieldUpdateOperationsInput
   invitationName: StringFieldUpdateOperationsInput
   contactList: NullableStringFieldUpdateOperationsInput
-  whatsapp: NullableFloatFieldUpdateOperationsInput
+  whatsapp: FloatFieldUpdateOperationsInput
   category: NullableStringFieldUpdateOperationsInput
   class: NullableStringFieldUpdateOperationsInput
   seat: NullableStringFieldUpdateOperationsInput
-  studio: NullableIntFieldUpdateOperationsInput
+  studio: NullableStringFieldUpdateOperationsInput
+  showTime: NullableStringFieldUpdateOperationsInput
   rejectionReason: NullableStringFieldUpdateOperationsInput
-  parties: IntFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   updatedAt: NullableDateTimeFieldUpdateOperationsInput
   deletedAt: NullableDateTimeFieldUpdateOperationsInput
   confirmationStatus: NullableEnumConfirmationStatusFieldUpdateOperationsInput
+  groupMemberOf: GuestUpdateOneWithoutGroupMembersNestedInput
+  groupMembers: GuestUpdateManyWithoutGroupMemberOfNestedInput
   qrcodes: QrCodeUpdateManyWithoutGuestNestedInput
   emailQueue: EmailQueueUpdateManyWithoutGuestNestedInput
   whatsappQueue: WhatsappQueueUpdateManyWithoutGuestNestedInput
@@ -2211,17 +2432,19 @@ input GuestCreateWithoutWhatsappQueueInput {
   source: String
   invitationName: String!
   contactList: String
-  whatsapp: Float
+  whatsapp: Float!
   category: String
   class: String
   seat: String
-  studio: Int
+  studio: String
+  showTime: String
   rejectionReason: String
-  parties: Int
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
   confirmationStatus: ConfirmationStatus
+  groupMemberOf: GuestCreateNestedOneWithoutGroupMembersInput
+  groupMembers: GuestCreateNestedManyWithoutGroupMemberOfInput
   qrcodes: QrCodeCreateNestedManyWithoutGuestInput
   invitationImages: InvitationImageCreateNestedManyWithoutGuestInput
   emailQueue: EmailQueueCreateNestedManyWithoutGuestInput
@@ -2264,17 +2487,19 @@ input GuestUpdateWithoutWhatsappQueueInput {
   source: NullableStringFieldUpdateOperationsInput
   invitationName: StringFieldUpdateOperationsInput
   contactList: NullableStringFieldUpdateOperationsInput
-  whatsapp: NullableFloatFieldUpdateOperationsInput
+  whatsapp: FloatFieldUpdateOperationsInput
   category: NullableStringFieldUpdateOperationsInput
   class: NullableStringFieldUpdateOperationsInput
   seat: NullableStringFieldUpdateOperationsInput
-  studio: NullableIntFieldUpdateOperationsInput
+  studio: NullableStringFieldUpdateOperationsInput
+  showTime: NullableStringFieldUpdateOperationsInput
   rejectionReason: NullableStringFieldUpdateOperationsInput
-  parties: IntFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   updatedAt: NullableDateTimeFieldUpdateOperationsInput
   deletedAt: NullableDateTimeFieldUpdateOperationsInput
   confirmationStatus: NullableEnumConfirmationStatusFieldUpdateOperationsInput
+  groupMemberOf: GuestUpdateOneWithoutGroupMembersNestedInput
+  groupMembers: GuestUpdateManyWithoutGroupMemberOfNestedInput
   qrcodes: QrCodeUpdateManyWithoutGuestNestedInput
   invitationImages: InvitationImageUpdateManyWithoutGuestNestedInput
   emailQueue: EmailQueueUpdateManyWithoutGuestNestedInput
