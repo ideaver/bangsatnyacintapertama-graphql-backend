@@ -22,11 +22,16 @@ export class WhatsappQueueListener {
       // Find guests with whatsapp queues
       const whatsappQueueWithQueueStatus =
         await this.whatsappQueueController.findMany({
-          include: { guest: { include: { groupMemberOf: true } } },
+          include: {
+            guest: { include: { groupMemberOf: true, invitationImage: true } },
+          },
           where: { status: { equals: 'QUEUE' } },
         });
 
       const waMediaMessages: WaMediaMessage[] = [];
+      const whatsappQueueWithQueueStatusId: number[] = [];
+
+      const imageHost = 'bangsatnyacintapertama.com';
 
       for (const whatsappQueue of whatsappQueueWithQueueStatus) {
         const {
@@ -37,7 +42,10 @@ export class WhatsappQueueListener {
           invitationName,
           groupMemberOf,
           groupMemberOfId,
+          invitationImage,
         } = whatsappQueue.guest;
+
+        const image = `https://${imageHost}/${invitationImage}`;
 
         const message = `
         Halo Bpk/ Ibu ${invitationName}
@@ -71,43 +79,39 @@ export class WhatsappQueueListener {
         `;
 
         if (groupMemberOfId === null) {
-          // const waMessage: WaMessage = {
-          //   refId: whatsappQueue.id.toString(),
-          //   phone: whatsappQueue.guest.whatsapp,
-          //   message: message,
-          // };
-          // waMessages.push(waMessage);
-
           const waMediaMessage: WaMediaMessage = {
             refId: id.toString(),
             phone: whatsappQueue.guest.whatsapp,
             caption: message,
-            image:
-              'https://pbs.twimg.com/profile_images/1544722618275827713/9-aMN_Wb_400x400.jpg',
+            image: image,
           };
 
           waMediaMessages.push(waMediaMessage);
         } else {
-          const caption = `Studio ${studio}, Seat ${seat}, ShowTime ${showTime} `;
+          const caption = `Tiket Pass Extra: Studio ${studio}, Seat ${seat}, ShowTime ${showTime} `;
           const waMediaMessage: WaMediaMessage = {
             refId: id.toString(),
-            phone: whatsappQueue.guest.groupMemberOf.whatsapp,
+            phone: groupMemberOf.whatsapp,
             caption: caption,
-            image:
-              'https://pbs.twimg.com/profile_images/1544722618275827713/9-aMN_Wb_400x400.jpg',
+            image: image,
           };
 
           waMediaMessages.push(waMediaMessage);
         }
+
+        whatsappQueueWithQueueStatusId.push(whatsappQueue.id);
       }
 
       if (waMediaMessages.length > 0) {
-        // const res1 =
-        //   await this.whatsappGatewayController.sendWhatsappMessages(waMessages);
-
         await this.whatsappGatewayController.sendWhatsappImages(
           waMediaMessages,
         );
+
+        //
+        await this.whatsappQueueController.updateMany({
+          data: { status: { set: 'SENT' } },
+          where: { id: { in: whatsappQueueWithQueueStatusId } },
+        });
 
         this.logger.log('Broadcast Message In Gateway');
       }
