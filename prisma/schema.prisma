@@ -71,7 +71,7 @@ model Guest {
 
   contactList String?
 
-  whatsapp Float
+  whatsapp Float?
 
   category String?
 

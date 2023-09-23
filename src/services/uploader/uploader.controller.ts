@@ -91,7 +91,10 @@ export class UploaderController {
         const guest: Prisma.GuestCreateManyInput = {
           id: uuid,
           invitationName: excel.invitationName,
-          whatsapp: excel.whatsapp,
+          whatsapp:
+            previousGuest && excel.whatsapp === previousGuest.whatsapp
+              ? undefined
+              : excel.whatsapp,
           source: excel.source,
           contactList: excel.contactList,
           category: excel.category,
@@ -109,8 +112,7 @@ export class UploaderController {
           deletedAt: null,
         };
 
-        if (previousGuest && excel.whatsapp === previousGuest.whatsapp) {
-        } else {
+        if (!(previousGuest && excel.whatsapp === previousGuest.whatsapp)) {
           previousGuest = guest;
         }
 

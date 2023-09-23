@@ -146,7 +146,7 @@ type Guest {
   source: String
   invitationName: String!
   contactList: String
-  whatsapp: Float!
+  whatsapp: Float
   category: String
   class: String
   seat: String
@@ -490,7 +490,7 @@ input GuestWhereUniqueInput {
   source: StringNullableFilter
   invitationName: StringFilter
   contactList: StringNullableFilter
-  whatsapp: FloatFilter
+  whatsapp: FloatNullableFilter
   category: StringNullableFilter
   class: StringNullableFilter
   seat: StringNullableFilter
@@ -518,7 +518,7 @@ input GuestWhereInput {
   source: StringNullableFilter
   invitationName: StringFilter
   contactList: StringNullableFilter
-  whatsapp: FloatFilter
+  whatsapp: FloatNullableFilter
   category: StringNullableFilter
   class: StringNullableFilter
   seat: StringNullableFilter
@@ -594,7 +594,7 @@ input NestedStringNullableFilter {
   not: NestedStringNullableFilter
 }
 
-input FloatFilter {
+input FloatNullableFilter {
   equals: Float
   in: [Float!]
   notIn: [Float!]
@@ -602,10 +602,10 @@ input FloatFilter {
   lte: Float
   gt: Float
   gte: Float
-  not: NestedFloatFilter
+  not: NestedFloatNullableFilter
 }
 
-input NestedFloatFilter {
+input NestedFloatNullableFilter {
   equals: Float
   in: [Float!]
   notIn: [Float!]
@@ -613,7 +613,7 @@ input NestedFloatFilter {
   lte: Float
   gt: Float
   gte: Float
-  not: NestedFloatFilter
+  not: NestedFloatNullableFilter
 }
 
 input DateTimeFilter {
@@ -837,7 +837,7 @@ input GuestOrderByWithRelationInput {
   source: SortOrderInput
   invitationName: SortOrder
   contactList: SortOrderInput
-  whatsapp: SortOrder
+  whatsapp: SortOrderInput
   category: SortOrderInput
   class: SortOrderInput
   seat: SortOrderInput
@@ -1364,7 +1364,7 @@ input GuestCreateInput {
   source: String
   invitationName: String!
   contactList: String
-  whatsapp: Float!
+  whatsapp: Float
   category: String
   class: String
   seat: String
@@ -1394,7 +1394,7 @@ input GuestCreateWithoutGroupMembersInput {
   source: String
   invitationName: String!
   contactList: String
-  whatsapp: Float!
+  whatsapp: Float
   category: String
   class: String
   seat: String
@@ -1580,7 +1580,7 @@ input GuestCreateWithoutGroupMemberOfInput {
   source: String
   invitationName: String!
   contactList: String
-  whatsapp: Float!
+  whatsapp: Float
   category: String
   class: String
   seat: String
@@ -1613,7 +1613,7 @@ input GuestCreateManyGroupMemberOfInput {
   source: String
   invitationName: String!
   contactList: String
-  whatsapp: Float!
+  whatsapp: Float
   category: String
   class: String
   seat: String
@@ -1631,7 +1631,7 @@ input GuestCreateManyInput {
   source: String
   invitationName: String!
   contactList: String
-  whatsapp: Float!
+  whatsapp: Float
   category: String
   class: String
   seat: String
@@ -1650,7 +1650,7 @@ input GuestUpdateInput {
   source: NullableStringFieldUpdateOperationsInput
   invitationName: StringFieldUpdateOperationsInput
   contactList: NullableStringFieldUpdateOperationsInput
-  whatsapp: FloatFieldUpdateOperationsInput
+  whatsapp: NullableFloatFieldUpdateOperationsInput
   category: NullableStringFieldUpdateOperationsInput
   class: NullableStringFieldUpdateOperationsInput
   seat: NullableStringFieldUpdateOperationsInput
@@ -1677,7 +1677,7 @@ input NullableStringFieldUpdateOperationsInput {
   set: String
 }
 
-input FloatFieldUpdateOperationsInput {
+input NullableFloatFieldUpdateOperationsInput {
   set: Float
   increment: Float
   decrement: Float
@@ -1718,7 +1718,7 @@ input GuestUpdateWithoutGroupMembersInput {
   source: NullableStringFieldUpdateOperationsInput
   invitationName: StringFieldUpdateOperationsInput
   contactList: NullableStringFieldUpdateOperationsInput
-  whatsapp: FloatFieldUpdateOperationsInput
+  whatsapp: NullableFloatFieldUpdateOperationsInput
   category: NullableStringFieldUpdateOperationsInput
   class: NullableStringFieldUpdateOperationsInput
   seat: NullableStringFieldUpdateOperationsInput
@@ -2022,7 +2022,7 @@ input GuestUpdateWithoutGroupMemberOfInput {
   source: NullableStringFieldUpdateOperationsInput
   invitationName: StringFieldUpdateOperationsInput
   contactList: NullableStringFieldUpdateOperationsInput
-  whatsapp: FloatFieldUpdateOperationsInput
+  whatsapp: NullableFloatFieldUpdateOperationsInput
   category: NullableStringFieldUpdateOperationsInput
   class: NullableStringFieldUpdateOperationsInput
   seat: NullableStringFieldUpdateOperationsInput
@@ -2058,7 +2058,7 @@ input GuestScalarWhereInput {
   source: StringNullableFilter
   invitationName: StringFilter
   contactList: StringNullableFilter
-  whatsapp: FloatFilter
+  whatsapp: FloatNullableFilter
   category: StringNullableFilter
   class: StringNullableFilter
   seat: StringNullableFilter
@@ -2077,7 +2077,7 @@ input GuestUpdateManyMutationInput {
   source: NullableStringFieldUpdateOperationsInput
   invitationName: StringFieldUpdateOperationsInput
   contactList: NullableStringFieldUpdateOperationsInput
-  whatsapp: FloatFieldUpdateOperationsInput
+  whatsapp: NullableFloatFieldUpdateOperationsInput
   category: NullableStringFieldUpdateOperationsInput
   class: NullableStringFieldUpdateOperationsInput
   seat: NullableStringFieldUpdateOperationsInput
@@ -2110,7 +2110,7 @@ input GuestCreateWithoutQrcodesInput {
   source: String
   invitationName: String!
   contactList: String
-  whatsapp: Float!
+  whatsapp: Float
   category: String
   class: String
   seat: String
@@ -2171,7 +2171,7 @@ input GuestUpdateWithoutQrcodesInput {
   source: NullableStringFieldUpdateOperationsInput
   invitationName: StringFieldUpdateOperationsInput
   contactList: NullableStringFieldUpdateOperationsInput
-  whatsapp: FloatFieldUpdateOperationsInput
+  whatsapp: NullableFloatFieldUpdateOperationsInput
   category: NullableStringFieldUpdateOperationsInput
   class: NullableStringFieldUpdateOperationsInput
   seat: NullableStringFieldUpdateOperationsInput
@@ -2329,7 +2329,7 @@ input GuestCreateWithoutInvitationImagesInput {
   source: String
   invitationName: String!
   contactList: String
-  whatsapp: Float!
+  whatsapp: Float
   category: String
   class: String
   seat: String
@@ -2384,7 +2384,7 @@ input GuestUpdateWithoutInvitationImagesInput {
   source: NullableStringFieldUpdateOperationsInput
   invitationName: StringFieldUpdateOperationsInput
   contactList: NullableStringFieldUpdateOperationsInput
-  whatsapp: FloatFieldUpdateOperationsInput
+  whatsapp: NullableFloatFieldUpdateOperationsInput
   category: NullableStringFieldUpdateOperationsInput
   class: NullableStringFieldUpdateOperationsInput
   seat: NullableStringFieldUpdateOperationsInput
@@ -2432,7 +2432,7 @@ input GuestCreateWithoutWhatsappQueueInput {
   source: String
   invitationName: String!
   contactList: String
-  whatsapp: Float!
+  whatsapp: Float
   category: String
   class: String
   seat: String
@@ -2487,7 +2487,7 @@ input GuestUpdateWithoutWhatsappQueueInput {
   source: NullableStringFieldUpdateOperationsInput
   invitationName: StringFieldUpdateOperationsInput
   contactList: NullableStringFieldUpdateOperationsInput
-  whatsapp: FloatFieldUpdateOperationsInput
+  whatsapp: NullableFloatFieldUpdateOperationsInput
   category: NullableStringFieldUpdateOperationsInput
   class: NullableStringFieldUpdateOperationsInput
   seat: NullableStringFieldUpdateOperationsInput

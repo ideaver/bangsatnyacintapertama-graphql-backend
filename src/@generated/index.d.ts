@@ -596,7 +596,7 @@ export declare class GuestCreateManyGroupMemberOfInput {
     source?: string;
     invitationName: string;
     contactList?: string;
-    whatsapp: number;
+    whatsapp?: number;
     category?: string;
     class?: string;
     seat?: string;
@@ -613,7 +613,7 @@ export declare class GuestCreateManyInput {
     source?: string;
     invitationName: string;
     contactList?: string;
-    whatsapp: number;
+    whatsapp?: number;
     category?: string;
     class?: string;
     seat?: string;
@@ -686,7 +686,7 @@ export declare class GuestCreateWithoutEmailQueueInput {
     source?: string;
     invitationName: string;
     contactList?: string;
-    whatsapp: number;
+    whatsapp?: number;
     category?: string;
     class?: string;
     seat?: string;
@@ -708,7 +708,7 @@ export declare class GuestCreateWithoutGroupMemberOfInput {
     source?: string;
     invitationName: string;
     contactList?: string;
-    whatsapp: number;
+    whatsapp?: number;
     category?: string;
     class?: string;
     seat?: string;
@@ -730,7 +730,7 @@ export declare class GuestCreateWithoutGroupMembersInput {
     source?: string;
     invitationName: string;
     contactList?: string;
-    whatsapp: number;
+    whatsapp?: number;
     category?: string;
     class?: string;
     seat?: string;
@@ -752,7 +752,7 @@ export declare class GuestCreateWithoutInvitationImagesInput {
     source?: string;
     invitationName: string;
     contactList?: string;
-    whatsapp: number;
+    whatsapp?: number;
     category?: string;
     class?: string;
     seat?: string;
@@ -774,7 +774,7 @@ export declare class GuestCreateWithoutQrcodesInput {
     source?: string;
     invitationName: string;
     contactList?: string;
-    whatsapp: number;
+    whatsapp?: number;
     category?: string;
     class?: string;
     seat?: string;
@@ -796,7 +796,7 @@ export declare class GuestCreateWithoutWhatsappQueueInput {
     source?: string;
     invitationName: string;
     contactList?: string;
-    whatsapp: number;
+    whatsapp?: number;
     category?: string;
     class?: string;
     seat?: string;
@@ -818,7 +818,7 @@ export declare class GuestCreateInput {
     source?: string;
     invitationName: string;
     contactList?: string;
-    whatsapp: number;
+    whatsapp?: number;
     category?: string;
     class?: string;
     seat?: string;
@@ -854,7 +854,7 @@ export declare class GuestGroupBy {
     source?: string;
     invitationName: string;
     contactList?: string;
-    whatsapp: number;
+    whatsapp?: number;
     category?: string;
     class?: string;
     seat?: string;
@@ -997,7 +997,7 @@ export declare class GuestOrderByWithAggregationInput {
     source?: InstanceType<typeof SortOrderInput>;
     invitationName?: keyof typeof SortOrder;
     contactList?: InstanceType<typeof SortOrderInput>;
-    whatsapp?: keyof typeof SortOrder;
+    whatsapp?: InstanceType<typeof SortOrderInput>;
     category?: InstanceType<typeof SortOrderInput>;
     class?: InstanceType<typeof SortOrderInput>;
     seat?: InstanceType<typeof SortOrderInput>;
@@ -1020,7 +1020,7 @@ export declare class GuestOrderByWithRelationInput {
     source?: InstanceType<typeof SortOrderInput>;
     invitationName?: keyof typeof SortOrder;
     contactList?: InstanceType<typeof SortOrderInput>;
-    whatsapp?: keyof typeof SortOrder;
+    whatsapp?: InstanceType<typeof SortOrderInput>;
     category?: InstanceType<typeof SortOrderInput>;
     class?: InstanceType<typeof SortOrderInput>;
     seat?: InstanceType<typeof SortOrderInput>;
@@ -1051,7 +1051,7 @@ export declare class GuestScalarWhereWithAggregatesInput {
     source?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     invitationName?: InstanceType<typeof StringWithAggregatesFilter>;
     contactList?: InstanceType<typeof StringNullableWithAggregatesFilter>;
-    whatsapp?: InstanceType<typeof FloatWithAggregatesFilter>;
+    whatsapp?: InstanceType<typeof FloatNullableWithAggregatesFilter>;
     category?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     class?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     seat?: InstanceType<typeof StringNullableWithAggregatesFilter>;
@@ -1072,7 +1072,7 @@ export declare class GuestScalarWhereInput {
     source?: InstanceType<typeof StringNullableFilter>;
     invitationName?: InstanceType<typeof StringFilter>;
     contactList?: InstanceType<typeof StringNullableFilter>;
-    whatsapp?: InstanceType<typeof FloatFilter>;
+    whatsapp?: InstanceType<typeof FloatNullableFilter>;
     category?: InstanceType<typeof StringNullableFilter>;
     class?: InstanceType<typeof StringNullableFilter>;
     seat?: InstanceType<typeof StringNullableFilter>;
@@ -1105,7 +1105,7 @@ export declare class GuestUncheckedCreateWithoutEmailQueueInput {
     source?: string;
     invitationName: string;
     contactList?: string;
-    whatsapp: number;
+    whatsapp?: number;
     category?: string;
     class?: string;
     seat?: string;
@@ -1127,7 +1127,7 @@ export declare class GuestUncheckedCreateWithoutGroupMemberOfInput {
     source?: string;
     invitationName: string;
     contactList?: string;
-    whatsapp: number;
+    whatsapp?: number;
     category?: string;
     class?: string;
     seat?: string;
@@ -1149,7 +1149,7 @@ export declare class GuestUncheckedCreateWithoutGroupMembersInput {
     source?: string;
     invitationName: string;
     contactList?: string;
-    whatsapp: number;
+    whatsapp?: number;
     category?: string;
     class?: string;
     seat?: string;
@@ -1171,7 +1171,7 @@ export declare class GuestUncheckedCreateWithoutInvitationImagesInput {
     source?: string;
     invitationName: string;
     contactList?: string;
-    whatsapp: number;
+    whatsapp?: number;
     category?: string;
     class?: string;
     seat?: string;
@@ -1193,7 +1193,7 @@ export declare class GuestUncheckedCreateWithoutQrcodesInput {
     source?: string;
     invitationName: string;
     contactList?: string;
-    whatsapp: number;
+    whatsapp?: number;
     category?: string;
     class?: string;
     seat?: string;
@@ -1215,7 +1215,7 @@ export declare class GuestUncheckedCreateWithoutWhatsappQueueInput {
     source?: string;
     invitationName: string;
     contactList?: string;
-    whatsapp: number;
+    whatsapp?: number;
     category?: string;
     class?: string;
     seat?: string;
@@ -1237,7 +1237,7 @@ export declare class GuestUncheckedCreateInput {
     source?: string;
     invitationName: string;
     contactList?: string;
-    whatsapp: number;
+    whatsapp?: number;
     category?: string;
     class?: string;
     seat?: string;
@@ -1273,7 +1273,7 @@ export declare class GuestUncheckedUpdateManyWithoutGroupMemberOfInput {
     source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     invitationName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -1290,7 +1290,7 @@ export declare class GuestUncheckedUpdateManyInput {
     source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     invitationName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -1308,7 +1308,7 @@ export declare class GuestUncheckedUpdateWithoutEmailQueueInput {
     source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     invitationName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -1330,7 +1330,7 @@ export declare class GuestUncheckedUpdateWithoutGroupMemberOfInput {
     source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     invitationName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -1352,7 +1352,7 @@ export declare class GuestUncheckedUpdateWithoutGroupMembersInput {
     source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     invitationName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -1374,7 +1374,7 @@ export declare class GuestUncheckedUpdateWithoutInvitationImagesInput {
     source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     invitationName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -1396,7 +1396,7 @@ export declare class GuestUncheckedUpdateWithoutQrcodesInput {
     source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     invitationName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -1418,7 +1418,7 @@ export declare class GuestUncheckedUpdateWithoutWhatsappQueueInput {
     source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     invitationName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -1440,7 +1440,7 @@ export declare class GuestUncheckedUpdateInput {
     source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     invitationName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -1463,7 +1463,7 @@ export declare class GuestUpdateManyMutationInput {
     source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     invitationName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -1558,7 +1558,7 @@ export declare class GuestUpdateWithoutEmailQueueInput {
     source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     invitationName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -1580,7 +1580,7 @@ export declare class GuestUpdateWithoutGroupMemberOfInput {
     source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     invitationName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -1602,7 +1602,7 @@ export declare class GuestUpdateWithoutGroupMembersInput {
     source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     invitationName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -1624,7 +1624,7 @@ export declare class GuestUpdateWithoutInvitationImagesInput {
     source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     invitationName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -1646,7 +1646,7 @@ export declare class GuestUpdateWithoutQrcodesInput {
     source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     invitationName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -1668,7 +1668,7 @@ export declare class GuestUpdateWithoutWhatsappQueueInput {
     source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     invitationName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -1690,7 +1690,7 @@ export declare class GuestUpdateInput {
     source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     invitationName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof FloatFieldUpdateOperationsInput>;
+    whatsapp?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
     category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -1746,7 +1746,7 @@ export declare class GuestWhereUniqueInput {
     source?: InstanceType<typeof StringNullableFilter>;
     invitationName?: InstanceType<typeof StringFilter>;
     contactList?: InstanceType<typeof StringNullableFilter>;
-    whatsapp?: InstanceType<typeof FloatFilter>;
+    whatsapp?: InstanceType<typeof FloatNullableFilter>;
     category?: InstanceType<typeof StringNullableFilter>;
     class?: InstanceType<typeof StringNullableFilter>;
     seat?: InstanceType<typeof StringNullableFilter>;
@@ -1773,7 +1773,7 @@ export declare class GuestWhereInput {
     source?: InstanceType<typeof StringNullableFilter>;
     invitationName?: InstanceType<typeof StringFilter>;
     contactList?: InstanceType<typeof StringNullableFilter>;
-    whatsapp?: InstanceType<typeof FloatFilter>;
+    whatsapp?: InstanceType<typeof FloatNullableFilter>;
     category?: InstanceType<typeof StringNullableFilter>;
     class?: InstanceType<typeof StringNullableFilter>;
     seat?: InstanceType<typeof StringNullableFilter>;
@@ -1797,7 +1797,7 @@ export declare class Guest {
     source: string | null;
     invitationName: string;
     contactList: string | null;
-    whatsapp: number;
+    whatsapp: number | null;
     category: string | null;
     class: string | null;
     seat: string | null;
@@ -2302,14 +2302,7 @@ export declare class EnumUserRoleWithAggregatesFilter {
     _min?: InstanceType<typeof NestedEnumUserRoleFilter>;
     _max?: InstanceType<typeof NestedEnumUserRoleFilter>;
 }
-export declare class FloatFieldUpdateOperationsInput {
-    set?: number;
-    increment?: number;
-    decrement?: number;
-    multiply?: number;
-    divide?: number;
-}
-export declare class FloatFilter {
+export declare class FloatNullableFilter {
     equals?: number;
     in?: Array<number>;
     notIn?: Array<number>;
@@ -2317,9 +2310,9 @@ export declare class FloatFilter {
     lte?: number;
     gt?: number;
     gte?: number;
-    not?: InstanceType<typeof NestedFloatFilter>;
+    not?: InstanceType<typeof NestedFloatNullableFilter>;
 }
-export declare class FloatWithAggregatesFilter {
+export declare class FloatNullableWithAggregatesFilter {
     equals?: number;
     in?: Array<number>;
     notIn?: Array<number>;
@@ -2327,12 +2320,12 @@ export declare class FloatWithAggregatesFilter {
     lte?: number;
     gt?: number;
     gte?: number;
-    not?: InstanceType<typeof NestedFloatWithAggregatesFilter>;
-    _count?: InstanceType<typeof NestedIntFilter>;
-    _avg?: InstanceType<typeof NestedFloatFilter>;
-    _sum?: InstanceType<typeof NestedFloatFilter>;
-    _min?: InstanceType<typeof NestedFloatFilter>;
-    _max?: InstanceType<typeof NestedFloatFilter>;
+    not?: InstanceType<typeof NestedFloatNullableWithAggregatesFilter>;
+    _count?: InstanceType<typeof NestedIntNullableFilter>;
+    _avg?: InstanceType<typeof NestedFloatNullableFilter>;
+    _sum?: InstanceType<typeof NestedFloatNullableFilter>;
+    _min?: InstanceType<typeof NestedFloatNullableFilter>;
+    _max?: InstanceType<typeof NestedFloatNullableFilter>;
 }
 export declare class IntFieldUpdateOperationsInput {
     set?: number;
@@ -2467,7 +2460,7 @@ export declare class NestedFloatFilter {
     gte?: number;
     not?: InstanceType<typeof NestedFloatFilter>;
 }
-export declare class NestedFloatWithAggregatesFilter {
+export declare class NestedFloatNullableFilter {
     equals?: number;
     in?: Array<number>;
     notIn?: Array<number>;
@@ -2475,12 +2468,22 @@ export declare class NestedFloatWithAggregatesFilter {
     lte?: number;
     gt?: number;
     gte?: number;
-    not?: InstanceType<typeof NestedFloatWithAggregatesFilter>;
-    _count?: InstanceType<typeof NestedIntFilter>;
-    _avg?: InstanceType<typeof NestedFloatFilter>;
-    _sum?: InstanceType<typeof NestedFloatFilter>;
-    _min?: InstanceType<typeof NestedFloatFilter>;
-    _max?: InstanceType<typeof NestedFloatFilter>;
+    not?: InstanceType<typeof NestedFloatNullableFilter>;
+}
+export declare class NestedFloatNullableWithAggregatesFilter {
+    equals?: number;
+    in?: Array<number>;
+    notIn?: Array<number>;
+    lt?: number;
+    lte?: number;
+    gt?: number;
+    gte?: number;
+    not?: InstanceType<typeof NestedFloatNullableWithAggregatesFilter>;
+    _count?: InstanceType<typeof NestedIntNullableFilter>;
+    _avg?: InstanceType<typeof NestedFloatNullableFilter>;
+    _sum?: InstanceType<typeof NestedFloatNullableFilter>;
+    _min?: InstanceType<typeof NestedFloatNullableFilter>;
+    _max?: InstanceType<typeof NestedFloatNullableFilter>;
 }
 export declare class NestedIntFilter {
     equals?: number;
@@ -2580,6 +2583,13 @@ export declare class NullableDateTimeFieldUpdateOperationsInput {
 }
 export declare class NullableEnumConfirmationStatusFieldUpdateOperationsInput {
     set?: keyof typeof ConfirmationStatus;
+}
+export declare class NullableFloatFieldUpdateOperationsInput {
+    set?: number;
+    increment?: number;
+    decrement?: number;
+    multiply?: number;
+    divide?: number;
 }
 export declare class NullableStringFieldUpdateOperationsInput {
     set?: string;
