@@ -103,9 +103,13 @@ model Guest {
 
   groupMembers Guest[] @relation("GroupMembers")
 
-  qrcodes QrCode[]
+  qrcode QrCode?
 
-  invitationImages InvitationImage[]
+  qrcodeId Int? @unique
+
+  invitationImage InvitationImage?
+
+  invitationImageId Int? @unique
 
   emailQueue EmailQueue[]
 
@@ -181,7 +185,7 @@ model QrCode {
 
   //-------------------------- 1 relations --------------------------------
 
-  guestId String
+  guestId String @unique
 
   guest Guest @relation(fields: [guestId], references: [id])
 
@@ -203,7 +207,7 @@ model InvitationImage {
 
   //-------------------------- 1 relations --------------------------------
 
-  guestId String
+  guestId String @unique
 
   guest Guest @relation(fields: [guestId], references: [id])
 

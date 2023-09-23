@@ -94,24 +94,24 @@ export class GuestListener {
   private async generateAndSaveQrCodesToFolder(guests: Guest[]) {
     const qrCodeDataToInsert: Prisma.QrCodeCreateManyInput[] = [];
 
-    // for (const guest of guests) {
-    //   const qrCodeData = guest.id;
+    for (const guest of guests) {
+      const qrCodeData = guest.id;
 
-    //   for (let i = 1; i <= guest.parties; i++) {
-    //     const qrCodeUrl = await qrCode.toDataURL(qrCodeData);
-    //     const qrCodeFolder = 'files/qrcodes';
-    //     const qrCodeFileName = `${guest.id}_Party${i}.png`;
-    //     const qrCodeFilePath = path.join(qrCodeFolder, qrCodeFileName);
+      for (let i = 1; i <= guest.parties; i++) {
+        const qrCodeUrl = await qrCode.toDataURL(qrCodeData);
+        const qrCodeFolder = 'files/qrcodes';
+        const qrCodeFileName = `${guest.id}_Party${i}.png`;
+        const qrCodeFilePath = path.join(qrCodeFolder, qrCodeFileName);
 
-    //     fs.mkdirSync(qrCodeFolder, { recursive: true });
-    //     fs.writeFileSync(qrCodeFilePath, qrCodeUrl.split(',')[1], 'base64');
+        fs.mkdirSync(qrCodeFolder, { recursive: true });
+        fs.writeFileSync(qrCodeFilePath, qrCodeUrl.split(',')[1], 'base64');
 
-    //     qrCodeDataToInsert.push({
-    //       path: qrCodeFilePath,
-    //       guestId: guest.id,
-    //     });
-    //   }
-    // }
+        qrCodeDataToInsert.push({
+          path: qrCodeFilePath,
+          guestId: guest.id,
+        });
+      }
+    }
 
     return qrCodeDataToInsert;
   }

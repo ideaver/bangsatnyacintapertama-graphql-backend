@@ -39,6 +39,8 @@ export function fakeGuest() {
     rejectionReason: undefined,
     updatedAt: undefined,
     deletedAt: undefined,
+    qrcodeId: undefined,
+    invitationImageId: undefined,
   };
 }
 export function fakeGuestComplete() {
@@ -59,6 +61,8 @@ export function fakeGuestComplete() {
     deletedAt: undefined,
     groupMemberOfId: undefined,
     confirmationStatus: ConfirmationStatus.UNCONFIRMED,
+    qrcodeId: undefined,
+    invitationImageId: undefined,
   };
 }
 export function fakeEmailQueueComplete() {
