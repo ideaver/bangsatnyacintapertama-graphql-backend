@@ -2,13 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { WhatsappQueueService } from './whatsapp-queue.service';
 import { WhatsappGatewayController } from '../whatsapp-gateway/whatsapp-gateway.controller';
-import { WaMediaMessage, WaMessage } from 'src/model/message.model';
+import { WhatsappQueueEvent } from 'src/event-listeners/enum/whatsapp-queue-event.enum ';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 @Injectable()
 export class WhatsappQueueController {
   constructor(
     private readonly whatsappQueueService: WhatsappQueueService,
-    private readonly whatsappGatewayController: WhatsappGatewayController,
+    private eventEmitter: EventEmitter2,
   ) {}
 
   async createOne(whatsappQueueCreateArgs: Prisma.WhatsappQueueCreateArgs) {
@@ -22,29 +23,7 @@ export class WhatsappQueueController {
       whatsappQueueCreateManyArgs,
     );
 
-    const waMessages: WaMessage[] = [
-      { message: '3', phone: 6281938298740 },
-      { message: '4', phone: 6281938298740 },
-    ];
-
-    const waMediaMessages: WaMediaMessage[] = [
-      {
-        phone: 6281938298740,
-        image:
-          'https://images.pexels.com/photos/45853/grey-crowned-crane-bird-crane-animal-45853.jpeg',
-        caption: 'test1',
-      },
-      {
-        phone: 6281938298740,
-        image:
-          'https://images.pexels.com/photos/45853/grey-crowned-crane-bird-crane-animal-45853.jpeg',
-        caption: 'test2',
-      },
-    ];
-
-    await this.whatsappGatewayController.sendWhatsappMessages(waMessages);
-
-    await this.whatsappGatewayController.sendWhatsappImages(waMediaMessages);
+    this.eventEmitter.emit(WhatsappQueueEvent.CreatedMany);
 
     return res;
   }

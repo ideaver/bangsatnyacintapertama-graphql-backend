@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { InvitationImageService } from './invitation-image.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import { WhatsappQueueEvent } from 'src/event-listeners/enum/whatsapp-queue-event.enum ';
+import { InvitationImageEvent } from 'src/event-listeners/enum/invitation-image-event.enum ';
 
 @Injectable()
 export class InvitationImageController {
@@ -24,7 +24,7 @@ export class InvitationImageController {
       invitationImageCreateManyArgs,
     );
 
-    this.eventEmitter.emit(WhatsappQueueEvent.CreatedMany);
+    this.eventEmitter.emit(InvitationImageEvent.CreatedMany);
 
     return res;
   }

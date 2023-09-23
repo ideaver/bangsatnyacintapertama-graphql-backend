@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
 import { IGraphQLError } from 'src/utils/exception/custom-graphql-error';
 import { Prisma } from '@prisma/client';
+import { WhatsappQueue } from 'src/@generated';
 
 @Injectable()
 export class WhatsappQueueService {
@@ -39,7 +40,9 @@ export class WhatsappQueueService {
     }
   }
 
-  async findMany(whatsappQueueFindManyArgs: Prisma.WhatsappQueueFindManyArgs) {
+  async findMany(
+    whatsappQueueFindManyArgs: Prisma.WhatsappQueueFindManyArgs,
+  ): Promise<WhatsappQueue[]> {
     try {
       return await this.prisma.whatsappQueue.findMany(
         whatsappQueueFindManyArgs,

@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 
 import { PrismaService } from 'prisma/prisma.service';
 import { WhatsappQueueResolver } from './whatsapp-queue.resolver';
@@ -16,7 +16,7 @@ import { WhatsappGatewayModule } from '../whatsapp-gateway/whatsapp-gateway.modu
     WhatsappQueueService,
     WhatsappQueueListener,
   ],
-  imports: [GuestModule, WhatsappGatewayModule],
+  imports: [forwardRef(() => GuestModule), WhatsappGatewayModule],
   exports: [WhatsappQueueController],
 })
 export class WhatsappQueueModule {}

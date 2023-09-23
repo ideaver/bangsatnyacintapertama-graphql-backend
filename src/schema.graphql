@@ -1358,7 +1358,6 @@ type Mutation {
 
   """Deskripsinya ada disini loh"""
   invitationImageDeleteMany(where: InvitationImageWhereInput): Boolean!
-  authLogin(loginArgs: LoginArgs!): LoginResponse
 
   """Deskripsinya ada disini loh"""
   whatsappQueueCreateOne(data: WhatsappQueueCreateInput!): WhatsappQueue
@@ -1377,6 +1376,7 @@ type Mutation {
 
   """Deskripsinya ada disini loh"""
   whatsappQueueDeleteMany(where: WhatsappQueueWhereInput): Boolean!
+  authLogin(loginArgs: LoginArgs!): LoginResponse
 }
 
 """The `Upload` scalar type represents a file upload."""
@@ -2402,14 +2402,6 @@ input InvitationImageUpdateManyMutationInput {
   createdAt: DateTimeFieldUpdateOperationsInput
 }
 
-input LoginArgs {
-  """Masukkan email"""
-  email: String!
-
-  """Masukkan password"""
-  password: String!
-}
-
 input WhatsappQueueCreateInput {
   createdAt: DateTime
   apiRequestId: Int
@@ -2506,4 +2498,12 @@ input GuestUpdateWithoutWhatsappQueueInput {
 input GuestUpdateToOneWithWhereWithoutWhatsappQueueInput {
   where: GuestWhereInput
   data: GuestUpdateWithoutWhatsappQueueInput!
+}
+
+input LoginArgs {
+  """Masukkan email"""
+  email: String!
+
+  """Masukkan password"""
+  password: String!
 }

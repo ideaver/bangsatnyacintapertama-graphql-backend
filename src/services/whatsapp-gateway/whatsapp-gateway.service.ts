@@ -16,12 +16,17 @@ export class WhatsappGatewayService {
   private api = this.configService.get<string>('WA_ENDPOINT');
   private token = this.configService.get<string>('WA_TOKEN');
 
-  async sendWhatsappMessages(waMessages: WaMessage[]): Promise<ApiResponse> {
+  async sendWhatsappMessages(
+    waMessages: WaMessage[],
+  ): Promise<ResponseWithDataAndMessages> {
     const data = {
       data: waMessages.map((message) => ({
         phone: message.phone.toString(),
         message: message.message,
-        source: 'backendapp', // Replace with your desired source
+        ref_id: message.refId || '', // Optional ref_id
+        retry: true, // Optional retry
+        random: true, // Optional random
+        source: 'backendapp',
       })),
     };
 
@@ -38,7 +43,6 @@ export class WhatsappGatewayService {
 
     try {
       const response = await firstValueFrom(this.httpService.request(config)); // Use firstValueFrom here
-      this.logger.log('Message Sent');
       return response.data;
     } catch (error) {
       if (error.response) {
@@ -63,12 +67,16 @@ export class WhatsappGatewayService {
 
   async sendWhatsappImages(
     waMediaMessages: WaMediaMessage[],
-  ): Promise<ApiResponse> {
+  ): Promise<ResponseWithDataAndImageMessages> {
     const data = {
       data: waMediaMessages.map((waMediaMessage) => ({
         phone: waMediaMessage.phone.toString(),
         image: waMediaMessage.image,
         caption: waMediaMessage.caption || '', // You can add a caption if needed
+        ref_id: waMediaMessage.refId || '', // Optional ref_id
+        retry: true, // Optional retry
+        random: true, // Optional random
+        source: 'backendapp', // Optional source
       })),
     };
 
@@ -85,7 +93,6 @@ export class WhatsappGatewayService {
 
     try {
       const response = await firstValueFrom(this.httpService.request(config));
-      this.logger.log('Image Sent');
       return response.data;
     } catch (error) {
       if (error.response) {
