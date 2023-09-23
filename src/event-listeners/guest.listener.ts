@@ -23,105 +23,76 @@ export class GuestListener {
 
   @OnEvent(GuestEvents.CreatedMany)
   async onGuestCreatedManyEvent() {
-    try {
-      // Find guests without QR codes
-      const guestsWithoutQrCodes = await this.findGuestsWithoutQrCodes();
+    // Find guests without QR codes
+    const guestsWithoutQrCodes = await this.findGuestsWithoutQrCodes();
+    const qrCodeCreateManyInputArray: Prisma.QrCodeCreateManyInput[] = [];
+    const invitationImageCreateManyInputArray: Prisma.InvitationImageCreateManyInput[] =
+      [];
 
-      // Generate and save QR codes
-      const qrCodeDataToInsert =
-        await this.generateAndSaveQrCodesToFolder(guestsWithoutQrCodes);
+    // Process each guest to generate and save a QR code and invitation image
+    for (const guest of guestsWithoutQrCodes) {
+      // Generate and save QR code
+      const qrCodePath = await this.generateAndSaveQrCode(guest.id);
 
-      // Define template and output folder paths
-      const templateImagePath = 'files/template/template.jpeg';
-      const outputFolder = 'files/invitation';
+      // Merge QR code with invitation template
+      const invitationImagePath = await this.mergeQRCodeWithInvitationTemplate(
+        'files/template/template.jpeg',
+        qrCodePath,
+        'files/invitation',
+        guest.id,
+        guest.invitationName,
+        `STUDIO ${guest.studio} / ${guest.seat}`,
+        guest.showTime,
+      );
 
-      let invitationImagesCreateManyData: Prisma.InvitationImageCreateManyInput[] =
-        [];
-
-      // Process each QR code data
-      for (const qrCodeData of qrCodeDataToInsert) {
-        // Find the guest in the array
-        const guest = guestsWithoutQrCodes.find(
-          (guest) => guest.id === qrCodeData.guestId,
-        );
-
-        // If guest not found, continue to the next QR code
-        if (!guest) continue;
-
-        // Merge QR code with invitation template
-        await this.mergeQRCodeWithInvitationTemplate(
-          templateImagePath,
-          qrCodeData.path,
-          outputFolder,
-          qrCodeData,
-          guest.invitationName, // Use guest's invitationName
-          `STUDIO ${guest.studio} / ${guest.seat}`, // Use guest's studio and seat
-          guest.showTime, // Use guest's showTime
-        );
-
-        const mergedImageFileName = `${qrCodeData.guestId}_Party${
-          qrCodeData.path.match(/Party(\d+)\.png/)[1]
-        }_invitation.png`;
-        const outputPath = path.join(outputFolder, mergedImageFileName);
-
-        // Save the merged invitation image path to the database
-        invitationImagesCreateManyData.push({
-          path: outputPath,
-          guestId: qrCodeData.guestId,
-        });
-      }
-
-      // Insert InvitationImages into the database
-      await this.invitationImagesController.createMany({
-        data: invitationImagesCreateManyData,
+      qrCodeCreateManyInputArray.push({
+        guestId: guest.id,
+        path: qrCodePath,
       });
 
-      // Insert QR codes into the database
-      await this.insertQrCodes(qrCodeDataToInsert);
-    } catch (error) {
-      this.logger.error(`Error in onGuestCreatedManyEvent: ${error.message}`);
+      invitationImageCreateManyInputArray.push({
+        guestId: guest.id,
+        path: invitationImagePath,
+      });
     }
+
+    await this.saveQrCodeToDatabase(qrCodeCreateManyInputArray);
+    await this.saveInvitationImagesToDatabase(
+      invitationImageCreateManyInputArray,
+    );
   }
 
   // Find guests without QR codes
-  private async findGuestsWithoutQrCodes() {
+  private async findGuestsWithoutQrCodes(): Promise<Guest[]> {
     return this.guestController.findMany({
-      where: { qrcodes: { none: {} } },
+      where: { qrcode: null },
     });
   }
 
-  // Generate and save QR codes
-  private async generateAndSaveQrCodesToFolder(guests: Guest[]) {
-    const qrCodeDataToInsert: Prisma.QrCodeCreateManyInput[] = [];
-
-    for (const guest of guests) {
-      const qrCodeData = guest.id;
-
-      for (let i = 1; i <= guest.parties; i++) {
-        const qrCodeUrl = await qrCode.toDataURL(qrCodeData);
-        const qrCodeFolder = 'files/qrcodes';
-        const qrCodeFileName = `${guest.id}_Party${i}.png`;
-        const qrCodeFilePath = path.join(qrCodeFolder, qrCodeFileName);
-
-        fs.mkdirSync(qrCodeFolder, { recursive: true });
-        fs.writeFileSync(qrCodeFilePath, qrCodeUrl.split(',')[1], 'base64');
-
-        qrCodeDataToInsert.push({
-          path: qrCodeFilePath,
-          guestId: guest.id,
-        });
-      }
-    }
-
-    return qrCodeDataToInsert;
+  // Generate and save a QR code for a guest
+  private async generateAndSaveQrCode(guestId: string): Promise<string> {
+    const qrCodeUrl = await qrCode.toDataURL(guestId);
+    const qrCodePath = `files/qrcodes/${guestId}_QRCode.png`;
+    fs.mkdirSync('files/qrcodes', { recursive: true });
+    fs.writeFileSync(qrCodePath, qrCodeUrl.split(',')[1], 'base64');
+    return qrCodePath;
   }
 
-  // Insert QR codes into the database
-  private async insertQrCodes(
-    qrCodeDataToInsert: Prisma.QrCodeCreateManyInput[],
+  // Save the invitation image path to the database
+  private async saveQrCodeToDatabase(
+    qrCodeCreateManyInputArray: Prisma.QrCodeCreateManyInput[],
   ) {
     await this.qrCodeController.createMany({
-      data: qrCodeDataToInsert,
+      data: qrCodeCreateManyInputArray,
+    });
+  }
+
+  // Save the invitation image path to the database
+  private async saveInvitationImagesToDatabase(
+    invitationImageCreateManyInputArray: Prisma.InvitationImageCreateManyInput[],
+  ) {
+    await this.invitationImagesController.createMany({
+      data: invitationImageCreateManyInputArray,
     });
   }
 
@@ -130,14 +101,12 @@ export class GuestListener {
     templateImagePath: string,
     qrCodeImagePath: string,
     outputFolder: string,
-    qrCodeData: Prisma.QrCodeCreateManyInput,
+    guestId: string,
     guestNameText: string,
     studioAndSeatText?: string,
     showTimeText?: string,
   ) {
-    const mergedImageFileName = `${qrCodeData.guestId}_Party${
-      qrCodeData.path.match(/Party(\d+)\.png/)[1]
-    }_invitation.png`;
+    const mergedImageFileName = `${guestId}_invitation.png`;
     const outputPath = path.join(outputFolder, mergedImageFileName);
 
     await fs.promises.mkdir(outputFolder, { recursive: true });
@@ -207,18 +176,7 @@ export class GuestListener {
         },
       ])
       .toFile(outputPath);
-  }
 
-  // // Truncate or pad guestNameText to a maximum of 9 characters with spacing
-  // private limitGuestName(guestNameText: string): string {
-  //   const maxLength = 12;
-  //   if (guestNameText.length > maxLength) {
-  //     // Truncate if longer than maxLength
-  //     guestNameText = guestNameText.slice(0, maxLength);
-  //   } else {
-  //     // Pad with spaces if shorter than maxLength
-  //     guestNameText = guestNameText.padEnd(maxLength, ' ');
-  //   }
-  //   return guestNameText;
-  // }
+    return outputPath;
+  }
 }

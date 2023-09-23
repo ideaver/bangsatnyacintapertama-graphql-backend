@@ -16,6 +16,8 @@ export class WhatsappQueueController {
     return await this.whatsappQueueService.createMany(
       whatsappQueueCreateManyArgs,
     );
+
+    //TODO: add event request api on createManyyWhatsappQueue
   }
 
   async findOne(

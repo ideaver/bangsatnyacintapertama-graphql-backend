@@ -1,11 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { InvitationImageService } from './invitation-image.service';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { WhatsappQueueEvent } from 'src/event-listeners/enum/whatsapp-queue-event.enum ';
 
 @Injectable()
 export class InvitationImageController {
   constructor(
     private readonly invitationImageService: InvitationImageService,
+    private eventEmitter: EventEmitter2,
   ) {}
 
   async createOne(invitationImageCreateArgs: Prisma.InvitationImageCreateArgs) {
@@ -17,9 +20,13 @@ export class InvitationImageController {
   async createMany(
     invitationImageCreateManyArgs: Prisma.InvitationImageCreateManyArgs,
   ) {
-    return await this.invitationImageService.createMany(
+    const res = await this.invitationImageService.createMany(
       invitationImageCreateManyArgs,
     );
+
+    this.eventEmitter.emit(WhatsappQueueEvent.CreatedMany);
+
+    return res;
   }
 
   async findOne(

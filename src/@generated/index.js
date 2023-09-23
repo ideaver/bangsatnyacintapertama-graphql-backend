@@ -29,6 +29,7 @@ var WhatsappQueueScalarFieldEnum;
 (function (WhatsappQueueScalarFieldEnum) {
     WhatsappQueueScalarFieldEnum["id"] = "id";
     WhatsappQueueScalarFieldEnum["createdAt"] = "createdAt";
+    WhatsappQueueScalarFieldEnum["apiRequestId"] = "apiRequestId";
     WhatsappQueueScalarFieldEnum["status"] = "status";
     WhatsappQueueScalarFieldEnum["guestId"] = "guestId";
 })(WhatsappQueueScalarFieldEnum = exports.WhatsappQueueScalarFieldEnum || (exports.WhatsappQueueScalarFieldEnum = {}));
@@ -73,9 +74,11 @@ var SortOrder;
 })(SortOrder = exports.SortOrder || (exports.SortOrder = {}));
 var QueueStatus;
 (function (QueueStatus) {
-    QueueStatus["WAITING"] = "WAITING";
-    QueueStatus["SENDING"] = "SENDING";
+    QueueStatus["QUEUE"] = "QUEUE";
     QueueStatus["SENT"] = "SENT";
+    QueueStatus["DELIVERED"] = "DELIVERED";
+    QueueStatus["READ"] = "READ";
+    QueueStatus["ABORT"] = "ABORT";
     QueueStatus["FAILED"] = "FAILED";
 })(QueueStatus = exports.QueueStatus || (exports.QueueStatus = {}));
 var NullsOrder;
@@ -114,8 +117,6 @@ var GuestScalarFieldEnum;
     GuestScalarFieldEnum["deletedAt"] = "deletedAt";
     GuestScalarFieldEnum["groupMemberOfId"] = "groupMemberOfId";
     GuestScalarFieldEnum["confirmationStatus"] = "confirmationStatus";
-    GuestScalarFieldEnum["qrcodeId"] = "qrcodeId";
-    GuestScalarFieldEnum["invitationImageId"] = "invitationImageId";
 })(GuestScalarFieldEnum = exports.GuestScalarFieldEnum || (exports.GuestScalarFieldEnum = {}));
 var EmailQueueScalarFieldEnum;
 (function (EmailQueueScalarFieldEnum) {
@@ -1148,7 +1149,7 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: false })
 ], EmailQueue.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => QueueStatus, { nullable: false, defaultValue: 'WAITING' })
+    (0, graphql_1.Field)(() => QueueStatus, { nullable: false, defaultValue: 'QUEUE' })
 ], EmailQueue.prototype, "status", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
@@ -1502,12 +1503,6 @@ let GuestAvgAggregateInput = class GuestAvgAggregateInput {
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], GuestAvgAggregateInput.prototype, "whatsapp", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], GuestAvgAggregateInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], GuestAvgAggregateInput.prototype, "invitationImageId", void 0);
 GuestAvgAggregateInput = __decorate([
     (0, graphql_5.InputType)()
 ], GuestAvgAggregateInput);
@@ -1517,12 +1512,6 @@ let GuestAvgAggregate = class GuestAvgAggregate {
 __decorate([
     (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
 ], GuestAvgAggregate.prototype, "whatsapp", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
-], GuestAvgAggregate.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
-], GuestAvgAggregate.prototype, "invitationImageId", void 0);
 GuestAvgAggregate = __decorate([
     (0, graphql_2.ObjectType)()
 ], GuestAvgAggregate);
@@ -1532,12 +1521,6 @@ let GuestAvgOrderByAggregateInput = class GuestAvgOrderByAggregateInput {
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], GuestAvgOrderByAggregateInput.prototype, "whatsapp", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], GuestAvgOrderByAggregateInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], GuestAvgOrderByAggregateInput.prototype, "invitationImageId", void 0);
 GuestAvgOrderByAggregateInput = __decorate([
     (0, graphql_5.InputType)()
 ], GuestAvgOrderByAggregateInput);
@@ -1592,12 +1575,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], GuestCountAggregateInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], GuestCountAggregateInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], GuestCountAggregateInput.prototype, "invitationImageId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], GuestCountAggregateInput.prototype, "_all", void 0);
@@ -1657,12 +1634,6 @@ __decorate([
 ], GuestCountAggregate.prototype, "confirmationStatus", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: false })
-], GuestCountAggregate.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: false })
-], GuestCountAggregate.prototype, "invitationImageId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: false })
 ], GuestCountAggregate.prototype, "_all", void 0);
 GuestCountAggregate = __decorate([
     (0, graphql_2.ObjectType)()
@@ -1718,12 +1689,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], GuestCountOrderByAggregateInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], GuestCountOrderByAggregateInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], GuestCountOrderByAggregateInput.prototype, "invitationImageId", void 0);
 GuestCountOrderByAggregateInput = __decorate([
     (0, graphql_5.InputType)()
 ], GuestCountOrderByAggregateInput);
@@ -1803,12 +1768,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestCreateManyGroupMemberOfInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestCreateManyGroupMemberOfInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestCreateManyGroupMemberOfInput.prototype, "invitationImageId", void 0);
 GuestCreateManyGroupMemberOfInput = __decorate([
     (0, graphql_5.InputType)()
 ], GuestCreateManyGroupMemberOfInput);
@@ -1863,12 +1822,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestCreateManyInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestCreateManyInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestCreateManyInput.prototype, "invitationImageId", void 0);
 GuestCreateManyInput = __decorate([
     (0, graphql_5.InputType)()
 ], GuestCreateManyInput);
@@ -2117,12 +2070,6 @@ __decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestCreateWithoutEmailQueueInput.prototype, "confirmationStatus", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestCreateWithoutEmailQueueInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestCreateWithoutEmailQueueInput.prototype, "invitationImageId", void 0);
-__decorate([
     (0, graphql_1.Field)(() => GuestCreateNestedOneWithoutGroupMembersInput, { nullable: true })
 ], GuestCreateWithoutEmailQueueInput.prototype, "groupMemberOf", void 0);
 __decorate([
@@ -2188,12 +2135,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestCreateWithoutGroupMemberOfInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestCreateWithoutGroupMemberOfInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestCreateWithoutGroupMemberOfInput.prototype, "invitationImageId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => GuestCreateNestedManyWithoutGroupMemberOfInput, { nullable: true })
 ], GuestCreateWithoutGroupMemberOfInput.prototype, "groupMembers", void 0);
@@ -2261,12 +2202,6 @@ __decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestCreateWithoutGroupMembersInput.prototype, "confirmationStatus", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestCreateWithoutGroupMembersInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestCreateWithoutGroupMembersInput.prototype, "invitationImageId", void 0);
-__decorate([
     (0, graphql_1.Field)(() => GuestCreateNestedOneWithoutGroupMembersInput, { nullable: true })
 ], GuestCreateWithoutGroupMembersInput.prototype, "groupMemberOf", void 0);
 __decorate([
@@ -2332,12 +2267,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestCreateWithoutInvitationImageInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestCreateWithoutInvitationImageInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestCreateWithoutInvitationImageInput.prototype, "invitationImageId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => GuestCreateNestedOneWithoutGroupMembersInput, { nullable: true })
 ], GuestCreateWithoutInvitationImageInput.prototype, "groupMemberOf", void 0);
@@ -2405,12 +2334,6 @@ __decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestCreateWithoutQrcodeInput.prototype, "confirmationStatus", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestCreateWithoutQrcodeInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestCreateWithoutQrcodeInput.prototype, "invitationImageId", void 0);
-__decorate([
     (0, graphql_1.Field)(() => GuestCreateNestedOneWithoutGroupMembersInput, { nullable: true })
 ], GuestCreateWithoutQrcodeInput.prototype, "groupMemberOf", void 0);
 __decorate([
@@ -2477,12 +2400,6 @@ __decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestCreateWithoutWhatsappQueueInput.prototype, "confirmationStatus", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestCreateWithoutWhatsappQueueInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestCreateWithoutWhatsappQueueInput.prototype, "invitationImageId", void 0);
-__decorate([
     (0, graphql_1.Field)(() => GuestCreateNestedOneWithoutGroupMembersInput, { nullable: true })
 ], GuestCreateWithoutWhatsappQueueInput.prototype, "groupMemberOf", void 0);
 __decorate([
@@ -2548,12 +2465,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestCreateInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestCreateInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestCreateInput.prototype, "invitationImageId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => GuestCreateNestedOneWithoutGroupMembersInput, { nullable: true })
 ], GuestCreateInput.prototype, "groupMemberOf", void 0);
@@ -2667,12 +2578,6 @@ __decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestGroupBy.prototype, "confirmationStatus", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestGroupBy.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestGroupBy.prototype, "invitationImageId", void 0);
-__decorate([
     (0, graphql_1.Field)(() => GuestCountAggregate, { nullable: true })
 ], GuestGroupBy.prototype, "_count", void 0);
 __decorate([
@@ -2756,12 +2661,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], GuestMaxAggregateInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], GuestMaxAggregateInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], GuestMaxAggregateInput.prototype, "invitationImageId", void 0);
 GuestMaxAggregateInput = __decorate([
     (0, graphql_5.InputType)()
 ], GuestMaxAggregateInput);
@@ -2816,12 +2715,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestMaxAggregate.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestMaxAggregate.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestMaxAggregate.prototype, "invitationImageId", void 0);
 GuestMaxAggregate = __decorate([
     (0, graphql_2.ObjectType)()
 ], GuestMaxAggregate);
@@ -2876,12 +2769,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], GuestMaxOrderByAggregateInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], GuestMaxOrderByAggregateInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], GuestMaxOrderByAggregateInput.prototype, "invitationImageId", void 0);
 GuestMaxOrderByAggregateInput = __decorate([
     (0, graphql_5.InputType)()
 ], GuestMaxOrderByAggregateInput);
@@ -2936,12 +2823,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], GuestMinAggregateInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], GuestMinAggregateInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], GuestMinAggregateInput.prototype, "invitationImageId", void 0);
 GuestMinAggregateInput = __decorate([
     (0, graphql_5.InputType)()
 ], GuestMinAggregateInput);
@@ -2996,12 +2877,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestMinAggregate.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestMinAggregate.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestMinAggregate.prototype, "invitationImageId", void 0);
 GuestMinAggregate = __decorate([
     (0, graphql_2.ObjectType)()
 ], GuestMinAggregate);
@@ -3056,12 +2931,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], GuestMinOrderByAggregateInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], GuestMinOrderByAggregateInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], GuestMinOrderByAggregateInput.prototype, "invitationImageId", void 0);
 GuestMinOrderByAggregateInput = __decorate([
     (0, graphql_5.InputType)()
 ], GuestMinOrderByAggregateInput);
@@ -3138,12 +3007,6 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], GuestOrderByWithAggregationInput.prototype, "confirmationStatus", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
-], GuestOrderByWithAggregationInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
-], GuestOrderByWithAggregationInput.prototype, "invitationImageId", void 0);
-__decorate([
     (0, graphql_1.Field)(() => GuestCountOrderByAggregateInput, { nullable: true })
 ], GuestOrderByWithAggregationInput.prototype, "_count", void 0);
 __decorate([
@@ -3212,12 +3075,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
 ], GuestOrderByWithRelationInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
-], GuestOrderByWithRelationInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
-], GuestOrderByWithRelationInput.prototype, "invitationImageId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => GuestOrderByWithRelationInput_1, { nullable: true })
 ], GuestOrderByWithRelationInput.prototype, "groupMemberOf", void 0);
@@ -3311,12 +3168,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => EnumConfirmationStatusNullableWithAggregatesFilter, { nullable: true })
 ], GuestScalarWhereWithAggregatesInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => IntNullableWithAggregatesFilter, { nullable: true })
-], GuestScalarWhereWithAggregatesInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => IntNullableWithAggregatesFilter, { nullable: true })
-], GuestScalarWhereWithAggregatesInput.prototype, "invitationImageId", void 0);
 GuestScalarWhereWithAggregatesInput = GuestScalarWhereWithAggregatesInput_1 = __decorate([
     (0, graphql_5.InputType)()
 ], GuestScalarWhereWithAggregatesInput);
@@ -3380,12 +3231,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => EnumConfirmationStatusNullableFilter, { nullable: true })
 ], GuestScalarWhereInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => IntNullableFilter, { nullable: true })
-], GuestScalarWhereInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => IntNullableFilter, { nullable: true })
-], GuestScalarWhereInput.prototype, "invitationImageId", void 0);
 GuestScalarWhereInput = GuestScalarWhereInput_1 = __decorate([
     (0, graphql_5.InputType)()
 ], GuestScalarWhereInput);
@@ -3395,12 +3240,6 @@ let GuestSumAggregateInput = class GuestSumAggregateInput {
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], GuestSumAggregateInput.prototype, "whatsapp", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], GuestSumAggregateInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], GuestSumAggregateInput.prototype, "invitationImageId", void 0);
 GuestSumAggregateInput = __decorate([
     (0, graphql_5.InputType)()
 ], GuestSumAggregateInput);
@@ -3410,12 +3249,6 @@ let GuestSumAggregate = class GuestSumAggregate {
 __decorate([
     (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
 ], GuestSumAggregate.prototype, "whatsapp", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestSumAggregate.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestSumAggregate.prototype, "invitationImageId", void 0);
 GuestSumAggregate = __decorate([
     (0, graphql_2.ObjectType)()
 ], GuestSumAggregate);
@@ -3425,12 +3258,6 @@ let GuestSumOrderByAggregateInput = class GuestSumOrderByAggregateInput {
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], GuestSumOrderByAggregateInput.prototype, "whatsapp", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], GuestSumOrderByAggregateInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], GuestSumOrderByAggregateInput.prototype, "invitationImageId", void 0);
 GuestSumOrderByAggregateInput = __decorate([
     (0, graphql_5.InputType)()
 ], GuestSumOrderByAggregateInput);
@@ -3508,12 +3335,6 @@ __decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestUncheckedCreateWithoutEmailQueueInput.prototype, "confirmationStatus", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestUncheckedCreateWithoutEmailQueueInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestUncheckedCreateWithoutEmailQueueInput.prototype, "invitationImageId", void 0);
-__decorate([
     (0, graphql_1.Field)(() => GuestUncheckedCreateNestedManyWithoutGroupMemberOfInput, { nullable: true })
 ], GuestUncheckedCreateWithoutEmailQueueInput.prototype, "groupMembers", void 0);
 __decorate([
@@ -3576,12 +3397,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestUncheckedCreateWithoutGroupMemberOfInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestUncheckedCreateWithoutGroupMemberOfInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestUncheckedCreateWithoutGroupMemberOfInput.prototype, "invitationImageId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => GuestUncheckedCreateNestedManyWithoutGroupMemberOfInput, { nullable: true })
 ], GuestUncheckedCreateWithoutGroupMemberOfInput.prototype, "groupMembers", void 0);
@@ -3652,12 +3467,6 @@ __decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestUncheckedCreateWithoutGroupMembersInput.prototype, "confirmationStatus", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestUncheckedCreateWithoutGroupMembersInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestUncheckedCreateWithoutGroupMembersInput.prototype, "invitationImageId", void 0);
-__decorate([
     (0, graphql_1.Field)(() => QrCodeUncheckedCreateNestedOneWithoutGuestInput, { nullable: true })
 ], GuestUncheckedCreateWithoutGroupMembersInput.prototype, "qrcode", void 0);
 __decorate([
@@ -3723,12 +3532,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestUncheckedCreateWithoutInvitationImageInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestUncheckedCreateWithoutInvitationImageInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestUncheckedCreateWithoutInvitationImageInput.prototype, "invitationImageId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => GuestUncheckedCreateNestedManyWithoutGroupMemberOfInput, { nullable: true })
 ], GuestUncheckedCreateWithoutInvitationImageInput.prototype, "groupMembers", void 0);
@@ -3796,12 +3599,6 @@ __decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestUncheckedCreateWithoutQrcodeInput.prototype, "confirmationStatus", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestUncheckedCreateWithoutQrcodeInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestUncheckedCreateWithoutQrcodeInput.prototype, "invitationImageId", void 0);
-__decorate([
     (0, graphql_1.Field)(() => GuestUncheckedCreateNestedManyWithoutGroupMemberOfInput, { nullable: true })
 ], GuestUncheckedCreateWithoutQrcodeInput.prototype, "groupMembers", void 0);
 __decorate([
@@ -3868,12 +3665,6 @@ __decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestUncheckedCreateWithoutWhatsappQueueInput.prototype, "confirmationStatus", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestUncheckedCreateWithoutWhatsappQueueInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestUncheckedCreateWithoutWhatsappQueueInput.prototype, "invitationImageId", void 0);
-__decorate([
     (0, graphql_1.Field)(() => GuestUncheckedCreateNestedManyWithoutGroupMemberOfInput, { nullable: true })
 ], GuestUncheckedCreateWithoutWhatsappQueueInput.prototype, "groupMembers", void 0);
 __decorate([
@@ -3939,12 +3730,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true })
 ], GuestUncheckedCreateInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestUncheckedCreateInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestUncheckedCreateInput.prototype, "invitationImageId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => GuestUncheckedCreateNestedManyWithoutGroupMemberOfInput, { nullable: true })
 ], GuestUncheckedCreateInput.prototype, "groupMembers", void 0);
@@ -4061,12 +3846,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateManyWithoutGroupMemberOfInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateManyWithoutGroupMemberOfInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateManyWithoutGroupMemberOfInput.prototype, "invitationImageId", void 0);
 GuestUncheckedUpdateManyWithoutGroupMemberOfInput = __decorate([
     (0, graphql_5.InputType)()
 ], GuestUncheckedUpdateManyWithoutGroupMemberOfInput);
@@ -4121,12 +3900,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateManyInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateManyInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateManyInput.prototype, "invitationImageId", void 0);
 GuestUncheckedUpdateManyInput = __decorate([
     (0, graphql_5.InputType)()
 ], GuestUncheckedUpdateManyInput);
@@ -4181,12 +3954,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutEmailQueueInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateWithoutEmailQueueInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateWithoutEmailQueueInput.prototype, "invitationImageId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => GuestUncheckedUpdateManyWithoutGroupMemberOfNestedInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutEmailQueueInput.prototype, "groupMembers", void 0);
@@ -4250,12 +4017,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutGroupMemberOfInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateWithoutGroupMemberOfInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateWithoutGroupMemberOfInput.prototype, "invitationImageId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => GuestUncheckedUpdateManyWithoutGroupMemberOfNestedInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutGroupMemberOfInput.prototype, "groupMembers", void 0);
@@ -4326,12 +4087,6 @@ __decorate([
     (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutGroupMembersInput.prototype, "confirmationStatus", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateWithoutGroupMembersInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateWithoutGroupMembersInput.prototype, "invitationImageId", void 0);
-__decorate([
     (0, graphql_1.Field)(() => QrCodeUncheckedUpdateOneWithoutGuestNestedInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutGroupMembersInput.prototype, "qrcode", void 0);
 __decorate([
@@ -4397,12 +4152,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutInvitationImageInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateWithoutInvitationImageInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateWithoutInvitationImageInput.prototype, "invitationImageId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => GuestUncheckedUpdateManyWithoutGroupMemberOfNestedInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutInvitationImageInput.prototype, "groupMembers", void 0);
@@ -4470,12 +4219,6 @@ __decorate([
     (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutQrcodeInput.prototype, "confirmationStatus", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateWithoutQrcodeInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateWithoutQrcodeInput.prototype, "invitationImageId", void 0);
-__decorate([
     (0, graphql_1.Field)(() => GuestUncheckedUpdateManyWithoutGroupMemberOfNestedInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutQrcodeInput.prototype, "groupMembers", void 0);
 __decorate([
@@ -4541,12 +4284,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutWhatsappQueueInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateWithoutWhatsappQueueInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateWithoutWhatsappQueueInput.prototype, "invitationImageId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => GuestUncheckedUpdateManyWithoutGroupMemberOfNestedInput, { nullable: true })
 ], GuestUncheckedUpdateWithoutWhatsappQueueInput.prototype, "groupMembers", void 0);
@@ -4614,12 +4351,6 @@ __decorate([
     (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
 ], GuestUncheckedUpdateInput.prototype, "confirmationStatus", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUncheckedUpdateInput.prototype, "invitationImageId", void 0);
-__decorate([
     (0, graphql_1.Field)(() => GuestUncheckedUpdateManyWithoutGroupMemberOfNestedInput, { nullable: true })
 ], GuestUncheckedUpdateInput.prototype, "groupMembers", void 0);
 __decorate([
@@ -4685,12 +4416,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateManyMutationInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateManyMutationInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateManyMutationInput.prototype, "invitationImageId", void 0);
 GuestUpdateManyMutationInput = __decorate([
     (0, graphql_5.InputType)()
 ], GuestUpdateManyMutationInput);
@@ -5029,12 +4754,6 @@ __decorate([
     (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateWithoutEmailQueueInput.prototype, "confirmationStatus", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateWithoutEmailQueueInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateWithoutEmailQueueInput.prototype, "invitationImageId", void 0);
-__decorate([
     (0, graphql_1.Field)(() => GuestUpdateOneWithoutGroupMembersNestedInput, { nullable: true })
 ], GuestUpdateWithoutEmailQueueInput.prototype, "groupMemberOf", void 0);
 __decorate([
@@ -5100,12 +4819,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateWithoutGroupMemberOfInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateWithoutGroupMemberOfInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateWithoutGroupMemberOfInput.prototype, "invitationImageId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => GuestUpdateManyWithoutGroupMemberOfNestedInput, { nullable: true })
 ], GuestUpdateWithoutGroupMemberOfInput.prototype, "groupMembers", void 0);
@@ -5173,12 +4886,6 @@ __decorate([
     (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateWithoutGroupMembersInput.prototype, "confirmationStatus", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateWithoutGroupMembersInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateWithoutGroupMembersInput.prototype, "invitationImageId", void 0);
-__decorate([
     (0, graphql_1.Field)(() => GuestUpdateOneWithoutGroupMembersNestedInput, { nullable: true })
 ], GuestUpdateWithoutGroupMembersInput.prototype, "groupMemberOf", void 0);
 __decorate([
@@ -5244,12 +4951,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateWithoutInvitationImageInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateWithoutInvitationImageInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateWithoutInvitationImageInput.prototype, "invitationImageId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => GuestUpdateOneWithoutGroupMembersNestedInput, { nullable: true })
 ], GuestUpdateWithoutInvitationImageInput.prototype, "groupMemberOf", void 0);
@@ -5317,12 +5018,6 @@ __decorate([
     (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateWithoutQrcodeInput.prototype, "confirmationStatus", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateWithoutQrcodeInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateWithoutQrcodeInput.prototype, "invitationImageId", void 0);
-__decorate([
     (0, graphql_1.Field)(() => GuestUpdateOneWithoutGroupMembersNestedInput, { nullable: true })
 ], GuestUpdateWithoutQrcodeInput.prototype, "groupMemberOf", void 0);
 __decorate([
@@ -5389,12 +5084,6 @@ __decorate([
     (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateWithoutWhatsappQueueInput.prototype, "confirmationStatus", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateWithoutWhatsappQueueInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateWithoutWhatsappQueueInput.prototype, "invitationImageId", void 0);
-__decorate([
     (0, graphql_1.Field)(() => GuestUpdateOneWithoutGroupMembersNestedInput, { nullable: true })
 ], GuestUpdateWithoutWhatsappQueueInput.prototype, "groupMemberOf", void 0);
 __decorate([
@@ -5460,12 +5149,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => NullableEnumConfirmationStatusFieldUpdateOperationsInput, { nullable: true })
 ], GuestUpdateInput.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-], GuestUpdateInput.prototype, "invitationImageId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => GuestUpdateOneWithoutGroupMembersNestedInput, { nullable: true })
 ], GuestUpdateInput.prototype, "groupMemberOf", void 0);
@@ -5602,12 +5285,6 @@ __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
 ], GuestWhereUniqueInput.prototype, "id", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestWhereUniqueInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], GuestWhereUniqueInput.prototype, "invitationImageId", void 0);
-__decorate([
     (0, graphql_1.Field)(() => [GuestWhereInput], { nullable: true })
 ], GuestWhereUniqueInput.prototype, "AND", void 0);
 __decorate([
@@ -5743,12 +5420,6 @@ __decorate([
     (0, graphql_1.Field)(() => EnumConfirmationStatusNullableFilter, { nullable: true })
 ], GuestWhereInput.prototype, "confirmationStatus", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => IntNullableFilter, { nullable: true })
-], GuestWhereInput.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => IntNullableFilter, { nullable: true })
-], GuestWhereInput.prototype, "invitationImageId", void 0);
-__decorate([
     (0, graphql_1.Field)(() => GuestNullableRelationFilter, { nullable: true })
 ], GuestWhereInput.prototype, "groupMemberOf", void 0);
 __decorate([
@@ -5820,12 +5491,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => ConfirmationStatus, { nullable: true, defaultValue: 'UNCONFIRMED' })
 ], Guest.prototype, "confirmationStatus", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], Guest.prototype, "qrcodeId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], Guest.prototype, "invitationImageId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Guest_1, { nullable: true })
 ], Guest.prototype, "groupMemberOf", void 0);
@@ -11679,6 +11344,9 @@ let WhatsappQueueAvgAggregateInput = class WhatsappQueueAvgAggregateInput {
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], WhatsappQueueAvgAggregateInput.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], WhatsappQueueAvgAggregateInput.prototype, "apiRequestId", void 0);
 WhatsappQueueAvgAggregateInput = __decorate([
     (0, graphql_5.InputType)()
 ], WhatsappQueueAvgAggregateInput);
@@ -11688,6 +11356,9 @@ let WhatsappQueueAvgAggregate = class WhatsappQueueAvgAggregate {
 __decorate([
     (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
 ], WhatsappQueueAvgAggregate.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
+], WhatsappQueueAvgAggregate.prototype, "apiRequestId", void 0);
 WhatsappQueueAvgAggregate = __decorate([
     (0, graphql_2.ObjectType)()
 ], WhatsappQueueAvgAggregate);
@@ -11697,6 +11368,9 @@ let WhatsappQueueAvgOrderByAggregateInput = class WhatsappQueueAvgOrderByAggrega
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], WhatsappQueueAvgOrderByAggregateInput.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], WhatsappQueueAvgOrderByAggregateInput.prototype, "apiRequestId", void 0);
 WhatsappQueueAvgOrderByAggregateInput = __decorate([
     (0, graphql_5.InputType)()
 ], WhatsappQueueAvgOrderByAggregateInput);
@@ -11709,6 +11383,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], WhatsappQueueCountAggregateInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], WhatsappQueueCountAggregateInput.prototype, "apiRequestId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], WhatsappQueueCountAggregateInput.prototype, "status", void 0);
@@ -11732,6 +11409,9 @@ __decorate([
 ], WhatsappQueueCountAggregate.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: false })
+], WhatsappQueueCountAggregate.prototype, "apiRequestId", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: false })
 ], WhatsappQueueCountAggregate.prototype, "status", void 0);
 __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: false })
@@ -11751,6 +11431,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], WhatsappQueueCountOrderByAggregateInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], WhatsappQueueCountOrderByAggregateInput.prototype, "apiRequestId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], WhatsappQueueCountOrderByAggregateInput.prototype, "status", void 0);
@@ -11783,6 +11466,9 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], WhatsappQueueCreateManyGuestInput.prototype, "createdAt", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
+], WhatsappQueueCreateManyGuestInput.prototype, "apiRequestId", void 0);
+__decorate([
     (0, graphql_1.Field)(() => QueueStatus, { nullable: true })
 ], WhatsappQueueCreateManyGuestInput.prototype, "status", void 0);
 WhatsappQueueCreateManyGuestInput = __decorate([
@@ -11797,6 +11483,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], WhatsappQueueCreateManyInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
+], WhatsappQueueCreateManyInput.prototype, "apiRequestId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => QueueStatus, { nullable: true })
 ], WhatsappQueueCreateManyInput.prototype, "status", void 0);
@@ -11849,6 +11538,9 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], WhatsappQueueCreateWithoutGuestInput.prototype, "createdAt", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
+], WhatsappQueueCreateWithoutGuestInput.prototype, "apiRequestId", void 0);
+__decorate([
     (0, graphql_1.Field)(() => QueueStatus, { nullable: true })
 ], WhatsappQueueCreateWithoutGuestInput.prototype, "status", void 0);
 WhatsappQueueCreateWithoutGuestInput = __decorate([
@@ -11860,6 +11552,9 @@ let WhatsappQueueCreateInput = class WhatsappQueueCreateInput {
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], WhatsappQueueCreateInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
+], WhatsappQueueCreateInput.prototype, "apiRequestId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => QueueStatus, { nullable: true })
 ], WhatsappQueueCreateInput.prototype, "status", void 0);
@@ -11919,6 +11614,9 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: false })
 ], WhatsappQueueGroupBy.prototype, "createdAt", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
+], WhatsappQueueGroupBy.prototype, "apiRequestId", void 0);
+__decorate([
     (0, graphql_1.Field)(() => QueueStatus, { nullable: false })
 ], WhatsappQueueGroupBy.prototype, "status", void 0);
 __decorate([
@@ -11968,6 +11666,9 @@ __decorate([
 ], WhatsappQueueMaxAggregateInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], WhatsappQueueMaxAggregateInput.prototype, "apiRequestId", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], WhatsappQueueMaxAggregateInput.prototype, "status", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
@@ -11984,6 +11685,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], WhatsappQueueMaxAggregate.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
+], WhatsappQueueMaxAggregate.prototype, "apiRequestId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => QueueStatus, { nullable: true })
 ], WhatsappQueueMaxAggregate.prototype, "status", void 0);
@@ -12004,6 +11708,9 @@ __decorate([
 ], WhatsappQueueMaxOrderByAggregateInput.prototype, "createdAt", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], WhatsappQueueMaxOrderByAggregateInput.prototype, "apiRequestId", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], WhatsappQueueMaxOrderByAggregateInput.prototype, "status", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
@@ -12020,6 +11727,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], WhatsappQueueMinAggregateInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], WhatsappQueueMinAggregateInput.prototype, "apiRequestId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], WhatsappQueueMinAggregateInput.prototype, "status", void 0);
@@ -12039,6 +11749,9 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], WhatsappQueueMinAggregate.prototype, "createdAt", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
+], WhatsappQueueMinAggregate.prototype, "apiRequestId", void 0);
+__decorate([
     (0, graphql_1.Field)(() => QueueStatus, { nullable: true })
 ], WhatsappQueueMinAggregate.prototype, "status", void 0);
 __decorate([
@@ -12056,6 +11769,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], WhatsappQueueMinOrderByAggregateInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], WhatsappQueueMinOrderByAggregateInput.prototype, "apiRequestId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], WhatsappQueueMinOrderByAggregateInput.prototype, "status", void 0);
@@ -12083,6 +11799,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], WhatsappQueueOrderByWithAggregationInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
+], WhatsappQueueOrderByWithAggregationInput.prototype, "apiRequestId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], WhatsappQueueOrderByWithAggregationInput.prototype, "status", void 0);
@@ -12117,6 +11836,9 @@ __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], WhatsappQueueOrderByWithRelationInput.prototype, "createdAt", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => SortOrderInput, { nullable: true })
+], WhatsappQueueOrderByWithRelationInput.prototype, "apiRequestId", void 0);
+__decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], WhatsappQueueOrderByWithRelationInput.prototype, "status", void 0);
 __decorate([
@@ -12147,6 +11869,9 @@ __decorate([
     (0, graphql_1.Field)(() => DateTimeWithAggregatesFilter, { nullable: true })
 ], WhatsappQueueScalarWhereWithAggregatesInput.prototype, "createdAt", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => IntNullableWithAggregatesFilter, { nullable: true })
+], WhatsappQueueScalarWhereWithAggregatesInput.prototype, "apiRequestId", void 0);
+__decorate([
     (0, graphql_1.Field)(() => EnumQueueStatusWithAggregatesFilter, { nullable: true })
 ], WhatsappQueueScalarWhereWithAggregatesInput.prototype, "status", void 0);
 __decorate([
@@ -12174,6 +11899,9 @@ __decorate([
     (0, graphql_1.Field)(() => DateTimeFilter, { nullable: true })
 ], WhatsappQueueScalarWhereInput.prototype, "createdAt", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => IntNullableFilter, { nullable: true })
+], WhatsappQueueScalarWhereInput.prototype, "apiRequestId", void 0);
+__decorate([
     (0, graphql_1.Field)(() => EnumQueueStatusFilter, { nullable: true })
 ], WhatsappQueueScalarWhereInput.prototype, "status", void 0);
 __decorate([
@@ -12188,6 +11916,9 @@ let WhatsappQueueSumAggregateInput = class WhatsappQueueSumAggregateInput {
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], WhatsappQueueSumAggregateInput.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => Boolean, { nullable: true })
+], WhatsappQueueSumAggregateInput.prototype, "apiRequestId", void 0);
 WhatsappQueueSumAggregateInput = __decorate([
     (0, graphql_5.InputType)()
 ], WhatsappQueueSumAggregateInput);
@@ -12197,6 +11928,9 @@ let WhatsappQueueSumAggregate = class WhatsappQueueSumAggregate {
 __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
 ], WhatsappQueueSumAggregate.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
+], WhatsappQueueSumAggregate.prototype, "apiRequestId", void 0);
 WhatsappQueueSumAggregate = __decorate([
     (0, graphql_2.ObjectType)()
 ], WhatsappQueueSumAggregate);
@@ -12206,6 +11940,9 @@ let WhatsappQueueSumOrderByAggregateInput = class WhatsappQueueSumOrderByAggrega
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], WhatsappQueueSumOrderByAggregateInput.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
+], WhatsappQueueSumOrderByAggregateInput.prototype, "apiRequestId", void 0);
 WhatsappQueueSumOrderByAggregateInput = __decorate([
     (0, graphql_5.InputType)()
 ], WhatsappQueueSumOrderByAggregateInput);
@@ -12241,6 +11978,9 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], WhatsappQueueUncheckedCreateWithoutGuestInput.prototype, "createdAt", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
+], WhatsappQueueUncheckedCreateWithoutGuestInput.prototype, "apiRequestId", void 0);
+__decorate([
     (0, graphql_1.Field)(() => QueueStatus, { nullable: true })
 ], WhatsappQueueUncheckedCreateWithoutGuestInput.prototype, "status", void 0);
 WhatsappQueueUncheckedCreateWithoutGuestInput = __decorate([
@@ -12255,6 +11995,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], WhatsappQueueUncheckedCreateInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
+], WhatsappQueueUncheckedCreateInput.prototype, "apiRequestId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => QueueStatus, { nullable: true })
 ], WhatsappQueueUncheckedCreateInput.prototype, "status", void 0);
@@ -12324,6 +12067,9 @@ __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
 ], WhatsappQueueUncheckedUpdateManyWithoutGuestInput.prototype, "createdAt", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
+], WhatsappQueueUncheckedUpdateManyWithoutGuestInput.prototype, "apiRequestId", void 0);
+__decorate([
     (0, graphql_1.Field)(() => EnumQueueStatusFieldUpdateOperationsInput, { nullable: true })
 ], WhatsappQueueUncheckedUpdateManyWithoutGuestInput.prototype, "status", void 0);
 WhatsappQueueUncheckedUpdateManyWithoutGuestInput = __decorate([
@@ -12338,6 +12084,9 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
 ], WhatsappQueueUncheckedUpdateManyInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
+], WhatsappQueueUncheckedUpdateManyInput.prototype, "apiRequestId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => EnumQueueStatusFieldUpdateOperationsInput, { nullable: true })
 ], WhatsappQueueUncheckedUpdateManyInput.prototype, "status", void 0);
@@ -12357,6 +12106,9 @@ __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
 ], WhatsappQueueUncheckedUpdateWithoutGuestInput.prototype, "createdAt", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
+], WhatsappQueueUncheckedUpdateWithoutGuestInput.prototype, "apiRequestId", void 0);
+__decorate([
     (0, graphql_1.Field)(() => EnumQueueStatusFieldUpdateOperationsInput, { nullable: true })
 ], WhatsappQueueUncheckedUpdateWithoutGuestInput.prototype, "status", void 0);
 WhatsappQueueUncheckedUpdateWithoutGuestInput = __decorate([
@@ -12372,6 +12124,9 @@ __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
 ], WhatsappQueueUncheckedUpdateInput.prototype, "createdAt", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
+], WhatsappQueueUncheckedUpdateInput.prototype, "apiRequestId", void 0);
+__decorate([
     (0, graphql_1.Field)(() => EnumQueueStatusFieldUpdateOperationsInput, { nullable: true })
 ], WhatsappQueueUncheckedUpdateInput.prototype, "status", void 0);
 __decorate([
@@ -12386,6 +12141,9 @@ let WhatsappQueueUpdateManyMutationInput = class WhatsappQueueUpdateManyMutation
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
 ], WhatsappQueueUpdateManyMutationInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
+], WhatsappQueueUpdateManyMutationInput.prototype, "apiRequestId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => EnumQueueStatusFieldUpdateOperationsInput, { nullable: true })
 ], WhatsappQueueUpdateManyMutationInput.prototype, "status", void 0);
@@ -12477,6 +12235,9 @@ __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
 ], WhatsappQueueUpdateWithoutGuestInput.prototype, "createdAt", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
+], WhatsappQueueUpdateWithoutGuestInput.prototype, "apiRequestId", void 0);
+__decorate([
     (0, graphql_1.Field)(() => EnumQueueStatusFieldUpdateOperationsInput, { nullable: true })
 ], WhatsappQueueUpdateWithoutGuestInput.prototype, "status", void 0);
 WhatsappQueueUpdateWithoutGuestInput = __decorate([
@@ -12488,6 +12249,9 @@ let WhatsappQueueUpdateInput = class WhatsappQueueUpdateInput {
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
 ], WhatsappQueueUpdateInput.prototype, "createdAt", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
+], WhatsappQueueUpdateInput.prototype, "apiRequestId", void 0);
 __decorate([
     (0, graphql_1.Field)(() => EnumQueueStatusFieldUpdateOperationsInput, { nullable: true })
 ], WhatsappQueueUpdateInput.prototype, "status", void 0);
@@ -12534,6 +12298,9 @@ __decorate([
     (0, graphql_1.Field)(() => DateTimeFilter, { nullable: true })
 ], WhatsappQueueWhereUniqueInput.prototype, "createdAt", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => IntNullableFilter, { nullable: true })
+], WhatsappQueueWhereUniqueInput.prototype, "apiRequestId", void 0);
+__decorate([
     (0, graphql_1.Field)(() => EnumQueueStatusFilter, { nullable: true })
 ], WhatsappQueueWhereUniqueInput.prototype, "status", void 0);
 __decorate([
@@ -12564,6 +12331,9 @@ __decorate([
     (0, graphql_1.Field)(() => DateTimeFilter, { nullable: true })
 ], WhatsappQueueWhereInput.prototype, "createdAt", void 0);
 __decorate([
+    (0, graphql_1.Field)(() => IntNullableFilter, { nullable: true })
+], WhatsappQueueWhereInput.prototype, "apiRequestId", void 0);
+__decorate([
     (0, graphql_1.Field)(() => EnumQueueStatusFilter, { nullable: true })
 ], WhatsappQueueWhereInput.prototype, "status", void 0);
 __decorate([
@@ -12585,7 +12355,10 @@ __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: false })
 ], WhatsappQueue.prototype, "createdAt", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => QueueStatus, { nullable: false, defaultValue: 'WAITING' })
+    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
+], WhatsappQueue.prototype, "apiRequestId", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => QueueStatus, { nullable: false, defaultValue: 'QUEUE' })
 ], WhatsappQueue.prototype, "status", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })

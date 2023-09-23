@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { Prisma, QueueStatus } from '@prisma/client';
 import { GuestService } from './guest.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { GuestEvents } from '../../event-listeners/enum/guest-event.enum';
@@ -70,7 +70,7 @@ export class GuestController {
         deletedAt: { not: { equals: null } },
         emailQueue: {
           some: {
-            status: 'WAITING',
+            status: QueueStatus.QUEUE,
           },
         },
       },
@@ -81,7 +81,7 @@ export class GuestController {
           },
           take: 1,
           where: {
-            status: 'WAITING',
+            status: QueueStatus.QUEUE,
           },
         },
       },
@@ -93,7 +93,7 @@ export class GuestController {
         deletedAt: { not: { equals: null } },
         whatsappQueue: {
           some: {
-            status: 'WAITING',
+            status: QueueStatus.QUEUE,
           },
         },
       },
@@ -104,7 +104,7 @@ export class GuestController {
           },
           take: 1,
           where: {
-            status: 'WAITING',
+            status: QueueStatus.QUEUE,
           },
         },
       },

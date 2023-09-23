@@ -2,6 +2,7 @@ import { Prisma } from '@prisma/client';
 export declare enum WhatsappQueueScalarFieldEnum {
     id = "id",
     createdAt = "createdAt",
+    apiRequestId = "apiRequestId",
     status = "status",
     guestId = "guestId"
 }
@@ -40,9 +41,11 @@ export declare enum SortOrder {
     desc = "desc"
 }
 export declare enum QueueStatus {
-    WAITING = "WAITING",
-    SENDING = "SENDING",
+    QUEUE = "QUEUE",
     SENT = "SENT",
+    DELIVERED = "DELIVERED",
+    READ = "READ",
+    ABORT = "ABORT",
     FAILED = "FAILED"
 }
 export declare enum NullsOrder {
@@ -76,9 +79,7 @@ export declare enum GuestScalarFieldEnum {
     updatedAt = "updatedAt",
     deletedAt = "deletedAt",
     groupMemberOfId = "groupMemberOfId",
-    confirmationStatus = "confirmationStatus",
-    qrcodeId = "qrcodeId",
-    invitationImageId = "invitationImageId"
+    confirmationStatus = "confirmationStatus"
 }
 export declare enum EmailQueueScalarFieldEnum {
     id = "id",
@@ -473,12 +474,12 @@ export declare class DeleteManyGuestArgs {
     where?: InstanceType<typeof GuestWhereInput>;
 }
 export declare class DeleteOneGuestArgs {
-    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
 }
 export declare class FindFirstGuestOrThrowArgs {
     where?: InstanceType<typeof GuestWhereInput>;
     orderBy?: Array<GuestOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    cursor?: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof GuestScalarFieldEnum>;
@@ -486,7 +487,7 @@ export declare class FindFirstGuestOrThrowArgs {
 export declare class FindFirstGuestArgs {
     where?: InstanceType<typeof GuestWhereInput>;
     orderBy?: Array<GuestOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    cursor?: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof GuestScalarFieldEnum>;
@@ -494,21 +495,21 @@ export declare class FindFirstGuestArgs {
 export declare class FindManyGuestArgs {
     where?: InstanceType<typeof GuestWhereInput>;
     orderBy?: Array<GuestOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    cursor?: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
     take?: number;
     skip?: number;
     distinct?: Array<keyof typeof GuestScalarFieldEnum>;
 }
 export declare class FindUniqueGuestOrThrowArgs {
-    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
 }
 export declare class FindUniqueGuestArgs {
-    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
 }
 export declare class GuestAggregateArgs {
     where?: InstanceType<typeof GuestWhereInput>;
     orderBy?: Array<GuestOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    cursor?: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
     take?: number;
     skip?: number;
     _count?: InstanceType<typeof GuestCountAggregateInput>;
@@ -519,18 +520,12 @@ export declare class GuestAggregateArgs {
 }
 export declare class GuestAvgAggregateInput {
     whatsapp?: true;
-    qrcodeId?: true;
-    invitationImageId?: true;
 }
 export declare class GuestAvgAggregate {
     whatsapp?: number;
-    qrcodeId?: number;
-    invitationImageId?: number;
 }
 export declare class GuestAvgOrderByAggregateInput {
     whatsapp?: keyof typeof SortOrder;
-    qrcodeId?: keyof typeof SortOrder;
-    invitationImageId?: keyof typeof SortOrder;
 }
 export declare class GuestCountAggregateInput {
     id?: true;
@@ -549,8 +544,6 @@ export declare class GuestCountAggregateInput {
     deletedAt?: true;
     groupMemberOfId?: true;
     confirmationStatus?: true;
-    qrcodeId?: true;
-    invitationImageId?: true;
     _all?: true;
 }
 export declare class GuestCountAggregate {
@@ -570,8 +563,6 @@ export declare class GuestCountAggregate {
     deletedAt: number;
     groupMemberOfId: number;
     confirmationStatus: number;
-    qrcodeId: number;
-    invitationImageId: number;
     _all: number;
 }
 export declare class GuestCountOrderByAggregateInput {
@@ -591,8 +582,6 @@ export declare class GuestCountOrderByAggregateInput {
     deletedAt?: keyof typeof SortOrder;
     groupMemberOfId?: keyof typeof SortOrder;
     confirmationStatus?: keyof typeof SortOrder;
-    qrcodeId?: keyof typeof SortOrder;
-    invitationImageId?: keyof typeof SortOrder;
 }
 export declare class GuestCount {
     groupMembers?: number;
@@ -619,8 +608,6 @@ export declare class GuestCreateManyGroupMemberOfInput {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
-    qrcodeId?: number;
-    invitationImageId?: number;
 }
 export declare class GuestCreateManyInput {
     id?: string;
@@ -639,62 +626,60 @@ export declare class GuestCreateManyInput {
     deletedAt?: Date | string;
     groupMemberOfId?: string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
-    qrcodeId?: number;
-    invitationImageId?: number;
 }
 export declare class GuestCreateNestedManyWithoutGroupMemberOfInput {
     create?: Array<GuestCreateWithoutGroupMemberOfInput>;
     connectOrCreate?: Array<GuestCreateOrConnectWithoutGroupMemberOfInput>;
     createMany?: InstanceType<typeof GuestCreateManyGroupMemberOfInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>>;
+    connect?: Array<Prisma.AtLeast<GuestWhereUniqueInput, 'id'>>;
 }
 export declare class GuestCreateNestedOneWithoutEmailQueueInput {
     create?: InstanceType<typeof GuestCreateWithoutEmailQueueInput>;
     connectOrCreate?: InstanceType<typeof GuestCreateOrConnectWithoutEmailQueueInput>;
-    connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
 }
 export declare class GuestCreateNestedOneWithoutGroupMembersInput {
     create?: InstanceType<typeof GuestCreateWithoutGroupMembersInput>;
     connectOrCreate?: InstanceType<typeof GuestCreateOrConnectWithoutGroupMembersInput>;
-    connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
 }
 export declare class GuestCreateNestedOneWithoutInvitationImageInput {
     create?: InstanceType<typeof GuestCreateWithoutInvitationImageInput>;
     connectOrCreate?: InstanceType<typeof GuestCreateOrConnectWithoutInvitationImageInput>;
-    connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
 }
 export declare class GuestCreateNestedOneWithoutQrcodeInput {
     create?: InstanceType<typeof GuestCreateWithoutQrcodeInput>;
     connectOrCreate?: InstanceType<typeof GuestCreateOrConnectWithoutQrcodeInput>;
-    connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
 }
 export declare class GuestCreateNestedOneWithoutWhatsappQueueInput {
     create?: InstanceType<typeof GuestCreateWithoutWhatsappQueueInput>;
     connectOrCreate?: InstanceType<typeof GuestCreateOrConnectWithoutWhatsappQueueInput>;
-    connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
 }
 export declare class GuestCreateOrConnectWithoutEmailQueueInput {
-    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
     create: InstanceType<typeof GuestCreateWithoutEmailQueueInput>;
 }
 export declare class GuestCreateOrConnectWithoutGroupMemberOfInput {
-    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
     create: InstanceType<typeof GuestCreateWithoutGroupMemberOfInput>;
 }
 export declare class GuestCreateOrConnectWithoutGroupMembersInput {
-    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
     create: InstanceType<typeof GuestCreateWithoutGroupMembersInput>;
 }
 export declare class GuestCreateOrConnectWithoutInvitationImageInput {
-    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
     create: InstanceType<typeof GuestCreateWithoutInvitationImageInput>;
 }
 export declare class GuestCreateOrConnectWithoutQrcodeInput {
-    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
     create: InstanceType<typeof GuestCreateWithoutQrcodeInput>;
 }
 export declare class GuestCreateOrConnectWithoutWhatsappQueueInput {
-    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
     create: InstanceType<typeof GuestCreateWithoutWhatsappQueueInput>;
 }
 export declare class GuestCreateWithoutEmailQueueInput {
@@ -713,8 +698,6 @@ export declare class GuestCreateWithoutEmailQueueInput {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
-    qrcodeId?: number;
-    invitationImageId?: number;
     groupMemberOf?: InstanceType<typeof GuestCreateNestedOneWithoutGroupMembersInput>;
     groupMembers?: InstanceType<typeof GuestCreateNestedManyWithoutGroupMemberOfInput>;
     qrcode?: InstanceType<typeof QrCodeCreateNestedOneWithoutGuestInput>;
@@ -737,8 +720,6 @@ export declare class GuestCreateWithoutGroupMemberOfInput {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
-    qrcodeId?: number;
-    invitationImageId?: number;
     groupMembers?: InstanceType<typeof GuestCreateNestedManyWithoutGroupMemberOfInput>;
     qrcode?: InstanceType<typeof QrCodeCreateNestedOneWithoutGuestInput>;
     invitationImage?: InstanceType<typeof InvitationImageCreateNestedOneWithoutGuestInput>;
@@ -761,8 +742,6 @@ export declare class GuestCreateWithoutGroupMembersInput {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
-    qrcodeId?: number;
-    invitationImageId?: number;
     groupMemberOf?: InstanceType<typeof GuestCreateNestedOneWithoutGroupMembersInput>;
     qrcode?: InstanceType<typeof QrCodeCreateNestedOneWithoutGuestInput>;
     invitationImage?: InstanceType<typeof InvitationImageCreateNestedOneWithoutGuestInput>;
@@ -785,8 +764,6 @@ export declare class GuestCreateWithoutInvitationImageInput {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
-    qrcodeId?: number;
-    invitationImageId?: number;
     groupMemberOf?: InstanceType<typeof GuestCreateNestedOneWithoutGroupMembersInput>;
     groupMembers?: InstanceType<typeof GuestCreateNestedManyWithoutGroupMemberOfInput>;
     qrcode?: InstanceType<typeof QrCodeCreateNestedOneWithoutGuestInput>;
@@ -809,8 +786,6 @@ export declare class GuestCreateWithoutQrcodeInput {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
-    qrcodeId?: number;
-    invitationImageId?: number;
     groupMemberOf?: InstanceType<typeof GuestCreateNestedOneWithoutGroupMembersInput>;
     groupMembers?: InstanceType<typeof GuestCreateNestedManyWithoutGroupMemberOfInput>;
     invitationImage?: InstanceType<typeof InvitationImageCreateNestedOneWithoutGuestInput>;
@@ -833,8 +808,6 @@ export declare class GuestCreateWithoutWhatsappQueueInput {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
-    qrcodeId?: number;
-    invitationImageId?: number;
     groupMemberOf?: InstanceType<typeof GuestCreateNestedOneWithoutGroupMembersInput>;
     groupMembers?: InstanceType<typeof GuestCreateNestedManyWithoutGroupMemberOfInput>;
     qrcode?: InstanceType<typeof QrCodeCreateNestedOneWithoutGuestInput>;
@@ -857,8 +830,6 @@ export declare class GuestCreateInput {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
-    qrcodeId?: number;
-    invitationImageId?: number;
     groupMemberOf?: InstanceType<typeof GuestCreateNestedOneWithoutGroupMembersInput>;
     groupMembers?: InstanceType<typeof GuestCreateNestedManyWithoutGroupMemberOfInput>;
     qrcode?: InstanceType<typeof QrCodeCreateNestedOneWithoutGuestInput>;
@@ -896,8 +867,6 @@ export declare class GuestGroupBy {
     deletedAt?: Date | string;
     groupMemberOfId?: string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
-    qrcodeId?: number;
-    invitationImageId?: number;
     _count?: InstanceType<typeof GuestCountAggregate>;
     _avg?: InstanceType<typeof GuestAvgAggregate>;
     _sum?: InstanceType<typeof GuestSumAggregate>;
@@ -926,8 +895,6 @@ export declare class GuestMaxAggregateInput {
     deletedAt?: true;
     groupMemberOfId?: true;
     confirmationStatus?: true;
-    qrcodeId?: true;
-    invitationImageId?: true;
 }
 export declare class GuestMaxAggregate {
     id?: string;
@@ -946,8 +913,6 @@ export declare class GuestMaxAggregate {
     deletedAt?: Date | string;
     groupMemberOfId?: string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
-    qrcodeId?: number;
-    invitationImageId?: number;
 }
 export declare class GuestMaxOrderByAggregateInput {
     id?: keyof typeof SortOrder;
@@ -966,8 +931,6 @@ export declare class GuestMaxOrderByAggregateInput {
     deletedAt?: keyof typeof SortOrder;
     groupMemberOfId?: keyof typeof SortOrder;
     confirmationStatus?: keyof typeof SortOrder;
-    qrcodeId?: keyof typeof SortOrder;
-    invitationImageId?: keyof typeof SortOrder;
 }
 export declare class GuestMinAggregateInput {
     id?: true;
@@ -986,8 +949,6 @@ export declare class GuestMinAggregateInput {
     deletedAt?: true;
     groupMemberOfId?: true;
     confirmationStatus?: true;
-    qrcodeId?: true;
-    invitationImageId?: true;
 }
 export declare class GuestMinAggregate {
     id?: string;
@@ -1006,8 +967,6 @@ export declare class GuestMinAggregate {
     deletedAt?: Date | string;
     groupMemberOfId?: string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
-    qrcodeId?: number;
-    invitationImageId?: number;
 }
 export declare class GuestMinOrderByAggregateInput {
     id?: keyof typeof SortOrder;
@@ -1026,8 +985,6 @@ export declare class GuestMinOrderByAggregateInput {
     deletedAt?: keyof typeof SortOrder;
     groupMemberOfId?: keyof typeof SortOrder;
     confirmationStatus?: keyof typeof SortOrder;
-    qrcodeId?: keyof typeof SortOrder;
-    invitationImageId?: keyof typeof SortOrder;
 }
 export declare class GuestNullableRelationFilter {
     is?: InstanceType<typeof GuestWhereInput>;
@@ -1053,8 +1010,6 @@ export declare class GuestOrderByWithAggregationInput {
     deletedAt?: InstanceType<typeof SortOrderInput>;
     groupMemberOfId?: InstanceType<typeof SortOrderInput>;
     confirmationStatus?: InstanceType<typeof SortOrderInput>;
-    qrcodeId?: InstanceType<typeof SortOrderInput>;
-    invitationImageId?: InstanceType<typeof SortOrderInput>;
     _count?: InstanceType<typeof GuestCountOrderByAggregateInput>;
     _avg?: InstanceType<typeof GuestAvgOrderByAggregateInput>;
     _max?: InstanceType<typeof GuestMaxOrderByAggregateInput>;
@@ -1078,8 +1033,6 @@ export declare class GuestOrderByWithRelationInput {
     deletedAt?: InstanceType<typeof SortOrderInput>;
     groupMemberOfId?: InstanceType<typeof SortOrderInput>;
     confirmationStatus?: InstanceType<typeof SortOrderInput>;
-    qrcodeId?: InstanceType<typeof SortOrderInput>;
-    invitationImageId?: InstanceType<typeof SortOrderInput>;
     groupMemberOf?: InstanceType<typeof GuestOrderByWithRelationInput>;
     groupMembers?: InstanceType<typeof GuestOrderByRelationAggregateInput>;
     qrcode?: InstanceType<typeof QrCodeOrderByWithRelationInput>;
@@ -1111,8 +1064,6 @@ export declare class GuestScalarWhereWithAggregatesInput {
     deletedAt?: InstanceType<typeof DateTimeNullableWithAggregatesFilter>;
     groupMemberOfId?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     confirmationStatus?: InstanceType<typeof EnumConfirmationStatusNullableWithAggregatesFilter>;
-    qrcodeId?: InstanceType<typeof IntNullableWithAggregatesFilter>;
-    invitationImageId?: InstanceType<typeof IntNullableWithAggregatesFilter>;
 }
 export declare class GuestScalarWhereInput {
     AND?: Array<GuestScalarWhereInput>;
@@ -1134,29 +1085,21 @@ export declare class GuestScalarWhereInput {
     deletedAt?: InstanceType<typeof DateTimeNullableFilter>;
     groupMemberOfId?: InstanceType<typeof StringNullableFilter>;
     confirmationStatus?: InstanceType<typeof EnumConfirmationStatusNullableFilter>;
-    qrcodeId?: InstanceType<typeof IntNullableFilter>;
-    invitationImageId?: InstanceType<typeof IntNullableFilter>;
 }
 export declare class GuestSumAggregateInput {
     whatsapp?: true;
-    qrcodeId?: true;
-    invitationImageId?: true;
 }
 export declare class GuestSumAggregate {
     whatsapp?: number;
-    qrcodeId?: number;
-    invitationImageId?: number;
 }
 export declare class GuestSumOrderByAggregateInput {
     whatsapp?: keyof typeof SortOrder;
-    qrcodeId?: keyof typeof SortOrder;
-    invitationImageId?: keyof typeof SortOrder;
 }
 export declare class GuestUncheckedCreateNestedManyWithoutGroupMemberOfInput {
     create?: Array<GuestCreateWithoutGroupMemberOfInput>;
     connectOrCreate?: Array<GuestCreateOrConnectWithoutGroupMemberOfInput>;
     createMany?: InstanceType<typeof GuestCreateManyGroupMemberOfInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>>;
+    connect?: Array<Prisma.AtLeast<GuestWhereUniqueInput, 'id'>>;
 }
 export declare class GuestUncheckedCreateWithoutEmailQueueInput {
     id?: string;
@@ -1175,8 +1118,6 @@ export declare class GuestUncheckedCreateWithoutEmailQueueInput {
     deletedAt?: Date | string;
     groupMemberOfId?: string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
-    qrcodeId?: number;
-    invitationImageId?: number;
     groupMembers?: InstanceType<typeof GuestUncheckedCreateNestedManyWithoutGroupMemberOfInput>;
     qrcode?: InstanceType<typeof QrCodeUncheckedCreateNestedOneWithoutGuestInput>;
     invitationImage?: InstanceType<typeof InvitationImageUncheckedCreateNestedOneWithoutGuestInput>;
@@ -1198,8 +1139,6 @@ export declare class GuestUncheckedCreateWithoutGroupMemberOfInput {
     updatedAt?: Date | string;
     deletedAt?: Date | string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
-    qrcodeId?: number;
-    invitationImageId?: number;
     groupMembers?: InstanceType<typeof GuestUncheckedCreateNestedManyWithoutGroupMemberOfInput>;
     qrcode?: InstanceType<typeof QrCodeUncheckedCreateNestedOneWithoutGuestInput>;
     invitationImage?: InstanceType<typeof InvitationImageUncheckedCreateNestedOneWithoutGuestInput>;
@@ -1223,8 +1162,6 @@ export declare class GuestUncheckedCreateWithoutGroupMembersInput {
     deletedAt?: Date | string;
     groupMemberOfId?: string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
-    qrcodeId?: number;
-    invitationImageId?: number;
     qrcode?: InstanceType<typeof QrCodeUncheckedCreateNestedOneWithoutGuestInput>;
     invitationImage?: InstanceType<typeof InvitationImageUncheckedCreateNestedOneWithoutGuestInput>;
     emailQueue?: InstanceType<typeof EmailQueueUncheckedCreateNestedManyWithoutGuestInput>;
@@ -1247,8 +1184,6 @@ export declare class GuestUncheckedCreateWithoutInvitationImageInput {
     deletedAt?: Date | string;
     groupMemberOfId?: string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
-    qrcodeId?: number;
-    invitationImageId?: number;
     groupMembers?: InstanceType<typeof GuestUncheckedCreateNestedManyWithoutGroupMemberOfInput>;
     qrcode?: InstanceType<typeof QrCodeUncheckedCreateNestedOneWithoutGuestInput>;
     emailQueue?: InstanceType<typeof EmailQueueUncheckedCreateNestedManyWithoutGuestInput>;
@@ -1271,8 +1206,6 @@ export declare class GuestUncheckedCreateWithoutQrcodeInput {
     deletedAt?: Date | string;
     groupMemberOfId?: string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
-    qrcodeId?: number;
-    invitationImageId?: number;
     groupMembers?: InstanceType<typeof GuestUncheckedCreateNestedManyWithoutGroupMemberOfInput>;
     invitationImage?: InstanceType<typeof InvitationImageUncheckedCreateNestedOneWithoutGuestInput>;
     emailQueue?: InstanceType<typeof EmailQueueUncheckedCreateNestedManyWithoutGuestInput>;
@@ -1295,8 +1228,6 @@ export declare class GuestUncheckedCreateWithoutWhatsappQueueInput {
     deletedAt?: Date | string;
     groupMemberOfId?: string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
-    qrcodeId?: number;
-    invitationImageId?: number;
     groupMembers?: InstanceType<typeof GuestUncheckedCreateNestedManyWithoutGroupMemberOfInput>;
     qrcode?: InstanceType<typeof QrCodeUncheckedCreateNestedOneWithoutGuestInput>;
     invitationImage?: InstanceType<typeof InvitationImageUncheckedCreateNestedOneWithoutGuestInput>;
@@ -1319,8 +1250,6 @@ export declare class GuestUncheckedCreateInput {
     deletedAt?: Date | string;
     groupMemberOfId?: string;
     confirmationStatus?: keyof typeof ConfirmationStatus;
-    qrcodeId?: number;
-    invitationImageId?: number;
     groupMembers?: InstanceType<typeof GuestUncheckedCreateNestedManyWithoutGroupMemberOfInput>;
     qrcode?: InstanceType<typeof QrCodeUncheckedCreateNestedOneWithoutGuestInput>;
     invitationImage?: InstanceType<typeof InvitationImageUncheckedCreateNestedOneWithoutGuestInput>;
@@ -1332,10 +1261,10 @@ export declare class GuestUncheckedUpdateManyWithoutGroupMemberOfNestedInput {
     connectOrCreate?: Array<GuestCreateOrConnectWithoutGroupMemberOfInput>;
     upsert?: Array<GuestUpsertWithWhereUniqueWithoutGroupMemberOfInput>;
     createMany?: InstanceType<typeof GuestCreateManyGroupMemberOfInputEnvelope>;
-    set?: Array<Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>>;
-    disconnect?: Array<Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>>;
-    delete?: Array<Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>>;
-    connect?: Array<Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>>;
+    set?: Array<Prisma.AtLeast<GuestWhereUniqueInput, 'id'>>;
+    disconnect?: Array<Prisma.AtLeast<GuestWhereUniqueInput, 'id'>>;
+    delete?: Array<Prisma.AtLeast<GuestWhereUniqueInput, 'id'>>;
+    connect?: Array<Prisma.AtLeast<GuestWhereUniqueInput, 'id'>>;
     update?: Array<GuestUpdateWithWhereUniqueWithoutGroupMemberOfInput>;
     updateMany?: Array<GuestUpdateManyWithWhereWithoutGroupMemberOfInput>;
     deleteMany?: Array<GuestScalarWhereInput>;
@@ -1356,8 +1285,6 @@ export declare class GuestUncheckedUpdateManyWithoutGroupMemberOfInput {
     updatedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
-    qrcodeId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    invitationImageId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
 export declare class GuestUncheckedUpdateManyInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -1376,8 +1303,6 @@ export declare class GuestUncheckedUpdateManyInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     groupMemberOfId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
-    qrcodeId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    invitationImageId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
 export declare class GuestUncheckedUpdateWithoutEmailQueueInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -1396,8 +1321,6 @@ export declare class GuestUncheckedUpdateWithoutEmailQueueInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     groupMemberOfId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
-    qrcodeId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    invitationImageId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     groupMembers?: InstanceType<typeof GuestUncheckedUpdateManyWithoutGroupMemberOfNestedInput>;
     qrcode?: InstanceType<typeof QrCodeUncheckedUpdateOneWithoutGuestNestedInput>;
     invitationImage?: InstanceType<typeof InvitationImageUncheckedUpdateOneWithoutGuestNestedInput>;
@@ -1419,8 +1342,6 @@ export declare class GuestUncheckedUpdateWithoutGroupMemberOfInput {
     updatedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
-    qrcodeId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    invitationImageId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     groupMembers?: InstanceType<typeof GuestUncheckedUpdateManyWithoutGroupMemberOfNestedInput>;
     qrcode?: InstanceType<typeof QrCodeUncheckedUpdateOneWithoutGuestNestedInput>;
     invitationImage?: InstanceType<typeof InvitationImageUncheckedUpdateOneWithoutGuestNestedInput>;
@@ -1444,8 +1365,6 @@ export declare class GuestUncheckedUpdateWithoutGroupMembersInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     groupMemberOfId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
-    qrcodeId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    invitationImageId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     qrcode?: InstanceType<typeof QrCodeUncheckedUpdateOneWithoutGuestNestedInput>;
     invitationImage?: InstanceType<typeof InvitationImageUncheckedUpdateOneWithoutGuestNestedInput>;
     emailQueue?: InstanceType<typeof EmailQueueUncheckedUpdateManyWithoutGuestNestedInput>;
@@ -1468,8 +1387,6 @@ export declare class GuestUncheckedUpdateWithoutInvitationImageInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     groupMemberOfId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
-    qrcodeId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    invitationImageId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     groupMembers?: InstanceType<typeof GuestUncheckedUpdateManyWithoutGroupMemberOfNestedInput>;
     qrcode?: InstanceType<typeof QrCodeUncheckedUpdateOneWithoutGuestNestedInput>;
     emailQueue?: InstanceType<typeof EmailQueueUncheckedUpdateManyWithoutGuestNestedInput>;
@@ -1492,8 +1409,6 @@ export declare class GuestUncheckedUpdateWithoutQrcodeInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     groupMemberOfId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
-    qrcodeId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    invitationImageId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     groupMembers?: InstanceType<typeof GuestUncheckedUpdateManyWithoutGroupMemberOfNestedInput>;
     invitationImage?: InstanceType<typeof InvitationImageUncheckedUpdateOneWithoutGuestNestedInput>;
     emailQueue?: InstanceType<typeof EmailQueueUncheckedUpdateManyWithoutGuestNestedInput>;
@@ -1516,8 +1431,6 @@ export declare class GuestUncheckedUpdateWithoutWhatsappQueueInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     groupMemberOfId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
-    qrcodeId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    invitationImageId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     groupMembers?: InstanceType<typeof GuestUncheckedUpdateManyWithoutGroupMemberOfNestedInput>;
     qrcode?: InstanceType<typeof QrCodeUncheckedUpdateOneWithoutGuestNestedInput>;
     invitationImage?: InstanceType<typeof InvitationImageUncheckedUpdateOneWithoutGuestNestedInput>;
@@ -1540,8 +1453,6 @@ export declare class GuestUncheckedUpdateInput {
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     groupMemberOfId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
-    qrcodeId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    invitationImageId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     groupMembers?: InstanceType<typeof GuestUncheckedUpdateManyWithoutGroupMemberOfNestedInput>;
     qrcode?: InstanceType<typeof QrCodeUncheckedUpdateOneWithoutGuestNestedInput>;
     invitationImage?: InstanceType<typeof InvitationImageUncheckedUpdateOneWithoutGuestNestedInput>;
@@ -1564,8 +1475,6 @@ export declare class GuestUpdateManyMutationInput {
     updatedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
-    qrcodeId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    invitationImageId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
 export declare class GuestUpdateManyWithWhereWithoutGroupMemberOfInput {
     where: InstanceType<typeof GuestScalarWhereInput>;
@@ -1576,10 +1485,10 @@ export declare class GuestUpdateManyWithoutGroupMemberOfNestedInput {
     connectOrCreate?: Array<GuestCreateOrConnectWithoutGroupMemberOfInput>;
     upsert?: Array<GuestUpsertWithWhereUniqueWithoutGroupMemberOfInput>;
     createMany?: InstanceType<typeof GuestCreateManyGroupMemberOfInputEnvelope>;
-    set?: Array<Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>>;
-    disconnect?: Array<Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>>;
-    delete?: Array<Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>>;
-    connect?: Array<Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>>;
+    set?: Array<Prisma.AtLeast<GuestWhereUniqueInput, 'id'>>;
+    disconnect?: Array<Prisma.AtLeast<GuestWhereUniqueInput, 'id'>>;
+    delete?: Array<Prisma.AtLeast<GuestWhereUniqueInput, 'id'>>;
+    connect?: Array<Prisma.AtLeast<GuestWhereUniqueInput, 'id'>>;
     update?: Array<GuestUpdateWithWhereUniqueWithoutGroupMemberOfInput>;
     updateMany?: Array<GuestUpdateManyWithWhereWithoutGroupMemberOfInput>;
     deleteMany?: Array<GuestScalarWhereInput>;
@@ -1588,28 +1497,28 @@ export declare class GuestUpdateOneRequiredWithoutEmailQueueNestedInput {
     create?: InstanceType<typeof GuestCreateWithoutEmailQueueInput>;
     connectOrCreate?: InstanceType<typeof GuestCreateOrConnectWithoutEmailQueueInput>;
     upsert?: InstanceType<typeof GuestUpsertWithoutEmailQueueInput>;
-    connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
     update?: InstanceType<typeof GuestUpdateToOneWithWhereWithoutEmailQueueInput>;
 }
 export declare class GuestUpdateOneRequiredWithoutInvitationImageNestedInput {
     create?: InstanceType<typeof GuestCreateWithoutInvitationImageInput>;
     connectOrCreate?: InstanceType<typeof GuestCreateOrConnectWithoutInvitationImageInput>;
     upsert?: InstanceType<typeof GuestUpsertWithoutInvitationImageInput>;
-    connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
     update?: InstanceType<typeof GuestUpdateToOneWithWhereWithoutInvitationImageInput>;
 }
 export declare class GuestUpdateOneRequiredWithoutQrcodeNestedInput {
     create?: InstanceType<typeof GuestCreateWithoutQrcodeInput>;
     connectOrCreate?: InstanceType<typeof GuestCreateOrConnectWithoutQrcodeInput>;
     upsert?: InstanceType<typeof GuestUpsertWithoutQrcodeInput>;
-    connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
     update?: InstanceType<typeof GuestUpdateToOneWithWhereWithoutQrcodeInput>;
 }
 export declare class GuestUpdateOneRequiredWithoutWhatsappQueueNestedInput {
     create?: InstanceType<typeof GuestCreateWithoutWhatsappQueueInput>;
     connectOrCreate?: InstanceType<typeof GuestCreateOrConnectWithoutWhatsappQueueInput>;
     upsert?: InstanceType<typeof GuestUpsertWithoutWhatsappQueueInput>;
-    connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
     update?: InstanceType<typeof GuestUpdateToOneWithWhereWithoutWhatsappQueueInput>;
 }
 export declare class GuestUpdateOneWithoutGroupMembersNestedInput {
@@ -1618,7 +1527,7 @@ export declare class GuestUpdateOneWithoutGroupMembersNestedInput {
     upsert?: InstanceType<typeof GuestUpsertWithoutGroupMembersInput>;
     disconnect?: InstanceType<typeof GuestWhereInput>;
     delete?: InstanceType<typeof GuestWhereInput>;
-    connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
     update?: InstanceType<typeof GuestUpdateToOneWithWhereWithoutGroupMembersInput>;
 }
 export declare class GuestUpdateToOneWithWhereWithoutEmailQueueInput {
@@ -1642,7 +1551,7 @@ export declare class GuestUpdateToOneWithWhereWithoutWhatsappQueueInput {
     data: InstanceType<typeof GuestUpdateWithoutWhatsappQueueInput>;
 }
 export declare class GuestUpdateWithWhereUniqueWithoutGroupMemberOfInput {
-    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
     data: InstanceType<typeof GuestUpdateWithoutGroupMemberOfInput>;
 }
 export declare class GuestUpdateWithoutEmailQueueInput {
@@ -1661,8 +1570,6 @@ export declare class GuestUpdateWithoutEmailQueueInput {
     updatedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
-    qrcodeId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    invitationImageId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     groupMemberOf?: InstanceType<typeof GuestUpdateOneWithoutGroupMembersNestedInput>;
     groupMembers?: InstanceType<typeof GuestUpdateManyWithoutGroupMemberOfNestedInput>;
     qrcode?: InstanceType<typeof QrCodeUpdateOneWithoutGuestNestedInput>;
@@ -1685,8 +1592,6 @@ export declare class GuestUpdateWithoutGroupMemberOfInput {
     updatedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
-    qrcodeId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    invitationImageId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     groupMembers?: InstanceType<typeof GuestUpdateManyWithoutGroupMemberOfNestedInput>;
     qrcode?: InstanceType<typeof QrCodeUpdateOneWithoutGuestNestedInput>;
     invitationImage?: InstanceType<typeof InvitationImageUpdateOneWithoutGuestNestedInput>;
@@ -1709,8 +1614,6 @@ export declare class GuestUpdateWithoutGroupMembersInput {
     updatedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
-    qrcodeId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    invitationImageId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     groupMemberOf?: InstanceType<typeof GuestUpdateOneWithoutGroupMembersNestedInput>;
     qrcode?: InstanceType<typeof QrCodeUpdateOneWithoutGuestNestedInput>;
     invitationImage?: InstanceType<typeof InvitationImageUpdateOneWithoutGuestNestedInput>;
@@ -1733,8 +1636,6 @@ export declare class GuestUpdateWithoutInvitationImageInput {
     updatedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
-    qrcodeId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    invitationImageId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     groupMemberOf?: InstanceType<typeof GuestUpdateOneWithoutGroupMembersNestedInput>;
     groupMembers?: InstanceType<typeof GuestUpdateManyWithoutGroupMemberOfNestedInput>;
     qrcode?: InstanceType<typeof QrCodeUpdateOneWithoutGuestNestedInput>;
@@ -1757,8 +1658,6 @@ export declare class GuestUpdateWithoutQrcodeInput {
     updatedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
-    qrcodeId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    invitationImageId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     groupMemberOf?: InstanceType<typeof GuestUpdateOneWithoutGroupMembersNestedInput>;
     groupMembers?: InstanceType<typeof GuestUpdateManyWithoutGroupMemberOfNestedInput>;
     invitationImage?: InstanceType<typeof InvitationImageUpdateOneWithoutGuestNestedInput>;
@@ -1781,8 +1680,6 @@ export declare class GuestUpdateWithoutWhatsappQueueInput {
     updatedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
-    qrcodeId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    invitationImageId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     groupMemberOf?: InstanceType<typeof GuestUpdateOneWithoutGroupMembersNestedInput>;
     groupMembers?: InstanceType<typeof GuestUpdateManyWithoutGroupMemberOfNestedInput>;
     qrcode?: InstanceType<typeof QrCodeUpdateOneWithoutGuestNestedInput>;
@@ -1805,8 +1702,6 @@ export declare class GuestUpdateInput {
     updatedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
-    qrcodeId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    invitationImageId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     groupMemberOf?: InstanceType<typeof GuestUpdateOneWithoutGroupMembersNestedInput>;
     groupMembers?: InstanceType<typeof GuestUpdateManyWithoutGroupMemberOfNestedInput>;
     qrcode?: InstanceType<typeof QrCodeUpdateOneWithoutGuestNestedInput>;
@@ -1815,7 +1710,7 @@ export declare class GuestUpdateInput {
     whatsappQueue?: InstanceType<typeof WhatsappQueueUpdateManyWithoutGuestNestedInput>;
 }
 export declare class GuestUpsertWithWhereUniqueWithoutGroupMemberOfInput {
-    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
     update: InstanceType<typeof GuestUpdateWithoutGroupMemberOfInput>;
     create: InstanceType<typeof GuestCreateWithoutGroupMemberOfInput>;
 }
@@ -1846,8 +1741,6 @@ export declare class GuestUpsertWithoutWhatsappQueueInput {
 }
 export declare class GuestWhereUniqueInput {
     id?: string;
-    qrcodeId?: number;
-    invitationImageId?: number;
     AND?: Array<GuestWhereInput>;
     OR?: Array<GuestWhereInput>;
     NOT?: Array<GuestWhereInput>;
@@ -1893,8 +1786,6 @@ export declare class GuestWhereInput {
     deletedAt?: InstanceType<typeof DateTimeNullableFilter>;
     groupMemberOfId?: InstanceType<typeof StringNullableFilter>;
     confirmationStatus?: InstanceType<typeof EnumConfirmationStatusNullableFilter>;
-    qrcodeId?: InstanceType<typeof IntNullableFilter>;
-    invitationImageId?: InstanceType<typeof IntNullableFilter>;
     groupMemberOf?: InstanceType<typeof GuestNullableRelationFilter>;
     groupMembers?: InstanceType<typeof GuestListRelationFilter>;
     qrcode?: InstanceType<typeof QrCodeNullableRelationFilter>;
@@ -1919,8 +1810,6 @@ export declare class Guest {
     deletedAt: Date | null;
     groupMemberOfId: string | null;
     confirmationStatus: keyof typeof ConfirmationStatus | null;
-    qrcodeId: number | null;
-    invitationImageId: number | null;
     groupMemberOf?: InstanceType<typeof Guest> | null;
     groupMembers?: Array<Guest>;
     qrcode?: InstanceType<typeof QrCode> | null;
@@ -1935,10 +1824,10 @@ export declare class UpdateManyGuestArgs {
 }
 export declare class UpdateOneGuestArgs {
     data: InstanceType<typeof GuestUpdateInput>;
-    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
 }
 export declare class UpsertOneGuestArgs {
-    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id' | 'qrcodeId' | 'invitationImageId'>;
+    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
     create: InstanceType<typeof GuestCreateInput>;
     update: InstanceType<typeof GuestUpdateInput>;
 }
@@ -3809,16 +3698,20 @@ export declare class WhatsappQueueAggregateArgs {
 }
 export declare class WhatsappQueueAvgAggregateInput {
     id?: true;
+    apiRequestId?: true;
 }
 export declare class WhatsappQueueAvgAggregate {
     id?: number;
+    apiRequestId?: number;
 }
 export declare class WhatsappQueueAvgOrderByAggregateInput {
     id?: keyof typeof SortOrder;
+    apiRequestId?: keyof typeof SortOrder;
 }
 export declare class WhatsappQueueCountAggregateInput {
     id?: true;
     createdAt?: true;
+    apiRequestId?: true;
     status?: true;
     guestId?: true;
     _all?: true;
@@ -3826,6 +3719,7 @@ export declare class WhatsappQueueCountAggregateInput {
 export declare class WhatsappQueueCountAggregate {
     id: number;
     createdAt: number;
+    apiRequestId: number;
     status: number;
     guestId: number;
     _all: number;
@@ -3833,6 +3727,7 @@ export declare class WhatsappQueueCountAggregate {
 export declare class WhatsappQueueCountOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
+    apiRequestId?: keyof typeof SortOrder;
     status?: keyof typeof SortOrder;
     guestId?: keyof typeof SortOrder;
 }
@@ -3843,11 +3738,13 @@ export declare class WhatsappQueueCreateManyGuestInputEnvelope {
 export declare class WhatsappQueueCreateManyGuestInput {
     id?: number;
     createdAt?: Date | string;
+    apiRequestId?: number;
     status?: keyof typeof QueueStatus;
 }
 export declare class WhatsappQueueCreateManyInput {
     id?: number;
     createdAt?: Date | string;
+    apiRequestId?: number;
     status?: keyof typeof QueueStatus;
     guestId: string;
 }
@@ -3863,10 +3760,12 @@ export declare class WhatsappQueueCreateOrConnectWithoutGuestInput {
 }
 export declare class WhatsappQueueCreateWithoutGuestInput {
     createdAt?: Date | string;
+    apiRequestId?: number;
     status?: keyof typeof QueueStatus;
 }
 export declare class WhatsappQueueCreateInput {
     createdAt?: Date | string;
+    apiRequestId?: number;
     status?: keyof typeof QueueStatus;
     guest: InstanceType<typeof GuestCreateNestedOneWithoutWhatsappQueueInput>;
 }
@@ -3886,6 +3785,7 @@ export declare class WhatsappQueueGroupByArgs {
 export declare class WhatsappQueueGroupBy {
     id: number;
     createdAt: Date | string;
+    apiRequestId?: number;
     status: keyof typeof QueueStatus;
     guestId: string;
     _count?: InstanceType<typeof WhatsappQueueCountAggregate>;
@@ -3902,36 +3802,42 @@ export declare class WhatsappQueueListRelationFilter {
 export declare class WhatsappQueueMaxAggregateInput {
     id?: true;
     createdAt?: true;
+    apiRequestId?: true;
     status?: true;
     guestId?: true;
 }
 export declare class WhatsappQueueMaxAggregate {
     id?: number;
     createdAt?: Date | string;
+    apiRequestId?: number;
     status?: keyof typeof QueueStatus;
     guestId?: string;
 }
 export declare class WhatsappQueueMaxOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
+    apiRequestId?: keyof typeof SortOrder;
     status?: keyof typeof SortOrder;
     guestId?: keyof typeof SortOrder;
 }
 export declare class WhatsappQueueMinAggregateInput {
     id?: true;
     createdAt?: true;
+    apiRequestId?: true;
     status?: true;
     guestId?: true;
 }
 export declare class WhatsappQueueMinAggregate {
     id?: number;
     createdAt?: Date | string;
+    apiRequestId?: number;
     status?: keyof typeof QueueStatus;
     guestId?: string;
 }
 export declare class WhatsappQueueMinOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
+    apiRequestId?: keyof typeof SortOrder;
     status?: keyof typeof SortOrder;
     guestId?: keyof typeof SortOrder;
 }
@@ -3941,6 +3847,7 @@ export declare class WhatsappQueueOrderByRelationAggregateInput {
 export declare class WhatsappQueueOrderByWithAggregationInput {
     id?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
+    apiRequestId?: InstanceType<typeof SortOrderInput>;
     status?: keyof typeof SortOrder;
     guestId?: keyof typeof SortOrder;
     _count?: InstanceType<typeof WhatsappQueueCountOrderByAggregateInput>;
@@ -3952,6 +3859,7 @@ export declare class WhatsappQueueOrderByWithAggregationInput {
 export declare class WhatsappQueueOrderByWithRelationInput {
     id?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
+    apiRequestId?: InstanceType<typeof SortOrderInput>;
     status?: keyof typeof SortOrder;
     guestId?: keyof typeof SortOrder;
     guest?: InstanceType<typeof GuestOrderByWithRelationInput>;
@@ -3962,6 +3870,7 @@ export declare class WhatsappQueueScalarWhereWithAggregatesInput {
     NOT?: Array<WhatsappQueueScalarWhereWithAggregatesInput>;
     id?: InstanceType<typeof IntWithAggregatesFilter>;
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
+    apiRequestId?: InstanceType<typeof IntNullableWithAggregatesFilter>;
     status?: InstanceType<typeof EnumQueueStatusWithAggregatesFilter>;
     guestId?: InstanceType<typeof StringWithAggregatesFilter>;
 }
@@ -3971,17 +3880,21 @@ export declare class WhatsappQueueScalarWhereInput {
     NOT?: Array<WhatsappQueueScalarWhereInput>;
     id?: InstanceType<typeof IntFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
+    apiRequestId?: InstanceType<typeof IntNullableFilter>;
     status?: InstanceType<typeof EnumQueueStatusFilter>;
     guestId?: InstanceType<typeof StringFilter>;
 }
 export declare class WhatsappQueueSumAggregateInput {
     id?: true;
+    apiRequestId?: true;
 }
 export declare class WhatsappQueueSumAggregate {
     id?: number;
+    apiRequestId?: number;
 }
 export declare class WhatsappQueueSumOrderByAggregateInput {
     id?: keyof typeof SortOrder;
+    apiRequestId?: keyof typeof SortOrder;
 }
 export declare class WhatsappQueueUncheckedCreateNestedManyWithoutGuestInput {
     create?: Array<WhatsappQueueCreateWithoutGuestInput>;
@@ -3992,11 +3905,13 @@ export declare class WhatsappQueueUncheckedCreateNestedManyWithoutGuestInput {
 export declare class WhatsappQueueUncheckedCreateWithoutGuestInput {
     id?: number;
     createdAt?: Date | string;
+    apiRequestId?: number;
     status?: keyof typeof QueueStatus;
 }
 export declare class WhatsappQueueUncheckedCreateInput {
     id?: number;
     createdAt?: Date | string;
+    apiRequestId?: number;
     status?: keyof typeof QueueStatus;
     guestId: string;
 }
@@ -4016,27 +3931,32 @@ export declare class WhatsappQueueUncheckedUpdateManyWithoutGuestNestedInput {
 export declare class WhatsappQueueUncheckedUpdateManyWithoutGuestInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    apiRequestId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
 }
 export declare class WhatsappQueueUncheckedUpdateManyInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    apiRequestId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
     guestId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
 }
 export declare class WhatsappQueueUncheckedUpdateWithoutGuestInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    apiRequestId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
 }
 export declare class WhatsappQueueUncheckedUpdateInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    apiRequestId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
     guestId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
 }
 export declare class WhatsappQueueUpdateManyMutationInput {
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    apiRequestId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
 }
 export declare class WhatsappQueueUpdateManyWithWhereWithoutGuestInput {
@@ -4062,10 +3982,12 @@ export declare class WhatsappQueueUpdateWithWhereUniqueWithoutGuestInput {
 }
 export declare class WhatsappQueueUpdateWithoutGuestInput {
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    apiRequestId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
 }
 export declare class WhatsappQueueUpdateInput {
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    apiRequestId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
     guest?: InstanceType<typeof GuestUpdateOneRequiredWithoutWhatsappQueueNestedInput>;
 }
@@ -4080,6 +4002,7 @@ export declare class WhatsappQueueWhereUniqueInput {
     OR?: Array<WhatsappQueueWhereInput>;
     NOT?: Array<WhatsappQueueWhereInput>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
+    apiRequestId?: InstanceType<typeof IntNullableFilter>;
     status?: InstanceType<typeof EnumQueueStatusFilter>;
     guestId?: InstanceType<typeof StringFilter>;
     guest?: InstanceType<typeof GuestRelationFilter>;
@@ -4090,6 +4013,7 @@ export declare class WhatsappQueueWhereInput {
     NOT?: Array<WhatsappQueueWhereInput>;
     id?: InstanceType<typeof IntFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
+    apiRequestId?: InstanceType<typeof IntNullableFilter>;
     status?: InstanceType<typeof EnumQueueStatusFilter>;
     guestId?: InstanceType<typeof StringFilter>;
     guest?: InstanceType<typeof GuestRelationFilter>;
@@ -4097,6 +4021,7 @@ export declare class WhatsappQueueWhereInput {
 export declare class WhatsappQueue {
     id: number;
     createdAt: Date;
+    apiRequestId: number | null;
     status: keyof typeof QueueStatus;
     guestId: string;
     guest?: InstanceType<typeof Guest>;

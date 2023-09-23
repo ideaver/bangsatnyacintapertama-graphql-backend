@@ -20,6 +20,7 @@ import { GuestModule } from './services/guest/guest.module';
 import { WhatsappQueueModule } from './services/whatsapp-queue/whatsapp-queue.module';
 import { QrCodeModule } from './services/qr-code/qr-code.module';
 import { InvitationImageModule } from './services/invitation-image/invitation-image.module';
+import { WebHookModule } from './services/webhook/webhook.module';
 
 @Module({
   imports: [
@@ -57,8 +58,8 @@ import { InvitationImageModule } from './services/invitation-image/invitation-im
     WhatsappQueueModule,
     QrCodeModule,
     InvitationImageModule,
+    WebHookModule,
   ],
-  controllers: [],
   providers: [PrismaService, UploaderProcessor, SchedulerService],
 })
 export class AppModule {}

@@ -105,11 +105,7 @@ model Guest {
 
   qrcode QrCode?
 
-  qrcodeId Int? @unique
-
   invitationImage InvitationImage?
-
-  invitationImageId Int? @unique
 
   emailQueue EmailQueue[]
 
@@ -127,9 +123,17 @@ enum ConfirmationStatus {
 }
 
 enum QueueStatus {
-  WAITING
-  SENDING
+  //Message is on Queue to be proceed
+  QUEUE
+  //Message is on process to be sent to the destination
   SENT
+  //Message has been delivered
+  DELIVERED
+  //Message has been read on destination side
+  READ
+  //Message has been aborted and not going to be sent anymore
+  ABORT
+  //	Message is not sent. Issue may vary
   FAILED
 
   @@map("queue_statuses")
@@ -143,7 +147,7 @@ model EmailQueue {
 
   //-------------------------- 1 relations --------------------------------
 
-  status QueueStatus @default(WAITING)
+  status QueueStatus @default(QUEUE)
 
   guestId String
 
@@ -159,9 +163,11 @@ model WhatsappQueue {
 
   createdAt DateTime @default(now())
 
+  apiRequestId Int?
+
   //-------------------------- 1 relations --------------------------------
 
-  status QueueStatus @default(WAITING)
+  status QueueStatus @default(QUEUE)
 
   guestId String
 

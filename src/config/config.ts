@@ -7,6 +7,7 @@ export enum ConfigKey {
   Db = 'DB',
   Rd = 'RD',
   Mail = 'MAIL',
+  WA = 'WA',
 }
 
 export enum Environment {
@@ -49,4 +50,15 @@ const MAILConfig = registerAs(ConfigKey.Rd, () => ({
   password: process.env.MAIL_PASSWORD,
 }));
 
-export const configurations = [APPConfig, DBConfig, RDConfig, MAILConfig];
+const WAConfig = registerAs(ConfigKey.WA, () => ({
+  endpoint: process.env.WA_ENDPOINT,
+  token: process.env.WA_TOKEN,
+}));
+
+export const configurations = [
+  APPConfig,
+  DBConfig,
+  RDConfig,
+  MAILConfig,
+  WAConfig,
+];

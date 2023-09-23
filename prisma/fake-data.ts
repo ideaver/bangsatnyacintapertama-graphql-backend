@@ -39,8 +39,6 @@ export function fakeGuest() {
     rejectionReason: undefined,
     updatedAt: undefined,
     deletedAt: undefined,
-    qrcodeId: undefined,
-    invitationImageId: undefined,
   };
 }
 export function fakeGuestComplete() {
@@ -61,23 +59,27 @@ export function fakeGuestComplete() {
     deletedAt: undefined,
     groupMemberOfId: undefined,
     confirmationStatus: ConfirmationStatus.UNCONFIRMED,
-    qrcodeId: undefined,
-    invitationImageId: undefined,
   };
 }
 export function fakeEmailQueueComplete() {
   return {
     id: faker.datatype.number(),
     createdAt: new Date(),
-    status: QueueStatus.WAITING,
+    status: QueueStatus.QUEUE,
     guestId: faker.datatype.uuid(),
+  };
+}
+export function fakeWhatsappQueue() {
+  return {
+    apiRequestId: undefined,
   };
 }
 export function fakeWhatsappQueueComplete() {
   return {
     id: faker.datatype.number(),
     createdAt: new Date(),
-    status: QueueStatus.WAITING,
+    apiRequestId: undefined,
+    status: QueueStatus.QUEUE,
     guestId: faker.datatype.uuid(),
   };
 }

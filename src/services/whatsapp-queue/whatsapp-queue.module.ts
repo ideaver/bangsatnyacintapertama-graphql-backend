@@ -4,6 +4,9 @@ import { PrismaService } from 'prisma/prisma.service';
 import { WhatsappQueueResolver } from './whatsapp-queue.resolver';
 import { WhatsappQueueController } from './whatsapp-queue.controller';
 import { WhatsappQueueService } from './whatsapp-queue.service';
+import { WhatsappQueueListener } from 'src/event-listeners/whatsapp-queue.listener';
+import { GuestModule } from '../guest/guest.module';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   providers: [
@@ -11,7 +14,9 @@ import { WhatsappQueueService } from './whatsapp-queue.service';
     WhatsappQueueResolver,
     WhatsappQueueController,
     WhatsappQueueService,
+    WhatsappQueueListener,
   ],
+  imports: [GuestModule, HttpModule],
   exports: [WhatsappQueueController],
 })
 export class WhatsappQueueModule {}
