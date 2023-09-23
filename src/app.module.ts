@@ -21,6 +21,7 @@ import { WhatsappQueueModule } from './services/whatsapp-queue/whatsapp-queue.mo
 import { QrCodeModule } from './services/qr-code/qr-code.module';
 import { InvitationImageModule } from './services/invitation-image/invitation-image.module';
 import { WebHookModule } from './services/webhook/webhook.module';
+import { WhatsappGatewayModule } from './services/whatsapp-gateway/whatsapp-gateway.module';
 
 @Module({
   imports: [
@@ -59,6 +60,7 @@ import { WebHookModule } from './services/webhook/webhook.module';
     QrCodeModule,
     InvitationImageModule,
     WebHookModule,
+    WhatsappGatewayModule,
   ],
   providers: [PrismaService, UploaderProcessor, SchedulerService],
 })

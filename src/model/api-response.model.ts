@@ -1,19 +1,18 @@
 interface Message {
   id: string;
-  phone: string;
+  phone: number;
   message: string;
   status: string;
-  ref_id: string | null;
 }
 
-interface Data {
+interface Device {
   device_id: string;
   quota: number;
   messages: Message[];
 }
 
-export interface ApiResponse {
+interface ApiResponse {
   status: boolean;
   message: string;
-  data: Data;
+  data: Device[];
 }
