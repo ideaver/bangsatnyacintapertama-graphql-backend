@@ -16,14 +16,13 @@ export class WhatsappQueueListener {
     private readonly whatsappQueueController: WhatsappQueueController,
     private readonly guestController: GuestController,
   ) {}
-
   @OnEvent(WhatsappQueueEvent.CreatedMany)
   async onWhatsappQueueCreatedManyEvent() {
     try {
       // Find guests with whatsapp queues
       const whatsappQueueWithQueueStatus =
         await this.whatsappQueueController.findMany({
-          include: { guest: true },
+          include: { guest: { include: { groupMemberOf: true } } },
           where: { status: { equals: 'QUEUE' } },
         });
 
@@ -36,8 +35,8 @@ export class WhatsappQueueListener {
           seat,
           showTime,
           invitationName,
-          whatsapp,
           groupMemberOf,
+          groupMemberOfId,
         } = whatsappQueue.guest;
 
         const message = `
@@ -71,7 +70,7 @@ export class WhatsappQueueListener {
         
         `;
 
-        if (whatsapp) {
+        if (groupMemberOfId === null) {
           // const waMessage: WaMessage = {
           //   refId: whatsappQueue.id.toString(),
           //   phone: whatsappQueue.guest.whatsapp,
@@ -81,7 +80,7 @@ export class WhatsappQueueListener {
 
           const waMediaMessage: WaMediaMessage = {
             refId: id.toString(),
-            phone: whatsapp,
+            phone: whatsappQueue.guest.whatsapp,
             caption: message,
             image:
               'https://pbs.twimg.com/profile_images/1544722618275827713/9-aMN_Wb_400x400.jpg',
@@ -92,7 +91,7 @@ export class WhatsappQueueListener {
           const caption = `Studio ${studio}, Seat ${seat}, ShowTime ${showTime} `;
           const waMediaMessage: WaMediaMessage = {
             refId: id.toString(),
-            phone: groupMemberOf.whatsapp,
+            phone: whatsappQueue.guest.groupMemberOf.whatsapp,
             caption: caption,
             image:
               'https://pbs.twimg.com/profile_images/1544722618275827713/9-aMN_Wb_400x400.jpg',
@@ -105,15 +104,15 @@ export class WhatsappQueueListener {
       if (waMediaMessages.length > 0) {
         // const res1 =
         //   await this.whatsappGatewayController.sendWhatsappMessages(waMessages);
-        const res2 =
-          await this.whatsappGatewayController.sendWhatsappImages(
-            waMediaMessages,
-          );
 
-        this.logger.log(res2);
+        await this.whatsappGatewayController.sendWhatsappImages(
+          waMediaMessages,
+        );
+
+        this.logger.log('Broadcast Message In Gateway');
       }
     } catch (error) {
-      throw new Error();
+      this.logger.error(error);
     }
   }
 }
