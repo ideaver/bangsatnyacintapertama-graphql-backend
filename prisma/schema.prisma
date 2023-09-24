@@ -159,7 +159,7 @@ model EmailQueue {
 }
 
 model WhatsappQueue {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
 
   createdAt DateTime @default(now())
 

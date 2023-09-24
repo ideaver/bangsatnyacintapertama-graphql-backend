@@ -6,6 +6,7 @@ import { WhatsappGatewayController } from 'src/services/whatsapp-gateway/whatsap
 import { WhatsappQueueController } from 'src/services/whatsapp-queue/whatsapp-queue.controller';
 import { QueueStatus } from '@prisma/client';
 import { WhatsappQueueEvent } from './enum/whatsapp-queue-event.enum ';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class WhatsappQueueListener {
@@ -15,6 +16,7 @@ export class WhatsappQueueListener {
     private readonly whatsappGatewayController: WhatsappGatewayController,
     private readonly whatsappQueueController: WhatsappQueueController,
     private readonly guestController: GuestController,
+    private readonly configService: ConfigService,
   ) {}
   @OnEvent(WhatsappQueueEvent.CreatedMany)
   async onWhatsappQueueCreatedManyEvent() {
@@ -29,9 +31,13 @@ export class WhatsappQueueListener {
         });
 
       const waMediaMessages: WaMediaMessage[] = [];
-      const whatsappQueueWithQueueStatusId: number[] = [];
+      const whatsappQueueWithQueueStatusId: string[] = [];
 
-      const imageHost = 'bangsatnyacintapertama.com';
+      let imageHost = 'https://bangsatnyacintapertama.com';
+
+      if (this.configService.get<string>('NODE_ENV') === 'development') {
+        imageHost = 'http://localhost:3000';
+      }
 
       for (const whatsappQueue of whatsappQueueWithQueueStatus) {
         const {
@@ -45,7 +51,7 @@ export class WhatsappQueueListener {
           invitationImage,
         } = whatsappQueue.guest;
 
-        const image = `https://${imageHost}/${invitationImage}`;
+        const image = `${imageHost}/${invitationImage.path}`;
 
         const message = `
         Halo Bpk/ Ibu ${invitationName}
@@ -80,7 +86,7 @@ export class WhatsappQueueListener {
 
         if (groupMemberOfId === null) {
           const waMediaMessage: WaMediaMessage = {
-            refId: id.toString(),
+            refId: id,
             phone: whatsappQueue.guest.whatsapp,
             caption: message,
             image: image,
@@ -90,7 +96,7 @@ export class WhatsappQueueListener {
         } else {
           const caption = `Tiket Pass Extra: Studio ${studio}, Seat ${seat}, ShowTime ${showTime} `;
           const waMediaMessage: WaMediaMessage = {
-            refId: id.toString(),
+            refId: id,
             phone: groupMemberOf.whatsapp,
             caption: caption,
             image: image,

@@ -11343,9 +11343,6 @@ let WhatsappQueueAvgAggregateInput = class WhatsappQueueAvgAggregateInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], WhatsappQueueAvgAggregateInput.prototype, "id", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], WhatsappQueueAvgAggregateInput.prototype, "apiRequestId", void 0);
 WhatsappQueueAvgAggregateInput = __decorate([
     (0, graphql_5.InputType)()
@@ -11355,9 +11352,6 @@ let WhatsappQueueAvgAggregate = class WhatsappQueueAvgAggregate {
 };
 __decorate([
     (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
-], WhatsappQueueAvgAggregate.prototype, "id", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
 ], WhatsappQueueAvgAggregate.prototype, "apiRequestId", void 0);
 WhatsappQueueAvgAggregate = __decorate([
     (0, graphql_2.ObjectType)()
@@ -11365,9 +11359,6 @@ WhatsappQueueAvgAggregate = __decorate([
 exports.WhatsappQueueAvgAggregate = WhatsappQueueAvgAggregate;
 let WhatsappQueueAvgOrderByAggregateInput = class WhatsappQueueAvgOrderByAggregateInput {
 };
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], WhatsappQueueAvgOrderByAggregateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], WhatsappQueueAvgOrderByAggregateInput.prototype, "apiRequestId", void 0);
@@ -11460,7 +11451,7 @@ exports.WhatsappQueueCreateManyGuestInputEnvelope = WhatsappQueueCreateManyGuest
 let WhatsappQueueCreateManyGuestInput = class WhatsappQueueCreateManyGuestInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], WhatsappQueueCreateManyGuestInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
@@ -11478,7 +11469,7 @@ exports.WhatsappQueueCreateManyGuestInput = WhatsappQueueCreateManyGuestInput;
 let WhatsappQueueCreateManyInput = class WhatsappQueueCreateManyInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], WhatsappQueueCreateManyInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
@@ -11535,6 +11526,9 @@ exports.WhatsappQueueCreateOrConnectWithoutGuestInput = WhatsappQueueCreateOrCon
 let WhatsappQueueCreateWithoutGuestInput = class WhatsappQueueCreateWithoutGuestInput {
 };
 __decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true })
+], WhatsappQueueCreateWithoutGuestInput.prototype, "id", void 0);
+__decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], WhatsappQueueCreateWithoutGuestInput.prototype, "createdAt", void 0);
 __decorate([
@@ -11549,6 +11543,9 @@ WhatsappQueueCreateWithoutGuestInput = __decorate([
 exports.WhatsappQueueCreateWithoutGuestInput = WhatsappQueueCreateWithoutGuestInput;
 let WhatsappQueueCreateInput = class WhatsappQueueCreateInput {
 };
+__decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true })
+], WhatsappQueueCreateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
 ], WhatsappQueueCreateInput.prototype, "createdAt", void 0);
@@ -11608,7 +11605,7 @@ exports.WhatsappQueueGroupByArgs = WhatsappQueueGroupByArgs;
 let WhatsappQueueGroupBy = class WhatsappQueueGroupBy {
 };
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: false })
 ], WhatsappQueueGroupBy.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: false })
@@ -11680,7 +11677,7 @@ exports.WhatsappQueueMaxAggregateInput = WhatsappQueueMaxAggregateInput;
 let WhatsappQueueMaxAggregate = class WhatsappQueueMaxAggregate {
 };
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], WhatsappQueueMaxAggregate.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
@@ -11743,7 +11740,7 @@ exports.WhatsappQueueMinAggregateInput = WhatsappQueueMinAggregateInput;
 let WhatsappQueueMinAggregate = class WhatsappQueueMinAggregate {
 };
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], WhatsappQueueMinAggregate.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
@@ -11863,7 +11860,7 @@ __decorate([
     (0, graphql_1.Field)(() => [WhatsappQueueScalarWhereWithAggregatesInput_1], { nullable: true })
 ], WhatsappQueueScalarWhereWithAggregatesInput.prototype, "NOT", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => IntWithAggregatesFilter, { nullable: true })
+    (0, graphql_1.Field)(() => StringWithAggregatesFilter, { nullable: true })
 ], WhatsappQueueScalarWhereWithAggregatesInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeWithAggregatesFilter, { nullable: true })
@@ -11893,7 +11890,7 @@ __decorate([
     (0, graphql_1.Field)(() => [WhatsappQueueScalarWhereInput_1], { nullable: true })
 ], WhatsappQueueScalarWhereInput.prototype, "NOT", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => IntFilter, { nullable: true })
+    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
 ], WhatsappQueueScalarWhereInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFilter, { nullable: true })
@@ -11915,9 +11912,6 @@ let WhatsappQueueSumAggregateInput = class WhatsappQueueSumAggregateInput {
 };
 __decorate([
     (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], WhatsappQueueSumAggregateInput.prototype, "id", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
 ], WhatsappQueueSumAggregateInput.prototype, "apiRequestId", void 0);
 WhatsappQueueSumAggregateInput = __decorate([
     (0, graphql_5.InputType)()
@@ -11927,9 +11921,6 @@ let WhatsappQueueSumAggregate = class WhatsappQueueSumAggregate {
 };
 __decorate([
     (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], WhatsappQueueSumAggregate.prototype, "id", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
 ], WhatsappQueueSumAggregate.prototype, "apiRequestId", void 0);
 WhatsappQueueSumAggregate = __decorate([
     (0, graphql_2.ObjectType)()
@@ -11937,9 +11928,6 @@ WhatsappQueueSumAggregate = __decorate([
 exports.WhatsappQueueSumAggregate = WhatsappQueueSumAggregate;
 let WhatsappQueueSumOrderByAggregateInput = class WhatsappQueueSumOrderByAggregateInput {
 };
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], WhatsappQueueSumOrderByAggregateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => SortOrder, { nullable: true })
 ], WhatsappQueueSumOrderByAggregateInput.prototype, "apiRequestId", void 0);
@@ -11972,7 +11960,7 @@ exports.WhatsappQueueUncheckedCreateNestedManyWithoutGuestInput = WhatsappQueueU
 let WhatsappQueueUncheckedCreateWithoutGuestInput = class WhatsappQueueUncheckedCreateWithoutGuestInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], WhatsappQueueUncheckedCreateWithoutGuestInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
@@ -11990,7 +11978,7 @@ exports.WhatsappQueueUncheckedCreateWithoutGuestInput = WhatsappQueueUncheckedCr
 let WhatsappQueueUncheckedCreateInput = class WhatsappQueueUncheckedCreateInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], WhatsappQueueUncheckedCreateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: true })
@@ -12061,7 +12049,7 @@ exports.WhatsappQueueUncheckedUpdateManyWithoutGuestNestedInput = WhatsappQueueU
 let WhatsappQueueUncheckedUpdateManyWithoutGuestInput = class WhatsappQueueUncheckedUpdateManyWithoutGuestInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], WhatsappQueueUncheckedUpdateManyWithoutGuestInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
@@ -12079,7 +12067,7 @@ exports.WhatsappQueueUncheckedUpdateManyWithoutGuestInput = WhatsappQueueUncheck
 let WhatsappQueueUncheckedUpdateManyInput = class WhatsappQueueUncheckedUpdateManyInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], WhatsappQueueUncheckedUpdateManyInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
@@ -12100,7 +12088,7 @@ exports.WhatsappQueueUncheckedUpdateManyInput = WhatsappQueueUncheckedUpdateMany
 let WhatsappQueueUncheckedUpdateWithoutGuestInput = class WhatsappQueueUncheckedUpdateWithoutGuestInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], WhatsappQueueUncheckedUpdateWithoutGuestInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
@@ -12118,7 +12106,7 @@ exports.WhatsappQueueUncheckedUpdateWithoutGuestInput = WhatsappQueueUncheckedUp
 let WhatsappQueueUncheckedUpdateInput = class WhatsappQueueUncheckedUpdateInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], WhatsappQueueUncheckedUpdateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
@@ -12138,6 +12126,9 @@ WhatsappQueueUncheckedUpdateInput = __decorate([
 exports.WhatsappQueueUncheckedUpdateInput = WhatsappQueueUncheckedUpdateInput;
 let WhatsappQueueUpdateManyMutationInput = class WhatsappQueueUpdateManyMutationInput {
 };
+__decorate([
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+], WhatsappQueueUpdateManyMutationInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
 ], WhatsappQueueUpdateManyMutationInput.prototype, "createdAt", void 0);
@@ -12232,6 +12223,9 @@ exports.WhatsappQueueUpdateWithWhereUniqueWithoutGuestInput = WhatsappQueueUpdat
 let WhatsappQueueUpdateWithoutGuestInput = class WhatsappQueueUpdateWithoutGuestInput {
 };
 __decorate([
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+], WhatsappQueueUpdateWithoutGuestInput.prototype, "id", void 0);
+__decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
 ], WhatsappQueueUpdateWithoutGuestInput.prototype, "createdAt", void 0);
 __decorate([
@@ -12246,6 +12240,9 @@ WhatsappQueueUpdateWithoutGuestInput = __decorate([
 exports.WhatsappQueueUpdateWithoutGuestInput = WhatsappQueueUpdateWithoutGuestInput;
 let WhatsappQueueUpdateInput = class WhatsappQueueUpdateInput {
 };
+__decorate([
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+], WhatsappQueueUpdateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
 ], WhatsappQueueUpdateInput.prototype, "createdAt", void 0);
@@ -12283,7 +12280,7 @@ exports.WhatsappQueueUpsertWithWhereUniqueWithoutGuestInput = WhatsappQueueUpser
 let WhatsappQueueWhereUniqueInput = class WhatsappQueueWhereUniqueInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], WhatsappQueueWhereUniqueInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => [WhatsappQueueWhereInput], { nullable: true })
@@ -12325,7 +12322,7 @@ __decorate([
     (0, graphql_1.Field)(() => [WhatsappQueueWhereInput_1], { nullable: true })
 ], WhatsappQueueWhereInput.prototype, "NOT", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => IntFilter, { nullable: true })
+    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
 ], WhatsappQueueWhereInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFilter, { nullable: true })
@@ -12349,7 +12346,7 @@ exports.WhatsappQueueWhereInput = WhatsappQueueWhereInput;
 let WhatsappQueue = class WhatsappQueue {
 };
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: false })
 ], WhatsappQueue.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => Date, { nullable: false })

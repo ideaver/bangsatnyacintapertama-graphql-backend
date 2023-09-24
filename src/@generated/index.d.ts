@@ -3697,15 +3697,12 @@ export declare class WhatsappQueueAggregateArgs {
     _max?: InstanceType<typeof WhatsappQueueMaxAggregateInput>;
 }
 export declare class WhatsappQueueAvgAggregateInput {
-    id?: true;
     apiRequestId?: true;
 }
 export declare class WhatsappQueueAvgAggregate {
-    id?: number;
     apiRequestId?: number;
 }
 export declare class WhatsappQueueAvgOrderByAggregateInput {
-    id?: keyof typeof SortOrder;
     apiRequestId?: keyof typeof SortOrder;
 }
 export declare class WhatsappQueueCountAggregateInput {
@@ -3736,13 +3733,13 @@ export declare class WhatsappQueueCreateManyGuestInputEnvelope {
     skipDuplicates?: boolean;
 }
 export declare class WhatsappQueueCreateManyGuestInput {
-    id?: number;
+    id?: string;
     createdAt?: Date | string;
     apiRequestId?: number;
     status?: keyof typeof QueueStatus;
 }
 export declare class WhatsappQueueCreateManyInput {
-    id?: number;
+    id?: string;
     createdAt?: Date | string;
     apiRequestId?: number;
     status?: keyof typeof QueueStatus;
@@ -3759,11 +3756,13 @@ export declare class WhatsappQueueCreateOrConnectWithoutGuestInput {
     create: InstanceType<typeof WhatsappQueueCreateWithoutGuestInput>;
 }
 export declare class WhatsappQueueCreateWithoutGuestInput {
+    id?: string;
     createdAt?: Date | string;
     apiRequestId?: number;
     status?: keyof typeof QueueStatus;
 }
 export declare class WhatsappQueueCreateInput {
+    id?: string;
     createdAt?: Date | string;
     apiRequestId?: number;
     status?: keyof typeof QueueStatus;
@@ -3783,7 +3782,7 @@ export declare class WhatsappQueueGroupByArgs {
     _max?: InstanceType<typeof WhatsappQueueMaxAggregateInput>;
 }
 export declare class WhatsappQueueGroupBy {
-    id: number;
+    id: string;
     createdAt: Date | string;
     apiRequestId?: number;
     status: keyof typeof QueueStatus;
@@ -3807,7 +3806,7 @@ export declare class WhatsappQueueMaxAggregateInput {
     guestId?: true;
 }
 export declare class WhatsappQueueMaxAggregate {
-    id?: number;
+    id?: string;
     createdAt?: Date | string;
     apiRequestId?: number;
     status?: keyof typeof QueueStatus;
@@ -3828,7 +3827,7 @@ export declare class WhatsappQueueMinAggregateInput {
     guestId?: true;
 }
 export declare class WhatsappQueueMinAggregate {
-    id?: number;
+    id?: string;
     createdAt?: Date | string;
     apiRequestId?: number;
     status?: keyof typeof QueueStatus;
@@ -3868,7 +3867,7 @@ export declare class WhatsappQueueScalarWhereWithAggregatesInput {
     AND?: Array<WhatsappQueueScalarWhereWithAggregatesInput>;
     OR?: Array<WhatsappQueueScalarWhereWithAggregatesInput>;
     NOT?: Array<WhatsappQueueScalarWhereWithAggregatesInput>;
-    id?: InstanceType<typeof IntWithAggregatesFilter>;
+    id?: InstanceType<typeof StringWithAggregatesFilter>;
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     apiRequestId?: InstanceType<typeof IntNullableWithAggregatesFilter>;
     status?: InstanceType<typeof EnumQueueStatusWithAggregatesFilter>;
@@ -3878,22 +3877,19 @@ export declare class WhatsappQueueScalarWhereInput {
     AND?: Array<WhatsappQueueScalarWhereInput>;
     OR?: Array<WhatsappQueueScalarWhereInput>;
     NOT?: Array<WhatsappQueueScalarWhereInput>;
-    id?: InstanceType<typeof IntFilter>;
+    id?: InstanceType<typeof StringFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     apiRequestId?: InstanceType<typeof IntNullableFilter>;
     status?: InstanceType<typeof EnumQueueStatusFilter>;
     guestId?: InstanceType<typeof StringFilter>;
 }
 export declare class WhatsappQueueSumAggregateInput {
-    id?: true;
     apiRequestId?: true;
 }
 export declare class WhatsappQueueSumAggregate {
-    id?: number;
     apiRequestId?: number;
 }
 export declare class WhatsappQueueSumOrderByAggregateInput {
-    id?: keyof typeof SortOrder;
     apiRequestId?: keyof typeof SortOrder;
 }
 export declare class WhatsappQueueUncheckedCreateNestedManyWithoutGuestInput {
@@ -3903,13 +3899,13 @@ export declare class WhatsappQueueUncheckedCreateNestedManyWithoutGuestInput {
     connect?: Array<Prisma.AtLeast<WhatsappQueueWhereUniqueInput, 'id'>>;
 }
 export declare class WhatsappQueueUncheckedCreateWithoutGuestInput {
-    id?: number;
+    id?: string;
     createdAt?: Date | string;
     apiRequestId?: number;
     status?: keyof typeof QueueStatus;
 }
 export declare class WhatsappQueueUncheckedCreateInput {
-    id?: number;
+    id?: string;
     createdAt?: Date | string;
     apiRequestId?: number;
     status?: keyof typeof QueueStatus;
@@ -3929,32 +3925,33 @@ export declare class WhatsappQueueUncheckedUpdateManyWithoutGuestNestedInput {
     deleteMany?: Array<WhatsappQueueScalarWhereInput>;
 }
 export declare class WhatsappQueueUncheckedUpdateManyWithoutGuestInput {
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     apiRequestId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
 }
 export declare class WhatsappQueueUncheckedUpdateManyInput {
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     apiRequestId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
     guestId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
 }
 export declare class WhatsappQueueUncheckedUpdateWithoutGuestInput {
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     apiRequestId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
 }
 export declare class WhatsappQueueUncheckedUpdateInput {
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     apiRequestId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
     guestId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
 }
 export declare class WhatsappQueueUpdateManyMutationInput {
+    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     apiRequestId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
@@ -3981,11 +3978,13 @@ export declare class WhatsappQueueUpdateWithWhereUniqueWithoutGuestInput {
     data: InstanceType<typeof WhatsappQueueUpdateWithoutGuestInput>;
 }
 export declare class WhatsappQueueUpdateWithoutGuestInput {
+    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     apiRequestId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
 }
 export declare class WhatsappQueueUpdateInput {
+    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     apiRequestId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
@@ -3997,7 +3996,7 @@ export declare class WhatsappQueueUpsertWithWhereUniqueWithoutGuestInput {
     create: InstanceType<typeof WhatsappQueueCreateWithoutGuestInput>;
 }
 export declare class WhatsappQueueWhereUniqueInput {
-    id?: number;
+    id?: string;
     AND?: Array<WhatsappQueueWhereInput>;
     OR?: Array<WhatsappQueueWhereInput>;
     NOT?: Array<WhatsappQueueWhereInput>;
@@ -4011,7 +4010,7 @@ export declare class WhatsappQueueWhereInput {
     AND?: Array<WhatsappQueueWhereInput>;
     OR?: Array<WhatsappQueueWhereInput>;
     NOT?: Array<WhatsappQueueWhereInput>;
-    id?: InstanceType<typeof IntFilter>;
+    id?: InstanceType<typeof StringFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     apiRequestId?: InstanceType<typeof IntNullableFilter>;
     status?: InstanceType<typeof EnumQueueStatusFilter>;
@@ -4019,7 +4018,7 @@ export declare class WhatsappQueueWhereInput {
     guest?: InstanceType<typeof GuestRelationFilter>;
 }
 export declare class WhatsappQueue {
-    id: number;
+    id: string;
     createdAt: Date;
     apiRequestId: number | null;
     status: keyof typeof QueueStatus;

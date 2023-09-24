@@ -346,7 +346,6 @@ type AggregateWhatsappQueue {
 }
 
 type WhatsappQueueAvgAggregate {
-  id: Float
   apiRequestId: Float
 }
 
@@ -360,7 +359,7 @@ type WhatsappQueueCountAggregate {
 }
 
 type WhatsappQueueMaxAggregate {
-  id: Int
+  id: String
   createdAt: DateTime
   apiRequestId: Int
   status: QueueStatus
@@ -368,7 +367,7 @@ type WhatsappQueueMaxAggregate {
 }
 
 type WhatsappQueueMinAggregate {
-  id: Int
+  id: String
   createdAt: DateTime
   apiRequestId: Int
   status: QueueStatus
@@ -376,12 +375,11 @@ type WhatsappQueueMinAggregate {
 }
 
 type WhatsappQueueSumAggregate {
-  id: Int
   apiRequestId: Int
 }
 
 type WhatsappQueue {
-  id: Int!
+  id: String!
   createdAt: DateTime!
   apiRequestId: Int
   status: QueueStatus!
@@ -835,7 +833,7 @@ input WhatsappQueueWhereInput {
   AND: [WhatsappQueueWhereInput!]
   OR: [WhatsappQueueWhereInput!]
   NOT: [WhatsappQueueWhereInput!]
-  id: IntFilter
+  id: StringFilter
   createdAt: DateTimeFilter
   apiRequestId: IntNullableFilter
   status: EnumQueueStatusFilter
@@ -1213,7 +1211,7 @@ input InvitationImageMaxAggregateInput {
 }
 
 input WhatsappQueueWhereUniqueInput {
-  id: Int
+  id: String
   AND: [WhatsappQueueWhereInput!]
   OR: [WhatsappQueueWhereInput!]
   NOT: [WhatsappQueueWhereInput!]
@@ -1251,12 +1249,10 @@ input WhatsappQueueCountAggregateInput {
 }
 
 input WhatsappQueueAvgAggregateInput {
-  id: Boolean
   apiRequestId: Boolean
 }
 
 input WhatsappQueueSumAggregateInput {
-  id: Boolean
   apiRequestId: Boolean
 }
 
@@ -1553,6 +1549,7 @@ input WhatsappQueueCreateNestedManyWithoutGuestInput {
 }
 
 input WhatsappQueueCreateWithoutGuestInput {
+  id: String
   createdAt: DateTime
   apiRequestId: Int
   status: QueueStatus
@@ -1569,7 +1566,7 @@ input WhatsappQueueCreateManyGuestInputEnvelope {
 }
 
 input WhatsappQueueCreateManyGuestInput {
-  id: Int
+  id: String
   createdAt: DateTime
   apiRequestId: Int
   status: QueueStatus
@@ -1922,6 +1919,7 @@ input WhatsappQueueUpsertWithWhereUniqueWithoutGuestInput {
 }
 
 input WhatsappQueueUpdateWithoutGuestInput {
+  id: StringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   apiRequestId: NullableIntFieldUpdateOperationsInput
   status: EnumQueueStatusFieldUpdateOperationsInput
@@ -1949,7 +1947,7 @@ input WhatsappQueueScalarWhereInput {
   AND: [WhatsappQueueScalarWhereInput!]
   OR: [WhatsappQueueScalarWhereInput!]
   NOT: [WhatsappQueueScalarWhereInput!]
-  id: IntFilter
+  id: StringFilter
   createdAt: DateTimeFilter
   apiRequestId: IntNullableFilter
   status: EnumQueueStatusFilter
@@ -1957,6 +1955,7 @@ input WhatsappQueueScalarWhereInput {
 }
 
 input WhatsappQueueUpdateManyMutationInput {
+  id: StringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   apiRequestId: NullableIntFieldUpdateOperationsInput
   status: EnumQueueStatusFieldUpdateOperationsInput
@@ -2403,6 +2402,7 @@ input InvitationImageUpdateManyMutationInput {
 }
 
 input WhatsappQueueCreateInput {
+  id: String
   createdAt: DateTime
   apiRequestId: Int
   status: QueueStatus
@@ -2444,7 +2444,7 @@ input GuestCreateOrConnectWithoutWhatsappQueueInput {
 }
 
 input WhatsappQueueCreateManyInput {
-  id: Int
+  id: String
   createdAt: DateTime
   apiRequestId: Int
   status: QueueStatus
@@ -2452,6 +2452,7 @@ input WhatsappQueueCreateManyInput {
 }
 
 input WhatsappQueueUpdateInput {
+  id: StringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   apiRequestId: NullableIntFieldUpdateOperationsInput
   status: EnumQueueStatusFieldUpdateOperationsInput

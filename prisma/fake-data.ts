@@ -76,7 +76,7 @@ export function fakeWhatsappQueue() {
 }
 export function fakeWhatsappQueueComplete() {
   return {
-    id: faker.datatype.number(),
+    id: faker.datatype.uuid(),
     createdAt: new Date(),
     apiRequestId: undefined,
     status: QueueStatus.QUEUE,

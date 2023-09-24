@@ -80,6 +80,8 @@ export class WhatsappGatewayService {
       })),
     };
 
+    this.logger.log(data);
+
     const config: AxiosRequestConfig = {
       method: 'post',
       maxBodyLength: Infinity,
@@ -93,6 +95,7 @@ export class WhatsappGatewayService {
 
     try {
       const response = await firstValueFrom(this.httpService.request(config));
+      this.logger.log(response.data);
       return response.data;
     } catch (error) {
       if (error.response) {
