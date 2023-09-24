@@ -18,6 +18,7 @@ async function bootstrap() {
   const port = configService.get<number>('APP_PORT');
   const environment = configService.get<string>('NODE_ENV');
 
+  // Define the path to your static folder above the 'src' directory
   const staticFolder = join(__dirname, '..', 'files', 'invitation');
 
   // Serve static files from the 'files/invitation' folder at /files/invitation URL
