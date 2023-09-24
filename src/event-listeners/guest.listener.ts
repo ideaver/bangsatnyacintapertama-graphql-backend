@@ -10,6 +10,8 @@ import { Prisma } from '@prisma/client';
 import sharp from 'sharp';
 import { Guest } from 'src/@generated';
 import { InvitationImageController } from '../services/invitation-image/invitation-image.controller';
+import { UploaderService } from 'src/services/uploader/uploader.service';
+import { FileUploadDto } from 'src/services/uploader/dtos';
 
 @Injectable()
 export class GuestListener {
@@ -19,6 +21,7 @@ export class GuestListener {
     private readonly guestController: GuestController,
     private readonly qrCodeController: QrCodeController,
     private readonly invitationImagesController: InvitationImageController,
+    private readonly uploaderService: UploaderService,
   ) {}
 
   @OnEvent(GuestEvents.CreatedMany)
@@ -26,8 +29,6 @@ export class GuestListener {
     // Find guests without QR codes
     const guestsWithoutQrCodes = await this.findGuestsWithoutQrCodes();
     const qrCodeCreateManyInputArray: Prisma.QrCodeCreateManyInput[] = [];
-    const invitationImageCreateManyInputArray: Prisma.InvitationImageCreateManyInput[] =
-      [];
 
     // Process each guest to generate and save a QR code and invitation image
     for (const guest of guestsWithoutQrCodes) {
@@ -35,7 +36,7 @@ export class GuestListener {
       const qrCodePath = await this.generateAndSaveQrCode(guest.id);
 
       // Merge QR code with invitation template
-      const invitationImagePath = await this.mergeQRCodeWithInvitationTemplate(
+      await this.mergeQRCodeWithInvitationTemplate(
         'files/template/template.jpeg',
         qrCodePath,
         'files/invitation',
@@ -49,17 +50,113 @@ export class GuestListener {
         guestId: guest.id,
         path: qrCodePath,
       });
-
-      invitationImageCreateManyInputArray.push({
-        guestId: guest.id,
-        path: invitationImagePath,
-      });
     }
-
     await this.saveQrCodeToDatabase(qrCodeCreateManyInputArray);
-    await this.saveInvitationImagesToDatabase(
-      invitationImageCreateManyInputArray,
-    );
+    await this.uploadPNGFiles();
+  }
+
+  async readPNGFiles(folderPath: string): Promise<string[]> {
+    return new Promise<string[]>((resolve, reject) => {
+      fs.readdir(folderPath, (err, files) => {
+        if (err) {
+          reject(err);
+        } else {
+          const pngFiles = files.filter(
+            (file) => path.extname(file).toLowerCase() === '.png',
+          );
+          resolve(pngFiles);
+        }
+      });
+    });
+  }
+
+  async deletePNGFiles(
+    folderPath: string,
+    filesToDelete: string[],
+  ): Promise<void> {
+    try {
+      const deletionPromises = filesToDelete.map((filename) => {
+        const filePath = path.join(folderPath, filename);
+        return fs.promises.unlink(filePath);
+      });
+
+      await Promise.all(deletionPromises);
+      console.log('Deleted PNG files:', filesToDelete);
+    } catch (error) {
+      console.error('Error deleting PNG files:', error);
+    }
+  }
+
+  async uploadPNGFiles(): Promise<void> {
+    try {
+      const folderPath = 'files/invitation'; // Change this to the path of your folder
+      const pngFiles = await this.readPNGFiles(folderPath);
+
+      if (pngFiles.length === 0) {
+        console.log('No PNG files found in the folder.');
+        return;
+      }
+
+      this.logger.log(
+        `Found ${pngFiles.length} PNG files in the folder. Uploading`,
+      );
+
+      const fileUploadPromises = pngFiles.map((filename) => {
+        const file: FileUploadDto = {
+          filename,
+          mimetype: 'image/png',
+          encoding: 'base64',
+          createReadStream: () =>
+            fs.createReadStream(path.join(folderPath, filename)),
+        };
+
+        return this.uploaderService.uploadSingleFile({ file: file });
+      });
+
+      // Use Promise.all to upload all files in parallel
+      const uploadResultPaths: any[] = await Promise.all(fileUploadPromises);
+
+      this.logger.log('Finished uploading PNG files.');
+
+      console.log(uploadResultPaths);
+
+      // Save the file paths to the Prisma database
+      const invitationImageCreateManyInputArray: Prisma.InvitationImageCreateManyInput[] =
+        [];
+
+      for (const result of uploadResultPaths) {
+        // Parse the URL to get the pathname (file path)
+        const parsedUrl = new URL(result);
+        const pathname = parsedUrl.pathname;
+
+        // Use path.basename to get the filename with extension
+        const filenameWithExtension = path.basename(pathname);
+
+        // Use path.parse to split the filename into parts
+        const parsedFilename = path.parse(filenameWithExtension);
+
+        // Extract the filename (without extension) from the parsed filename
+        const filenameWithoutExtension = parsedFilename.name;
+
+        path.parse(result).name;
+        invitationImageCreateManyInputArray.push({
+          id: filenameWithoutExtension,
+          guestId: filenameWithoutExtension,
+          path: result,
+        });
+      }
+
+      await this.saveInvitationImagesToDatabase(
+        invitationImageCreateManyInputArray,
+      );
+
+      console.log('Saved file paths to the database:');
+
+      // Delete the PNG files from the folder
+      await this.deletePNGFiles(folderPath, pngFiles);
+    } catch (error) {
+      console.error('Error uploading PNG files:', error);
+    }
   }
 
   // Find guests without QR codes
@@ -106,7 +203,7 @@ export class GuestListener {
     studioAndSeatText?: string,
     showTimeText?: string,
   ) {
-    const mergedImageFileName = `${guestId}_invitation.png`;
+    const mergedImageFileName = `${guestId}.png`;
     const outputPath = path.join(outputFolder, mergedImageFileName);
 
     await fs.promises.mkdir(outputFolder, { recursive: true });

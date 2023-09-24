@@ -169,14 +169,8 @@ type Guest {
 
 type AggregateInvitationImage {
   _count: InvitationImageCountAggregate
-  _avg: InvitationImageAvgAggregate
-  _sum: InvitationImageSumAggregate
   _min: InvitationImageMinAggregate
   _max: InvitationImageMaxAggregate
-}
-
-type InvitationImageAvgAggregate {
-  id: Float
 }
 
 type InvitationImageCountAggregate {
@@ -188,25 +182,21 @@ type InvitationImageCountAggregate {
 }
 
 type InvitationImageMaxAggregate {
-  id: Int
+  id: String
   path: String
   createdAt: DateTime
   guestId: String
 }
 
 type InvitationImageMinAggregate {
-  id: Int
+  id: String
   path: String
   createdAt: DateTime
   guestId: String
 }
 
-type InvitationImageSumAggregate {
-  id: Int
-}
-
 type InvitationImage {
-  id: Int!
+  id: String!
   path: String!
   createdAt: DateTime!
   guestId: String!
@@ -465,7 +455,7 @@ type Query {
   invitationImageFindFirst(where: InvitationImageWhereInput, orderBy: [InvitationImageOrderByWithRelationInput!], cursor: InvitationImageWhereUniqueInput, take: Int, skip: Int, distinct: [InvitationImageScalarFieldEnum!]): InvitationImage
 
   """Deskripsinya ada disini loh"""
-  invitationImageAggregate(where: InvitationImageWhereInput, orderBy: [InvitationImageOrderByWithRelationInput!], cursor: InvitationImageWhereUniqueInput, take: Int, skip: Int, _count: InvitationImageCountAggregateInput, _avg: InvitationImageAvgAggregateInput, _sum: InvitationImageSumAggregateInput, _min: InvitationImageMinAggregateInput, _max: InvitationImageMaxAggregateInput): AggregateInvitationImage
+  invitationImageAggregate(where: InvitationImageWhereInput, orderBy: [InvitationImageOrderByWithRelationInput!], cursor: InvitationImageWhereUniqueInput, take: Int, skip: Int, _count: InvitationImageCountAggregateInput, _min: InvitationImageMinAggregateInput, _max: InvitationImageMaxAggregateInput): AggregateInvitationImage
 
   """Deskripsinya ada disini loh"""
   invitationImageCount(where: InvitationImageWhereInput, orderBy: [InvitationImageOrderByWithRelationInput!], cursor: InvitationImageWhereUniqueInput, take: Int, skip: Int, distinct: [InvitationImageScalarFieldEnum!]): Float
@@ -785,7 +775,7 @@ input InvitationImageWhereInput {
   AND: [InvitationImageWhereInput!]
   OR: [InvitationImageWhereInput!]
   NOT: [InvitationImageWhereInput!]
-  id: IntFilter
+  id: StringFilter
   path: StringFilter
   createdAt: DateTimeFilter
   guestId: StringFilter
@@ -1163,7 +1153,7 @@ input UserMaxAggregateInput {
 }
 
 input InvitationImageWhereUniqueInput {
-  id: Int
+  id: String
   guestId: String
   AND: [InvitationImageWhereInput!]
   OR: [InvitationImageWhereInput!]
@@ -1186,14 +1176,6 @@ input InvitationImageCountAggregateInput {
   createdAt: Boolean
   guestId: Boolean
   _all: Boolean
-}
-
-input InvitationImageAvgAggregateInput {
-  id: Boolean
-}
-
-input InvitationImageSumAggregateInput {
-  id: Boolean
 }
 
 input InvitationImageMinAggregateInput {
@@ -1277,11 +1259,6 @@ type Mutation {
   Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress
   """
   uploadSingleFile(file: Upload, userId: String!, ratioForImage: RatioEnum): BatchPayload
-
-  """
-  Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress
-  """
-  uploadMultiFile(files: [Upload!], userId: String!, ratioForImage: RatioEnum): [String!]
 
   """Deskripsinya ada disini loh"""
   guestCreateOne(data: GuestCreateInput!): Guest
@@ -1493,6 +1470,7 @@ input InvitationImageCreateNestedOneWithoutGuestInput {
 }
 
 input InvitationImageCreateWithoutGuestInput {
+  id: String
   path: String!
   createdAt: DateTime
 }
@@ -1835,6 +1813,7 @@ input InvitationImageUpsertWithoutGuestInput {
 }
 
 input InvitationImageUpdateWithoutGuestInput {
+  id: StringFieldUpdateOperationsInput
   path: StringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
 }
@@ -2302,6 +2281,7 @@ input UserUpdateManyMutationInput {
 }
 
 input InvitationImageCreateInput {
+  id: String
   path: String!
   createdAt: DateTime
   guest: GuestCreateNestedOneWithoutInvitationImageInput!
@@ -2342,13 +2322,14 @@ input GuestCreateOrConnectWithoutInvitationImageInput {
 }
 
 input InvitationImageCreateManyInput {
-  id: Int
+  id: String
   path: String!
   createdAt: DateTime
   guestId: String!
 }
 
 input InvitationImageUpdateInput {
+  id: StringFieldUpdateOperationsInput
   path: StringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   guest: GuestUpdateOneRequiredWithoutInvitationImageNestedInput
@@ -2397,6 +2378,7 @@ input GuestUpdateToOneWithWhereWithoutInvitationImageInput {
 }
 
 input InvitationImageUpdateManyMutationInput {
+  id: StringFieldUpdateOperationsInput
   path: StringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
 }

@@ -33,12 +33,6 @@ export class WhatsappQueueListener {
       const waMediaMessages: WaMediaMessage[] = [];
       const whatsappQueueWithQueueStatusId: string[] = [];
 
-      let imageHost = 'https://bangsatnyacintapertama.com';
-
-      if (this.configService.get<string>('NODE_ENV') === 'development') {
-        imageHost = 'http://localhost:3000';
-      }
-
       for (const whatsappQueue of whatsappQueueWithQueueStatus) {
         const {
           id,
@@ -51,7 +45,7 @@ export class WhatsappQueueListener {
           invitationImage,
         } = whatsappQueue.guest;
 
-        const image = `${imageHost}/${invitationImage.path}`;
+        const image = `${invitationImage.path}`;
 
         const message = `
         Halo Bpk/ Ibu ${invitationName}

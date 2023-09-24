@@ -54,12 +54,6 @@ export class UploaderController {
     if (fileType === FileType.XLSX) {
       return await this.parseExcelFileToDb(file);
     }
-
-    return await this.uploaderService.uploadSingleLocalFile({
-      userId,
-      file,
-      ratioForImage,
-    });
   }
 
   async parseExcelFileToDb(file: FileUpload): Promise<Prisma.BatchPayload> {

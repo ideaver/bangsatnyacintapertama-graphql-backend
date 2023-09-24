@@ -107,7 +107,7 @@ export function fakeInvitationImage() {
 }
 export function fakeInvitationImageComplete() {
   return {
-    id: faker.datatype.number(),
+    id: faker.datatype.uuid(),
     path: faker.lorem.words(5),
     createdAt: new Date(),
     guestId: faker.datatype.uuid(),

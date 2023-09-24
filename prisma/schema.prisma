@@ -205,7 +205,7 @@ model QrCode {
 }
 
 model InvitationImage {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
 
   path String
 

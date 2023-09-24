@@ -10,13 +10,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmailQueueUncheckedCreateWithoutGuestInput = exports.EmailQueueUncheckedCreateNestedManyWithoutGuestInput = exports.EmailQueueSumOrderByAggregateInput = exports.EmailQueueSumAggregate = exports.EmailQueueSumAggregateInput = exports.EmailQueueScalarWhereInput = exports.EmailQueueScalarWhereWithAggregatesInput = exports.EmailQueueOrderByWithRelationInput = exports.EmailQueueOrderByWithAggregationInput = exports.EmailQueueOrderByRelationAggregateInput = exports.EmailQueueMinOrderByAggregateInput = exports.EmailQueueMinAggregate = exports.EmailQueueMinAggregateInput = exports.EmailQueueMaxOrderByAggregateInput = exports.EmailQueueMaxAggregate = exports.EmailQueueMaxAggregateInput = exports.EmailQueueListRelationFilter = exports.EmailQueueGroupBy = exports.EmailQueueGroupByArgs = exports.EmailQueueCreateInput = exports.EmailQueueCreateWithoutGuestInput = exports.EmailQueueCreateOrConnectWithoutGuestInput = exports.EmailQueueCreateNestedManyWithoutGuestInput = exports.EmailQueueCreateManyInput = exports.EmailQueueCreateManyGuestInput = exports.EmailQueueCreateManyGuestInputEnvelope = exports.EmailQueueCountOrderByAggregateInput = exports.EmailQueueCountAggregate = exports.EmailQueueCountAggregateInput = exports.EmailQueueAvgOrderByAggregateInput = exports.EmailQueueAvgAggregate = exports.EmailQueueAvgAggregateInput = exports.EmailQueueAggregateArgs = exports.DeleteOneEmailQueueArgs = exports.DeleteManyEmailQueueArgs = exports.CreateOneEmailQueueArgs = exports.CreateManyEmailQueueArgs = exports.AggregateEmailQueue = exports.EmailQueueScalarFieldEnum = exports.GuestScalarFieldEnum = exports.InvitationImageScalarFieldEnum = exports.ConfirmationStatus = exports.NullsOrder = exports.QueueStatus = exports.SortOrder = exports.TransactionIsolationLevel = exports.UserRole = exports.QrCodeScalarFieldEnum = exports.UserScalarFieldEnum = exports.WhatsappQueueScalarFieldEnum = void 0;
 exports.GuestCreateNestedOneWithoutQrcodeInput = exports.GuestCreateNestedOneWithoutInvitationImageInput = exports.GuestCreateNestedOneWithoutGroupMembersInput = exports.GuestCreateNestedOneWithoutEmailQueueInput = exports.GuestCreateNestedManyWithoutGroupMemberOfInput = exports.GuestCreateManyInput = exports.GuestCreateManyGroupMemberOfInput = exports.GuestCreateManyGroupMemberOfInputEnvelope = exports.GuestCount = exports.GuestCountOrderByAggregateInput = exports.GuestCountAggregate = exports.GuestCountAggregateInput = exports.GuestAvgOrderByAggregateInput = exports.GuestAvgAggregate = exports.GuestAvgAggregateInput = exports.GuestAggregateArgs = exports.FindUniqueGuestArgs = exports.FindUniqueGuestOrThrowArgs = exports.FindManyGuestArgs = exports.FindFirstGuestArgs = exports.FindFirstGuestOrThrowArgs = exports.DeleteOneGuestArgs = exports.DeleteManyGuestArgs = exports.CreateOneGuestArgs = exports.CreateManyGuestArgs = exports.AggregateGuest = exports.UpsertOneEmailQueueArgs = exports.UpdateOneEmailQueueArgs = exports.UpdateManyEmailQueueArgs = exports.FindUniqueEmailQueueArgs = exports.FindUniqueEmailQueueOrThrowArgs = exports.FindManyEmailQueueArgs = exports.FindFirstEmailQueueArgs = exports.FindFirstEmailQueueOrThrowArgs = exports.EmailQueue = exports.EmailQueueWhereInput = exports.EmailQueueWhereUniqueInput = exports.EmailQueueUpsertWithWhereUniqueWithoutGuestInput = exports.EmailQueueUpdateInput = exports.EmailQueueUpdateWithoutGuestInput = exports.EmailQueueUpdateWithWhereUniqueWithoutGuestInput = exports.EmailQueueUpdateManyWithoutGuestNestedInput = exports.EmailQueueUpdateManyWithWhereWithoutGuestInput = exports.EmailQueueUpdateManyMutationInput = exports.EmailQueueUncheckedUpdateInput = exports.EmailQueueUncheckedUpdateWithoutGuestInput = exports.EmailQueueUncheckedUpdateManyInput = exports.EmailQueueUncheckedUpdateManyWithoutGuestInput = exports.EmailQueueUncheckedUpdateManyWithoutGuestNestedInput = exports.EmailQueueUncheckedCreateInput = void 0;
 exports.GuestUncheckedUpdateWithoutWhatsappQueueInput = exports.GuestUncheckedUpdateWithoutQrcodeInput = exports.GuestUncheckedUpdateWithoutInvitationImageInput = exports.GuestUncheckedUpdateWithoutGroupMembersInput = exports.GuestUncheckedUpdateWithoutGroupMemberOfInput = exports.GuestUncheckedUpdateWithoutEmailQueueInput = exports.GuestUncheckedUpdateManyInput = exports.GuestUncheckedUpdateManyWithoutGroupMemberOfInput = exports.GuestUncheckedUpdateManyWithoutGroupMemberOfNestedInput = exports.GuestUncheckedCreateInput = exports.GuestUncheckedCreateWithoutWhatsappQueueInput = exports.GuestUncheckedCreateWithoutQrcodeInput = exports.GuestUncheckedCreateWithoutInvitationImageInput = exports.GuestUncheckedCreateWithoutGroupMembersInput = exports.GuestUncheckedCreateWithoutGroupMemberOfInput = exports.GuestUncheckedCreateWithoutEmailQueueInput = exports.GuestUncheckedCreateNestedManyWithoutGroupMemberOfInput = exports.GuestSumOrderByAggregateInput = exports.GuestSumAggregate = exports.GuestSumAggregateInput = exports.GuestScalarWhereInput = exports.GuestScalarWhereWithAggregatesInput = exports.GuestRelationFilter = exports.GuestOrderByWithRelationInput = exports.GuestOrderByWithAggregationInput = exports.GuestOrderByRelationAggregateInput = exports.GuestNullableRelationFilter = exports.GuestMinOrderByAggregateInput = exports.GuestMinAggregate = exports.GuestMinAggregateInput = exports.GuestMaxOrderByAggregateInput = exports.GuestMaxAggregate = exports.GuestMaxAggregateInput = exports.GuestListRelationFilter = exports.GuestGroupBy = exports.GuestGroupByArgs = exports.GuestCreateInput = exports.GuestCreateWithoutWhatsappQueueInput = exports.GuestCreateWithoutQrcodeInput = exports.GuestCreateWithoutInvitationImageInput = exports.GuestCreateWithoutGroupMembersInput = exports.GuestCreateWithoutGroupMemberOfInput = exports.GuestCreateWithoutEmailQueueInput = exports.GuestCreateOrConnectWithoutWhatsappQueueInput = exports.GuestCreateOrConnectWithoutQrcodeInput = exports.GuestCreateOrConnectWithoutInvitationImageInput = exports.GuestCreateOrConnectWithoutGroupMembersInput = exports.GuestCreateOrConnectWithoutGroupMemberOfInput = exports.GuestCreateOrConnectWithoutEmailQueueInput = exports.GuestCreateNestedOneWithoutWhatsappQueueInput = void 0;
-exports.InvitationImageCountAggregate = exports.InvitationImageCountAggregateInput = exports.InvitationImageAvgOrderByAggregateInput = exports.InvitationImageAvgAggregate = exports.InvitationImageAvgAggregateInput = exports.InvitationImageAggregateArgs = exports.FindUniqueInvitationImageArgs = exports.FindUniqueInvitationImageOrThrowArgs = exports.FindManyInvitationImageArgs = exports.FindFirstInvitationImageArgs = exports.FindFirstInvitationImageOrThrowArgs = exports.DeleteOneInvitationImageArgs = exports.DeleteManyInvitationImageArgs = exports.CreateOneInvitationImageArgs = exports.CreateManyInvitationImageArgs = exports.AggregateInvitationImage = exports.UpsertOneGuestArgs = exports.UpdateOneGuestArgs = exports.UpdateManyGuestArgs = exports.Guest = exports.GuestWhereInput = exports.GuestWhereUniqueInput = exports.GuestUpsertWithoutWhatsappQueueInput = exports.GuestUpsertWithoutQrcodeInput = exports.GuestUpsertWithoutInvitationImageInput = exports.GuestUpsertWithoutGroupMembersInput = exports.GuestUpsertWithoutEmailQueueInput = exports.GuestUpsertWithWhereUniqueWithoutGroupMemberOfInput = exports.GuestUpdateInput = exports.GuestUpdateWithoutWhatsappQueueInput = exports.GuestUpdateWithoutQrcodeInput = exports.GuestUpdateWithoutInvitationImageInput = exports.GuestUpdateWithoutGroupMembersInput = exports.GuestUpdateWithoutGroupMemberOfInput = exports.GuestUpdateWithoutEmailQueueInput = exports.GuestUpdateWithWhereUniqueWithoutGroupMemberOfInput = exports.GuestUpdateToOneWithWhereWithoutWhatsappQueueInput = exports.GuestUpdateToOneWithWhereWithoutQrcodeInput = exports.GuestUpdateToOneWithWhereWithoutInvitationImageInput = exports.GuestUpdateToOneWithWhereWithoutGroupMembersInput = exports.GuestUpdateToOneWithWhereWithoutEmailQueueInput = exports.GuestUpdateOneWithoutGroupMembersNestedInput = exports.GuestUpdateOneRequiredWithoutWhatsappQueueNestedInput = exports.GuestUpdateOneRequiredWithoutQrcodeNestedInput = exports.GuestUpdateOneRequiredWithoutInvitationImageNestedInput = exports.GuestUpdateOneRequiredWithoutEmailQueueNestedInput = exports.GuestUpdateManyWithoutGroupMemberOfNestedInput = exports.GuestUpdateManyWithWhereWithoutGroupMemberOfInput = exports.GuestUpdateManyMutationInput = exports.GuestUncheckedUpdateInput = void 0;
-exports.EnumQueueStatusFilter = exports.EnumQueueStatusFieldUpdateOperationsInput = exports.EnumConfirmationStatusNullableWithAggregatesFilter = exports.EnumConfirmationStatusNullableFilter = exports.DateTimeWithAggregatesFilter = exports.DateTimeNullableWithAggregatesFilter = exports.DateTimeNullableFilter = exports.DateTimeFilter = exports.DateTimeFieldUpdateOperationsInput = exports.AffectedRows = exports.UpsertOneInvitationImageArgs = exports.UpdateOneInvitationImageArgs = exports.UpdateManyInvitationImageArgs = exports.InvitationImage = exports.InvitationImageWhereInput = exports.InvitationImageWhereUniqueInput = exports.InvitationImageUpsertWithoutGuestInput = exports.InvitationImageUpdateInput = exports.InvitationImageUpdateWithoutGuestInput = exports.InvitationImageUpdateToOneWithWhereWithoutGuestInput = exports.InvitationImageUpdateOneWithoutGuestNestedInput = exports.InvitationImageUpdateManyMutationInput = exports.InvitationImageUncheckedUpdateInput = exports.InvitationImageUncheckedUpdateWithoutGuestInput = exports.InvitationImageUncheckedUpdateOneWithoutGuestNestedInput = exports.InvitationImageUncheckedUpdateManyInput = exports.InvitationImageUncheckedCreateInput = exports.InvitationImageUncheckedCreateWithoutGuestInput = exports.InvitationImageUncheckedCreateNestedOneWithoutGuestInput = exports.InvitationImageSumOrderByAggregateInput = exports.InvitationImageSumAggregate = exports.InvitationImageSumAggregateInput = exports.InvitationImageScalarWhereWithAggregatesInput = exports.InvitationImageOrderByWithRelationInput = exports.InvitationImageOrderByWithAggregationInput = exports.InvitationImageNullableRelationFilter = exports.InvitationImageMinOrderByAggregateInput = exports.InvitationImageMinAggregate = exports.InvitationImageMinAggregateInput = exports.InvitationImageMaxOrderByAggregateInput = exports.InvitationImageMaxAggregate = exports.InvitationImageMaxAggregateInput = exports.InvitationImageGroupBy = exports.InvitationImageGroupByArgs = exports.InvitationImageCreateInput = exports.InvitationImageCreateWithoutGuestInput = exports.InvitationImageCreateOrConnectWithoutGuestInput = exports.InvitationImageCreateNestedOneWithoutGuestInput = exports.InvitationImageCreateManyInput = exports.InvitationImageCountOrderByAggregateInput = void 0;
-exports.FindFirstQrCodeArgs = exports.FindFirstQrCodeOrThrowArgs = exports.DeleteOneQrCodeArgs = exports.DeleteManyQrCodeArgs = exports.CreateOneQrCodeArgs = exports.CreateManyQrCodeArgs = exports.AggregateQrCode = exports.StringWithAggregatesFilter = exports.StringNullableWithAggregatesFilter = exports.StringNullableFilter = exports.StringFilter = exports.StringFieldUpdateOperationsInput = exports.SortOrderInput = exports.NullableStringFieldUpdateOperationsInput = exports.NullableIntFieldUpdateOperationsInput = exports.NullableFloatFieldUpdateOperationsInput = exports.NullableEnumConfirmationStatusFieldUpdateOperationsInput = exports.NullableDateTimeFieldUpdateOperationsInput = exports.NestedStringWithAggregatesFilter = exports.NestedStringNullableWithAggregatesFilter = exports.NestedStringNullableFilter = exports.NestedStringFilter = exports.NestedIntWithAggregatesFilter = exports.NestedIntNullableWithAggregatesFilter = exports.NestedIntNullableFilter = exports.NestedIntFilter = exports.NestedFloatNullableWithAggregatesFilter = exports.NestedFloatNullableFilter = exports.NestedFloatFilter = exports.NestedEnumUserRoleWithAggregatesFilter = exports.NestedEnumUserRoleFilter = exports.NestedEnumQueueStatusWithAggregatesFilter = exports.NestedEnumQueueStatusFilter = exports.NestedEnumConfirmationStatusNullableWithAggregatesFilter = exports.NestedEnumConfirmationStatusNullableFilter = exports.NestedDateTimeWithAggregatesFilter = exports.NestedDateTimeNullableWithAggregatesFilter = exports.NestedDateTimeNullableFilter = exports.NestedDateTimeFilter = exports.IntWithAggregatesFilter = exports.IntNullableWithAggregatesFilter = exports.IntNullableFilter = exports.IntFilter = exports.IntFieldUpdateOperationsInput = exports.FloatNullableWithAggregatesFilter = exports.FloatNullableFilter = exports.EnumUserRoleWithAggregatesFilter = exports.EnumUserRoleFilter = exports.EnumUserRoleFieldUpdateOperationsInput = exports.EnumQueueStatusWithAggregatesFilter = void 0;
-exports.QrCodeUncheckedUpdateInput = exports.QrCodeUncheckedUpdateWithoutScannedByInput = exports.QrCodeUncheckedUpdateWithoutGuestInput = exports.QrCodeUncheckedUpdateOneWithoutGuestNestedInput = exports.QrCodeUncheckedUpdateManyInput = exports.QrCodeUncheckedUpdateManyWithoutScannedByInput = exports.QrCodeUncheckedUpdateManyWithoutScannedByNestedInput = exports.QrCodeUncheckedCreateInput = exports.QrCodeUncheckedCreateWithoutScannedByInput = exports.QrCodeUncheckedCreateWithoutGuestInput = exports.QrCodeUncheckedCreateNestedOneWithoutGuestInput = exports.QrCodeUncheckedCreateNestedManyWithoutScannedByInput = exports.QrCodeSumOrderByAggregateInput = exports.QrCodeSumAggregate = exports.QrCodeSumAggregateInput = exports.QrCodeScalarWhereInput = exports.QrCodeScalarWhereWithAggregatesInput = exports.QrCodeOrderByWithRelationInput = exports.QrCodeOrderByWithAggregationInput = exports.QrCodeOrderByRelationAggregateInput = exports.QrCodeNullableRelationFilter = exports.QrCodeMinOrderByAggregateInput = exports.QrCodeMinAggregate = exports.QrCodeMinAggregateInput = exports.QrCodeMaxOrderByAggregateInput = exports.QrCodeMaxAggregate = exports.QrCodeMaxAggregateInput = exports.QrCodeListRelationFilter = exports.QrCodeGroupBy = exports.QrCodeGroupByArgs = exports.QrCodeCreateInput = exports.QrCodeCreateWithoutScannedByInput = exports.QrCodeCreateWithoutGuestInput = exports.QrCodeCreateOrConnectWithoutScannedByInput = exports.QrCodeCreateOrConnectWithoutGuestInput = exports.QrCodeCreateNestedOneWithoutGuestInput = exports.QrCodeCreateNestedManyWithoutScannedByInput = exports.QrCodeCreateManyInput = exports.QrCodeCreateManyScannedByInput = exports.QrCodeCreateManyScannedByInputEnvelope = exports.QrCodeCountOrderByAggregateInput = exports.QrCodeCountAggregate = exports.QrCodeCountAggregateInput = exports.QrCodeAvgOrderByAggregateInput = exports.QrCodeAvgAggregate = exports.QrCodeAvgAggregateInput = exports.QrCodeAggregateArgs = exports.FindUniqueQrCodeArgs = exports.FindUniqueQrCodeOrThrowArgs = exports.FindManyQrCodeArgs = void 0;
-exports.UserOrderByWithAggregationInput = exports.UserNullableRelationFilter = exports.UserMinOrderByAggregateInput = exports.UserMinAggregate = exports.UserMinAggregateInput = exports.UserMaxOrderByAggregateInput = exports.UserMaxAggregate = exports.UserMaxAggregateInput = exports.UserGroupBy = exports.UserGroupByArgs = exports.UserCreateInput = exports.UserCreateWithoutScannedQrsInput = exports.UserCreateOrConnectWithoutScannedQrsInput = exports.UserCreateNestedOneWithoutScannedQrsInput = exports.UserCreateManyInput = exports.UserCount = exports.UserCountOrderByAggregateInput = exports.UserCountAggregate = exports.UserCountAggregateInput = exports.UserAggregateArgs = exports.UpsertOneUserArgs = exports.UpdateOneUserArgs = exports.UpdateManyUserArgs = exports.FindUniqueUserArgs = exports.FindUniqueUserOrThrowArgs = exports.FindManyUserArgs = exports.FindFirstUserArgs = exports.FindFirstUserOrThrowArgs = exports.DeleteOneUserArgs = exports.DeleteManyUserArgs = exports.CreateOneUserArgs = exports.CreateManyUserArgs = exports.AggregateUser = exports.UpsertOneQrCodeArgs = exports.UpdateOneQrCodeArgs = exports.UpdateManyQrCodeArgs = exports.QrCode = exports.QrCodeWhereInput = exports.QrCodeWhereUniqueInput = exports.QrCodeUpsertWithoutGuestInput = exports.QrCodeUpsertWithWhereUniqueWithoutScannedByInput = exports.QrCodeUpdateInput = exports.QrCodeUpdateWithoutScannedByInput = exports.QrCodeUpdateWithoutGuestInput = exports.QrCodeUpdateWithWhereUniqueWithoutScannedByInput = exports.QrCodeUpdateToOneWithWhereWithoutGuestInput = exports.QrCodeUpdateOneWithoutGuestNestedInput = exports.QrCodeUpdateManyWithoutScannedByNestedInput = exports.QrCodeUpdateManyWithWhereWithoutScannedByInput = exports.QrCodeUpdateManyMutationInput = void 0;
-exports.WhatsappQueueMinAggregateInput = exports.WhatsappQueueMaxOrderByAggregateInput = exports.WhatsappQueueMaxAggregate = exports.WhatsappQueueMaxAggregateInput = exports.WhatsappQueueListRelationFilter = exports.WhatsappQueueGroupBy = exports.WhatsappQueueGroupByArgs = exports.WhatsappQueueCreateInput = exports.WhatsappQueueCreateWithoutGuestInput = exports.WhatsappQueueCreateOrConnectWithoutGuestInput = exports.WhatsappQueueCreateNestedManyWithoutGuestInput = exports.WhatsappQueueCreateManyInput = exports.WhatsappQueueCreateManyGuestInput = exports.WhatsappQueueCreateManyGuestInputEnvelope = exports.WhatsappQueueCountOrderByAggregateInput = exports.WhatsappQueueCountAggregate = exports.WhatsappQueueCountAggregateInput = exports.WhatsappQueueAvgOrderByAggregateInput = exports.WhatsappQueueAvgAggregate = exports.WhatsappQueueAvgAggregateInput = exports.WhatsappQueueAggregateArgs = exports.UpsertOneWhatsappQueueArgs = exports.UpdateOneWhatsappQueueArgs = exports.UpdateManyWhatsappQueueArgs = exports.FindUniqueWhatsappQueueArgs = exports.FindUniqueWhatsappQueueOrThrowArgs = exports.FindManyWhatsappQueueArgs = exports.FindFirstWhatsappQueueArgs = exports.FindFirstWhatsappQueueOrThrowArgs = exports.DeleteOneWhatsappQueueArgs = exports.DeleteManyWhatsappQueueArgs = exports.CreateOneWhatsappQueueArgs = exports.CreateManyWhatsappQueueArgs = exports.AggregateWhatsappQueue = exports.User = exports.UserWhereInput = exports.UserWhereUniqueInput = exports.UserUpsertWithoutScannedQrsInput = exports.UserUpdateInput = exports.UserUpdateWithoutScannedQrsInput = exports.UserUpdateToOneWithWhereWithoutScannedQrsInput = exports.UserUpdateOneWithoutScannedQrsNestedInput = exports.UserUpdateManyMutationInput = exports.UserUncheckedUpdateInput = exports.UserUncheckedUpdateWithoutScannedQrsInput = exports.UserUncheckedUpdateManyInput = exports.UserUncheckedCreateInput = exports.UserUncheckedCreateWithoutScannedQrsInput = exports.UserScalarWhereWithAggregatesInput = exports.UserOrderByWithRelationInput = void 0;
-exports.WhatsappQueue = exports.WhatsappQueueWhereInput = exports.WhatsappQueueWhereUniqueInput = exports.WhatsappQueueUpsertWithWhereUniqueWithoutGuestInput = exports.WhatsappQueueUpdateInput = exports.WhatsappQueueUpdateWithoutGuestInput = exports.WhatsappQueueUpdateWithWhereUniqueWithoutGuestInput = exports.WhatsappQueueUpdateManyWithoutGuestNestedInput = exports.WhatsappQueueUpdateManyWithWhereWithoutGuestInput = exports.WhatsappQueueUpdateManyMutationInput = exports.WhatsappQueueUncheckedUpdateInput = exports.WhatsappQueueUncheckedUpdateWithoutGuestInput = exports.WhatsappQueueUncheckedUpdateManyInput = exports.WhatsappQueueUncheckedUpdateManyWithoutGuestInput = exports.WhatsappQueueUncheckedUpdateManyWithoutGuestNestedInput = exports.WhatsappQueueUncheckedCreateInput = exports.WhatsappQueueUncheckedCreateWithoutGuestInput = exports.WhatsappQueueUncheckedCreateNestedManyWithoutGuestInput = exports.WhatsappQueueSumOrderByAggregateInput = exports.WhatsappQueueSumAggregate = exports.WhatsappQueueSumAggregateInput = exports.WhatsappQueueScalarWhereInput = exports.WhatsappQueueScalarWhereWithAggregatesInput = exports.WhatsappQueueOrderByWithRelationInput = exports.WhatsappQueueOrderByWithAggregationInput = exports.WhatsappQueueOrderByRelationAggregateInput = exports.WhatsappQueueMinOrderByAggregateInput = exports.WhatsappQueueMinAggregate = void 0;
+exports.InvitationImageCreateNestedOneWithoutGuestInput = exports.InvitationImageCreateManyInput = exports.InvitationImageCountOrderByAggregateInput = exports.InvitationImageCountAggregate = exports.InvitationImageCountAggregateInput = exports.InvitationImageAggregateArgs = exports.FindUniqueInvitationImageArgs = exports.FindUniqueInvitationImageOrThrowArgs = exports.FindManyInvitationImageArgs = exports.FindFirstInvitationImageArgs = exports.FindFirstInvitationImageOrThrowArgs = exports.DeleteOneInvitationImageArgs = exports.DeleteManyInvitationImageArgs = exports.CreateOneInvitationImageArgs = exports.CreateManyInvitationImageArgs = exports.AggregateInvitationImage = exports.UpsertOneGuestArgs = exports.UpdateOneGuestArgs = exports.UpdateManyGuestArgs = exports.Guest = exports.GuestWhereInput = exports.GuestWhereUniqueInput = exports.GuestUpsertWithoutWhatsappQueueInput = exports.GuestUpsertWithoutQrcodeInput = exports.GuestUpsertWithoutInvitationImageInput = exports.GuestUpsertWithoutGroupMembersInput = exports.GuestUpsertWithoutEmailQueueInput = exports.GuestUpsertWithWhereUniqueWithoutGroupMemberOfInput = exports.GuestUpdateInput = exports.GuestUpdateWithoutWhatsappQueueInput = exports.GuestUpdateWithoutQrcodeInput = exports.GuestUpdateWithoutInvitationImageInput = exports.GuestUpdateWithoutGroupMembersInput = exports.GuestUpdateWithoutGroupMemberOfInput = exports.GuestUpdateWithoutEmailQueueInput = exports.GuestUpdateWithWhereUniqueWithoutGroupMemberOfInput = exports.GuestUpdateToOneWithWhereWithoutWhatsappQueueInput = exports.GuestUpdateToOneWithWhereWithoutQrcodeInput = exports.GuestUpdateToOneWithWhereWithoutInvitationImageInput = exports.GuestUpdateToOneWithWhereWithoutGroupMembersInput = exports.GuestUpdateToOneWithWhereWithoutEmailQueueInput = exports.GuestUpdateOneWithoutGroupMembersNestedInput = exports.GuestUpdateOneRequiredWithoutWhatsappQueueNestedInput = exports.GuestUpdateOneRequiredWithoutQrcodeNestedInput = exports.GuestUpdateOneRequiredWithoutInvitationImageNestedInput = exports.GuestUpdateOneRequiredWithoutEmailQueueNestedInput = exports.GuestUpdateManyWithoutGroupMemberOfNestedInput = exports.GuestUpdateManyWithWhereWithoutGroupMemberOfInput = exports.GuestUpdateManyMutationInput = exports.GuestUncheckedUpdateInput = void 0;
+exports.FloatNullableWithAggregatesFilter = exports.FloatNullableFilter = exports.EnumUserRoleWithAggregatesFilter = exports.EnumUserRoleFilter = exports.EnumUserRoleFieldUpdateOperationsInput = exports.EnumQueueStatusWithAggregatesFilter = exports.EnumQueueStatusFilter = exports.EnumQueueStatusFieldUpdateOperationsInput = exports.EnumConfirmationStatusNullableWithAggregatesFilter = exports.EnumConfirmationStatusNullableFilter = exports.DateTimeWithAggregatesFilter = exports.DateTimeNullableWithAggregatesFilter = exports.DateTimeNullableFilter = exports.DateTimeFilter = exports.DateTimeFieldUpdateOperationsInput = exports.AffectedRows = exports.UpsertOneInvitationImageArgs = exports.UpdateOneInvitationImageArgs = exports.UpdateManyInvitationImageArgs = exports.InvitationImage = exports.InvitationImageWhereInput = exports.InvitationImageWhereUniqueInput = exports.InvitationImageUpsertWithoutGuestInput = exports.InvitationImageUpdateInput = exports.InvitationImageUpdateWithoutGuestInput = exports.InvitationImageUpdateToOneWithWhereWithoutGuestInput = exports.InvitationImageUpdateOneWithoutGuestNestedInput = exports.InvitationImageUpdateManyMutationInput = exports.InvitationImageUncheckedUpdateInput = exports.InvitationImageUncheckedUpdateWithoutGuestInput = exports.InvitationImageUncheckedUpdateOneWithoutGuestNestedInput = exports.InvitationImageUncheckedUpdateManyInput = exports.InvitationImageUncheckedCreateInput = exports.InvitationImageUncheckedCreateWithoutGuestInput = exports.InvitationImageUncheckedCreateNestedOneWithoutGuestInput = exports.InvitationImageScalarWhereWithAggregatesInput = exports.InvitationImageOrderByWithRelationInput = exports.InvitationImageOrderByWithAggregationInput = exports.InvitationImageNullableRelationFilter = exports.InvitationImageMinOrderByAggregateInput = exports.InvitationImageMinAggregate = exports.InvitationImageMinAggregateInput = exports.InvitationImageMaxOrderByAggregateInput = exports.InvitationImageMaxAggregate = exports.InvitationImageMaxAggregateInput = exports.InvitationImageGroupBy = exports.InvitationImageGroupByArgs = exports.InvitationImageCreateInput = exports.InvitationImageCreateWithoutGuestInput = exports.InvitationImageCreateOrConnectWithoutGuestInput = void 0;
+exports.QrCodeAvgAggregate = exports.QrCodeAvgAggregateInput = exports.QrCodeAggregateArgs = exports.FindUniqueQrCodeArgs = exports.FindUniqueQrCodeOrThrowArgs = exports.FindManyQrCodeArgs = exports.FindFirstQrCodeArgs = exports.FindFirstQrCodeOrThrowArgs = exports.DeleteOneQrCodeArgs = exports.DeleteManyQrCodeArgs = exports.CreateOneQrCodeArgs = exports.CreateManyQrCodeArgs = exports.AggregateQrCode = exports.StringWithAggregatesFilter = exports.StringNullableWithAggregatesFilter = exports.StringNullableFilter = exports.StringFilter = exports.StringFieldUpdateOperationsInput = exports.SortOrderInput = exports.NullableStringFieldUpdateOperationsInput = exports.NullableIntFieldUpdateOperationsInput = exports.NullableFloatFieldUpdateOperationsInput = exports.NullableEnumConfirmationStatusFieldUpdateOperationsInput = exports.NullableDateTimeFieldUpdateOperationsInput = exports.NestedStringWithAggregatesFilter = exports.NestedStringNullableWithAggregatesFilter = exports.NestedStringNullableFilter = exports.NestedStringFilter = exports.NestedIntWithAggregatesFilter = exports.NestedIntNullableWithAggregatesFilter = exports.NestedIntNullableFilter = exports.NestedIntFilter = exports.NestedFloatNullableWithAggregatesFilter = exports.NestedFloatNullableFilter = exports.NestedFloatFilter = exports.NestedEnumUserRoleWithAggregatesFilter = exports.NestedEnumUserRoleFilter = exports.NestedEnumQueueStatusWithAggregatesFilter = exports.NestedEnumQueueStatusFilter = exports.NestedEnumConfirmationStatusNullableWithAggregatesFilter = exports.NestedEnumConfirmationStatusNullableFilter = exports.NestedDateTimeWithAggregatesFilter = exports.NestedDateTimeNullableWithAggregatesFilter = exports.NestedDateTimeNullableFilter = exports.NestedDateTimeFilter = exports.IntWithAggregatesFilter = exports.IntNullableWithAggregatesFilter = exports.IntNullableFilter = exports.IntFilter = exports.IntFieldUpdateOperationsInput = void 0;
+exports.QrCodeUpdateWithWhereUniqueWithoutScannedByInput = exports.QrCodeUpdateToOneWithWhereWithoutGuestInput = exports.QrCodeUpdateOneWithoutGuestNestedInput = exports.QrCodeUpdateManyWithoutScannedByNestedInput = exports.QrCodeUpdateManyWithWhereWithoutScannedByInput = exports.QrCodeUpdateManyMutationInput = exports.QrCodeUncheckedUpdateInput = exports.QrCodeUncheckedUpdateWithoutScannedByInput = exports.QrCodeUncheckedUpdateWithoutGuestInput = exports.QrCodeUncheckedUpdateOneWithoutGuestNestedInput = exports.QrCodeUncheckedUpdateManyInput = exports.QrCodeUncheckedUpdateManyWithoutScannedByInput = exports.QrCodeUncheckedUpdateManyWithoutScannedByNestedInput = exports.QrCodeUncheckedCreateInput = exports.QrCodeUncheckedCreateWithoutScannedByInput = exports.QrCodeUncheckedCreateWithoutGuestInput = exports.QrCodeUncheckedCreateNestedOneWithoutGuestInput = exports.QrCodeUncheckedCreateNestedManyWithoutScannedByInput = exports.QrCodeSumOrderByAggregateInput = exports.QrCodeSumAggregate = exports.QrCodeSumAggregateInput = exports.QrCodeScalarWhereInput = exports.QrCodeScalarWhereWithAggregatesInput = exports.QrCodeOrderByWithRelationInput = exports.QrCodeOrderByWithAggregationInput = exports.QrCodeOrderByRelationAggregateInput = exports.QrCodeNullableRelationFilter = exports.QrCodeMinOrderByAggregateInput = exports.QrCodeMinAggregate = exports.QrCodeMinAggregateInput = exports.QrCodeMaxOrderByAggregateInput = exports.QrCodeMaxAggregate = exports.QrCodeMaxAggregateInput = exports.QrCodeListRelationFilter = exports.QrCodeGroupBy = exports.QrCodeGroupByArgs = exports.QrCodeCreateInput = exports.QrCodeCreateWithoutScannedByInput = exports.QrCodeCreateWithoutGuestInput = exports.QrCodeCreateOrConnectWithoutScannedByInput = exports.QrCodeCreateOrConnectWithoutGuestInput = exports.QrCodeCreateNestedOneWithoutGuestInput = exports.QrCodeCreateNestedManyWithoutScannedByInput = exports.QrCodeCreateManyInput = exports.QrCodeCreateManyScannedByInput = exports.QrCodeCreateManyScannedByInputEnvelope = exports.QrCodeCountOrderByAggregateInput = exports.QrCodeCountAggregate = exports.QrCodeCountAggregateInput = exports.QrCodeAvgOrderByAggregateInput = void 0;
+exports.UserUncheckedUpdateWithoutScannedQrsInput = exports.UserUncheckedUpdateManyInput = exports.UserUncheckedCreateInput = exports.UserUncheckedCreateWithoutScannedQrsInput = exports.UserScalarWhereWithAggregatesInput = exports.UserOrderByWithRelationInput = exports.UserOrderByWithAggregationInput = exports.UserNullableRelationFilter = exports.UserMinOrderByAggregateInput = exports.UserMinAggregate = exports.UserMinAggregateInput = exports.UserMaxOrderByAggregateInput = exports.UserMaxAggregate = exports.UserMaxAggregateInput = exports.UserGroupBy = exports.UserGroupByArgs = exports.UserCreateInput = exports.UserCreateWithoutScannedQrsInput = exports.UserCreateOrConnectWithoutScannedQrsInput = exports.UserCreateNestedOneWithoutScannedQrsInput = exports.UserCreateManyInput = exports.UserCount = exports.UserCountOrderByAggregateInput = exports.UserCountAggregate = exports.UserCountAggregateInput = exports.UserAggregateArgs = exports.UpsertOneUserArgs = exports.UpdateOneUserArgs = exports.UpdateManyUserArgs = exports.FindUniqueUserArgs = exports.FindUniqueUserOrThrowArgs = exports.FindManyUserArgs = exports.FindFirstUserArgs = exports.FindFirstUserOrThrowArgs = exports.DeleteOneUserArgs = exports.DeleteManyUserArgs = exports.CreateOneUserArgs = exports.CreateManyUserArgs = exports.AggregateUser = exports.UpsertOneQrCodeArgs = exports.UpdateOneQrCodeArgs = exports.UpdateManyQrCodeArgs = exports.QrCode = exports.QrCodeWhereInput = exports.QrCodeWhereUniqueInput = exports.QrCodeUpsertWithoutGuestInput = exports.QrCodeUpsertWithWhereUniqueWithoutScannedByInput = exports.QrCodeUpdateInput = exports.QrCodeUpdateWithoutScannedByInput = exports.QrCodeUpdateWithoutGuestInput = void 0;
+exports.WhatsappQueueScalarWhereWithAggregatesInput = exports.WhatsappQueueOrderByWithRelationInput = exports.WhatsappQueueOrderByWithAggregationInput = exports.WhatsappQueueOrderByRelationAggregateInput = exports.WhatsappQueueMinOrderByAggregateInput = exports.WhatsappQueueMinAggregate = exports.WhatsappQueueMinAggregateInput = exports.WhatsappQueueMaxOrderByAggregateInput = exports.WhatsappQueueMaxAggregate = exports.WhatsappQueueMaxAggregateInput = exports.WhatsappQueueListRelationFilter = exports.WhatsappQueueGroupBy = exports.WhatsappQueueGroupByArgs = exports.WhatsappQueueCreateInput = exports.WhatsappQueueCreateWithoutGuestInput = exports.WhatsappQueueCreateOrConnectWithoutGuestInput = exports.WhatsappQueueCreateNestedManyWithoutGuestInput = exports.WhatsappQueueCreateManyInput = exports.WhatsappQueueCreateManyGuestInput = exports.WhatsappQueueCreateManyGuestInputEnvelope = exports.WhatsappQueueCountOrderByAggregateInput = exports.WhatsappQueueCountAggregate = exports.WhatsappQueueCountAggregateInput = exports.WhatsappQueueAvgOrderByAggregateInput = exports.WhatsappQueueAvgAggregate = exports.WhatsappQueueAvgAggregateInput = exports.WhatsappQueueAggregateArgs = exports.UpsertOneWhatsappQueueArgs = exports.UpdateOneWhatsappQueueArgs = exports.UpdateManyWhatsappQueueArgs = exports.FindUniqueWhatsappQueueArgs = exports.FindUniqueWhatsappQueueOrThrowArgs = exports.FindManyWhatsappQueueArgs = exports.FindFirstWhatsappQueueArgs = exports.FindFirstWhatsappQueueOrThrowArgs = exports.DeleteOneWhatsappQueueArgs = exports.DeleteManyWhatsappQueueArgs = exports.CreateOneWhatsappQueueArgs = exports.CreateManyWhatsappQueueArgs = exports.AggregateWhatsappQueue = exports.User = exports.UserWhereInput = exports.UserWhereUniqueInput = exports.UserUpsertWithoutScannedQrsInput = exports.UserUpdateInput = exports.UserUpdateWithoutScannedQrsInput = exports.UserUpdateToOneWithWhereWithoutScannedQrsInput = exports.UserUpdateOneWithoutScannedQrsNestedInput = exports.UserUpdateManyMutationInput = exports.UserUncheckedUpdateInput = void 0;
+exports.WhatsappQueue = exports.WhatsappQueueWhereInput = exports.WhatsappQueueWhereUniqueInput = exports.WhatsappQueueUpsertWithWhereUniqueWithoutGuestInput = exports.WhatsappQueueUpdateInput = exports.WhatsappQueueUpdateWithoutGuestInput = exports.WhatsappQueueUpdateWithWhereUniqueWithoutGuestInput = exports.WhatsappQueueUpdateManyWithoutGuestNestedInput = exports.WhatsappQueueUpdateManyWithWhereWithoutGuestInput = exports.WhatsappQueueUpdateManyMutationInput = exports.WhatsappQueueUncheckedUpdateInput = exports.WhatsappQueueUncheckedUpdateWithoutGuestInput = exports.WhatsappQueueUncheckedUpdateManyInput = exports.WhatsappQueueUncheckedUpdateManyWithoutGuestInput = exports.WhatsappQueueUncheckedUpdateManyWithoutGuestNestedInput = exports.WhatsappQueueUncheckedCreateInput = exports.WhatsappQueueUncheckedCreateWithoutGuestInput = exports.WhatsappQueueUncheckedCreateNestedManyWithoutGuestInput = exports.WhatsappQueueSumOrderByAggregateInput = exports.WhatsappQueueSumAggregate = exports.WhatsappQueueSumAggregateInput = exports.WhatsappQueueScalarWhereInput = void 0;
 const graphql_1 = require("@nestjs/graphql");
 const graphql_2 = require("@nestjs/graphql");
 const graphql_3 = require("@nestjs/graphql");
@@ -5568,12 +5568,6 @@ __decorate([
     (0, graphql_1.Field)(() => InvitationImageCountAggregate, { nullable: true })
 ], AggregateInvitationImage.prototype, "_count", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => InvitationImageAvgAggregate, { nullable: true })
-], AggregateInvitationImage.prototype, "_avg", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => InvitationImageSumAggregate, { nullable: true })
-], AggregateInvitationImage.prototype, "_sum", void 0);
-__decorate([
     (0, graphql_1.Field)(() => InvitationImageMinAggregate, { nullable: true })
 ], AggregateInvitationImage.prototype, "_min", void 0);
 __decorate([
@@ -5743,12 +5737,6 @@ __decorate([
     (0, graphql_1.Field)(() => InvitationImageCountAggregateInput, { nullable: true })
 ], InvitationImageAggregateArgs.prototype, "_count", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => InvitationImageAvgAggregateInput, { nullable: true })
-], InvitationImageAggregateArgs.prototype, "_avg", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => InvitationImageSumAggregateInput, { nullable: true })
-], InvitationImageAggregateArgs.prototype, "_sum", void 0);
-__decorate([
     (0, graphql_1.Field)(() => InvitationImageMinAggregateInput, { nullable: true })
 ], InvitationImageAggregateArgs.prototype, "_min", void 0);
 __decorate([
@@ -5758,33 +5746,6 @@ InvitationImageAggregateArgs = __decorate([
     (0, graphql_3.ArgsType)()
 ], InvitationImageAggregateArgs);
 exports.InvitationImageAggregateArgs = InvitationImageAggregateArgs;
-let InvitationImageAvgAggregateInput = class InvitationImageAvgAggregateInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], InvitationImageAvgAggregateInput.prototype, "id", void 0);
-InvitationImageAvgAggregateInput = __decorate([
-    (0, graphql_5.InputType)()
-], InvitationImageAvgAggregateInput);
-exports.InvitationImageAvgAggregateInput = InvitationImageAvgAggregateInput;
-let InvitationImageAvgAggregate = class InvitationImageAvgAggregate {
-};
-__decorate([
-    (0, graphql_1.Field)(() => graphql_6.Float, { nullable: true })
-], InvitationImageAvgAggregate.prototype, "id", void 0);
-InvitationImageAvgAggregate = __decorate([
-    (0, graphql_2.ObjectType)()
-], InvitationImageAvgAggregate);
-exports.InvitationImageAvgAggregate = InvitationImageAvgAggregate;
-let InvitationImageAvgOrderByAggregateInput = class InvitationImageAvgOrderByAggregateInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], InvitationImageAvgOrderByAggregateInput.prototype, "id", void 0);
-InvitationImageAvgOrderByAggregateInput = __decorate([
-    (0, graphql_5.InputType)()
-], InvitationImageAvgOrderByAggregateInput);
-exports.InvitationImageAvgOrderByAggregateInput = InvitationImageAvgOrderByAggregateInput;
 let InvitationImageCountAggregateInput = class InvitationImageCountAggregateInput {
 };
 __decorate([
@@ -5848,7 +5809,7 @@ exports.InvitationImageCountOrderByAggregateInput = InvitationImageCountOrderByA
 let InvitationImageCreateManyInput = class InvitationImageCreateManyInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], InvitationImageCreateManyInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
@@ -5898,6 +5859,9 @@ exports.InvitationImageCreateOrConnectWithoutGuestInput = InvitationImageCreateO
 let InvitationImageCreateWithoutGuestInput = class InvitationImageCreateWithoutGuestInput {
 };
 __decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true })
+], InvitationImageCreateWithoutGuestInput.prototype, "id", void 0);
+__decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], InvitationImageCreateWithoutGuestInput.prototype, "path", void 0);
 __decorate([
@@ -5909,6 +5873,9 @@ InvitationImageCreateWithoutGuestInput = __decorate([
 exports.InvitationImageCreateWithoutGuestInput = InvitationImageCreateWithoutGuestInput;
 let InvitationImageCreateInput = class InvitationImageCreateInput {
 };
+__decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true })
+], InvitationImageCreateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
 ], InvitationImageCreateInput.prototype, "path", void 0);
@@ -5947,12 +5914,6 @@ __decorate([
     (0, graphql_1.Field)(() => InvitationImageCountAggregateInput, { nullable: true })
 ], InvitationImageGroupByArgs.prototype, "_count", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => InvitationImageAvgAggregateInput, { nullable: true })
-], InvitationImageGroupByArgs.prototype, "_avg", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => InvitationImageSumAggregateInput, { nullable: true })
-], InvitationImageGroupByArgs.prototype, "_sum", void 0);
-__decorate([
     (0, graphql_1.Field)(() => InvitationImageMinAggregateInput, { nullable: true })
 ], InvitationImageGroupByArgs.prototype, "_min", void 0);
 __decorate([
@@ -5965,7 +5926,7 @@ exports.InvitationImageGroupByArgs = InvitationImageGroupByArgs;
 let InvitationImageGroupBy = class InvitationImageGroupBy {
 };
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: false })
 ], InvitationImageGroupBy.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
@@ -5979,12 +5940,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => InvitationImageCountAggregate, { nullable: true })
 ], InvitationImageGroupBy.prototype, "_count", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => InvitationImageAvgAggregate, { nullable: true })
-], InvitationImageGroupBy.prototype, "_avg", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => InvitationImageSumAggregate, { nullable: true })
-], InvitationImageGroupBy.prototype, "_sum", void 0);
 __decorate([
     (0, graphql_1.Field)(() => InvitationImageMinAggregate, { nullable: true })
 ], InvitationImageGroupBy.prototype, "_min", void 0);
@@ -6016,7 +5971,7 @@ exports.InvitationImageMaxAggregateInput = InvitationImageMaxAggregateInput;
 let InvitationImageMaxAggregate = class InvitationImageMaxAggregate {
 };
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], InvitationImageMaxAggregate.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
@@ -6070,7 +6025,7 @@ exports.InvitationImageMinAggregateInput = InvitationImageMinAggregateInput;
 let InvitationImageMinAggregate = class InvitationImageMinAggregate {
 };
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], InvitationImageMinAggregate.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
@@ -6133,17 +6088,11 @@ __decorate([
     (0, graphql_1.Field)(() => InvitationImageCountOrderByAggregateInput, { nullable: true })
 ], InvitationImageOrderByWithAggregationInput.prototype, "_count", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => InvitationImageAvgOrderByAggregateInput, { nullable: true })
-], InvitationImageOrderByWithAggregationInput.prototype, "_avg", void 0);
-__decorate([
     (0, graphql_1.Field)(() => InvitationImageMaxOrderByAggregateInput, { nullable: true })
 ], InvitationImageOrderByWithAggregationInput.prototype, "_max", void 0);
 __decorate([
     (0, graphql_1.Field)(() => InvitationImageMinOrderByAggregateInput, { nullable: true })
 ], InvitationImageOrderByWithAggregationInput.prototype, "_min", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => InvitationImageSumOrderByAggregateInput, { nullable: true })
-], InvitationImageOrderByWithAggregationInput.prototype, "_sum", void 0);
 InvitationImageOrderByWithAggregationInput = __decorate([
     (0, graphql_5.InputType)()
 ], InvitationImageOrderByWithAggregationInput);
@@ -6181,7 +6130,7 @@ __decorate([
     (0, graphql_1.Field)(() => [InvitationImageScalarWhereWithAggregatesInput_1], { nullable: true })
 ], InvitationImageScalarWhereWithAggregatesInput.prototype, "NOT", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => IntWithAggregatesFilter, { nullable: true })
+    (0, graphql_1.Field)(() => StringWithAggregatesFilter, { nullable: true })
 ], InvitationImageScalarWhereWithAggregatesInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringWithAggregatesFilter, { nullable: true })
@@ -6196,33 +6145,6 @@ InvitationImageScalarWhereWithAggregatesInput = InvitationImageScalarWhereWithAg
     (0, graphql_5.InputType)()
 ], InvitationImageScalarWhereWithAggregatesInput);
 exports.InvitationImageScalarWhereWithAggregatesInput = InvitationImageScalarWhereWithAggregatesInput;
-let InvitationImageSumAggregateInput = class InvitationImageSumAggregateInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => Boolean, { nullable: true })
-], InvitationImageSumAggregateInput.prototype, "id", void 0);
-InvitationImageSumAggregateInput = __decorate([
-    (0, graphql_5.InputType)()
-], InvitationImageSumAggregateInput);
-exports.InvitationImageSumAggregateInput = InvitationImageSumAggregateInput;
-let InvitationImageSumAggregate = class InvitationImageSumAggregate {
-};
-__decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
-], InvitationImageSumAggregate.prototype, "id", void 0);
-InvitationImageSumAggregate = __decorate([
-    (0, graphql_2.ObjectType)()
-], InvitationImageSumAggregate);
-exports.InvitationImageSumAggregate = InvitationImageSumAggregate;
-let InvitationImageSumOrderByAggregateInput = class InvitationImageSumOrderByAggregateInput {
-};
-__decorate([
-    (0, graphql_1.Field)(() => SortOrder, { nullable: true })
-], InvitationImageSumOrderByAggregateInput.prototype, "id", void 0);
-InvitationImageSumOrderByAggregateInput = __decorate([
-    (0, graphql_5.InputType)()
-], InvitationImageSumOrderByAggregateInput);
-exports.InvitationImageSumOrderByAggregateInput = InvitationImageSumOrderByAggregateInput;
 let InvitationImageUncheckedCreateNestedOneWithoutGuestInput = class InvitationImageUncheckedCreateNestedOneWithoutGuestInput {
 };
 __decorate([
@@ -6244,7 +6166,7 @@ exports.InvitationImageUncheckedCreateNestedOneWithoutGuestInput = InvitationIma
 let InvitationImageUncheckedCreateWithoutGuestInput = class InvitationImageUncheckedCreateWithoutGuestInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], InvitationImageUncheckedCreateWithoutGuestInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
@@ -6259,7 +6181,7 @@ exports.InvitationImageUncheckedCreateWithoutGuestInput = InvitationImageUncheck
 let InvitationImageUncheckedCreateInput = class InvitationImageUncheckedCreateInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], InvitationImageUncheckedCreateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })
@@ -6277,7 +6199,7 @@ exports.InvitationImageUncheckedCreateInput = InvitationImageUncheckedCreateInpu
 let InvitationImageUncheckedUpdateManyInput = class InvitationImageUncheckedUpdateManyInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], InvitationImageUncheckedUpdateManyInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
@@ -6329,7 +6251,7 @@ exports.InvitationImageUncheckedUpdateOneWithoutGuestNestedInput = InvitationIma
 let InvitationImageUncheckedUpdateWithoutGuestInput = class InvitationImageUncheckedUpdateWithoutGuestInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], InvitationImageUncheckedUpdateWithoutGuestInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
@@ -6344,7 +6266,7 @@ exports.InvitationImageUncheckedUpdateWithoutGuestInput = InvitationImageUncheck
 let InvitationImageUncheckedUpdateInput = class InvitationImageUncheckedUpdateInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => IntFieldUpdateOperationsInput, { nullable: true })
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], InvitationImageUncheckedUpdateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
@@ -6361,6 +6283,9 @@ InvitationImageUncheckedUpdateInput = __decorate([
 exports.InvitationImageUncheckedUpdateInput = InvitationImageUncheckedUpdateInput;
 let InvitationImageUpdateManyMutationInput = class InvitationImageUpdateManyMutationInput {
 };
+__decorate([
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+], InvitationImageUpdateManyMutationInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], InvitationImageUpdateManyMutationInput.prototype, "path", void 0);
@@ -6423,6 +6348,9 @@ let InvitationImageUpdateWithoutGuestInput = class InvitationImageUpdateWithoutG
 };
 __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+], InvitationImageUpdateWithoutGuestInput.prototype, "id", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], InvitationImageUpdateWithoutGuestInput.prototype, "path", void 0);
 __decorate([
     (0, graphql_1.Field)(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
@@ -6433,6 +6361,9 @@ InvitationImageUpdateWithoutGuestInput = __decorate([
 exports.InvitationImageUpdateWithoutGuestInput = InvitationImageUpdateWithoutGuestInput;
 let InvitationImageUpdateInput = class InvitationImageUpdateInput {
 };
+__decorate([
+    (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
+], InvitationImageUpdateInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringFieldUpdateOperationsInput, { nullable: true })
 ], InvitationImageUpdateInput.prototype, "path", void 0);
@@ -6467,7 +6398,7 @@ exports.InvitationImageUpsertWithoutGuestInput = InvitationImageUpsertWithoutGue
 let InvitationImageWhereUniqueInput = class InvitationImageWhereUniqueInput {
 };
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: true })
+    (0, graphql_1.Field)(() => String, { nullable: true })
 ], InvitationImageWhereUniqueInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: true })
@@ -6506,7 +6437,7 @@ __decorate([
     (0, graphql_1.Field)(() => [InvitationImageWhereInput_1], { nullable: true })
 ], InvitationImageWhereInput.prototype, "NOT", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => IntFilter, { nullable: true })
+    (0, graphql_1.Field)(() => StringFilter, { nullable: true })
 ], InvitationImageWhereInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => StringFilter, { nullable: true })
@@ -6527,7 +6458,7 @@ exports.InvitationImageWhereInput = InvitationImageWhereInput;
 let InvitationImage = class InvitationImage {
 };
 __decorate([
-    (0, graphql_1.Field)(() => graphql_4.Int, { nullable: false })
+    (0, graphql_1.Field)(() => String, { nullable: false })
 ], InvitationImage.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String, { nullable: false })

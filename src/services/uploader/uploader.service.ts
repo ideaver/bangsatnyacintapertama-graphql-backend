@@ -1,35 +1,86 @@
+import {
+  DeleteObjectCommand,
+  HeadObjectCommand,
+  HeadObjectOutput,
+  PutObjectCommand,
+  S3Client,
+  ListObjectsV2Command,
+  ListObjectsV2CommandInput,
+  ListObjectsV2CommandOutput,
+} from '@aws-sdk/client-s3';
 import { Injectable, Logger, LoggerService } from '@nestjs/common';
-import path from 'path';
+import sharp from 'sharp';
 import { Readable } from 'stream';
 import { v4 as uuidV4 } from 'uuid';
+import {
+  IMAGE_SIZE,
+  MAX_WIDTH,
+  QUALITY_ARRAY,
+} from './constants/uploader.constant';
 import { FileUploadDto } from './dtos/file-upload.dto';
 import { RatioEnum } from './enums/ratio.enum';
-import { FileType } from 'src/model/enums';
-import fs from 'fs';
+import { IBucketData } from './interfaces/bucket-data.interface';
+import { ConfigService } from '@nestjs/config';
 import {
   detectMimeTypeFromFilename,
   mapFileTypeEnumFromMIME,
 } from 'src/utils/mime-types.function';
+
+import { IGraphQLError } from 'src/utils/exception/custom-graphql-error';
 import { MAX_FILE_SIZES } from './constants';
+import { UserController } from '../user/user.controller';
+import { FileType } from 'src/model/enums';
+import { S3Config } from 'src/config/s3config.model';
 
 @Injectable()
 export class UploaderService {
+  private readonly client: S3Client;
+  private readonly bucketData: IBucketData;
   private readonly loggerService: LoggerService;
 
-  constructor() {
+  constructor(
+    private readonly configService: ConfigService,
+    private readonly userController: UserController,
+  ) {
+    const s3Config = this.configService.get<S3Config>('S3');
+
+    this.client = new S3Client(s3Config.clientConfig);
+    this.bucketData = s3Config.bucketData;
     this.loggerService = new Logger(UploaderService.name);
   }
 
-  public async getFileMetadataFromLocal(
-    filePath: string,
+  public async getFileMetadataFromS3(
+    url: string,
   ): Promise<{ size: number; mimeType: FileType }> {
+    // Split the URL by '.com/' to get the parts
+    const urlParts = url.split('.com/');
+
+    if (urlParts.length !== 2) {
+      throw new IGraphQLError({ code: 170002 });
+    }
+
+    // Extract the key (object path)
+    const key = urlParts[1];
+
+    // Construct the bucket name from the first part of the URL
+    const bucketName = urlParts[0].replace('https://', '').split('.s3.')[0];
+
+    // Check if the bucket name matches your expected bucket
+    if (bucketName !== this.bucketData.name) {
+      throw new IGraphQLError({ code: 170001 });
+    }
+
     try {
-      // Implement logic to retrieve file metadata from the local file system
-      const stats = await fs.promises.stat(filePath);
+      const response: HeadObjectOutput = await this.client.send(
+        new HeadObjectCommand({
+          Bucket: this.bucketData.name,
+          Key: key,
+        }),
+      );
 
       const metadata = {
-        size: stats.size,
-        mimeType: mapFileTypeEnumFromMIME(detectMimeTypeFromFilename(filePath)),
+        size: response.ContentLength || 0,
+        mimeType: mapFileTypeEnumFromMIME(response.ContentType),
       };
 
       return metadata;
@@ -50,44 +101,105 @@ export class UploaderService {
     );
   }
 
-  public async deleteOneLocalFile(filePath: string): Promise<void> {
-    try {
-      // Implement logic to delete a file from the local file system
-      await fs.promises.unlink(filePath);
+  private static async compressImage(
+    buffer: Buffer,
+    ratio?: number,
+  ): Promise<Buffer> {
+    let compressBuffer: sharp.Sharp = sharp(buffer).jpeg({
+      mozjpeg: true,
+      chromaSubsampling: '4:4:4',
+    });
 
-      this.loggerService.log('File deleted successfully');
-    } catch (error) {
-      throw error;
+    if (ratio) {
+      compressBuffer = compressBuffer.resize({
+        width: MAX_WIDTH,
+        height: Math.round(MAX_WIDTH * ratio),
+        fit: 'cover',
+      });
     }
+
+    let quality = 30;
+    let smallerBuffer: Buffer;
+
+    do {
+      smallerBuffer = await compressBuffer
+        .jpeg({
+          quality,
+          chromaSubsampling: '4:4:4',
+        })
+        .toBuffer();
+
+      if (smallerBuffer.length > IMAGE_SIZE) {
+        quality -= 25; // Reduce quality if the image is still too large
+      }
+    } while (smallerBuffer.length > IMAGE_SIZE && quality >= 10);
+
+    return smallerBuffer;
   }
 
-  public async deleteManyLocalFiles(filePaths: string[]): Promise<void> {
+  /**
+   * Delete File
+   *
+   * Takes a file url and deletes the file from the bucket
+   */
+  public async deleteOneFile(url: string): Promise<void> {
+    // Split the URL by '.com/' to get the parts
+    const urlParts = url.split('.com/');
+
+    if (urlParts.length !== 2) {
+      throw new IGraphQLError({ code: 170002 });
+    }
+
+    // Extract the key (object path)
+    const key = urlParts[1];
+
+    // Construct the bucket name from the first part of the URL
+    const bucketName = urlParts[0].replace('https://', '').split('.s3.')[0];
+
+    // Check if the bucket name matches your expected bucket
+    if (bucketName !== this.bucketData.name) {
+      throw new IGraphQLError({ code: 170001 });
+    }
+
+    // Delete the object using the extracted key and bucket name
+    await this.client
+      .send(
+        new DeleteObjectCommand({
+          Bucket: this.bucketData.name,
+          Key: key,
+        }),
+      )
+      .then(() => {
+        this.loggerService.log('File deleted successfully');
+      })
+      .catch((error) => {
+        throw new IGraphQLError({ code: 170003 });
+      });
+  }
+
+  public async deleteManyFile(urls: string[]): Promise<void> {
     const deletePromises = [];
 
-    for (const filePath of filePaths) {
-      // Use async/await to call deleteOneLocalFile asynchronously
-      deletePromises.push(this.deleteOneLocalFile(filePath));
+    for (const url of urls) {
+      // Use async/await to call deleteFile asynchronously
+      deletePromises.push(this.deleteOneFile(url));
     }
 
     try {
       // Wait for all delete operations to complete in parallel
       await Promise.all(deletePromises);
     } catch (error) {
-      throw error;
+      throw new IGraphQLError({ code: 170003 });
     }
   }
 
-  public async uploadSingleLocalFile({
-    userId,
+  public async uploadSingleFile({
     file,
-    ratioForImage,
   }: {
-    userId: string;
-    file: Promise<FileUploadDto>;
-    ratioForImage?: RatioEnum;
+    file: FileUploadDto;
   }): Promise<string> {
     try {
-      const { filename, createReadStream } = await file;
+      const { filename, createReadStream } = file;
 
       // Identify the file type based on the file's extension or MIME type
       let fileExt = detectMimeTypeFromFilename(filename);
@@ -101,7 +213,7 @@ export class UploaderService {
 
       // If the file type is not supported, throw an error
       if (!fileType || fileType === FileType.UNKNOWN) {
-        throw new Error('Unsupported file type');
+        throw new IGraphQLError({ code: 170005 });
       }
 
       // Convert the file stream to a buffer
@@ -112,60 +224,121 @@ export class UploaderService {
 
       // Check if the file size exceeds the maximum allowed size for the detected file type
       if (fileSize > MAX_FILE_SIZES[fileType]) {
-        throw new Error('File size exceeds maximum allowed size');
+        throw new IGraphQLError({ code: 170004 }); // You can define a custom error code for this case
       }
 
-      // Generate a unique file name for the local file
-      const key = `${userId}/${uuidV4()}${fileExt}`;
+      // Generate a unique key for the file
+      const key = `${this.bucketData.folder}/${filename}`;
 
-      // Specify the local directory where files will be stored
-      const localDirectory = './uploads'; // Change to your desired local directory
+      // Upload the file to the bucket
+      await this.client.send(
+        new PutObjectCommand({
+          Bucket: this.bucketData.name,
+          Body: fileBuffer,
+          Key: key,
+          ACL: 'public-read',
+          ContentType: detectMimeTypeFromFilename(filename),
+        }),
+      );
 
-      // Construct the full local file path
-      const localFilePath = path.join(localDirectory, key);
-
-      // Write the file buffer to the local file system
-      await fs.promises.writeFile(localFilePath, fileBuffer);
-
-      return localFilePath;
+      return `${this.bucketData.url}${key}`;
     } catch (error) {
-      throw error;
+      throw new IGraphQLError({ code: 160001, err: error });
     }
   }
 
-  public async uploadMultipleLocalFiles({
-    userId,
-    files,
-    ratioForImage,
-  }: {
-    userId: string;
-    files: Promise<FileUploadDto>[];
-    ratioForImage?: RatioEnum;
-  }): Promise<string[]> {
-    try {
-      const uploadPromises = files.map(async (file) => {
-        return await this.uploadSingleLocalFile({
-          userId,
-          file,
-          ratioForImage,
-        });
-      });
+  // public async uploadMultipleFiles({
+  //   files,
+  // }: {
+  //   files: Promise<FileUploadDto>[];
+  // }): Promise<string[]> {
+  //   try {
+  //     const uploadPromises = files.map(async (file) => {
+  //       return await this.uploadSingleFile({ file });
+  //     });
 
-      return await Promise.all(uploadPromises);
+  //     return await Promise.all(uploadPromises);
+  //   } catch (error) {
+  //     // Handle errors as needed
+  //     throw new IGraphQLError({ code: 160001, err: error });
+  //   }
+  // }
+
+  public async listAllS3Objects(prefix: string = ''): Promise<string[]> {
+    const objectKeys: string[] = [];
+    const params: ListObjectsV2CommandInput = {
+      Bucket: this.bucketData.name,
+      Prefix: prefix,
+    };
+
+    try {
+      const data: ListObjectsV2CommandOutput = await this.client.send(
+        new ListObjectsV2Command(params),
+      );
+
+      if (data.Contents) {
+        for (const object of data.Contents) {
+          if (object.Key) {
+            objectKeys.push(object.Key);
+          }
+        }
+      }
+
+      if (data.CommonPrefixes) {
+        for (const commonPrefix of data.CommonPrefixes) {
+          // Recursively list objects in the subfolder
+          const subfolderObjects = await this.listAllS3Objects(
+            commonPrefix.Prefix,
+          );
+          objectKeys.push(...subfolderObjects);
+        }
+      }
     } catch (error) {
-      // Handle errors as needed
+      this.loggerService.error(error);
       throw error;
     }
+
+    return objectKeys;
   }
 
-  public async listAllLocalFiles(prefix: string = ''): Promise<string[]> {
+  public async deleteOrphanedS3Objects(): Promise<string> {
     try {
-      // Implement logic to list all local files in the specified directory
-      const localDirectory = './uploads'; // Change to your desired local directory
+      // List all objects in the bucket
+      const s3ObjectKeys = await this.listAllS3Objects();
+      // Filter out objects that end with '/'
+      const s3FileKeys = s3ObjectKeys.filter(
+        (s3ObjectKey) => !s3ObjectKey.endsWith('/'),
+      );
 
-      const files = await fs.promises.readdir(localDirectory);
+      // Fetch all URLs from the database
+      const fetchAndCombineUrls = async (model: any, property: string) => {
+        const data = await model.findMany({ select: { [property]: true } });
+        return data.map((item) => item[property]).filter(Boolean);
+      };
 
-      return files.map((file) => path.join(localDirectory, file));
+      // Combine all URLs into a single array
+      const [userAvatarUrls] = await Promise.all([
+        fetchAndCombineUrls(this.userController, 'avatarUrl'),
+      ]);
+
+      // Combine all URLs into a single array
+      const urlsInDatabase = [...userAvatarUrls].filter(Boolean);
+
+      // Filter out URLs that are not in the database
+      const fullS3ObjectUrls = s3FileKeys.map(
+        (s3ObjectKey) => `${this.bucketData.url}${s3ObjectKey}`,
+      );
+
+      // Filter out URLs that are not in the database
+      const orphanedObjectKeys = fullS3ObjectUrls.filter(
+        (fullS3ObjectUrl) => !urlsInDatabase.includes(fullS3ObjectUrl),
+      );
+
+      // Delete orphaned objects
+      await this.deleteManyFile(orphanedObjectKeys);
+
+      console.log('Deleted orphaned S3 objects:', orphanedObjectKeys.length);
+      return `Deleted orphaned S3 objects ${orphanedObjectKeys.length}`;
     } catch (error) {
       this.loggerService.error(error);
       throw error;

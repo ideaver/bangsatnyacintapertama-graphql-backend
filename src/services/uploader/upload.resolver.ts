@@ -33,24 +33,24 @@ export class UploaderResolver {
     );
   }
 
-  @Mutation(() => [String], {
-    nullable: true,
-    description:
-      'Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress',
-  })
-  async uploadMultiFile(
-    @Args({ name: 'files', type: () => [GraphQLUpload], nullable: true })
-    files: FileUpload[],
-    @Args('userId', { type: () => String, nullable: false }) userId: string,
-    @Args('ratioForImage', { type: () => RatioEnum, nullable: true })
-    ratioForImage?: RatioEnum,
-  ) {
-    const uploadedFiles = await Promise.all(files);
+  // @Mutation(() => [String], {
+  //   nullable: true,
+  //   description:
+  //     'Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress',
+  // })
+  // async uploadMultiFile(
+  //   @Args({ name: 'files', type: () => [GraphQLUpload], nullable: true })
+  //   files: FileUpload[],
+  //   @Args('userId', { type: () => String, nullable: false }) userId: string,
+  //   @Args('ratioForImage', { type: () => RatioEnum, nullable: true })
+  //   ratioForImage?: RatioEnum,
+  // ) {
+  //   const uploadedFiles = await Promise.all(files);
 
-    return await this.uploaderService.uploadMultipleLocalFiles({
-      userId: userId,
-      ratioForImage: ratioForImage ?? RatioEnum.SQUARE,
-      files: uploadedFiles,
-    });
-  }
+  //   return await this.uploaderService.uploadMultipleLocalFiles({
+  //     userId: userId,
+  //     ratioForImage: ratioForImage ?? RatioEnum.SQUARE,
+  //     files: uploadedFiles,
+  //   });
+  // }
 }

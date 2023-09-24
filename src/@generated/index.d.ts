@@ -1833,8 +1833,6 @@ export declare class UpsertOneGuestArgs {
 }
 export declare class AggregateInvitationImage {
     _count?: InstanceType<typeof InvitationImageCountAggregate>;
-    _avg?: InstanceType<typeof InvitationImageAvgAggregate>;
-    _sum?: InstanceType<typeof InvitationImageSumAggregate>;
     _min?: InstanceType<typeof InvitationImageMinAggregate>;
     _max?: InstanceType<typeof InvitationImageMaxAggregate>;
 }
@@ -1888,19 +1886,8 @@ export declare class InvitationImageAggregateArgs {
     take?: number;
     skip?: number;
     _count?: InstanceType<typeof InvitationImageCountAggregateInput>;
-    _avg?: InstanceType<typeof InvitationImageAvgAggregateInput>;
-    _sum?: InstanceType<typeof InvitationImageSumAggregateInput>;
     _min?: InstanceType<typeof InvitationImageMinAggregateInput>;
     _max?: InstanceType<typeof InvitationImageMaxAggregateInput>;
-}
-export declare class InvitationImageAvgAggregateInput {
-    id?: true;
-}
-export declare class InvitationImageAvgAggregate {
-    id?: number;
-}
-export declare class InvitationImageAvgOrderByAggregateInput {
-    id?: keyof typeof SortOrder;
 }
 export declare class InvitationImageCountAggregateInput {
     id?: true;
@@ -1923,7 +1910,7 @@ export declare class InvitationImageCountOrderByAggregateInput {
     guestId?: keyof typeof SortOrder;
 }
 export declare class InvitationImageCreateManyInput {
-    id?: number;
+    id?: string;
     path: string;
     createdAt?: Date | string;
     guestId: string;
@@ -1938,10 +1925,12 @@ export declare class InvitationImageCreateOrConnectWithoutGuestInput {
     create: InstanceType<typeof InvitationImageCreateWithoutGuestInput>;
 }
 export declare class InvitationImageCreateWithoutGuestInput {
+    id?: string;
     path: string;
     createdAt?: Date | string;
 }
 export declare class InvitationImageCreateInput {
+    id?: string;
     path: string;
     createdAt?: Date | string;
     guest: InstanceType<typeof GuestCreateNestedOneWithoutInvitationImageInput>;
@@ -1954,19 +1943,15 @@ export declare class InvitationImageGroupByArgs {
     take?: number;
     skip?: number;
     _count?: InstanceType<typeof InvitationImageCountAggregateInput>;
-    _avg?: InstanceType<typeof InvitationImageAvgAggregateInput>;
-    _sum?: InstanceType<typeof InvitationImageSumAggregateInput>;
     _min?: InstanceType<typeof InvitationImageMinAggregateInput>;
     _max?: InstanceType<typeof InvitationImageMaxAggregateInput>;
 }
 export declare class InvitationImageGroupBy {
-    id: number;
+    id: string;
     path: string;
     createdAt: Date | string;
     guestId: string;
     _count?: InstanceType<typeof InvitationImageCountAggregate>;
-    _avg?: InstanceType<typeof InvitationImageAvgAggregate>;
-    _sum?: InstanceType<typeof InvitationImageSumAggregate>;
     _min?: InstanceType<typeof InvitationImageMinAggregate>;
     _max?: InstanceType<typeof InvitationImageMaxAggregate>;
 }
@@ -1977,7 +1962,7 @@ export declare class InvitationImageMaxAggregateInput {
     guestId?: true;
 }
 export declare class InvitationImageMaxAggregate {
-    id?: number;
+    id?: string;
     path?: string;
     createdAt?: Date | string;
     guestId?: string;
@@ -1995,7 +1980,7 @@ export declare class InvitationImageMinAggregateInput {
     guestId?: true;
 }
 export declare class InvitationImageMinAggregate {
-    id?: number;
+    id?: string;
     path?: string;
     createdAt?: Date | string;
     guestId?: string;
@@ -2016,10 +2001,8 @@ export declare class InvitationImageOrderByWithAggregationInput {
     createdAt?: keyof typeof SortOrder;
     guestId?: keyof typeof SortOrder;
     _count?: InstanceType<typeof InvitationImageCountOrderByAggregateInput>;
-    _avg?: InstanceType<typeof InvitationImageAvgOrderByAggregateInput>;
     _max?: InstanceType<typeof InvitationImageMaxOrderByAggregateInput>;
     _min?: InstanceType<typeof InvitationImageMinOrderByAggregateInput>;
-    _sum?: InstanceType<typeof InvitationImageSumOrderByAggregateInput>;
 }
 export declare class InvitationImageOrderByWithRelationInput {
     id?: keyof typeof SortOrder;
@@ -2032,19 +2015,10 @@ export declare class InvitationImageScalarWhereWithAggregatesInput {
     AND?: Array<InvitationImageScalarWhereWithAggregatesInput>;
     OR?: Array<InvitationImageScalarWhereWithAggregatesInput>;
     NOT?: Array<InvitationImageScalarWhereWithAggregatesInput>;
-    id?: InstanceType<typeof IntWithAggregatesFilter>;
+    id?: InstanceType<typeof StringWithAggregatesFilter>;
     path?: InstanceType<typeof StringWithAggregatesFilter>;
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     guestId?: InstanceType<typeof StringWithAggregatesFilter>;
-}
-export declare class InvitationImageSumAggregateInput {
-    id?: true;
-}
-export declare class InvitationImageSumAggregate {
-    id?: number;
-}
-export declare class InvitationImageSumOrderByAggregateInput {
-    id?: keyof typeof SortOrder;
 }
 export declare class InvitationImageUncheckedCreateNestedOneWithoutGuestInput {
     create?: InstanceType<typeof InvitationImageCreateWithoutGuestInput>;
@@ -2052,18 +2026,18 @@ export declare class InvitationImageUncheckedCreateNestedOneWithoutGuestInput {
     connect?: Prisma.AtLeast<InvitationImageWhereUniqueInput, 'id' | 'guestId'>;
 }
 export declare class InvitationImageUncheckedCreateWithoutGuestInput {
-    id?: number;
+    id?: string;
     path: string;
     createdAt?: Date | string;
 }
 export declare class InvitationImageUncheckedCreateInput {
-    id?: number;
+    id?: string;
     path: string;
     createdAt?: Date | string;
     guestId: string;
 }
 export declare class InvitationImageUncheckedUpdateManyInput {
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     guestId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -2078,17 +2052,18 @@ export declare class InvitationImageUncheckedUpdateOneWithoutGuestNestedInput {
     update?: InstanceType<typeof InvitationImageUpdateToOneWithWhereWithoutGuestInput>;
 }
 export declare class InvitationImageUncheckedUpdateWithoutGuestInput {
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 export declare class InvitationImageUncheckedUpdateInput {
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     guestId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
 }
 export declare class InvitationImageUpdateManyMutationInput {
+    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
@@ -2106,10 +2081,12 @@ export declare class InvitationImageUpdateToOneWithWhereWithoutGuestInput {
     data: InstanceType<typeof InvitationImageUpdateWithoutGuestInput>;
 }
 export declare class InvitationImageUpdateWithoutGuestInput {
+    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
 }
 export declare class InvitationImageUpdateInput {
+    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     path?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     guest?: InstanceType<typeof GuestUpdateOneRequiredWithoutInvitationImageNestedInput>;
@@ -2120,7 +2097,7 @@ export declare class InvitationImageUpsertWithoutGuestInput {
     where?: InstanceType<typeof InvitationImageWhereInput>;
 }
 export declare class InvitationImageWhereUniqueInput {
-    id?: number;
+    id?: string;
     guestId?: string;
     AND?: Array<InvitationImageWhereInput>;
     OR?: Array<InvitationImageWhereInput>;
@@ -2133,14 +2110,14 @@ export declare class InvitationImageWhereInput {
     AND?: Array<InvitationImageWhereInput>;
     OR?: Array<InvitationImageWhereInput>;
     NOT?: Array<InvitationImageWhereInput>;
-    id?: InstanceType<typeof IntFilter>;
+    id?: InstanceType<typeof StringFilter>;
     path?: InstanceType<typeof StringFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     guestId?: InstanceType<typeof StringFilter>;
     guest?: InstanceType<typeof GuestRelationFilter>;
 }
 export declare class InvitationImage {
-    id: number;
+    id: string;
     path: string;
     createdAt: Date;
     guestId: string;
