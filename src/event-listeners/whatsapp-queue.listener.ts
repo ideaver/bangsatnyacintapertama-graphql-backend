@@ -104,11 +104,11 @@ export class WhatsappQueueListener {
             waMediaMessages,
           );
 
-        //if response string contain with error words
-        if (response.message.includes('with error')) {
-          this.logger.error(response);
-          return;
-        }
+        // //if response string contain with error words
+        // if (response.message.includes('with error')) {
+        //   this.logger.error(response);
+        //   return;
+        // }
 
         // Update whatsapp queue status to SENT
         const count = await this.whatsappQueueController.updateMany({
