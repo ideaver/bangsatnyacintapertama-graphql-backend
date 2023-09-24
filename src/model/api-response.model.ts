@@ -26,13 +26,13 @@ interface DataWithImageMessages {
   }[];
 }
 
-interface ResponseWithDataAndMessages {
+interface WaMessagesResponse {
   status: boolean;
   message: string;
   data: DataWithMessages[];
 }
 
-interface ResponseWithDataAndImageMessages {
+interface WaMediaMessagesResponse {
   status: boolean;
   message: string;
   data: DataWithImageMessages;

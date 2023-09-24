@@ -52,10 +52,10 @@ export class GuestListener {
       });
     }
     await this.saveQrCodeToDatabase(qrCodeCreateManyInputArray);
-    await this.uploadPNGFiles();
+    await this.uploadInvitationImageFiles();
   }
 
-  async readPNGFiles(folderPath: string): Promise<string[]> {
+  async readInvitationImageFiles(folderPath: string): Promise<string[]> {
     return new Promise<string[]>((resolve, reject) => {
       fs.readdir(folderPath, (err, files) => {
         if (err) {
@@ -70,7 +70,7 @@ export class GuestListener {
     });
   }
 
-  async deletePNGFiles(
+  async deleteInvitiationImageFiles(
     folderPath: string,
     filesToDelete: string[],
   ): Promise<void> {
@@ -81,27 +81,28 @@ export class GuestListener {
       });
 
       await Promise.all(deletionPromises);
-      console.log('Deleted PNG files:', filesToDelete);
+      this.logger.log('Local Invitation Image Files Deleted.');
     } catch (error) {
-      console.error('Error deleting PNG files:', error);
+      this.logger.error('Error deleting local invitation image files:', error);
     }
   }
 
-  async uploadPNGFiles(): Promise<void> {
+  async uploadInvitationImageFiles(): Promise<void> {
     try {
       const folderPath = 'files/invitation'; // Change this to the path of your folder
-      const pngFiles = await this.readPNGFiles(folderPath);
+      const invitationImageFiles =
+        await this.readInvitationImageFiles(folderPath);
 
-      if (pngFiles.length === 0) {
-        console.log('No PNG files found in the folder.');
+      if (invitationImageFiles.length === 0) {
+        this.logger.log('No Invitation Image files found in the folder.');
         return;
+      } else {
+        this.logger.log(
+          `Found ${invitationImageFiles.length} Invitation Image files in the folder. Uploading`,
+        );
       }
 
-      this.logger.log(
-        `Found ${pngFiles.length} PNG files in the folder. Uploading`,
-      );
-
-      const fileUploadPromises = pngFiles.map((filename) => {
+      const fileUploadPromises = invitationImageFiles.map((filename) => {
         const file: FileUploadDto = {
           filename,
           mimetype: 'image/png',
@@ -116,9 +117,7 @@ export class GuestListener {
       // Use Promise.all to upload all files in parallel
       const uploadResultPaths: any[] = await Promise.all(fileUploadPromises);
 
-      this.logger.log('Finished uploading PNG files.');
-
-      console.log(uploadResultPaths);
+      this.logger.log('All Invitation Image Files Uploaded to S3.');
 
       // Save the file paths to the Prisma database
       const invitationImageCreateManyInputArray: Prisma.InvitationImageCreateManyInput[] =
@@ -150,12 +149,10 @@ export class GuestListener {
         invitationImageCreateManyInputArray,
       );
 
-      console.log('Saved file paths to the database:');
-
       // Delete the PNG files from the folder
-      await this.deletePNGFiles(folderPath, pngFiles);
+      await this.deleteInvitiationImageFiles(folderPath, invitationImageFiles);
     } catch (error) {
-      console.error('Error uploading PNG files:', error);
+      this.logger.error('Error uploading invitation image files:', error);
     }
   }
 

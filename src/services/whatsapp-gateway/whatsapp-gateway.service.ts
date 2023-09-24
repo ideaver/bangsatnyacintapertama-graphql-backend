@@ -18,7 +18,7 @@ export class WhatsappGatewayService {
 
   async sendWhatsappMessages(
     waMessages: WaMessage[],
-  ): Promise<ResponseWithDataAndMessages> {
+  ): Promise<WaMessagesResponse> {
     const data = {
       data: waMessages.map((message) => ({
         phone: message.phone.toString(),
@@ -67,7 +67,7 @@ export class WhatsappGatewayService {
 
   async sendWhatsappImages(
     waMediaMessages: WaMediaMessage[],
-  ): Promise<ResponseWithDataAndImageMessages> {
+  ): Promise<WaMediaMessagesResponse> {
     const data = {
       data: waMediaMessages.map((waMediaMessage) => ({
         phone: waMediaMessage.phone.toString(),
@@ -80,7 +80,9 @@ export class WhatsappGatewayService {
       })),
     };
 
-    this.logger.log(data);
+    this.logger.log(
+      data.data.length + ' messages ready to sent to whatsapp gateway',
+    );
 
     const config: AxiosRequestConfig = {
       method: 'post',
@@ -95,7 +97,6 @@ export class WhatsappGatewayService {
 
     try {
       const response = await firstValueFrom(this.httpService.request(config));
-      this.logger.log(response.data);
       return response.data;
     } catch (error) {
       if (error.response) {

@@ -1,12 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
-import { GuestController } from '../services/guest/guest.controller';
-import { WaMediaMessage, WaMessage } from 'src/model/message.model';
+import { WaMediaMessage } from 'src/model/message.model';
 import { WhatsappGatewayController } from 'src/services/whatsapp-gateway/whatsapp-gateway.controller';
 import { WhatsappQueueController } from 'src/services/whatsapp-queue/whatsapp-queue.controller';
-import { QueueStatus } from '@prisma/client';
 import { WhatsappQueueEvent } from './enum/whatsapp-queue-event.enum ';
-import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class WhatsappQueueListener {
@@ -15,8 +12,6 @@ export class WhatsappQueueListener {
   constructor(
     private readonly whatsappGatewayController: WhatsappGatewayController,
     private readonly whatsappQueueController: WhatsappQueueController,
-    private readonly guestController: GuestController,
-    private readonly configService: ConfigService,
   ) {}
   @OnEvent(WhatsappQueueEvent.CreatedMany)
   async onWhatsappQueueCreatedManyEvent() {
@@ -88,7 +83,7 @@ export class WhatsappQueueListener {
 
           waMediaMessages.push(waMediaMessage);
         } else {
-          const caption = `Tiket Pass Extra: Studio ${studio}, Seat ${seat}, ShowTime ${showTime} `;
+          const caption = `Extra Ticket Pass: Studio ${studio}, Seat ${seat}, ShowTime ${showTime} `;
           const waMediaMessage: WaMediaMessage = {
             refId: id,
             phone: groupMemberOf.whatsapp,
@@ -103,17 +98,25 @@ export class WhatsappQueueListener {
       }
 
       if (waMediaMessages.length > 0) {
-        await this.whatsappGatewayController.sendWhatsappImages(
-          waMediaMessages,
-        );
+        // Send whatsapp messages to whatsapp gateway
+        const response =
+          await this.whatsappGatewayController.sendWhatsappImages(
+            waMediaMessages,
+          );
 
-        //
-        await this.whatsappQueueController.updateMany({
+        //if response string contain with error words
+        if (response.message.includes('with error')) {
+          this.logger.error(response);
+          return;
+        }
+
+        // Update whatsapp queue status to SENT
+        const count = await this.whatsappQueueController.updateMany({
           data: { status: { set: 'SENT' } },
           where: { id: { in: whatsappQueueWithQueueStatusId } },
         });
 
-        this.logger.log('Broadcast Message In Gateway');
+        this.logger.log(count + ' Broadcast Messages Sent To Whatsapp Gateway');
       }
     } catch (error) {
       this.logger.error(error);
