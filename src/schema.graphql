@@ -2,59 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type EmailQueueAvgAggregate {
-  id: Float
-}
-
-type EmailQueueCountAggregate {
-  id: Int!
-  createdAt: Int!
-  status: Int!
-  guestId: Int!
-  _all: Int!
-}
-
-type EmailQueueMaxAggregate {
-  id: Int
-  createdAt: DateTime
-  status: QueueStatus
-  guestId: String
-}
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
-
-enum QueueStatus {
-  QUEUE
-  SENT
-  DELIVERED
-  READ
-  ABORT
-  FAILED
-}
-
-type EmailQueueMinAggregate {
-  id: Int
-  createdAt: DateTime
-  status: QueueStatus
-  guestId: String
-}
-
-type EmailQueueSumAggregate {
-  id: Int
-}
-
-"""Batas Pengiriman 1000 email per hari"""
-type EmailQueue {
-  id: Int!
-  createdAt: DateTime!
-  status: QueueStatus!
-  guestId: String!
-  guest: Guest!
-}
-
 type AggregateGuest {
   _count: GuestCountAggregate
   _avg: GuestAvgAggregate
@@ -89,8 +36,7 @@ type GuestCountAggregate {
 
 type GuestCount {
   groupMembers: Int!
-  emailQueue: Int!
-  whatsappQueue: Int!
+  whatsappStatuses: Int!
 }
 
 type GuestMaxAggregate {
@@ -111,6 +57,11 @@ type GuestMaxAggregate {
   groupMemberOfId: String
   confirmationStatus: ConfirmationStatus
 }
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
 
 enum ConfirmationStatus {
   UNCONFIRMED
@@ -162,8 +113,7 @@ type Guest {
   groupMembers: [Guest!]
   qrcode: QrCode
   invitationImage: InvitationImage
-  emailQueue: [EmailQueue!]
-  whatsappQueue: [WhatsappQueue!]
+  whatsappStatuses: [WhatsappStatus!]
   _count: GuestCount!
 }
 
@@ -327,51 +277,64 @@ type User {
   _count: UserCount!
 }
 
-type AggregateWhatsappQueue {
-  _count: WhatsappQueueCountAggregate
-  _avg: WhatsappQueueAvgAggregate
-  _sum: WhatsappQueueSumAggregate
-  _min: WhatsappQueueMinAggregate
-  _max: WhatsappQueueMaxAggregate
+type AggregateWhatsappStatus {
+  _count: WhatsappStatusCountAggregate
+  _avg: WhatsappStatusAvgAggregate
+  _sum: WhatsappStatusSumAggregate
+  _min: WhatsappStatusMinAggregate
+  _max: WhatsappStatusMaxAggregate
 }
 
-type WhatsappQueueAvgAggregate {
-  apiRequestId: Float
+type WhatsappStatusAvgAggregate {
+  id: Float
 }
 
-type WhatsappQueueCountAggregate {
+type WhatsappStatusCountAggregate {
   id: Int!
+  refId: Int!
+  message: Int!
   createdAt: Int!
-  apiRequestId: Int!
   status: Int!
   guestId: Int!
   _all: Int!
 }
 
-type WhatsappQueueMaxAggregate {
-  id: String
+type WhatsappStatusMaxAggregate {
+  id: Int
+  refId: String
+  message: String
   createdAt: DateTime
-  apiRequestId: Int
   status: QueueStatus
   guestId: String
 }
 
-type WhatsappQueueMinAggregate {
-  id: String
+enum QueueStatus {
+  QUEUE
+  SENT
+  DELIVERED
+  READ
+  ABORT
+  FAILED
+}
+
+type WhatsappStatusMinAggregate {
+  id: Int
+  refId: String
+  message: String
   createdAt: DateTime
-  apiRequestId: Int
   status: QueueStatus
   guestId: String
 }
 
-type WhatsappQueueSumAggregate {
-  apiRequestId: Int
+type WhatsappStatusSumAggregate {
+  id: Int
 }
 
-type WhatsappQueue {
-  id: String!
+type WhatsappStatus {
+  id: Int!
+  refId: String!
+  message: String
   createdAt: DateTime!
-  apiRequestId: Int
   status: QueueStatus!
   guestId: String!
   guest: Guest!
@@ -461,19 +424,19 @@ type Query {
   invitationImageCount(where: InvitationImageWhereInput, orderBy: [InvitationImageOrderByWithRelationInput!], cursor: InvitationImageWhereUniqueInput, take: Int, skip: Int, distinct: [InvitationImageScalarFieldEnum!]): Float
 
   """Deskripsinya ada disini loh"""
-  whatsappQueueFindOne(where: WhatsappQueueWhereUniqueInput!): WhatsappQueue
+  whatsappStatusFindOne(where: WhatsappStatusWhereUniqueInput!): WhatsappStatus
 
   """Deskripsinya ada disini loh"""
-  whatsappQueueFindMany(where: WhatsappQueueWhereInput, orderBy: [WhatsappQueueOrderByWithRelationInput!], cursor: WhatsappQueueWhereUniqueInput, take: Int, skip: Int, distinct: [WhatsappQueueScalarFieldEnum!]): [WhatsappQueue!]
+  whatsappStatusFindMany(where: WhatsappStatusWhereInput, orderBy: [WhatsappStatusOrderByWithRelationInput!], cursor: WhatsappStatusWhereUniqueInput, take: Int, skip: Int, distinct: [WhatsappStatusScalarFieldEnum!]): [WhatsappStatus!]
 
   """Deskripsinya ada disini loh"""
-  whatsappQueueFindFirst(where: WhatsappQueueWhereInput, orderBy: [WhatsappQueueOrderByWithRelationInput!], cursor: WhatsappQueueWhereUniqueInput, take: Int, skip: Int, distinct: [WhatsappQueueScalarFieldEnum!]): WhatsappQueue
+  whatsappStatusFindFirst(where: WhatsappStatusWhereInput, orderBy: [WhatsappStatusOrderByWithRelationInput!], cursor: WhatsappStatusWhereUniqueInput, take: Int, skip: Int, distinct: [WhatsappStatusScalarFieldEnum!]): WhatsappStatus
 
   """Deskripsinya ada disini loh"""
-  whatsappQueueAggregate(where: WhatsappQueueWhereInput, orderBy: [WhatsappQueueOrderByWithRelationInput!], cursor: WhatsappQueueWhereUniqueInput, take: Int, skip: Int, _count: WhatsappQueueCountAggregateInput, _avg: WhatsappQueueAvgAggregateInput, _sum: WhatsappQueueSumAggregateInput, _min: WhatsappQueueMinAggregateInput, _max: WhatsappQueueMaxAggregateInput): AggregateWhatsappQueue
+  whatsappStatusAggregate(where: WhatsappStatusWhereInput, orderBy: [WhatsappStatusOrderByWithRelationInput!], cursor: WhatsappStatusWhereUniqueInput, take: Int, skip: Int, _count: WhatsappStatusCountAggregateInput, _avg: WhatsappStatusAvgAggregateInput, _sum: WhatsappStatusSumAggregateInput, _min: WhatsappStatusMinAggregateInput, _max: WhatsappStatusMaxAggregateInput): AggregateWhatsappStatus
 
   """Deskripsinya ada disini loh"""
-  whatsappQueueCount(where: WhatsappQueueWhereInput, orderBy: [WhatsappQueueOrderByWithRelationInput!], cursor: WhatsappQueueWhereUniqueInput, take: Int, skip: Int, distinct: [WhatsappQueueScalarFieldEnum!]): Float
+  whatsappStatusCount(where: WhatsappStatusWhereInput, orderBy: [WhatsappStatusOrderByWithRelationInput!], cursor: WhatsappStatusWhereUniqueInput, take: Int, skip: Int, distinct: [WhatsappStatusScalarFieldEnum!]): Float
 }
 
 input GuestWhereUniqueInput {
@@ -500,8 +463,7 @@ input GuestWhereUniqueInput {
   groupMembers: GuestListRelationFilter
   qrcode: QrCodeNullableRelationFilter
   invitationImage: InvitationImageNullableRelationFilter
-  emailQueue: EmailQueueListRelationFilter
-  whatsappQueue: WhatsappQueueListRelationFilter
+  whatsappStatuses: WhatsappStatusListRelationFilter
 }
 
 input GuestWhereInput {
@@ -528,8 +490,7 @@ input GuestWhereInput {
   groupMembers: GuestListRelationFilter
   qrcode: QrCodeNullableRelationFilter
   invitationImage: InvitationImageNullableRelationFilter
-  emailQueue: EmailQueueListRelationFilter
-  whatsappQueue: WhatsappQueueListRelationFilter
+  whatsappStatuses: WhatsappStatusListRelationFilter
 }
 
 input StringFilter {
@@ -782,17 +743,19 @@ input InvitationImageWhereInput {
   guest: GuestRelationFilter
 }
 
-input EmailQueueListRelationFilter {
-  every: EmailQueueWhereInput
-  some: EmailQueueWhereInput
-  none: EmailQueueWhereInput
+input WhatsappStatusListRelationFilter {
+  every: WhatsappStatusWhereInput
+  some: WhatsappStatusWhereInput
+  none: WhatsappStatusWhereInput
 }
 
-input EmailQueueWhereInput {
-  AND: [EmailQueueWhereInput!]
-  OR: [EmailQueueWhereInput!]
-  NOT: [EmailQueueWhereInput!]
+input WhatsappStatusWhereInput {
+  AND: [WhatsappStatusWhereInput!]
+  OR: [WhatsappStatusWhereInput!]
+  NOT: [WhatsappStatusWhereInput!]
   id: IntFilter
+  refId: StringFilter
+  message: StringNullableFilter
   createdAt: DateTimeFilter
   status: EnumQueueStatusFilter
   guestId: StringFilter
@@ -811,46 +774,6 @@ input NestedEnumQueueStatusFilter {
   in: [QueueStatus!]
   notIn: [QueueStatus!]
   not: NestedEnumQueueStatusFilter
-}
-
-input WhatsappQueueListRelationFilter {
-  every: WhatsappQueueWhereInput
-  some: WhatsappQueueWhereInput
-  none: WhatsappQueueWhereInput
-}
-
-input WhatsappQueueWhereInput {
-  AND: [WhatsappQueueWhereInput!]
-  OR: [WhatsappQueueWhereInput!]
-  NOT: [WhatsappQueueWhereInput!]
-  id: StringFilter
-  createdAt: DateTimeFilter
-  apiRequestId: IntNullableFilter
-  status: EnumQueueStatusFilter
-  guestId: StringFilter
-  guest: GuestRelationFilter
-}
-
-input IntNullableFilter {
-  equals: Int
-  in: [Int!]
-  notIn: [Int!]
-  lt: Int
-  lte: Int
-  gt: Int
-  gte: Int
-  not: NestedIntNullableFilter
-}
-
-input NestedIntNullableFilter {
-  equals: Int
-  in: [Int!]
-  notIn: [Int!]
-  lt: Int
-  lte: Int
-  gt: Int
-  gte: Int
-  not: NestedIntNullableFilter
 }
 
 input GuestOrderByWithRelationInput {
@@ -874,8 +797,7 @@ input GuestOrderByWithRelationInput {
   groupMembers: GuestOrderByRelationAggregateInput
   qrcode: QrCodeOrderByWithRelationInput
   invitationImage: InvitationImageOrderByWithRelationInput
-  emailQueue: EmailQueueOrderByRelationAggregateInput
-  whatsappQueue: WhatsappQueueOrderByRelationAggregateInput
+  whatsappStatuses: WhatsappStatusOrderByRelationAggregateInput
 }
 
 enum SortOrder {
@@ -933,11 +855,7 @@ input InvitationImageOrderByWithRelationInput {
   guest: GuestOrderByWithRelationInput
 }
 
-input EmailQueueOrderByRelationAggregateInput {
-  _count: SortOrder
-}
-
-input WhatsappQueueOrderByRelationAggregateInput {
+input WhatsappStatusOrderByRelationAggregateInput {
   _count: SortOrder
 }
 
@@ -1192,64 +1110,70 @@ input InvitationImageMaxAggregateInput {
   guestId: Boolean
 }
 
-input WhatsappQueueWhereUniqueInput {
-  id: String
-  AND: [WhatsappQueueWhereInput!]
-  OR: [WhatsappQueueWhereInput!]
-  NOT: [WhatsappQueueWhereInput!]
+input WhatsappStatusWhereUniqueInput {
+  id: Int
+  AND: [WhatsappStatusWhereInput!]
+  OR: [WhatsappStatusWhereInput!]
+  NOT: [WhatsappStatusWhereInput!]
+  refId: StringFilter
+  message: StringNullableFilter
   createdAt: DateTimeFilter
-  apiRequestId: IntNullableFilter
   status: EnumQueueStatusFilter
   guestId: StringFilter
   guest: GuestRelationFilter
 }
 
-input WhatsappQueueOrderByWithRelationInput {
+input WhatsappStatusOrderByWithRelationInput {
   id: SortOrder
+  refId: SortOrder
+  message: SortOrderInput
   createdAt: SortOrder
-  apiRequestId: SortOrderInput
   status: SortOrder
   guestId: SortOrder
   guest: GuestOrderByWithRelationInput
 }
 
-enum WhatsappQueueScalarFieldEnum {
+enum WhatsappStatusScalarFieldEnum {
   id
+  refId
+  message
   createdAt
-  apiRequestId
   status
   guestId
 }
 
-input WhatsappQueueCountAggregateInput {
+input WhatsappStatusCountAggregateInput {
   id: Boolean
+  refId: Boolean
+  message: Boolean
   createdAt: Boolean
-  apiRequestId: Boolean
   status: Boolean
   guestId: Boolean
   _all: Boolean
 }
 
-input WhatsappQueueAvgAggregateInput {
-  apiRequestId: Boolean
-}
-
-input WhatsappQueueSumAggregateInput {
-  apiRequestId: Boolean
-}
-
-input WhatsappQueueMinAggregateInput {
+input WhatsappStatusAvgAggregateInput {
   id: Boolean
+}
+
+input WhatsappStatusSumAggregateInput {
+  id: Boolean
+}
+
+input WhatsappStatusMinAggregateInput {
+  id: Boolean
+  refId: Boolean
+  message: Boolean
   createdAt: Boolean
-  apiRequestId: Boolean
   status: Boolean
   guestId: Boolean
 }
 
-input WhatsappQueueMaxAggregateInput {
+input WhatsappStatusMaxAggregateInput {
   id: Boolean
+  refId: Boolean
+  message: Boolean
   createdAt: Boolean
-  apiRequestId: Boolean
   status: Boolean
   guestId: Boolean
 }
@@ -1333,22 +1257,22 @@ type Mutation {
   invitationImageDeleteMany(where: InvitationImageWhereInput): Boolean!
 
   """Deskripsinya ada disini loh"""
-  whatsappQueueCreateOne(data: WhatsappQueueCreateInput!): WhatsappQueue
+  whatsappStatusCreateOne(data: WhatsappStatusCreateInput!): WhatsappStatus
 
   """Deskripsinya ada disini loh"""
-  whatsappQueueCreateMany(data: [WhatsappQueueCreateManyInput!]!, skipDuplicates: Boolean): BatchPayload
+  whatsappStatusCreateMany(data: [WhatsappStatusCreateManyInput!]!, skipDuplicates: Boolean): BatchPayload
 
   """Deskripsinya ada disini loh"""
-  whatsappQueueUpdateOne(data: WhatsappQueueUpdateInput!, where: WhatsappQueueWhereUniqueInput!): WhatsappQueue
+  whatsappStatusUpdateOne(data: WhatsappStatusUpdateInput!, where: WhatsappStatusWhereUniqueInput!): WhatsappStatus
 
   """Deskripsinya ada disini loh"""
-  whatsappQueueUpdateMany(data: WhatsappQueueUpdateManyMutationInput!, where: WhatsappQueueWhereInput): BatchPayload
+  whatsappStatusUpdateMany(data: WhatsappStatusUpdateManyMutationInput!, where: WhatsappStatusWhereInput): BatchPayload
 
   """Deskripsinya ada disini loh"""
-  whatsappQueueDelete(where: WhatsappQueueWhereUniqueInput!): Boolean!
+  whatsappStatusDelete(where: WhatsappStatusWhereUniqueInput!): Boolean!
 
   """Deskripsinya ada disini loh"""
-  whatsappQueueDeleteMany(where: WhatsappQueueWhereInput): Boolean!
+  whatsappStatusDeleteMany(where: WhatsappStatusWhereInput): Boolean!
   authLogin(loginArgs: LoginArgs!): LoginResponse
 }
 
@@ -1389,8 +1313,7 @@ input GuestCreateInput {
   groupMembers: GuestCreateNestedManyWithoutGroupMemberOfInput
   qrcode: QrCodeCreateNestedOneWithoutGuestInput
   invitationImage: InvitationImageCreateNestedOneWithoutGuestInput
-  emailQueue: EmailQueueCreateNestedManyWithoutGuestInput
-  whatsappQueue: WhatsappQueueCreateNestedManyWithoutGuestInput
+  whatsappStatuses: WhatsappStatusCreateNestedManyWithoutGuestInput
 }
 
 input GuestCreateNestedOneWithoutGroupMembersInput {
@@ -1418,8 +1341,7 @@ input GuestCreateWithoutGroupMembersInput {
   groupMemberOf: GuestCreateNestedOneWithoutGroupMembersInput
   qrcode: QrCodeCreateNestedOneWithoutGuestInput
   invitationImage: InvitationImageCreateNestedOneWithoutGuestInput
-  emailQueue: EmailQueueCreateNestedManyWithoutGuestInput
-  whatsappQueue: WhatsappQueueCreateNestedManyWithoutGuestInput
+  whatsappStatuses: WhatsappStatusCreateNestedManyWithoutGuestInput
 }
 
 input QrCodeCreateNestedOneWithoutGuestInput {
@@ -1480,73 +1402,35 @@ input InvitationImageCreateOrConnectWithoutGuestInput {
   create: InvitationImageCreateWithoutGuestInput!
 }
 
-input EmailQueueCreateNestedManyWithoutGuestInput {
-  create: [EmailQueueCreateWithoutGuestInput!]
-  connectOrCreate: [EmailQueueCreateOrConnectWithoutGuestInput!]
-  createMany: EmailQueueCreateManyGuestInputEnvelope
-  connect: [EmailQueueWhereUniqueInput!]
+input WhatsappStatusCreateNestedManyWithoutGuestInput {
+  create: [WhatsappStatusCreateWithoutGuestInput!]
+  connectOrCreate: [WhatsappStatusCreateOrConnectWithoutGuestInput!]
+  createMany: WhatsappStatusCreateManyGuestInputEnvelope
+  connect: [WhatsappStatusWhereUniqueInput!]
 }
 
-input EmailQueueCreateWithoutGuestInput {
+input WhatsappStatusCreateWithoutGuestInput {
+  refId: String
+  message: String
   createdAt: DateTime
   status: QueueStatus
 }
 
-input EmailQueueCreateOrConnectWithoutGuestInput {
-  where: EmailQueueWhereUniqueInput!
-  create: EmailQueueCreateWithoutGuestInput!
+input WhatsappStatusCreateOrConnectWithoutGuestInput {
+  where: WhatsappStatusWhereUniqueInput!
+  create: WhatsappStatusCreateWithoutGuestInput!
 }
 
-input EmailQueueWhereUniqueInput {
-  id: Int
-  AND: [EmailQueueWhereInput!]
-  OR: [EmailQueueWhereInput!]
-  NOT: [EmailQueueWhereInput!]
-  createdAt: DateTimeFilter
-  status: EnumQueueStatusFilter
-  guestId: StringFilter
-  guest: GuestRelationFilter
-}
-
-input EmailQueueCreateManyGuestInputEnvelope {
-  data: [EmailQueueCreateManyGuestInput!]!
+input WhatsappStatusCreateManyGuestInputEnvelope {
+  data: [WhatsappStatusCreateManyGuestInput!]!
   skipDuplicates: Boolean
 }
 
-input EmailQueueCreateManyGuestInput {
+input WhatsappStatusCreateManyGuestInput {
   id: Int
+  refId: String
+  message: String
   createdAt: DateTime
-  status: QueueStatus
-}
-
-input WhatsappQueueCreateNestedManyWithoutGuestInput {
-  create: [WhatsappQueueCreateWithoutGuestInput!]
-  connectOrCreate: [WhatsappQueueCreateOrConnectWithoutGuestInput!]
-  createMany: WhatsappQueueCreateManyGuestInputEnvelope
-  connect: [WhatsappQueueWhereUniqueInput!]
-}
-
-input WhatsappQueueCreateWithoutGuestInput {
-  id: String
-  createdAt: DateTime
-  apiRequestId: Int
-  status: QueueStatus
-}
-
-input WhatsappQueueCreateOrConnectWithoutGuestInput {
-  where: WhatsappQueueWhereUniqueInput!
-  create: WhatsappQueueCreateWithoutGuestInput!
-}
-
-input WhatsappQueueCreateManyGuestInputEnvelope {
-  data: [WhatsappQueueCreateManyGuestInput!]!
-  skipDuplicates: Boolean
-}
-
-input WhatsappQueueCreateManyGuestInput {
-  id: String
-  createdAt: DateTime
-  apiRequestId: Int
   status: QueueStatus
 }
 
@@ -1581,8 +1465,7 @@ input GuestCreateWithoutGroupMemberOfInput {
   groupMembers: GuestCreateNestedManyWithoutGroupMemberOfInput
   qrcode: QrCodeCreateNestedOneWithoutGuestInput
   invitationImage: InvitationImageCreateNestedOneWithoutGuestInput
-  emailQueue: EmailQueueCreateNestedManyWithoutGuestInput
-  whatsappQueue: WhatsappQueueCreateNestedManyWithoutGuestInput
+  whatsappStatuses: WhatsappStatusCreateNestedManyWithoutGuestInput
 }
 
 input GuestCreateOrConnectWithoutGroupMemberOfInput {
@@ -1652,8 +1535,7 @@ input GuestUpdateInput {
   groupMembers: GuestUpdateManyWithoutGroupMemberOfNestedInput
   qrcode: QrCodeUpdateOneWithoutGuestNestedInput
   invitationImage: InvitationImageUpdateOneWithoutGuestNestedInput
-  emailQueue: EmailQueueUpdateManyWithoutGuestNestedInput
-  whatsappQueue: WhatsappQueueUpdateManyWithoutGuestNestedInput
+  whatsappStatuses: WhatsappStatusUpdateManyWithoutGuestNestedInput
 }
 
 input StringFieldUpdateOperationsInput {
@@ -1719,8 +1601,7 @@ input GuestUpdateWithoutGroupMembersInput {
   groupMemberOf: GuestUpdateOneWithoutGroupMembersNestedInput
   qrcode: QrCodeUpdateOneWithoutGuestNestedInput
   invitationImage: InvitationImageUpdateOneWithoutGuestNestedInput
-  emailQueue: EmailQueueUpdateManyWithoutGuestNestedInput
-  whatsappQueue: WhatsappQueueUpdateManyWithoutGuestNestedInput
+  whatsappStatuses: WhatsappStatusUpdateManyWithoutGuestNestedInput
 }
 
 input QrCodeUpdateOneWithoutGuestNestedInput {
@@ -1823,27 +1704,29 @@ input InvitationImageUpdateToOneWithWhereWithoutGuestInput {
   data: InvitationImageUpdateWithoutGuestInput!
 }
 
-input EmailQueueUpdateManyWithoutGuestNestedInput {
-  create: [EmailQueueCreateWithoutGuestInput!]
-  connectOrCreate: [EmailQueueCreateOrConnectWithoutGuestInput!]
-  upsert: [EmailQueueUpsertWithWhereUniqueWithoutGuestInput!]
-  createMany: EmailQueueCreateManyGuestInputEnvelope
-  set: [EmailQueueWhereUniqueInput!]
-  disconnect: [EmailQueueWhereUniqueInput!]
-  delete: [EmailQueueWhereUniqueInput!]
-  connect: [EmailQueueWhereUniqueInput!]
-  update: [EmailQueueUpdateWithWhereUniqueWithoutGuestInput!]
-  updateMany: [EmailQueueUpdateManyWithWhereWithoutGuestInput!]
-  deleteMany: [EmailQueueScalarWhereInput!]
+input WhatsappStatusUpdateManyWithoutGuestNestedInput {
+  create: [WhatsappStatusCreateWithoutGuestInput!]
+  connectOrCreate: [WhatsappStatusCreateOrConnectWithoutGuestInput!]
+  upsert: [WhatsappStatusUpsertWithWhereUniqueWithoutGuestInput!]
+  createMany: WhatsappStatusCreateManyGuestInputEnvelope
+  set: [WhatsappStatusWhereUniqueInput!]
+  disconnect: [WhatsappStatusWhereUniqueInput!]
+  delete: [WhatsappStatusWhereUniqueInput!]
+  connect: [WhatsappStatusWhereUniqueInput!]
+  update: [WhatsappStatusUpdateWithWhereUniqueWithoutGuestInput!]
+  updateMany: [WhatsappStatusUpdateManyWithWhereWithoutGuestInput!]
+  deleteMany: [WhatsappStatusScalarWhereInput!]
 }
 
-input EmailQueueUpsertWithWhereUniqueWithoutGuestInput {
-  where: EmailQueueWhereUniqueInput!
-  update: EmailQueueUpdateWithoutGuestInput!
-  create: EmailQueueCreateWithoutGuestInput!
+input WhatsappStatusUpsertWithWhereUniqueWithoutGuestInput {
+  where: WhatsappStatusWhereUniqueInput!
+  update: WhatsappStatusUpdateWithoutGuestInput!
+  create: WhatsappStatusCreateWithoutGuestInput!
 }
 
-input EmailQueueUpdateWithoutGuestInput {
+input WhatsappStatusUpdateWithoutGuestInput {
+  refId: StringFieldUpdateOperationsInput
+  message: NullableStringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   status: EnumQueueStatusFieldUpdateOperationsInput
 }
@@ -1852,91 +1735,32 @@ input EnumQueueStatusFieldUpdateOperationsInput {
   set: QueueStatus
 }
 
-input EmailQueueUpdateWithWhereUniqueWithoutGuestInput {
-  where: EmailQueueWhereUniqueInput!
-  data: EmailQueueUpdateWithoutGuestInput!
+input WhatsappStatusUpdateWithWhereUniqueWithoutGuestInput {
+  where: WhatsappStatusWhereUniqueInput!
+  data: WhatsappStatusUpdateWithoutGuestInput!
 }
 
-input EmailQueueUpdateManyWithWhereWithoutGuestInput {
-  where: EmailQueueScalarWhereInput!
-  data: EmailQueueUpdateManyMutationInput!
+input WhatsappStatusUpdateManyWithWhereWithoutGuestInput {
+  where: WhatsappStatusScalarWhereInput!
+  data: WhatsappStatusUpdateManyMutationInput!
 }
 
-input EmailQueueScalarWhereInput {
-  AND: [EmailQueueScalarWhereInput!]
-  OR: [EmailQueueScalarWhereInput!]
-  NOT: [EmailQueueScalarWhereInput!]
+input WhatsappStatusScalarWhereInput {
+  AND: [WhatsappStatusScalarWhereInput!]
+  OR: [WhatsappStatusScalarWhereInput!]
+  NOT: [WhatsappStatusScalarWhereInput!]
   id: IntFilter
+  refId: StringFilter
+  message: StringNullableFilter
   createdAt: DateTimeFilter
   status: EnumQueueStatusFilter
   guestId: StringFilter
 }
 
-input EmailQueueUpdateManyMutationInput {
+input WhatsappStatusUpdateManyMutationInput {
+  refId: StringFieldUpdateOperationsInput
+  message: NullableStringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
-  status: EnumQueueStatusFieldUpdateOperationsInput
-}
-
-input WhatsappQueueUpdateManyWithoutGuestNestedInput {
-  create: [WhatsappQueueCreateWithoutGuestInput!]
-  connectOrCreate: [WhatsappQueueCreateOrConnectWithoutGuestInput!]
-  upsert: [WhatsappQueueUpsertWithWhereUniqueWithoutGuestInput!]
-  createMany: WhatsappQueueCreateManyGuestInputEnvelope
-  set: [WhatsappQueueWhereUniqueInput!]
-  disconnect: [WhatsappQueueWhereUniqueInput!]
-  delete: [WhatsappQueueWhereUniqueInput!]
-  connect: [WhatsappQueueWhereUniqueInput!]
-  update: [WhatsappQueueUpdateWithWhereUniqueWithoutGuestInput!]
-  updateMany: [WhatsappQueueUpdateManyWithWhereWithoutGuestInput!]
-  deleteMany: [WhatsappQueueScalarWhereInput!]
-}
-
-input WhatsappQueueUpsertWithWhereUniqueWithoutGuestInput {
-  where: WhatsappQueueWhereUniqueInput!
-  update: WhatsappQueueUpdateWithoutGuestInput!
-  create: WhatsappQueueCreateWithoutGuestInput!
-}
-
-input WhatsappQueueUpdateWithoutGuestInput {
-  id: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  apiRequestId: NullableIntFieldUpdateOperationsInput
-  status: EnumQueueStatusFieldUpdateOperationsInput
-}
-
-input NullableIntFieldUpdateOperationsInput {
-  set: Int
-  increment: Int
-  decrement: Int
-  multiply: Int
-  divide: Int
-}
-
-input WhatsappQueueUpdateWithWhereUniqueWithoutGuestInput {
-  where: WhatsappQueueWhereUniqueInput!
-  data: WhatsappQueueUpdateWithoutGuestInput!
-}
-
-input WhatsappQueueUpdateManyWithWhereWithoutGuestInput {
-  where: WhatsappQueueScalarWhereInput!
-  data: WhatsappQueueUpdateManyMutationInput!
-}
-
-input WhatsappQueueScalarWhereInput {
-  AND: [WhatsappQueueScalarWhereInput!]
-  OR: [WhatsappQueueScalarWhereInput!]
-  NOT: [WhatsappQueueScalarWhereInput!]
-  id: StringFilter
-  createdAt: DateTimeFilter
-  apiRequestId: IntNullableFilter
-  status: EnumQueueStatusFilter
-  guestId: StringFilter
-}
-
-input WhatsappQueueUpdateManyMutationInput {
-  id: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  apiRequestId: NullableIntFieldUpdateOperationsInput
   status: EnumQueueStatusFieldUpdateOperationsInput
 }
 
@@ -1984,8 +1808,7 @@ input GuestUpdateWithoutGroupMemberOfInput {
   groupMembers: GuestUpdateManyWithoutGroupMemberOfNestedInput
   qrcode: QrCodeUpdateOneWithoutGuestNestedInput
   invitationImage: InvitationImageUpdateOneWithoutGuestNestedInput
-  emailQueue: EmailQueueUpdateManyWithoutGuestNestedInput
-  whatsappQueue: WhatsappQueueUpdateManyWithoutGuestNestedInput
+  whatsappStatuses: WhatsappStatusUpdateManyWithoutGuestNestedInput
 }
 
 input GuestUpdateWithWhereUniqueWithoutGroupMemberOfInput {
@@ -2072,8 +1895,7 @@ input GuestCreateWithoutQrcodeInput {
   groupMemberOf: GuestCreateNestedOneWithoutGroupMembersInput
   groupMembers: GuestCreateNestedManyWithoutGroupMemberOfInput
   invitationImage: InvitationImageCreateNestedOneWithoutGuestInput
-  emailQueue: EmailQueueCreateNestedManyWithoutGuestInput
-  whatsappQueue: WhatsappQueueCreateNestedManyWithoutGuestInput
+  whatsappStatuses: WhatsappStatusCreateNestedManyWithoutGuestInput
 }
 
 input GuestCreateOrConnectWithoutQrcodeInput {
@@ -2133,8 +1955,7 @@ input GuestUpdateWithoutQrcodeInput {
   groupMemberOf: GuestUpdateOneWithoutGroupMembersNestedInput
   groupMembers: GuestUpdateManyWithoutGroupMemberOfNestedInput
   invitationImage: InvitationImageUpdateOneWithoutGuestNestedInput
-  emailQueue: EmailQueueUpdateManyWithoutGuestNestedInput
-  whatsappQueue: WhatsappQueueUpdateManyWithoutGuestNestedInput
+  whatsappStatuses: WhatsappStatusUpdateManyWithoutGuestNestedInput
 }
 
 input GuestUpdateToOneWithWhereWithoutQrcodeInput {
@@ -2312,8 +2133,7 @@ input GuestCreateWithoutInvitationImageInput {
   groupMemberOf: GuestCreateNestedOneWithoutGroupMembersInput
   groupMembers: GuestCreateNestedManyWithoutGroupMemberOfInput
   qrcode: QrCodeCreateNestedOneWithoutGuestInput
-  emailQueue: EmailQueueCreateNestedManyWithoutGuestInput
-  whatsappQueue: WhatsappQueueCreateNestedManyWithoutGuestInput
+  whatsappStatuses: WhatsappStatusCreateNestedManyWithoutGuestInput
 }
 
 input GuestCreateOrConnectWithoutInvitationImageInput {
@@ -2368,8 +2188,7 @@ input GuestUpdateWithoutInvitationImageInput {
   groupMemberOf: GuestUpdateOneWithoutGroupMembersNestedInput
   groupMembers: GuestUpdateManyWithoutGroupMemberOfNestedInput
   qrcode: QrCodeUpdateOneWithoutGuestNestedInput
-  emailQueue: EmailQueueUpdateManyWithoutGuestNestedInput
-  whatsappQueue: WhatsappQueueUpdateManyWithoutGuestNestedInput
+  whatsappStatuses: WhatsappStatusUpdateManyWithoutGuestNestedInput
 }
 
 input GuestUpdateToOneWithWhereWithoutInvitationImageInput {
@@ -2383,21 +2202,21 @@ input InvitationImageUpdateManyMutationInput {
   createdAt: DateTimeFieldUpdateOperationsInput
 }
 
-input WhatsappQueueCreateInput {
-  id: String
+input WhatsappStatusCreateInput {
+  refId: String
+  message: String
   createdAt: DateTime
-  apiRequestId: Int
   status: QueueStatus
-  guest: GuestCreateNestedOneWithoutWhatsappQueueInput!
+  guest: GuestCreateNestedOneWithoutWhatsappStatusesInput!
 }
 
-input GuestCreateNestedOneWithoutWhatsappQueueInput {
-  create: GuestCreateWithoutWhatsappQueueInput
-  connectOrCreate: GuestCreateOrConnectWithoutWhatsappQueueInput
+input GuestCreateNestedOneWithoutWhatsappStatusesInput {
+  create: GuestCreateWithoutWhatsappStatusesInput
+  connectOrCreate: GuestCreateOrConnectWithoutWhatsappStatusesInput
   connect: GuestWhereUniqueInput
 }
 
-input GuestCreateWithoutWhatsappQueueInput {
+input GuestCreateWithoutWhatsappStatusesInput {
   id: String
   source: String
   invitationName: String!
@@ -2417,45 +2236,45 @@ input GuestCreateWithoutWhatsappQueueInput {
   groupMembers: GuestCreateNestedManyWithoutGroupMemberOfInput
   qrcode: QrCodeCreateNestedOneWithoutGuestInput
   invitationImage: InvitationImageCreateNestedOneWithoutGuestInput
-  emailQueue: EmailQueueCreateNestedManyWithoutGuestInput
 }
 
-input GuestCreateOrConnectWithoutWhatsappQueueInput {
+input GuestCreateOrConnectWithoutWhatsappStatusesInput {
   where: GuestWhereUniqueInput!
-  create: GuestCreateWithoutWhatsappQueueInput!
+  create: GuestCreateWithoutWhatsappStatusesInput!
 }
 
-input WhatsappQueueCreateManyInput {
-  id: String
+input WhatsappStatusCreateManyInput {
+  id: Int
+  refId: String
+  message: String
   createdAt: DateTime
-  apiRequestId: Int
   status: QueueStatus
   guestId: String!
 }
 
-input WhatsappQueueUpdateInput {
-  id: StringFieldUpdateOperationsInput
+input WhatsappStatusUpdateInput {
+  refId: StringFieldUpdateOperationsInput
+  message: NullableStringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
-  apiRequestId: NullableIntFieldUpdateOperationsInput
   status: EnumQueueStatusFieldUpdateOperationsInput
-  guest: GuestUpdateOneRequiredWithoutWhatsappQueueNestedInput
+  guest: GuestUpdateOneRequiredWithoutWhatsappStatusesNestedInput
 }
 
-input GuestUpdateOneRequiredWithoutWhatsappQueueNestedInput {
-  create: GuestCreateWithoutWhatsappQueueInput
-  connectOrCreate: GuestCreateOrConnectWithoutWhatsappQueueInput
-  upsert: GuestUpsertWithoutWhatsappQueueInput
+input GuestUpdateOneRequiredWithoutWhatsappStatusesNestedInput {
+  create: GuestCreateWithoutWhatsappStatusesInput
+  connectOrCreate: GuestCreateOrConnectWithoutWhatsappStatusesInput
+  upsert: GuestUpsertWithoutWhatsappStatusesInput
   connect: GuestWhereUniqueInput
-  update: GuestUpdateToOneWithWhereWithoutWhatsappQueueInput
+  update: GuestUpdateToOneWithWhereWithoutWhatsappStatusesInput
 }
 
-input GuestUpsertWithoutWhatsappQueueInput {
-  update: GuestUpdateWithoutWhatsappQueueInput!
-  create: GuestCreateWithoutWhatsappQueueInput!
+input GuestUpsertWithoutWhatsappStatusesInput {
+  update: GuestUpdateWithoutWhatsappStatusesInput!
+  create: GuestCreateWithoutWhatsappStatusesInput!
   where: GuestWhereInput
 }
 
-input GuestUpdateWithoutWhatsappQueueInput {
+input GuestUpdateWithoutWhatsappStatusesInput {
   id: StringFieldUpdateOperationsInput
   source: NullableStringFieldUpdateOperationsInput
   invitationName: StringFieldUpdateOperationsInput
@@ -2475,12 +2294,11 @@ input GuestUpdateWithoutWhatsappQueueInput {
   groupMembers: GuestUpdateManyWithoutGroupMemberOfNestedInput
   qrcode: QrCodeUpdateOneWithoutGuestNestedInput
   invitationImage: InvitationImageUpdateOneWithoutGuestNestedInput
-  emailQueue: EmailQueueUpdateManyWithoutGuestNestedInput
 }
 
-input GuestUpdateToOneWithWhereWithoutWhatsappQueueInput {
+input GuestUpdateToOneWithWhereWithoutWhatsappStatusesInput {
   where: GuestWhereInput
-  data: GuestUpdateWithoutWhatsappQueueInput!
+  data: GuestUpdateWithoutWhatsappStatusesInput!
 }
 
 input LoginArgs {

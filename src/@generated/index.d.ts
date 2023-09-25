@@ -1,8 +1,9 @@
 import { Prisma } from '@prisma/client';
-export declare enum WhatsappQueueScalarFieldEnum {
+export declare enum WhatsappStatusScalarFieldEnum {
     id = "id",
+    refId = "refId",
+    message = "message",
     createdAt = "createdAt",
-    apiRequestId = "apiRequestId",
     status = "status",
     guestId = "guestId"
 }
@@ -80,381 +81,6 @@ export declare enum GuestScalarFieldEnum {
     deletedAt = "deletedAt",
     groupMemberOfId = "groupMemberOfId",
     confirmationStatus = "confirmationStatus"
-}
-export declare enum EmailQueueScalarFieldEnum {
-    id = "id",
-    createdAt = "createdAt",
-    status = "status",
-    guestId = "guestId"
-}
-export declare class AggregateEmailQueue {
-    _count?: InstanceType<typeof EmailQueueCountAggregate>;
-    _avg?: InstanceType<typeof EmailQueueAvgAggregate>;
-    _sum?: InstanceType<typeof EmailQueueSumAggregate>;
-    _min?: InstanceType<typeof EmailQueueMinAggregate>;
-    _max?: InstanceType<typeof EmailQueueMaxAggregate>;
-}
-export declare class CreateManyEmailQueueArgs {
-    data: Array<EmailQueueCreateManyInput>;
-    skipDuplicates?: boolean;
-}
-export declare class CreateOneEmailQueueArgs {
-    data: InstanceType<typeof EmailQueueCreateInput>;
-}
-export declare class DeleteManyEmailQueueArgs {
-    where?: InstanceType<typeof EmailQueueWhereInput>;
-}
-export declare class DeleteOneEmailQueueArgs {
-    where: Prisma.AtLeast<EmailQueueWhereUniqueInput, 'id'>;
-}
-export declare class EmailQueueAggregateArgs {
-    where?: InstanceType<typeof EmailQueueWhereInput>;
-    orderBy?: Array<EmailQueueOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<EmailQueueWhereUniqueInput, 'id'>;
-    take?: number;
-    skip?: number;
-    _count?: InstanceType<typeof EmailQueueCountAggregateInput>;
-    _avg?: InstanceType<typeof EmailQueueAvgAggregateInput>;
-    _sum?: InstanceType<typeof EmailQueueSumAggregateInput>;
-    _min?: InstanceType<typeof EmailQueueMinAggregateInput>;
-    _max?: InstanceType<typeof EmailQueueMaxAggregateInput>;
-}
-export declare class EmailQueueAvgAggregateInput {
-    id?: true;
-}
-export declare class EmailQueueAvgAggregate {
-    id?: number;
-}
-export declare class EmailQueueAvgOrderByAggregateInput {
-    id?: keyof typeof SortOrder;
-}
-export declare class EmailQueueCountAggregateInput {
-    id?: true;
-    createdAt?: true;
-    status?: true;
-    guestId?: true;
-    _all?: true;
-}
-export declare class EmailQueueCountAggregate {
-    id: number;
-    createdAt: number;
-    status: number;
-    guestId: number;
-    _all: number;
-}
-export declare class EmailQueueCountOrderByAggregateInput {
-    id?: keyof typeof SortOrder;
-    createdAt?: keyof typeof SortOrder;
-    status?: keyof typeof SortOrder;
-    guestId?: keyof typeof SortOrder;
-}
-export declare class EmailQueueCreateManyGuestInputEnvelope {
-    data: Array<EmailQueueCreateManyGuestInput>;
-    skipDuplicates?: boolean;
-}
-export declare class EmailQueueCreateManyGuestInput {
-    id?: number;
-    createdAt?: Date | string;
-    status?: keyof typeof QueueStatus;
-}
-export declare class EmailQueueCreateManyInput {
-    id?: number;
-    createdAt?: Date | string;
-    status?: keyof typeof QueueStatus;
-    guestId: string;
-}
-export declare class EmailQueueCreateNestedManyWithoutGuestInput {
-    create?: Array<EmailQueueCreateWithoutGuestInput>;
-    connectOrCreate?: Array<EmailQueueCreateOrConnectWithoutGuestInput>;
-    createMany?: InstanceType<typeof EmailQueueCreateManyGuestInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<EmailQueueWhereUniqueInput, 'id'>>;
-}
-export declare class EmailQueueCreateOrConnectWithoutGuestInput {
-    where: Prisma.AtLeast<EmailQueueWhereUniqueInput, 'id'>;
-    create: InstanceType<typeof EmailQueueCreateWithoutGuestInput>;
-}
-export declare class EmailQueueCreateWithoutGuestInput {
-    createdAt?: Date | string;
-    status?: keyof typeof QueueStatus;
-}
-export declare class EmailQueueCreateInput {
-    createdAt?: Date | string;
-    status?: keyof typeof QueueStatus;
-    guest: InstanceType<typeof GuestCreateNestedOneWithoutEmailQueueInput>;
-}
-export declare class EmailQueueGroupByArgs {
-    where?: InstanceType<typeof EmailQueueWhereInput>;
-    orderBy?: Array<EmailQueueOrderByWithAggregationInput>;
-    by: Array<keyof typeof EmailQueueScalarFieldEnum>;
-    having?: InstanceType<typeof EmailQueueScalarWhereWithAggregatesInput>;
-    take?: number;
-    skip?: number;
-    _count?: InstanceType<typeof EmailQueueCountAggregateInput>;
-    _avg?: InstanceType<typeof EmailQueueAvgAggregateInput>;
-    _sum?: InstanceType<typeof EmailQueueSumAggregateInput>;
-    _min?: InstanceType<typeof EmailQueueMinAggregateInput>;
-    _max?: InstanceType<typeof EmailQueueMaxAggregateInput>;
-}
-export declare class EmailQueueGroupBy {
-    id: number;
-    createdAt: Date | string;
-    status: keyof typeof QueueStatus;
-    guestId: string;
-    _count?: InstanceType<typeof EmailQueueCountAggregate>;
-    _avg?: InstanceType<typeof EmailQueueAvgAggregate>;
-    _sum?: InstanceType<typeof EmailQueueSumAggregate>;
-    _min?: InstanceType<typeof EmailQueueMinAggregate>;
-    _max?: InstanceType<typeof EmailQueueMaxAggregate>;
-}
-export declare class EmailQueueListRelationFilter {
-    every?: InstanceType<typeof EmailQueueWhereInput>;
-    some?: InstanceType<typeof EmailQueueWhereInput>;
-    none?: InstanceType<typeof EmailQueueWhereInput>;
-}
-export declare class EmailQueueMaxAggregateInput {
-    id?: true;
-    createdAt?: true;
-    status?: true;
-    guestId?: true;
-}
-export declare class EmailQueueMaxAggregate {
-    id?: number;
-    createdAt?: Date | string;
-    status?: keyof typeof QueueStatus;
-    guestId?: string;
-}
-export declare class EmailQueueMaxOrderByAggregateInput {
-    id?: keyof typeof SortOrder;
-    createdAt?: keyof typeof SortOrder;
-    status?: keyof typeof SortOrder;
-    guestId?: keyof typeof SortOrder;
-}
-export declare class EmailQueueMinAggregateInput {
-    id?: true;
-    createdAt?: true;
-    status?: true;
-    guestId?: true;
-}
-export declare class EmailQueueMinAggregate {
-    id?: number;
-    createdAt?: Date | string;
-    status?: keyof typeof QueueStatus;
-    guestId?: string;
-}
-export declare class EmailQueueMinOrderByAggregateInput {
-    id?: keyof typeof SortOrder;
-    createdAt?: keyof typeof SortOrder;
-    status?: keyof typeof SortOrder;
-    guestId?: keyof typeof SortOrder;
-}
-export declare class EmailQueueOrderByRelationAggregateInput {
-    _count?: keyof typeof SortOrder;
-}
-export declare class EmailQueueOrderByWithAggregationInput {
-    id?: keyof typeof SortOrder;
-    createdAt?: keyof typeof SortOrder;
-    status?: keyof typeof SortOrder;
-    guestId?: keyof typeof SortOrder;
-    _count?: InstanceType<typeof EmailQueueCountOrderByAggregateInput>;
-    _avg?: InstanceType<typeof EmailQueueAvgOrderByAggregateInput>;
-    _max?: InstanceType<typeof EmailQueueMaxOrderByAggregateInput>;
-    _min?: InstanceType<typeof EmailQueueMinOrderByAggregateInput>;
-    _sum?: InstanceType<typeof EmailQueueSumOrderByAggregateInput>;
-}
-export declare class EmailQueueOrderByWithRelationInput {
-    id?: keyof typeof SortOrder;
-    createdAt?: keyof typeof SortOrder;
-    status?: keyof typeof SortOrder;
-    guestId?: keyof typeof SortOrder;
-    guest?: InstanceType<typeof GuestOrderByWithRelationInput>;
-}
-export declare class EmailQueueScalarWhereWithAggregatesInput {
-    AND?: Array<EmailQueueScalarWhereWithAggregatesInput>;
-    OR?: Array<EmailQueueScalarWhereWithAggregatesInput>;
-    NOT?: Array<EmailQueueScalarWhereWithAggregatesInput>;
-    id?: InstanceType<typeof IntWithAggregatesFilter>;
-    createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
-    status?: InstanceType<typeof EnumQueueStatusWithAggregatesFilter>;
-    guestId?: InstanceType<typeof StringWithAggregatesFilter>;
-}
-export declare class EmailQueueScalarWhereInput {
-    AND?: Array<EmailQueueScalarWhereInput>;
-    OR?: Array<EmailQueueScalarWhereInput>;
-    NOT?: Array<EmailQueueScalarWhereInput>;
-    id?: InstanceType<typeof IntFilter>;
-    createdAt?: InstanceType<typeof DateTimeFilter>;
-    status?: InstanceType<typeof EnumQueueStatusFilter>;
-    guestId?: InstanceType<typeof StringFilter>;
-}
-export declare class EmailQueueSumAggregateInput {
-    id?: true;
-}
-export declare class EmailQueueSumAggregate {
-    id?: number;
-}
-export declare class EmailQueueSumOrderByAggregateInput {
-    id?: keyof typeof SortOrder;
-}
-export declare class EmailQueueUncheckedCreateNestedManyWithoutGuestInput {
-    create?: Array<EmailQueueCreateWithoutGuestInput>;
-    connectOrCreate?: Array<EmailQueueCreateOrConnectWithoutGuestInput>;
-    createMany?: InstanceType<typeof EmailQueueCreateManyGuestInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<EmailQueueWhereUniqueInput, 'id'>>;
-}
-export declare class EmailQueueUncheckedCreateWithoutGuestInput {
-    id?: number;
-    createdAt?: Date | string;
-    status?: keyof typeof QueueStatus;
-}
-export declare class EmailQueueUncheckedCreateInput {
-    id?: number;
-    createdAt?: Date | string;
-    status?: keyof typeof QueueStatus;
-    guestId: string;
-}
-export declare class EmailQueueUncheckedUpdateManyWithoutGuestNestedInput {
-    create?: Array<EmailQueueCreateWithoutGuestInput>;
-    connectOrCreate?: Array<EmailQueueCreateOrConnectWithoutGuestInput>;
-    upsert?: Array<EmailQueueUpsertWithWhereUniqueWithoutGuestInput>;
-    createMany?: InstanceType<typeof EmailQueueCreateManyGuestInputEnvelope>;
-    set?: Array<Prisma.AtLeast<EmailQueueWhereUniqueInput, 'id'>>;
-    disconnect?: Array<Prisma.AtLeast<EmailQueueWhereUniqueInput, 'id'>>;
-    delete?: Array<Prisma.AtLeast<EmailQueueWhereUniqueInput, 'id'>>;
-    connect?: Array<Prisma.AtLeast<EmailQueueWhereUniqueInput, 'id'>>;
-    update?: Array<EmailQueueUpdateWithWhereUniqueWithoutGuestInput>;
-    updateMany?: Array<EmailQueueUpdateManyWithWhereWithoutGuestInput>;
-    deleteMany?: Array<EmailQueueScalarWhereInput>;
-}
-export declare class EmailQueueUncheckedUpdateManyWithoutGuestInput {
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
-}
-export declare class EmailQueueUncheckedUpdateManyInput {
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
-    guestId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-}
-export declare class EmailQueueUncheckedUpdateWithoutGuestInput {
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
-}
-export declare class EmailQueueUncheckedUpdateInput {
-    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
-    guestId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-}
-export declare class EmailQueueUpdateManyMutationInput {
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
-}
-export declare class EmailQueueUpdateManyWithWhereWithoutGuestInput {
-    where: InstanceType<typeof EmailQueueScalarWhereInput>;
-    data: InstanceType<typeof EmailQueueUpdateManyMutationInput>;
-}
-export declare class EmailQueueUpdateManyWithoutGuestNestedInput {
-    create?: Array<EmailQueueCreateWithoutGuestInput>;
-    connectOrCreate?: Array<EmailQueueCreateOrConnectWithoutGuestInput>;
-    upsert?: Array<EmailQueueUpsertWithWhereUniqueWithoutGuestInput>;
-    createMany?: InstanceType<typeof EmailQueueCreateManyGuestInputEnvelope>;
-    set?: Array<Prisma.AtLeast<EmailQueueWhereUniqueInput, 'id'>>;
-    disconnect?: Array<Prisma.AtLeast<EmailQueueWhereUniqueInput, 'id'>>;
-    delete?: Array<Prisma.AtLeast<EmailQueueWhereUniqueInput, 'id'>>;
-    connect?: Array<Prisma.AtLeast<EmailQueueWhereUniqueInput, 'id'>>;
-    update?: Array<EmailQueueUpdateWithWhereUniqueWithoutGuestInput>;
-    updateMany?: Array<EmailQueueUpdateManyWithWhereWithoutGuestInput>;
-    deleteMany?: Array<EmailQueueScalarWhereInput>;
-}
-export declare class EmailQueueUpdateWithWhereUniqueWithoutGuestInput {
-    where: Prisma.AtLeast<EmailQueueWhereUniqueInput, 'id'>;
-    data: InstanceType<typeof EmailQueueUpdateWithoutGuestInput>;
-}
-export declare class EmailQueueUpdateWithoutGuestInput {
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
-}
-export declare class EmailQueueUpdateInput {
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
-    guest?: InstanceType<typeof GuestUpdateOneRequiredWithoutEmailQueueNestedInput>;
-}
-export declare class EmailQueueUpsertWithWhereUniqueWithoutGuestInput {
-    where: Prisma.AtLeast<EmailQueueWhereUniqueInput, 'id'>;
-    update: InstanceType<typeof EmailQueueUpdateWithoutGuestInput>;
-    create: InstanceType<typeof EmailQueueCreateWithoutGuestInput>;
-}
-export declare class EmailQueueWhereUniqueInput {
-    id?: number;
-    AND?: Array<EmailQueueWhereInput>;
-    OR?: Array<EmailQueueWhereInput>;
-    NOT?: Array<EmailQueueWhereInput>;
-    createdAt?: InstanceType<typeof DateTimeFilter>;
-    status?: InstanceType<typeof EnumQueueStatusFilter>;
-    guestId?: InstanceType<typeof StringFilter>;
-    guest?: InstanceType<typeof GuestRelationFilter>;
-}
-export declare class EmailQueueWhereInput {
-    AND?: Array<EmailQueueWhereInput>;
-    OR?: Array<EmailQueueWhereInput>;
-    NOT?: Array<EmailQueueWhereInput>;
-    id?: InstanceType<typeof IntFilter>;
-    createdAt?: InstanceType<typeof DateTimeFilter>;
-    status?: InstanceType<typeof EnumQueueStatusFilter>;
-    guestId?: InstanceType<typeof StringFilter>;
-    guest?: InstanceType<typeof GuestRelationFilter>;
-}
-export declare class EmailQueue {
-    id: number;
-    createdAt: Date;
-    status: keyof typeof QueueStatus;
-    guestId: string;
-    guest?: InstanceType<typeof Guest>;
-}
-export declare class FindFirstEmailQueueOrThrowArgs {
-    where?: InstanceType<typeof EmailQueueWhereInput>;
-    orderBy?: Array<EmailQueueOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<EmailQueueWhereUniqueInput, 'id'>;
-    take?: number;
-    skip?: number;
-    distinct?: Array<keyof typeof EmailQueueScalarFieldEnum>;
-}
-export declare class FindFirstEmailQueueArgs {
-    where?: InstanceType<typeof EmailQueueWhereInput>;
-    orderBy?: Array<EmailQueueOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<EmailQueueWhereUniqueInput, 'id'>;
-    take?: number;
-    skip?: number;
-    distinct?: Array<keyof typeof EmailQueueScalarFieldEnum>;
-}
-export declare class FindManyEmailQueueArgs {
-    where?: InstanceType<typeof EmailQueueWhereInput>;
-    orderBy?: Array<EmailQueueOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<EmailQueueWhereUniqueInput, 'id'>;
-    take?: number;
-    skip?: number;
-    distinct?: Array<keyof typeof EmailQueueScalarFieldEnum>;
-}
-export declare class FindUniqueEmailQueueOrThrowArgs {
-    where: Prisma.AtLeast<EmailQueueWhereUniqueInput, 'id'>;
-}
-export declare class FindUniqueEmailQueueArgs {
-    where: Prisma.AtLeast<EmailQueueWhereUniqueInput, 'id'>;
-}
-export declare class UpdateManyEmailQueueArgs {
-    data: InstanceType<typeof EmailQueueUpdateManyMutationInput>;
-    where?: InstanceType<typeof EmailQueueWhereInput>;
-}
-export declare class UpdateOneEmailQueueArgs {
-    data: InstanceType<typeof EmailQueueUpdateInput>;
-    where: Prisma.AtLeast<EmailQueueWhereUniqueInput, 'id'>;
-}
-export declare class UpsertOneEmailQueueArgs {
-    where: Prisma.AtLeast<EmailQueueWhereUniqueInput, 'id'>;
-    create: InstanceType<typeof EmailQueueCreateInput>;
-    update: InstanceType<typeof EmailQueueUpdateInput>;
 }
 export declare class AggregateGuest {
     _count?: InstanceType<typeof GuestCountAggregate>;
@@ -585,8 +211,7 @@ export declare class GuestCountOrderByAggregateInput {
 }
 export declare class GuestCount {
     groupMembers?: number;
-    emailQueue?: number;
-    whatsappQueue?: number;
+    whatsappStatuses?: number;
 }
 export declare class GuestCreateManyGroupMemberOfInputEnvelope {
     data: Array<GuestCreateManyGroupMemberOfInput>;
@@ -633,11 +258,6 @@ export declare class GuestCreateNestedManyWithoutGroupMemberOfInput {
     createMany?: InstanceType<typeof GuestCreateManyGroupMemberOfInputEnvelope>;
     connect?: Array<Prisma.AtLeast<GuestWhereUniqueInput, 'id'>>;
 }
-export declare class GuestCreateNestedOneWithoutEmailQueueInput {
-    create?: InstanceType<typeof GuestCreateWithoutEmailQueueInput>;
-    connectOrCreate?: InstanceType<typeof GuestCreateOrConnectWithoutEmailQueueInput>;
-    connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
-}
 export declare class GuestCreateNestedOneWithoutGroupMembersInput {
     create?: InstanceType<typeof GuestCreateWithoutGroupMembersInput>;
     connectOrCreate?: InstanceType<typeof GuestCreateOrConnectWithoutGroupMembersInput>;
@@ -653,14 +273,10 @@ export declare class GuestCreateNestedOneWithoutQrcodeInput {
     connectOrCreate?: InstanceType<typeof GuestCreateOrConnectWithoutQrcodeInput>;
     connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
 }
-export declare class GuestCreateNestedOneWithoutWhatsappQueueInput {
-    create?: InstanceType<typeof GuestCreateWithoutWhatsappQueueInput>;
-    connectOrCreate?: InstanceType<typeof GuestCreateOrConnectWithoutWhatsappQueueInput>;
+export declare class GuestCreateNestedOneWithoutWhatsappStatusesInput {
+    create?: InstanceType<typeof GuestCreateWithoutWhatsappStatusesInput>;
+    connectOrCreate?: InstanceType<typeof GuestCreateOrConnectWithoutWhatsappStatusesInput>;
     connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
-}
-export declare class GuestCreateOrConnectWithoutEmailQueueInput {
-    where: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
-    create: InstanceType<typeof GuestCreateWithoutEmailQueueInput>;
 }
 export declare class GuestCreateOrConnectWithoutGroupMemberOfInput {
     where: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
@@ -678,31 +294,9 @@ export declare class GuestCreateOrConnectWithoutQrcodeInput {
     where: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
     create: InstanceType<typeof GuestCreateWithoutQrcodeInput>;
 }
-export declare class GuestCreateOrConnectWithoutWhatsappQueueInput {
+export declare class GuestCreateOrConnectWithoutWhatsappStatusesInput {
     where: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
-    create: InstanceType<typeof GuestCreateWithoutWhatsappQueueInput>;
-}
-export declare class GuestCreateWithoutEmailQueueInput {
-    id?: string;
-    source?: string;
-    invitationName: string;
-    contactList?: string;
-    whatsapp?: number;
-    category?: string;
-    class?: string;
-    seat?: string;
-    studio?: string;
-    showTime?: string;
-    rejectionReason?: string;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string;
-    confirmationStatus?: keyof typeof ConfirmationStatus;
-    groupMemberOf?: InstanceType<typeof GuestCreateNestedOneWithoutGroupMembersInput>;
-    groupMembers?: InstanceType<typeof GuestCreateNestedManyWithoutGroupMemberOfInput>;
-    qrcode?: InstanceType<typeof QrCodeCreateNestedOneWithoutGuestInput>;
-    invitationImage?: InstanceType<typeof InvitationImageCreateNestedOneWithoutGuestInput>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueCreateNestedManyWithoutGuestInput>;
+    create: InstanceType<typeof GuestCreateWithoutWhatsappStatusesInput>;
 }
 export declare class GuestCreateWithoutGroupMemberOfInput {
     id?: string;
@@ -723,8 +317,7 @@ export declare class GuestCreateWithoutGroupMemberOfInput {
     groupMembers?: InstanceType<typeof GuestCreateNestedManyWithoutGroupMemberOfInput>;
     qrcode?: InstanceType<typeof QrCodeCreateNestedOneWithoutGuestInput>;
     invitationImage?: InstanceType<typeof InvitationImageCreateNestedOneWithoutGuestInput>;
-    emailQueue?: InstanceType<typeof EmailQueueCreateNestedManyWithoutGuestInput>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueCreateNestedManyWithoutGuestInput>;
+    whatsappStatuses?: InstanceType<typeof WhatsappStatusCreateNestedManyWithoutGuestInput>;
 }
 export declare class GuestCreateWithoutGroupMembersInput {
     id?: string;
@@ -745,8 +338,7 @@ export declare class GuestCreateWithoutGroupMembersInput {
     groupMemberOf?: InstanceType<typeof GuestCreateNestedOneWithoutGroupMembersInput>;
     qrcode?: InstanceType<typeof QrCodeCreateNestedOneWithoutGuestInput>;
     invitationImage?: InstanceType<typeof InvitationImageCreateNestedOneWithoutGuestInput>;
-    emailQueue?: InstanceType<typeof EmailQueueCreateNestedManyWithoutGuestInput>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueCreateNestedManyWithoutGuestInput>;
+    whatsappStatuses?: InstanceType<typeof WhatsappStatusCreateNestedManyWithoutGuestInput>;
 }
 export declare class GuestCreateWithoutInvitationImageInput {
     id?: string;
@@ -767,8 +359,7 @@ export declare class GuestCreateWithoutInvitationImageInput {
     groupMemberOf?: InstanceType<typeof GuestCreateNestedOneWithoutGroupMembersInput>;
     groupMembers?: InstanceType<typeof GuestCreateNestedManyWithoutGroupMemberOfInput>;
     qrcode?: InstanceType<typeof QrCodeCreateNestedOneWithoutGuestInput>;
-    emailQueue?: InstanceType<typeof EmailQueueCreateNestedManyWithoutGuestInput>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueCreateNestedManyWithoutGuestInput>;
+    whatsappStatuses?: InstanceType<typeof WhatsappStatusCreateNestedManyWithoutGuestInput>;
 }
 export declare class GuestCreateWithoutQrcodeInput {
     id?: string;
@@ -789,10 +380,9 @@ export declare class GuestCreateWithoutQrcodeInput {
     groupMemberOf?: InstanceType<typeof GuestCreateNestedOneWithoutGroupMembersInput>;
     groupMembers?: InstanceType<typeof GuestCreateNestedManyWithoutGroupMemberOfInput>;
     invitationImage?: InstanceType<typeof InvitationImageCreateNestedOneWithoutGuestInput>;
-    emailQueue?: InstanceType<typeof EmailQueueCreateNestedManyWithoutGuestInput>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueCreateNestedManyWithoutGuestInput>;
+    whatsappStatuses?: InstanceType<typeof WhatsappStatusCreateNestedManyWithoutGuestInput>;
 }
-export declare class GuestCreateWithoutWhatsappQueueInput {
+export declare class GuestCreateWithoutWhatsappStatusesInput {
     id?: string;
     source?: string;
     invitationName: string;
@@ -812,7 +402,6 @@ export declare class GuestCreateWithoutWhatsappQueueInput {
     groupMembers?: InstanceType<typeof GuestCreateNestedManyWithoutGroupMemberOfInput>;
     qrcode?: InstanceType<typeof QrCodeCreateNestedOneWithoutGuestInput>;
     invitationImage?: InstanceType<typeof InvitationImageCreateNestedOneWithoutGuestInput>;
-    emailQueue?: InstanceType<typeof EmailQueueCreateNestedManyWithoutGuestInput>;
 }
 export declare class GuestCreateInput {
     id?: string;
@@ -834,8 +423,7 @@ export declare class GuestCreateInput {
     groupMembers?: InstanceType<typeof GuestCreateNestedManyWithoutGroupMemberOfInput>;
     qrcode?: InstanceType<typeof QrCodeCreateNestedOneWithoutGuestInput>;
     invitationImage?: InstanceType<typeof InvitationImageCreateNestedOneWithoutGuestInput>;
-    emailQueue?: InstanceType<typeof EmailQueueCreateNestedManyWithoutGuestInput>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueCreateNestedManyWithoutGuestInput>;
+    whatsappStatuses?: InstanceType<typeof WhatsappStatusCreateNestedManyWithoutGuestInput>;
 }
 export declare class GuestGroupByArgs {
     where?: InstanceType<typeof GuestWhereInput>;
@@ -1037,8 +625,7 @@ export declare class GuestOrderByWithRelationInput {
     groupMembers?: InstanceType<typeof GuestOrderByRelationAggregateInput>;
     qrcode?: InstanceType<typeof QrCodeOrderByWithRelationInput>;
     invitationImage?: InstanceType<typeof InvitationImageOrderByWithRelationInput>;
-    emailQueue?: InstanceType<typeof EmailQueueOrderByRelationAggregateInput>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueOrderByRelationAggregateInput>;
+    whatsappStatuses?: InstanceType<typeof WhatsappStatusOrderByRelationAggregateInput>;
 }
 export declare class GuestRelationFilter {
     is?: InstanceType<typeof GuestWhereInput>;
@@ -1101,28 +688,6 @@ export declare class GuestUncheckedCreateNestedManyWithoutGroupMemberOfInput {
     createMany?: InstanceType<typeof GuestCreateManyGroupMemberOfInputEnvelope>;
     connect?: Array<Prisma.AtLeast<GuestWhereUniqueInput, 'id'>>;
 }
-export declare class GuestUncheckedCreateWithoutEmailQueueInput {
-    id?: string;
-    source?: string;
-    invitationName: string;
-    contactList?: string;
-    whatsapp?: number;
-    category?: string;
-    class?: string;
-    seat?: string;
-    studio?: string;
-    showTime?: string;
-    rejectionReason?: string;
-    createdAt?: Date | string;
-    updatedAt?: Date | string;
-    deletedAt?: Date | string;
-    groupMemberOfId?: string;
-    confirmationStatus?: keyof typeof ConfirmationStatus;
-    groupMembers?: InstanceType<typeof GuestUncheckedCreateNestedManyWithoutGroupMemberOfInput>;
-    qrcode?: InstanceType<typeof QrCodeUncheckedCreateNestedOneWithoutGuestInput>;
-    invitationImage?: InstanceType<typeof InvitationImageUncheckedCreateNestedOneWithoutGuestInput>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueUncheckedCreateNestedManyWithoutGuestInput>;
-}
 export declare class GuestUncheckedCreateWithoutGroupMemberOfInput {
     id?: string;
     source?: string;
@@ -1142,8 +707,7 @@ export declare class GuestUncheckedCreateWithoutGroupMemberOfInput {
     groupMembers?: InstanceType<typeof GuestUncheckedCreateNestedManyWithoutGroupMemberOfInput>;
     qrcode?: InstanceType<typeof QrCodeUncheckedCreateNestedOneWithoutGuestInput>;
     invitationImage?: InstanceType<typeof InvitationImageUncheckedCreateNestedOneWithoutGuestInput>;
-    emailQueue?: InstanceType<typeof EmailQueueUncheckedCreateNestedManyWithoutGuestInput>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueUncheckedCreateNestedManyWithoutGuestInput>;
+    whatsappStatuses?: InstanceType<typeof WhatsappStatusUncheckedCreateNestedManyWithoutGuestInput>;
 }
 export declare class GuestUncheckedCreateWithoutGroupMembersInput {
     id?: string;
@@ -1164,8 +728,7 @@ export declare class GuestUncheckedCreateWithoutGroupMembersInput {
     confirmationStatus?: keyof typeof ConfirmationStatus;
     qrcode?: InstanceType<typeof QrCodeUncheckedCreateNestedOneWithoutGuestInput>;
     invitationImage?: InstanceType<typeof InvitationImageUncheckedCreateNestedOneWithoutGuestInput>;
-    emailQueue?: InstanceType<typeof EmailQueueUncheckedCreateNestedManyWithoutGuestInput>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueUncheckedCreateNestedManyWithoutGuestInput>;
+    whatsappStatuses?: InstanceType<typeof WhatsappStatusUncheckedCreateNestedManyWithoutGuestInput>;
 }
 export declare class GuestUncheckedCreateWithoutInvitationImageInput {
     id?: string;
@@ -1186,8 +749,7 @@ export declare class GuestUncheckedCreateWithoutInvitationImageInput {
     confirmationStatus?: keyof typeof ConfirmationStatus;
     groupMembers?: InstanceType<typeof GuestUncheckedCreateNestedManyWithoutGroupMemberOfInput>;
     qrcode?: InstanceType<typeof QrCodeUncheckedCreateNestedOneWithoutGuestInput>;
-    emailQueue?: InstanceType<typeof EmailQueueUncheckedCreateNestedManyWithoutGuestInput>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueUncheckedCreateNestedManyWithoutGuestInput>;
+    whatsappStatuses?: InstanceType<typeof WhatsappStatusUncheckedCreateNestedManyWithoutGuestInput>;
 }
 export declare class GuestUncheckedCreateWithoutQrcodeInput {
     id?: string;
@@ -1208,10 +770,9 @@ export declare class GuestUncheckedCreateWithoutQrcodeInput {
     confirmationStatus?: keyof typeof ConfirmationStatus;
     groupMembers?: InstanceType<typeof GuestUncheckedCreateNestedManyWithoutGroupMemberOfInput>;
     invitationImage?: InstanceType<typeof InvitationImageUncheckedCreateNestedOneWithoutGuestInput>;
-    emailQueue?: InstanceType<typeof EmailQueueUncheckedCreateNestedManyWithoutGuestInput>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueUncheckedCreateNestedManyWithoutGuestInput>;
+    whatsappStatuses?: InstanceType<typeof WhatsappStatusUncheckedCreateNestedManyWithoutGuestInput>;
 }
-export declare class GuestUncheckedCreateWithoutWhatsappQueueInput {
+export declare class GuestUncheckedCreateWithoutWhatsappStatusesInput {
     id?: string;
     source?: string;
     invitationName: string;
@@ -1231,7 +792,6 @@ export declare class GuestUncheckedCreateWithoutWhatsappQueueInput {
     groupMembers?: InstanceType<typeof GuestUncheckedCreateNestedManyWithoutGroupMemberOfInput>;
     qrcode?: InstanceType<typeof QrCodeUncheckedCreateNestedOneWithoutGuestInput>;
     invitationImage?: InstanceType<typeof InvitationImageUncheckedCreateNestedOneWithoutGuestInput>;
-    emailQueue?: InstanceType<typeof EmailQueueUncheckedCreateNestedManyWithoutGuestInput>;
 }
 export declare class GuestUncheckedCreateInput {
     id?: string;
@@ -1253,8 +813,7 @@ export declare class GuestUncheckedCreateInput {
     groupMembers?: InstanceType<typeof GuestUncheckedCreateNestedManyWithoutGroupMemberOfInput>;
     qrcode?: InstanceType<typeof QrCodeUncheckedCreateNestedOneWithoutGuestInput>;
     invitationImage?: InstanceType<typeof InvitationImageUncheckedCreateNestedOneWithoutGuestInput>;
-    emailQueue?: InstanceType<typeof EmailQueueUncheckedCreateNestedManyWithoutGuestInput>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueUncheckedCreateNestedManyWithoutGuestInput>;
+    whatsappStatuses?: InstanceType<typeof WhatsappStatusUncheckedCreateNestedManyWithoutGuestInput>;
 }
 export declare class GuestUncheckedUpdateManyWithoutGroupMemberOfNestedInput {
     create?: Array<GuestCreateWithoutGroupMemberOfInput>;
@@ -1304,28 +863,6 @@ export declare class GuestUncheckedUpdateManyInput {
     groupMemberOfId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
 }
-export declare class GuestUncheckedUpdateWithoutEmailQueueInput {
-    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    invitationName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
-    category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    studio?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    showTime?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    updatedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    groupMemberOfId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
-    groupMembers?: InstanceType<typeof GuestUncheckedUpdateManyWithoutGroupMemberOfNestedInput>;
-    qrcode?: InstanceType<typeof QrCodeUncheckedUpdateOneWithoutGuestNestedInput>;
-    invitationImage?: InstanceType<typeof InvitationImageUncheckedUpdateOneWithoutGuestNestedInput>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueUncheckedUpdateManyWithoutGuestNestedInput>;
-}
 export declare class GuestUncheckedUpdateWithoutGroupMemberOfInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
@@ -1345,8 +882,7 @@ export declare class GuestUncheckedUpdateWithoutGroupMemberOfInput {
     groupMembers?: InstanceType<typeof GuestUncheckedUpdateManyWithoutGroupMemberOfNestedInput>;
     qrcode?: InstanceType<typeof QrCodeUncheckedUpdateOneWithoutGuestNestedInput>;
     invitationImage?: InstanceType<typeof InvitationImageUncheckedUpdateOneWithoutGuestNestedInput>;
-    emailQueue?: InstanceType<typeof EmailQueueUncheckedUpdateManyWithoutGuestNestedInput>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueUncheckedUpdateManyWithoutGuestNestedInput>;
+    whatsappStatuses?: InstanceType<typeof WhatsappStatusUncheckedUpdateManyWithoutGuestNestedInput>;
 }
 export declare class GuestUncheckedUpdateWithoutGroupMembersInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -1367,8 +903,7 @@ export declare class GuestUncheckedUpdateWithoutGroupMembersInput {
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
     qrcode?: InstanceType<typeof QrCodeUncheckedUpdateOneWithoutGuestNestedInput>;
     invitationImage?: InstanceType<typeof InvitationImageUncheckedUpdateOneWithoutGuestNestedInput>;
-    emailQueue?: InstanceType<typeof EmailQueueUncheckedUpdateManyWithoutGuestNestedInput>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueUncheckedUpdateManyWithoutGuestNestedInput>;
+    whatsappStatuses?: InstanceType<typeof WhatsappStatusUncheckedUpdateManyWithoutGuestNestedInput>;
 }
 export declare class GuestUncheckedUpdateWithoutInvitationImageInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -1389,8 +924,7 @@ export declare class GuestUncheckedUpdateWithoutInvitationImageInput {
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
     groupMembers?: InstanceType<typeof GuestUncheckedUpdateManyWithoutGroupMemberOfNestedInput>;
     qrcode?: InstanceType<typeof QrCodeUncheckedUpdateOneWithoutGuestNestedInput>;
-    emailQueue?: InstanceType<typeof EmailQueueUncheckedUpdateManyWithoutGuestNestedInput>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueUncheckedUpdateManyWithoutGuestNestedInput>;
+    whatsappStatuses?: InstanceType<typeof WhatsappStatusUncheckedUpdateManyWithoutGuestNestedInput>;
 }
 export declare class GuestUncheckedUpdateWithoutQrcodeInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -1411,10 +945,9 @@ export declare class GuestUncheckedUpdateWithoutQrcodeInput {
     confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
     groupMembers?: InstanceType<typeof GuestUncheckedUpdateManyWithoutGroupMemberOfNestedInput>;
     invitationImage?: InstanceType<typeof InvitationImageUncheckedUpdateOneWithoutGuestNestedInput>;
-    emailQueue?: InstanceType<typeof EmailQueueUncheckedUpdateManyWithoutGuestNestedInput>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueUncheckedUpdateManyWithoutGuestNestedInput>;
+    whatsappStatuses?: InstanceType<typeof WhatsappStatusUncheckedUpdateManyWithoutGuestNestedInput>;
 }
-export declare class GuestUncheckedUpdateWithoutWhatsappQueueInput {
+export declare class GuestUncheckedUpdateWithoutWhatsappStatusesInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     invitationName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -1434,7 +967,6 @@ export declare class GuestUncheckedUpdateWithoutWhatsappQueueInput {
     groupMembers?: InstanceType<typeof GuestUncheckedUpdateManyWithoutGroupMemberOfNestedInput>;
     qrcode?: InstanceType<typeof QrCodeUncheckedUpdateOneWithoutGuestNestedInput>;
     invitationImage?: InstanceType<typeof InvitationImageUncheckedUpdateOneWithoutGuestNestedInput>;
-    emailQueue?: InstanceType<typeof EmailQueueUncheckedUpdateManyWithoutGuestNestedInput>;
 }
 export declare class GuestUncheckedUpdateInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -1456,8 +988,7 @@ export declare class GuestUncheckedUpdateInput {
     groupMembers?: InstanceType<typeof GuestUncheckedUpdateManyWithoutGroupMemberOfNestedInput>;
     qrcode?: InstanceType<typeof QrCodeUncheckedUpdateOneWithoutGuestNestedInput>;
     invitationImage?: InstanceType<typeof InvitationImageUncheckedUpdateOneWithoutGuestNestedInput>;
-    emailQueue?: InstanceType<typeof EmailQueueUncheckedUpdateManyWithoutGuestNestedInput>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueUncheckedUpdateManyWithoutGuestNestedInput>;
+    whatsappStatuses?: InstanceType<typeof WhatsappStatusUncheckedUpdateManyWithoutGuestNestedInput>;
 }
 export declare class GuestUpdateManyMutationInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -1493,13 +1024,6 @@ export declare class GuestUpdateManyWithoutGroupMemberOfNestedInput {
     updateMany?: Array<GuestUpdateManyWithWhereWithoutGroupMemberOfInput>;
     deleteMany?: Array<GuestScalarWhereInput>;
 }
-export declare class GuestUpdateOneRequiredWithoutEmailQueueNestedInput {
-    create?: InstanceType<typeof GuestCreateWithoutEmailQueueInput>;
-    connectOrCreate?: InstanceType<typeof GuestCreateOrConnectWithoutEmailQueueInput>;
-    upsert?: InstanceType<typeof GuestUpsertWithoutEmailQueueInput>;
-    connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
-    update?: InstanceType<typeof GuestUpdateToOneWithWhereWithoutEmailQueueInput>;
-}
 export declare class GuestUpdateOneRequiredWithoutInvitationImageNestedInput {
     create?: InstanceType<typeof GuestCreateWithoutInvitationImageInput>;
     connectOrCreate?: InstanceType<typeof GuestCreateOrConnectWithoutInvitationImageInput>;
@@ -1514,12 +1038,12 @@ export declare class GuestUpdateOneRequiredWithoutQrcodeNestedInput {
     connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
     update?: InstanceType<typeof GuestUpdateToOneWithWhereWithoutQrcodeInput>;
 }
-export declare class GuestUpdateOneRequiredWithoutWhatsappQueueNestedInput {
-    create?: InstanceType<typeof GuestCreateWithoutWhatsappQueueInput>;
-    connectOrCreate?: InstanceType<typeof GuestCreateOrConnectWithoutWhatsappQueueInput>;
-    upsert?: InstanceType<typeof GuestUpsertWithoutWhatsappQueueInput>;
+export declare class GuestUpdateOneRequiredWithoutWhatsappStatusesNestedInput {
+    create?: InstanceType<typeof GuestCreateWithoutWhatsappStatusesInput>;
+    connectOrCreate?: InstanceType<typeof GuestCreateOrConnectWithoutWhatsappStatusesInput>;
+    upsert?: InstanceType<typeof GuestUpsertWithoutWhatsappStatusesInput>;
     connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
-    update?: InstanceType<typeof GuestUpdateToOneWithWhereWithoutWhatsappQueueInput>;
+    update?: InstanceType<typeof GuestUpdateToOneWithWhereWithoutWhatsappStatusesInput>;
 }
 export declare class GuestUpdateOneWithoutGroupMembersNestedInput {
     create?: InstanceType<typeof GuestCreateWithoutGroupMembersInput>;
@@ -1529,10 +1053,6 @@ export declare class GuestUpdateOneWithoutGroupMembersNestedInput {
     delete?: InstanceType<typeof GuestWhereInput>;
     connect?: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
     update?: InstanceType<typeof GuestUpdateToOneWithWhereWithoutGroupMembersInput>;
-}
-export declare class GuestUpdateToOneWithWhereWithoutEmailQueueInput {
-    where?: InstanceType<typeof GuestWhereInput>;
-    data: InstanceType<typeof GuestUpdateWithoutEmailQueueInput>;
 }
 export declare class GuestUpdateToOneWithWhereWithoutGroupMembersInput {
     where?: InstanceType<typeof GuestWhereInput>;
@@ -1546,35 +1066,13 @@ export declare class GuestUpdateToOneWithWhereWithoutQrcodeInput {
     where?: InstanceType<typeof GuestWhereInput>;
     data: InstanceType<typeof GuestUpdateWithoutQrcodeInput>;
 }
-export declare class GuestUpdateToOneWithWhereWithoutWhatsappQueueInput {
+export declare class GuestUpdateToOneWithWhereWithoutWhatsappStatusesInput {
     where?: InstanceType<typeof GuestWhereInput>;
-    data: InstanceType<typeof GuestUpdateWithoutWhatsappQueueInput>;
+    data: InstanceType<typeof GuestUpdateWithoutWhatsappStatusesInput>;
 }
 export declare class GuestUpdateWithWhereUniqueWithoutGroupMemberOfInput {
     where: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
     data: InstanceType<typeof GuestUpdateWithoutGroupMemberOfInput>;
-}
-export declare class GuestUpdateWithoutEmailQueueInput {
-    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    invitationName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    contactList?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    whatsapp?: InstanceType<typeof NullableFloatFieldUpdateOperationsInput>;
-    category?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    class?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    seat?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    studio?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    showTime?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    rejectionReason?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    updatedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    deletedAt?: InstanceType<typeof NullableDateTimeFieldUpdateOperationsInput>;
-    confirmationStatus?: InstanceType<typeof NullableEnumConfirmationStatusFieldUpdateOperationsInput>;
-    groupMemberOf?: InstanceType<typeof GuestUpdateOneWithoutGroupMembersNestedInput>;
-    groupMembers?: InstanceType<typeof GuestUpdateManyWithoutGroupMemberOfNestedInput>;
-    qrcode?: InstanceType<typeof QrCodeUpdateOneWithoutGuestNestedInput>;
-    invitationImage?: InstanceType<typeof InvitationImageUpdateOneWithoutGuestNestedInput>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueUpdateManyWithoutGuestNestedInput>;
 }
 export declare class GuestUpdateWithoutGroupMemberOfInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -1595,8 +1093,7 @@ export declare class GuestUpdateWithoutGroupMemberOfInput {
     groupMembers?: InstanceType<typeof GuestUpdateManyWithoutGroupMemberOfNestedInput>;
     qrcode?: InstanceType<typeof QrCodeUpdateOneWithoutGuestNestedInput>;
     invitationImage?: InstanceType<typeof InvitationImageUpdateOneWithoutGuestNestedInput>;
-    emailQueue?: InstanceType<typeof EmailQueueUpdateManyWithoutGuestNestedInput>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueUpdateManyWithoutGuestNestedInput>;
+    whatsappStatuses?: InstanceType<typeof WhatsappStatusUpdateManyWithoutGuestNestedInput>;
 }
 export declare class GuestUpdateWithoutGroupMembersInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -1617,8 +1114,7 @@ export declare class GuestUpdateWithoutGroupMembersInput {
     groupMemberOf?: InstanceType<typeof GuestUpdateOneWithoutGroupMembersNestedInput>;
     qrcode?: InstanceType<typeof QrCodeUpdateOneWithoutGuestNestedInput>;
     invitationImage?: InstanceType<typeof InvitationImageUpdateOneWithoutGuestNestedInput>;
-    emailQueue?: InstanceType<typeof EmailQueueUpdateManyWithoutGuestNestedInput>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueUpdateManyWithoutGuestNestedInput>;
+    whatsappStatuses?: InstanceType<typeof WhatsappStatusUpdateManyWithoutGuestNestedInput>;
 }
 export declare class GuestUpdateWithoutInvitationImageInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -1639,8 +1135,7 @@ export declare class GuestUpdateWithoutInvitationImageInput {
     groupMemberOf?: InstanceType<typeof GuestUpdateOneWithoutGroupMembersNestedInput>;
     groupMembers?: InstanceType<typeof GuestUpdateManyWithoutGroupMemberOfNestedInput>;
     qrcode?: InstanceType<typeof QrCodeUpdateOneWithoutGuestNestedInput>;
-    emailQueue?: InstanceType<typeof EmailQueueUpdateManyWithoutGuestNestedInput>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueUpdateManyWithoutGuestNestedInput>;
+    whatsappStatuses?: InstanceType<typeof WhatsappStatusUpdateManyWithoutGuestNestedInput>;
 }
 export declare class GuestUpdateWithoutQrcodeInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -1661,10 +1156,9 @@ export declare class GuestUpdateWithoutQrcodeInput {
     groupMemberOf?: InstanceType<typeof GuestUpdateOneWithoutGroupMembersNestedInput>;
     groupMembers?: InstanceType<typeof GuestUpdateManyWithoutGroupMemberOfNestedInput>;
     invitationImage?: InstanceType<typeof InvitationImageUpdateOneWithoutGuestNestedInput>;
-    emailQueue?: InstanceType<typeof EmailQueueUpdateManyWithoutGuestNestedInput>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueUpdateManyWithoutGuestNestedInput>;
+    whatsappStatuses?: InstanceType<typeof WhatsappStatusUpdateManyWithoutGuestNestedInput>;
 }
-export declare class GuestUpdateWithoutWhatsappQueueInput {
+export declare class GuestUpdateWithoutWhatsappStatusesInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     source?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     invitationName?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -1684,7 +1178,6 @@ export declare class GuestUpdateWithoutWhatsappQueueInput {
     groupMembers?: InstanceType<typeof GuestUpdateManyWithoutGroupMemberOfNestedInput>;
     qrcode?: InstanceType<typeof QrCodeUpdateOneWithoutGuestNestedInput>;
     invitationImage?: InstanceType<typeof InvitationImageUpdateOneWithoutGuestNestedInput>;
-    emailQueue?: InstanceType<typeof EmailQueueUpdateManyWithoutGuestNestedInput>;
 }
 export declare class GuestUpdateInput {
     id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
@@ -1706,18 +1199,12 @@ export declare class GuestUpdateInput {
     groupMembers?: InstanceType<typeof GuestUpdateManyWithoutGroupMemberOfNestedInput>;
     qrcode?: InstanceType<typeof QrCodeUpdateOneWithoutGuestNestedInput>;
     invitationImage?: InstanceType<typeof InvitationImageUpdateOneWithoutGuestNestedInput>;
-    emailQueue?: InstanceType<typeof EmailQueueUpdateManyWithoutGuestNestedInput>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueUpdateManyWithoutGuestNestedInput>;
+    whatsappStatuses?: InstanceType<typeof WhatsappStatusUpdateManyWithoutGuestNestedInput>;
 }
 export declare class GuestUpsertWithWhereUniqueWithoutGroupMemberOfInput {
     where: Prisma.AtLeast<GuestWhereUniqueInput, 'id'>;
     update: InstanceType<typeof GuestUpdateWithoutGroupMemberOfInput>;
     create: InstanceType<typeof GuestCreateWithoutGroupMemberOfInput>;
-}
-export declare class GuestUpsertWithoutEmailQueueInput {
-    update: InstanceType<typeof GuestUpdateWithoutEmailQueueInput>;
-    create: InstanceType<typeof GuestCreateWithoutEmailQueueInput>;
-    where?: InstanceType<typeof GuestWhereInput>;
 }
 export declare class GuestUpsertWithoutGroupMembersInput {
     update: InstanceType<typeof GuestUpdateWithoutGroupMembersInput>;
@@ -1734,9 +1221,9 @@ export declare class GuestUpsertWithoutQrcodeInput {
     create: InstanceType<typeof GuestCreateWithoutQrcodeInput>;
     where?: InstanceType<typeof GuestWhereInput>;
 }
-export declare class GuestUpsertWithoutWhatsappQueueInput {
-    update: InstanceType<typeof GuestUpdateWithoutWhatsappQueueInput>;
-    create: InstanceType<typeof GuestCreateWithoutWhatsappQueueInput>;
+export declare class GuestUpsertWithoutWhatsappStatusesInput {
+    update: InstanceType<typeof GuestUpdateWithoutWhatsappStatusesInput>;
+    create: InstanceType<typeof GuestCreateWithoutWhatsappStatusesInput>;
     where?: InstanceType<typeof GuestWhereInput>;
 }
 export declare class GuestWhereUniqueInput {
@@ -1763,8 +1250,7 @@ export declare class GuestWhereUniqueInput {
     groupMembers?: InstanceType<typeof GuestListRelationFilter>;
     qrcode?: InstanceType<typeof QrCodeNullableRelationFilter>;
     invitationImage?: InstanceType<typeof InvitationImageNullableRelationFilter>;
-    emailQueue?: InstanceType<typeof EmailQueueListRelationFilter>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueListRelationFilter>;
+    whatsappStatuses?: InstanceType<typeof WhatsappStatusListRelationFilter>;
 }
 export declare class GuestWhereInput {
     AND?: Array<GuestWhereInput>;
@@ -1790,8 +1276,7 @@ export declare class GuestWhereInput {
     groupMembers?: InstanceType<typeof GuestListRelationFilter>;
     qrcode?: InstanceType<typeof QrCodeNullableRelationFilter>;
     invitationImage?: InstanceType<typeof InvitationImageNullableRelationFilter>;
-    emailQueue?: InstanceType<typeof EmailQueueListRelationFilter>;
-    whatsappQueue?: InstanceType<typeof WhatsappQueueListRelationFilter>;
+    whatsappStatuses?: InstanceType<typeof WhatsappStatusListRelationFilter>;
 }
 export declare class Guest {
     id: string;
@@ -1814,8 +1299,7 @@ export declare class Guest {
     groupMembers?: Array<Guest>;
     qrcode?: InstanceType<typeof QrCode> | null;
     invitationImage?: InstanceType<typeof InvitationImage> | null;
-    emailQueue?: Array<EmailQueue>;
-    whatsappQueue?: Array<WhatsappQueue>;
+    whatsappStatuses?: Array<WhatsappStatus>;
     _count?: InstanceType<typeof GuestCount>;
 }
 export declare class UpdateManyGuestArgs {
@@ -2281,31 +1765,6 @@ export declare class IntFilter {
     gte?: number;
     not?: InstanceType<typeof NestedIntFilter>;
 }
-export declare class IntNullableFilter {
-    equals?: number;
-    in?: Array<number>;
-    notIn?: Array<number>;
-    lt?: number;
-    lte?: number;
-    gt?: number;
-    gte?: number;
-    not?: InstanceType<typeof NestedIntNullableFilter>;
-}
-export declare class IntNullableWithAggregatesFilter {
-    equals?: number;
-    in?: Array<number>;
-    notIn?: Array<number>;
-    lt?: number;
-    lte?: number;
-    gt?: number;
-    gte?: number;
-    not?: InstanceType<typeof NestedIntNullableWithAggregatesFilter>;
-    _count?: InstanceType<typeof NestedIntNullableFilter>;
-    _avg?: InstanceType<typeof NestedFloatNullableFilter>;
-    _sum?: InstanceType<typeof NestedIntNullableFilter>;
-    _min?: InstanceType<typeof NestedIntNullableFilter>;
-    _max?: InstanceType<typeof NestedIntNullableFilter>;
-}
 export declare class IntWithAggregatesFilter {
     equals?: number;
     in?: Array<number>;
@@ -2467,21 +1926,6 @@ export declare class NestedIntNullableFilter {
     gte?: number;
     not?: InstanceType<typeof NestedIntNullableFilter>;
 }
-export declare class NestedIntNullableWithAggregatesFilter {
-    equals?: number;
-    in?: Array<number>;
-    notIn?: Array<number>;
-    lt?: number;
-    lte?: number;
-    gt?: number;
-    gte?: number;
-    not?: InstanceType<typeof NestedIntNullableWithAggregatesFilter>;
-    _count?: InstanceType<typeof NestedIntNullableFilter>;
-    _avg?: InstanceType<typeof NestedFloatNullableFilter>;
-    _sum?: InstanceType<typeof NestedIntNullableFilter>;
-    _min?: InstanceType<typeof NestedIntNullableFilter>;
-    _max?: InstanceType<typeof NestedIntNullableFilter>;
-}
 export declare class NestedIntWithAggregatesFilter {
     equals?: number;
     in?: Array<number>;
@@ -2562,13 +2006,6 @@ export declare class NullableEnumConfirmationStatusFieldUpdateOperationsInput {
     set?: keyof typeof ConfirmationStatus;
 }
 export declare class NullableFloatFieldUpdateOperationsInput {
-    set?: number;
-    increment?: number;
-    decrement?: number;
-    multiply?: number;
-    divide?: number;
-}
-export declare class NullableIntFieldUpdateOperationsInput {
     set?: number;
     increment?: number;
     decrement?: number;
@@ -3598,406 +3035,431 @@ export declare class User {
     scannedQrs?: Array<QrCode>;
     _count?: InstanceType<typeof UserCount>;
 }
-export declare class AggregateWhatsappQueue {
-    _count?: InstanceType<typeof WhatsappQueueCountAggregate>;
-    _avg?: InstanceType<typeof WhatsappQueueAvgAggregate>;
-    _sum?: InstanceType<typeof WhatsappQueueSumAggregate>;
-    _min?: InstanceType<typeof WhatsappQueueMinAggregate>;
-    _max?: InstanceType<typeof WhatsappQueueMaxAggregate>;
+export declare class AggregateWhatsappStatus {
+    _count?: InstanceType<typeof WhatsappStatusCountAggregate>;
+    _avg?: InstanceType<typeof WhatsappStatusAvgAggregate>;
+    _sum?: InstanceType<typeof WhatsappStatusSumAggregate>;
+    _min?: InstanceType<typeof WhatsappStatusMinAggregate>;
+    _max?: InstanceType<typeof WhatsappStatusMaxAggregate>;
 }
-export declare class CreateManyWhatsappQueueArgs {
-    data: Array<WhatsappQueueCreateManyInput>;
+export declare class CreateManyWhatsappStatusArgs {
+    data: Array<WhatsappStatusCreateManyInput>;
     skipDuplicates?: boolean;
 }
-export declare class CreateOneWhatsappQueueArgs {
-    data: InstanceType<typeof WhatsappQueueCreateInput>;
+export declare class CreateOneWhatsappStatusArgs {
+    data: InstanceType<typeof WhatsappStatusCreateInput>;
 }
-export declare class DeleteManyWhatsappQueueArgs {
-    where?: InstanceType<typeof WhatsappQueueWhereInput>;
+export declare class DeleteManyWhatsappStatusArgs {
+    where?: InstanceType<typeof WhatsappStatusWhereInput>;
 }
-export declare class DeleteOneWhatsappQueueArgs {
-    where: Prisma.AtLeast<WhatsappQueueWhereUniqueInput, 'id'>;
+export declare class DeleteOneWhatsappStatusArgs {
+    where: Prisma.AtLeast<WhatsappStatusWhereUniqueInput, 'id'>;
 }
-export declare class FindFirstWhatsappQueueOrThrowArgs {
-    where?: InstanceType<typeof WhatsappQueueWhereInput>;
-    orderBy?: Array<WhatsappQueueOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<WhatsappQueueWhereUniqueInput, 'id'>;
+export declare class FindFirstWhatsappStatusOrThrowArgs {
+    where?: InstanceType<typeof WhatsappStatusWhereInput>;
+    orderBy?: Array<WhatsappStatusOrderByWithRelationInput>;
+    cursor?: Prisma.AtLeast<WhatsappStatusWhereUniqueInput, 'id'>;
     take?: number;
     skip?: number;
-    distinct?: Array<keyof typeof WhatsappQueueScalarFieldEnum>;
+    distinct?: Array<keyof typeof WhatsappStatusScalarFieldEnum>;
 }
-export declare class FindFirstWhatsappQueueArgs {
-    where?: InstanceType<typeof WhatsappQueueWhereInput>;
-    orderBy?: Array<WhatsappQueueOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<WhatsappQueueWhereUniqueInput, 'id'>;
+export declare class FindFirstWhatsappStatusArgs {
+    where?: InstanceType<typeof WhatsappStatusWhereInput>;
+    orderBy?: Array<WhatsappStatusOrderByWithRelationInput>;
+    cursor?: Prisma.AtLeast<WhatsappStatusWhereUniqueInput, 'id'>;
     take?: number;
     skip?: number;
-    distinct?: Array<keyof typeof WhatsappQueueScalarFieldEnum>;
+    distinct?: Array<keyof typeof WhatsappStatusScalarFieldEnum>;
 }
-export declare class FindManyWhatsappQueueArgs {
-    where?: InstanceType<typeof WhatsappQueueWhereInput>;
-    orderBy?: Array<WhatsappQueueOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<WhatsappQueueWhereUniqueInput, 'id'>;
+export declare class FindManyWhatsappStatusArgs {
+    where?: InstanceType<typeof WhatsappStatusWhereInput>;
+    orderBy?: Array<WhatsappStatusOrderByWithRelationInput>;
+    cursor?: Prisma.AtLeast<WhatsappStatusWhereUniqueInput, 'id'>;
     take?: number;
     skip?: number;
-    distinct?: Array<keyof typeof WhatsappQueueScalarFieldEnum>;
+    distinct?: Array<keyof typeof WhatsappStatusScalarFieldEnum>;
 }
-export declare class FindUniqueWhatsappQueueOrThrowArgs {
-    where: Prisma.AtLeast<WhatsappQueueWhereUniqueInput, 'id'>;
+export declare class FindUniqueWhatsappStatusOrThrowArgs {
+    where: Prisma.AtLeast<WhatsappStatusWhereUniqueInput, 'id'>;
 }
-export declare class FindUniqueWhatsappQueueArgs {
-    where: Prisma.AtLeast<WhatsappQueueWhereUniqueInput, 'id'>;
+export declare class FindUniqueWhatsappStatusArgs {
+    where: Prisma.AtLeast<WhatsappStatusWhereUniqueInput, 'id'>;
 }
-export declare class UpdateManyWhatsappQueueArgs {
-    data: InstanceType<typeof WhatsappQueueUpdateManyMutationInput>;
-    where?: InstanceType<typeof WhatsappQueueWhereInput>;
+export declare class UpdateManyWhatsappStatusArgs {
+    data: InstanceType<typeof WhatsappStatusUpdateManyMutationInput>;
+    where?: InstanceType<typeof WhatsappStatusWhereInput>;
 }
-export declare class UpdateOneWhatsappQueueArgs {
-    data: InstanceType<typeof WhatsappQueueUpdateInput>;
-    where: Prisma.AtLeast<WhatsappQueueWhereUniqueInput, 'id'>;
+export declare class UpdateOneWhatsappStatusArgs {
+    data: InstanceType<typeof WhatsappStatusUpdateInput>;
+    where: Prisma.AtLeast<WhatsappStatusWhereUniqueInput, 'id'>;
 }
-export declare class UpsertOneWhatsappQueueArgs {
-    where: Prisma.AtLeast<WhatsappQueueWhereUniqueInput, 'id'>;
-    create: InstanceType<typeof WhatsappQueueCreateInput>;
-    update: InstanceType<typeof WhatsappQueueUpdateInput>;
+export declare class UpsertOneWhatsappStatusArgs {
+    where: Prisma.AtLeast<WhatsappStatusWhereUniqueInput, 'id'>;
+    create: InstanceType<typeof WhatsappStatusCreateInput>;
+    update: InstanceType<typeof WhatsappStatusUpdateInput>;
 }
-export declare class WhatsappQueueAggregateArgs {
-    where?: InstanceType<typeof WhatsappQueueWhereInput>;
-    orderBy?: Array<WhatsappQueueOrderByWithRelationInput>;
-    cursor?: Prisma.AtLeast<WhatsappQueueWhereUniqueInput, 'id'>;
+export declare class WhatsappStatusAggregateArgs {
+    where?: InstanceType<typeof WhatsappStatusWhereInput>;
+    orderBy?: Array<WhatsappStatusOrderByWithRelationInput>;
+    cursor?: Prisma.AtLeast<WhatsappStatusWhereUniqueInput, 'id'>;
     take?: number;
     skip?: number;
-    _count?: InstanceType<typeof WhatsappQueueCountAggregateInput>;
-    _avg?: InstanceType<typeof WhatsappQueueAvgAggregateInput>;
-    _sum?: InstanceType<typeof WhatsappQueueSumAggregateInput>;
-    _min?: InstanceType<typeof WhatsappQueueMinAggregateInput>;
-    _max?: InstanceType<typeof WhatsappQueueMaxAggregateInput>;
+    _count?: InstanceType<typeof WhatsappStatusCountAggregateInput>;
+    _avg?: InstanceType<typeof WhatsappStatusAvgAggregateInput>;
+    _sum?: InstanceType<typeof WhatsappStatusSumAggregateInput>;
+    _min?: InstanceType<typeof WhatsappStatusMinAggregateInput>;
+    _max?: InstanceType<typeof WhatsappStatusMaxAggregateInput>;
 }
-export declare class WhatsappQueueAvgAggregateInput {
-    apiRequestId?: true;
-}
-export declare class WhatsappQueueAvgAggregate {
-    apiRequestId?: number;
-}
-export declare class WhatsappQueueAvgOrderByAggregateInput {
-    apiRequestId?: keyof typeof SortOrder;
-}
-export declare class WhatsappQueueCountAggregateInput {
+export declare class WhatsappStatusAvgAggregateInput {
     id?: true;
+}
+export declare class WhatsappStatusAvgAggregate {
+    id?: number;
+}
+export declare class WhatsappStatusAvgOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
+}
+export declare class WhatsappStatusCountAggregateInput {
+    id?: true;
+    refId?: true;
+    message?: true;
     createdAt?: true;
-    apiRequestId?: true;
     status?: true;
     guestId?: true;
     _all?: true;
 }
-export declare class WhatsappQueueCountAggregate {
+export declare class WhatsappStatusCountAggregate {
     id: number;
+    refId: number;
+    message: number;
     createdAt: number;
-    apiRequestId: number;
     status: number;
     guestId: number;
     _all: number;
 }
-export declare class WhatsappQueueCountOrderByAggregateInput {
+export declare class WhatsappStatusCountOrderByAggregateInput {
     id?: keyof typeof SortOrder;
+    refId?: keyof typeof SortOrder;
+    message?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
-    apiRequestId?: keyof typeof SortOrder;
     status?: keyof typeof SortOrder;
     guestId?: keyof typeof SortOrder;
 }
-export declare class WhatsappQueueCreateManyGuestInputEnvelope {
-    data: Array<WhatsappQueueCreateManyGuestInput>;
+export declare class WhatsappStatusCreateManyGuestInputEnvelope {
+    data: Array<WhatsappStatusCreateManyGuestInput>;
     skipDuplicates?: boolean;
 }
-export declare class WhatsappQueueCreateManyGuestInput {
-    id?: string;
+export declare class WhatsappStatusCreateManyGuestInput {
+    id?: number;
+    refId?: string;
+    message?: string;
     createdAt?: Date | string;
-    apiRequestId?: number;
     status?: keyof typeof QueueStatus;
 }
-export declare class WhatsappQueueCreateManyInput {
-    id?: string;
+export declare class WhatsappStatusCreateManyInput {
+    id?: number;
+    refId?: string;
+    message?: string;
     createdAt?: Date | string;
-    apiRequestId?: number;
     status?: keyof typeof QueueStatus;
     guestId: string;
 }
-export declare class WhatsappQueueCreateNestedManyWithoutGuestInput {
-    create?: Array<WhatsappQueueCreateWithoutGuestInput>;
-    connectOrCreate?: Array<WhatsappQueueCreateOrConnectWithoutGuestInput>;
-    createMany?: InstanceType<typeof WhatsappQueueCreateManyGuestInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<WhatsappQueueWhereUniqueInput, 'id'>>;
+export declare class WhatsappStatusCreateNestedManyWithoutGuestInput {
+    create?: Array<WhatsappStatusCreateWithoutGuestInput>;
+    connectOrCreate?: Array<WhatsappStatusCreateOrConnectWithoutGuestInput>;
+    createMany?: InstanceType<typeof WhatsappStatusCreateManyGuestInputEnvelope>;
+    connect?: Array<Prisma.AtLeast<WhatsappStatusWhereUniqueInput, 'id'>>;
 }
-export declare class WhatsappQueueCreateOrConnectWithoutGuestInput {
-    where: Prisma.AtLeast<WhatsappQueueWhereUniqueInput, 'id'>;
-    create: InstanceType<typeof WhatsappQueueCreateWithoutGuestInput>;
+export declare class WhatsappStatusCreateOrConnectWithoutGuestInput {
+    where: Prisma.AtLeast<WhatsappStatusWhereUniqueInput, 'id'>;
+    create: InstanceType<typeof WhatsappStatusCreateWithoutGuestInput>;
 }
-export declare class WhatsappQueueCreateWithoutGuestInput {
-    id?: string;
+export declare class WhatsappStatusCreateWithoutGuestInput {
+    refId?: string;
+    message?: string;
     createdAt?: Date | string;
-    apiRequestId?: number;
     status?: keyof typeof QueueStatus;
 }
-export declare class WhatsappQueueCreateInput {
-    id?: string;
+export declare class WhatsappStatusCreateInput {
+    refId?: string;
+    message?: string;
     createdAt?: Date | string;
-    apiRequestId?: number;
     status?: keyof typeof QueueStatus;
-    guest: InstanceType<typeof GuestCreateNestedOneWithoutWhatsappQueueInput>;
+    guest: InstanceType<typeof GuestCreateNestedOneWithoutWhatsappStatusesInput>;
 }
-export declare class WhatsappQueueGroupByArgs {
-    where?: InstanceType<typeof WhatsappQueueWhereInput>;
-    orderBy?: Array<WhatsappQueueOrderByWithAggregationInput>;
-    by: Array<keyof typeof WhatsappQueueScalarFieldEnum>;
-    having?: InstanceType<typeof WhatsappQueueScalarWhereWithAggregatesInput>;
+export declare class WhatsappStatusGroupByArgs {
+    where?: InstanceType<typeof WhatsappStatusWhereInput>;
+    orderBy?: Array<WhatsappStatusOrderByWithAggregationInput>;
+    by: Array<keyof typeof WhatsappStatusScalarFieldEnum>;
+    having?: InstanceType<typeof WhatsappStatusScalarWhereWithAggregatesInput>;
     take?: number;
     skip?: number;
-    _count?: InstanceType<typeof WhatsappQueueCountAggregateInput>;
-    _avg?: InstanceType<typeof WhatsappQueueAvgAggregateInput>;
-    _sum?: InstanceType<typeof WhatsappQueueSumAggregateInput>;
-    _min?: InstanceType<typeof WhatsappQueueMinAggregateInput>;
-    _max?: InstanceType<typeof WhatsappQueueMaxAggregateInput>;
+    _count?: InstanceType<typeof WhatsappStatusCountAggregateInput>;
+    _avg?: InstanceType<typeof WhatsappStatusAvgAggregateInput>;
+    _sum?: InstanceType<typeof WhatsappStatusSumAggregateInput>;
+    _min?: InstanceType<typeof WhatsappStatusMinAggregateInput>;
+    _max?: InstanceType<typeof WhatsappStatusMaxAggregateInput>;
 }
-export declare class WhatsappQueueGroupBy {
-    id: string;
+export declare class WhatsappStatusGroupBy {
+    id: number;
+    refId: string;
+    message?: string;
     createdAt: Date | string;
-    apiRequestId?: number;
     status: keyof typeof QueueStatus;
     guestId: string;
-    _count?: InstanceType<typeof WhatsappQueueCountAggregate>;
-    _avg?: InstanceType<typeof WhatsappQueueAvgAggregate>;
-    _sum?: InstanceType<typeof WhatsappQueueSumAggregate>;
-    _min?: InstanceType<typeof WhatsappQueueMinAggregate>;
-    _max?: InstanceType<typeof WhatsappQueueMaxAggregate>;
+    _count?: InstanceType<typeof WhatsappStatusCountAggregate>;
+    _avg?: InstanceType<typeof WhatsappStatusAvgAggregate>;
+    _sum?: InstanceType<typeof WhatsappStatusSumAggregate>;
+    _min?: InstanceType<typeof WhatsappStatusMinAggregate>;
+    _max?: InstanceType<typeof WhatsappStatusMaxAggregate>;
 }
-export declare class WhatsappQueueListRelationFilter {
-    every?: InstanceType<typeof WhatsappQueueWhereInput>;
-    some?: InstanceType<typeof WhatsappQueueWhereInput>;
-    none?: InstanceType<typeof WhatsappQueueWhereInput>;
+export declare class WhatsappStatusListRelationFilter {
+    every?: InstanceType<typeof WhatsappStatusWhereInput>;
+    some?: InstanceType<typeof WhatsappStatusWhereInput>;
+    none?: InstanceType<typeof WhatsappStatusWhereInput>;
 }
-export declare class WhatsappQueueMaxAggregateInput {
+export declare class WhatsappStatusMaxAggregateInput {
     id?: true;
+    refId?: true;
+    message?: true;
     createdAt?: true;
-    apiRequestId?: true;
     status?: true;
     guestId?: true;
 }
-export declare class WhatsappQueueMaxAggregate {
-    id?: string;
+export declare class WhatsappStatusMaxAggregate {
+    id?: number;
+    refId?: string;
+    message?: string;
     createdAt?: Date | string;
-    apiRequestId?: number;
     status?: keyof typeof QueueStatus;
     guestId?: string;
 }
-export declare class WhatsappQueueMaxOrderByAggregateInput {
+export declare class WhatsappStatusMaxOrderByAggregateInput {
     id?: keyof typeof SortOrder;
+    refId?: keyof typeof SortOrder;
+    message?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
-    apiRequestId?: keyof typeof SortOrder;
     status?: keyof typeof SortOrder;
     guestId?: keyof typeof SortOrder;
 }
-export declare class WhatsappQueueMinAggregateInput {
+export declare class WhatsappStatusMinAggregateInput {
     id?: true;
+    refId?: true;
+    message?: true;
     createdAt?: true;
-    apiRequestId?: true;
     status?: true;
     guestId?: true;
 }
-export declare class WhatsappQueueMinAggregate {
-    id?: string;
+export declare class WhatsappStatusMinAggregate {
+    id?: number;
+    refId?: string;
+    message?: string;
     createdAt?: Date | string;
-    apiRequestId?: number;
     status?: keyof typeof QueueStatus;
     guestId?: string;
 }
-export declare class WhatsappQueueMinOrderByAggregateInput {
+export declare class WhatsappStatusMinOrderByAggregateInput {
     id?: keyof typeof SortOrder;
+    refId?: keyof typeof SortOrder;
+    message?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
-    apiRequestId?: keyof typeof SortOrder;
     status?: keyof typeof SortOrder;
     guestId?: keyof typeof SortOrder;
 }
-export declare class WhatsappQueueOrderByRelationAggregateInput {
+export declare class WhatsappStatusOrderByRelationAggregateInput {
     _count?: keyof typeof SortOrder;
 }
-export declare class WhatsappQueueOrderByWithAggregationInput {
+export declare class WhatsappStatusOrderByWithAggregationInput {
     id?: keyof typeof SortOrder;
+    refId?: keyof typeof SortOrder;
+    message?: InstanceType<typeof SortOrderInput>;
     createdAt?: keyof typeof SortOrder;
-    apiRequestId?: InstanceType<typeof SortOrderInput>;
     status?: keyof typeof SortOrder;
     guestId?: keyof typeof SortOrder;
-    _count?: InstanceType<typeof WhatsappQueueCountOrderByAggregateInput>;
-    _avg?: InstanceType<typeof WhatsappQueueAvgOrderByAggregateInput>;
-    _max?: InstanceType<typeof WhatsappQueueMaxOrderByAggregateInput>;
-    _min?: InstanceType<typeof WhatsappQueueMinOrderByAggregateInput>;
-    _sum?: InstanceType<typeof WhatsappQueueSumOrderByAggregateInput>;
+    _count?: InstanceType<typeof WhatsappStatusCountOrderByAggregateInput>;
+    _avg?: InstanceType<typeof WhatsappStatusAvgOrderByAggregateInput>;
+    _max?: InstanceType<typeof WhatsappStatusMaxOrderByAggregateInput>;
+    _min?: InstanceType<typeof WhatsappStatusMinOrderByAggregateInput>;
+    _sum?: InstanceType<typeof WhatsappStatusSumOrderByAggregateInput>;
 }
-export declare class WhatsappQueueOrderByWithRelationInput {
+export declare class WhatsappStatusOrderByWithRelationInput {
     id?: keyof typeof SortOrder;
+    refId?: keyof typeof SortOrder;
+    message?: InstanceType<typeof SortOrderInput>;
     createdAt?: keyof typeof SortOrder;
-    apiRequestId?: InstanceType<typeof SortOrderInput>;
     status?: keyof typeof SortOrder;
     guestId?: keyof typeof SortOrder;
     guest?: InstanceType<typeof GuestOrderByWithRelationInput>;
 }
-export declare class WhatsappQueueScalarWhereWithAggregatesInput {
-    AND?: Array<WhatsappQueueScalarWhereWithAggregatesInput>;
-    OR?: Array<WhatsappQueueScalarWhereWithAggregatesInput>;
-    NOT?: Array<WhatsappQueueScalarWhereWithAggregatesInput>;
-    id?: InstanceType<typeof StringWithAggregatesFilter>;
+export declare class WhatsappStatusScalarWhereWithAggregatesInput {
+    AND?: Array<WhatsappStatusScalarWhereWithAggregatesInput>;
+    OR?: Array<WhatsappStatusScalarWhereWithAggregatesInput>;
+    NOT?: Array<WhatsappStatusScalarWhereWithAggregatesInput>;
+    id?: InstanceType<typeof IntWithAggregatesFilter>;
+    refId?: InstanceType<typeof StringWithAggregatesFilter>;
+    message?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
-    apiRequestId?: InstanceType<typeof IntNullableWithAggregatesFilter>;
     status?: InstanceType<typeof EnumQueueStatusWithAggregatesFilter>;
     guestId?: InstanceType<typeof StringWithAggregatesFilter>;
 }
-export declare class WhatsappQueueScalarWhereInput {
-    AND?: Array<WhatsappQueueScalarWhereInput>;
-    OR?: Array<WhatsappQueueScalarWhereInput>;
-    NOT?: Array<WhatsappQueueScalarWhereInput>;
-    id?: InstanceType<typeof StringFilter>;
+export declare class WhatsappStatusScalarWhereInput {
+    AND?: Array<WhatsappStatusScalarWhereInput>;
+    OR?: Array<WhatsappStatusScalarWhereInput>;
+    NOT?: Array<WhatsappStatusScalarWhereInput>;
+    id?: InstanceType<typeof IntFilter>;
+    refId?: InstanceType<typeof StringFilter>;
+    message?: InstanceType<typeof StringNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
-    apiRequestId?: InstanceType<typeof IntNullableFilter>;
     status?: InstanceType<typeof EnumQueueStatusFilter>;
     guestId?: InstanceType<typeof StringFilter>;
 }
-export declare class WhatsappQueueSumAggregateInput {
-    apiRequestId?: true;
+export declare class WhatsappStatusSumAggregateInput {
+    id?: true;
 }
-export declare class WhatsappQueueSumAggregate {
-    apiRequestId?: number;
+export declare class WhatsappStatusSumAggregate {
+    id?: number;
 }
-export declare class WhatsappQueueSumOrderByAggregateInput {
-    apiRequestId?: keyof typeof SortOrder;
+export declare class WhatsappStatusSumOrderByAggregateInput {
+    id?: keyof typeof SortOrder;
 }
-export declare class WhatsappQueueUncheckedCreateNestedManyWithoutGuestInput {
-    create?: Array<WhatsappQueueCreateWithoutGuestInput>;
-    connectOrCreate?: Array<WhatsappQueueCreateOrConnectWithoutGuestInput>;
-    createMany?: InstanceType<typeof WhatsappQueueCreateManyGuestInputEnvelope>;
-    connect?: Array<Prisma.AtLeast<WhatsappQueueWhereUniqueInput, 'id'>>;
+export declare class WhatsappStatusUncheckedCreateNestedManyWithoutGuestInput {
+    create?: Array<WhatsappStatusCreateWithoutGuestInput>;
+    connectOrCreate?: Array<WhatsappStatusCreateOrConnectWithoutGuestInput>;
+    createMany?: InstanceType<typeof WhatsappStatusCreateManyGuestInputEnvelope>;
+    connect?: Array<Prisma.AtLeast<WhatsappStatusWhereUniqueInput, 'id'>>;
 }
-export declare class WhatsappQueueUncheckedCreateWithoutGuestInput {
-    id?: string;
+export declare class WhatsappStatusUncheckedCreateWithoutGuestInput {
+    id?: number;
+    refId?: string;
+    message?: string;
     createdAt?: Date | string;
-    apiRequestId?: number;
     status?: keyof typeof QueueStatus;
 }
-export declare class WhatsappQueueUncheckedCreateInput {
-    id?: string;
+export declare class WhatsappStatusUncheckedCreateInput {
+    id?: number;
+    refId?: string;
+    message?: string;
     createdAt?: Date | string;
-    apiRequestId?: number;
     status?: keyof typeof QueueStatus;
     guestId: string;
 }
-export declare class WhatsappQueueUncheckedUpdateManyWithoutGuestNestedInput {
-    create?: Array<WhatsappQueueCreateWithoutGuestInput>;
-    connectOrCreate?: Array<WhatsappQueueCreateOrConnectWithoutGuestInput>;
-    upsert?: Array<WhatsappQueueUpsertWithWhereUniqueWithoutGuestInput>;
-    createMany?: InstanceType<typeof WhatsappQueueCreateManyGuestInputEnvelope>;
-    set?: Array<Prisma.AtLeast<WhatsappQueueWhereUniqueInput, 'id'>>;
-    disconnect?: Array<Prisma.AtLeast<WhatsappQueueWhereUniqueInput, 'id'>>;
-    delete?: Array<Prisma.AtLeast<WhatsappQueueWhereUniqueInput, 'id'>>;
-    connect?: Array<Prisma.AtLeast<WhatsappQueueWhereUniqueInput, 'id'>>;
-    update?: Array<WhatsappQueueUpdateWithWhereUniqueWithoutGuestInput>;
-    updateMany?: Array<WhatsappQueueUpdateManyWithWhereWithoutGuestInput>;
-    deleteMany?: Array<WhatsappQueueScalarWhereInput>;
+export declare class WhatsappStatusUncheckedUpdateManyWithoutGuestNestedInput {
+    create?: Array<WhatsappStatusCreateWithoutGuestInput>;
+    connectOrCreate?: Array<WhatsappStatusCreateOrConnectWithoutGuestInput>;
+    upsert?: Array<WhatsappStatusUpsertWithWhereUniqueWithoutGuestInput>;
+    createMany?: InstanceType<typeof WhatsappStatusCreateManyGuestInputEnvelope>;
+    set?: Array<Prisma.AtLeast<WhatsappStatusWhereUniqueInput, 'id'>>;
+    disconnect?: Array<Prisma.AtLeast<WhatsappStatusWhereUniqueInput, 'id'>>;
+    delete?: Array<Prisma.AtLeast<WhatsappStatusWhereUniqueInput, 'id'>>;
+    connect?: Array<Prisma.AtLeast<WhatsappStatusWhereUniqueInput, 'id'>>;
+    update?: Array<WhatsappStatusUpdateWithWhereUniqueWithoutGuestInput>;
+    updateMany?: Array<WhatsappStatusUpdateManyWithWhereWithoutGuestInput>;
+    deleteMany?: Array<WhatsappStatusScalarWhereInput>;
 }
-export declare class WhatsappQueueUncheckedUpdateManyWithoutGuestInput {
-    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+export declare class WhatsappStatusUncheckedUpdateManyWithoutGuestInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    refId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    message?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    apiRequestId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
 }
-export declare class WhatsappQueueUncheckedUpdateManyInput {
-    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+export declare class WhatsappStatusUncheckedUpdateManyInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    refId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    message?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    apiRequestId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
-    guestId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-}
-export declare class WhatsappQueueUncheckedUpdateWithoutGuestInput {
-    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    apiRequestId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
-    status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
-}
-export declare class WhatsappQueueUncheckedUpdateInput {
-    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
-    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    apiRequestId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
     guestId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
 }
-export declare class WhatsappQueueUpdateManyMutationInput {
-    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+export declare class WhatsappStatusUncheckedUpdateWithoutGuestInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    refId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    message?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    apiRequestId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
 }
-export declare class WhatsappQueueUpdateManyWithWhereWithoutGuestInput {
-    where: InstanceType<typeof WhatsappQueueScalarWhereInput>;
-    data: InstanceType<typeof WhatsappQueueUpdateManyMutationInput>;
-}
-export declare class WhatsappQueueUpdateManyWithoutGuestNestedInput {
-    create?: Array<WhatsappQueueCreateWithoutGuestInput>;
-    connectOrCreate?: Array<WhatsappQueueCreateOrConnectWithoutGuestInput>;
-    upsert?: Array<WhatsappQueueUpsertWithWhereUniqueWithoutGuestInput>;
-    createMany?: InstanceType<typeof WhatsappQueueCreateManyGuestInputEnvelope>;
-    set?: Array<Prisma.AtLeast<WhatsappQueueWhereUniqueInput, 'id'>>;
-    disconnect?: Array<Prisma.AtLeast<WhatsappQueueWhereUniqueInput, 'id'>>;
-    delete?: Array<Prisma.AtLeast<WhatsappQueueWhereUniqueInput, 'id'>>;
-    connect?: Array<Prisma.AtLeast<WhatsappQueueWhereUniqueInput, 'id'>>;
-    update?: Array<WhatsappQueueUpdateWithWhereUniqueWithoutGuestInput>;
-    updateMany?: Array<WhatsappQueueUpdateManyWithWhereWithoutGuestInput>;
-    deleteMany?: Array<WhatsappQueueScalarWhereInput>;
-}
-export declare class WhatsappQueueUpdateWithWhereUniqueWithoutGuestInput {
-    where: Prisma.AtLeast<WhatsappQueueWhereUniqueInput, 'id'>;
-    data: InstanceType<typeof WhatsappQueueUpdateWithoutGuestInput>;
-}
-export declare class WhatsappQueueUpdateWithoutGuestInput {
-    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+export declare class WhatsappStatusUncheckedUpdateInput {
+    id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
+    refId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    message?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    apiRequestId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
+    status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
+    guestId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+}
+export declare class WhatsappStatusUpdateManyMutationInput {
+    refId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    message?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
 }
-export declare class WhatsappQueueUpdateInput {
-    id?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+export declare class WhatsappStatusUpdateManyWithWhereWithoutGuestInput {
+    where: InstanceType<typeof WhatsappStatusScalarWhereInput>;
+    data: InstanceType<typeof WhatsappStatusUpdateManyMutationInput>;
+}
+export declare class WhatsappStatusUpdateManyWithoutGuestNestedInput {
+    create?: Array<WhatsappStatusCreateWithoutGuestInput>;
+    connectOrCreate?: Array<WhatsappStatusCreateOrConnectWithoutGuestInput>;
+    upsert?: Array<WhatsappStatusUpsertWithWhereUniqueWithoutGuestInput>;
+    createMany?: InstanceType<typeof WhatsappStatusCreateManyGuestInputEnvelope>;
+    set?: Array<Prisma.AtLeast<WhatsappStatusWhereUniqueInput, 'id'>>;
+    disconnect?: Array<Prisma.AtLeast<WhatsappStatusWhereUniqueInput, 'id'>>;
+    delete?: Array<Prisma.AtLeast<WhatsappStatusWhereUniqueInput, 'id'>>;
+    connect?: Array<Prisma.AtLeast<WhatsappStatusWhereUniqueInput, 'id'>>;
+    update?: Array<WhatsappStatusUpdateWithWhereUniqueWithoutGuestInput>;
+    updateMany?: Array<WhatsappStatusUpdateManyWithWhereWithoutGuestInput>;
+    deleteMany?: Array<WhatsappStatusScalarWhereInput>;
+}
+export declare class WhatsappStatusUpdateWithWhereUniqueWithoutGuestInput {
+    where: Prisma.AtLeast<WhatsappStatusWhereUniqueInput, 'id'>;
+    data: InstanceType<typeof WhatsappStatusUpdateWithoutGuestInput>;
+}
+export declare class WhatsappStatusUpdateWithoutGuestInput {
+    refId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    message?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
-    apiRequestId?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
-    guest?: InstanceType<typeof GuestUpdateOneRequiredWithoutWhatsappQueueNestedInput>;
 }
-export declare class WhatsappQueueUpsertWithWhereUniqueWithoutGuestInput {
-    where: Prisma.AtLeast<WhatsappQueueWhereUniqueInput, 'id'>;
-    update: InstanceType<typeof WhatsappQueueUpdateWithoutGuestInput>;
-    create: InstanceType<typeof WhatsappQueueCreateWithoutGuestInput>;
+export declare class WhatsappStatusUpdateInput {
+    refId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    message?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
+    status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
+    guest?: InstanceType<typeof GuestUpdateOneRequiredWithoutWhatsappStatusesNestedInput>;
 }
-export declare class WhatsappQueueWhereUniqueInput {
-    id?: string;
-    AND?: Array<WhatsappQueueWhereInput>;
-    OR?: Array<WhatsappQueueWhereInput>;
-    NOT?: Array<WhatsappQueueWhereInput>;
+export declare class WhatsappStatusUpsertWithWhereUniqueWithoutGuestInput {
+    where: Prisma.AtLeast<WhatsappStatusWhereUniqueInput, 'id'>;
+    update: InstanceType<typeof WhatsappStatusUpdateWithoutGuestInput>;
+    create: InstanceType<typeof WhatsappStatusCreateWithoutGuestInput>;
+}
+export declare class WhatsappStatusWhereUniqueInput {
+    id?: number;
+    AND?: Array<WhatsappStatusWhereInput>;
+    OR?: Array<WhatsappStatusWhereInput>;
+    NOT?: Array<WhatsappStatusWhereInput>;
+    refId?: InstanceType<typeof StringFilter>;
+    message?: InstanceType<typeof StringNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
-    apiRequestId?: InstanceType<typeof IntNullableFilter>;
     status?: InstanceType<typeof EnumQueueStatusFilter>;
     guestId?: InstanceType<typeof StringFilter>;
     guest?: InstanceType<typeof GuestRelationFilter>;
 }
-export declare class WhatsappQueueWhereInput {
-    AND?: Array<WhatsappQueueWhereInput>;
-    OR?: Array<WhatsappQueueWhereInput>;
-    NOT?: Array<WhatsappQueueWhereInput>;
-    id?: InstanceType<typeof StringFilter>;
+export declare class WhatsappStatusWhereInput {
+    AND?: Array<WhatsappStatusWhereInput>;
+    OR?: Array<WhatsappStatusWhereInput>;
+    NOT?: Array<WhatsappStatusWhereInput>;
+    id?: InstanceType<typeof IntFilter>;
+    refId?: InstanceType<typeof StringFilter>;
+    message?: InstanceType<typeof StringNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
-    apiRequestId?: InstanceType<typeof IntNullableFilter>;
     status?: InstanceType<typeof EnumQueueStatusFilter>;
     guestId?: InstanceType<typeof StringFilter>;
     guest?: InstanceType<typeof GuestRelationFilter>;
 }
-export declare class WhatsappQueue {
-    id: string;
+export declare class WhatsappStatus {
+    id: number;
+    refId: string;
+    message: string | null;
     createdAt: Date;
-    apiRequestId: number | null;
     status: keyof typeof QueueStatus;
     guestId: string;
     guest?: InstanceType<typeof Guest>;

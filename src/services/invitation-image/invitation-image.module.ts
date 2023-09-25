@@ -5,8 +5,9 @@ import { InvitationImageResolver } from './invitation-image.resolver';
 import { InvitationImageController } from './invitation-image.controller';
 import { InvitationImageService } from './invitation-image.service';
 import { InvitationImageListener } from 'src/event-listeners/invitation-image.listener';
-import { WhatsappQueueModule } from '../whatsapp-queue/whatsapp-queue.module';
+import { WhatsappStatusModule } from '../whatsapp-status/whatsapp-status.module';
 import { GuestModule } from '../guest/guest.module';
+import { WhatsappGatewayModule } from '../whatsapp-gateway/whatsapp-gateway.module';
 
 @Module({
   providers: [
@@ -18,7 +19,8 @@ import { GuestModule } from '../guest/guest.module';
   ],
   imports: [
     forwardRef(() => GuestModule),
-    forwardRef(() => WhatsappQueueModule),
+    forwardRef(() => WhatsappStatusModule),
+    forwardRef(() => WhatsappGatewayModule),
   ],
   exports: [InvitationImageController],
 })

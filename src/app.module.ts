@@ -17,7 +17,7 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
 import { SchedulerModule } from './scheduler/scheduler.module';
 import { GuestModule } from './services/guest/guest.module';
 // import { EmailQueueModule } from './services/email-queue/email-queue.module';
-import { WhatsappQueueModule } from './services/whatsapp-queue/whatsapp-queue.module';
+import { WhatsappStatusModule } from './services/whatsapp-status/whatsapp-status.module';
 import { QrCodeModule } from './services/qr-code/qr-code.module';
 import { InvitationImageModule } from './services/invitation-image/invitation-image.module';
 import { WhatsappGatewayModule } from './services/whatsapp-gateway/whatsapp-gateway.module';
@@ -56,7 +56,7 @@ import { WebhookModule } from './services/webhook/webhook.module';
     AuthModule,
     GuestModule,
     // EmailQueueModule,
-    WhatsappQueueModule,
+    WhatsappStatusModule,
     QrCodeModule,
     InvitationImageModule,
     WebhookModule,

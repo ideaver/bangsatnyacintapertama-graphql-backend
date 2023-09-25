@@ -64,55 +64,30 @@ export class GuestController {
   }
 
   async findManyWhereLatestEmailOrWhatsappStatusEqualsWaiting() {
-    // First, find users with pending email queue status
-    const guestsWithPendingEmailQueue = await this.findMany({
-      where: {
-        deletedAt: { not: { equals: null } },
-        emailQueue: {
-          some: {
-            status: QueueStatus.QUEUE,
-          },
-        },
-      },
-      include: {
-        emailQueue: {
-          orderBy: {
-            createdAt: 'desc',
-          },
-          take: 1,
-          where: {
-            status: QueueStatus.QUEUE,
-          },
-        },
-      },
-    });
-
-    // Then, find users with pending WhatsApp queue status
-    const guestsWithPendingWhatsappQueue = await this.findMany({
-      where: {
-        deletedAt: { not: { equals: null } },
-        whatsappQueue: {
-          some: {
-            status: QueueStatus.QUEUE,
-          },
-        },
-      },
-      include: {
-        whatsappQueue: {
-          orderBy: {
-            createdAt: 'desc',
-          },
-          take: 1,
-          where: {
-            status: QueueStatus.QUEUE,
-          },
-        },
-      },
-    });
-
-    // Now, combine the results from both queries
-    return guestsWithPendingEmailQueue.concat(guestsWithPendingWhatsappQueue);
-
+    // // Then, find users with pending WhatsApp queue status
+    // const guestsWithPendingWhatsappQueue = await this.findMany({
+    //   where: {
+    //     deletedAt: { not: { equals: null } },
+    //     whatsappQueue: {
+    //       some: {
+    //         status: QueueStatus.QUEUE,
+    //       },
+    //     },
+    //   },
+    //   include: {
+    //     whatsappQueue: {
+    //       orderBy: {
+    //         createdAt: 'desc',
+    //       },
+    //       take: 1,
+    //       where: {
+    //         status: QueueStatus.QUEUE,
+    //       },
+    //     },
+    //   },
+    // });
+    // // Now, combine the results from both queries
+    // return guestsWithPendingEmailQueue.concat(guestsWithPendingWhatsappQueue);
     // The `combinedResults` array contains users with the latest pending queue status.
   }
 }

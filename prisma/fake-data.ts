@@ -61,24 +61,17 @@ export function fakeGuestComplete() {
     confirmationStatus: ConfirmationStatus.UNCONFIRMED,
   };
 }
-export function fakeEmailQueueComplete() {
+export function fakeWhatsappStatus() {
+  return {
+    message: undefined,
+  };
+}
+export function fakeWhatsappStatusComplete() {
   return {
     id: faker.datatype.number(),
+    refId: '[object Object]',
+    message: undefined,
     createdAt: new Date(),
-    status: QueueStatus.QUEUE,
-    guestId: faker.datatype.uuid(),
-  };
-}
-export function fakeWhatsappQueue() {
-  return {
-    apiRequestId: undefined,
-  };
-}
-export function fakeWhatsappQueueComplete() {
-  return {
-    id: faker.datatype.uuid(),
-    createdAt: new Date(),
-    apiRequestId: undefined,
     status: QueueStatus.QUEUE,
     guestId: faker.datatype.uuid(),
   };

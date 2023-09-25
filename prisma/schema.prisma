@@ -107,9 +107,7 @@ model Guest {
 
   invitationImage InvitationImage?
 
-  emailQueue EmailQueue[]
-
-  whatsappQueue WhatsappQueue[]
+  whatsappStatuses WhatsappStatus[]
 
   @@map("guests")
 }
@@ -139,10 +137,13 @@ enum QueueStatus {
   @@map("queue_statuses")
 }
 
-/// Batas Pengiriman 1000 email per hari
-model EmailQueue {
+model WhatsappStatus {
   id Int @id @default(autoincrement())
 
+  refId String @default(uuid())
+
+  message String?
+
   createdAt DateTime @default(now())
 
   //-------------------------- 1 relations --------------------------------
@@ -155,27 +156,7 @@ model EmailQueue {
 
   //-------------------------- m relations --------------------------------
 
-  @@map("email_queues")
-}
-
-model WhatsappQueue {
-  id String @id @default(uuid())
-
-  createdAt DateTime @default(now())
-
-  apiRequestId Int?
-
-  //-------------------------- 1 relations --------------------------------
-
-  status QueueStatus @default(QUEUE)
-
-  guestId String
-
-  guest Guest @relation(fields: [guestId], references: [id])
-
-  //-------------------------- m relations --------------------------------
-
-  @@map("whatsapp_queues")
+  @@map("whatsapp_statuses")
 }
 
 model QrCode {

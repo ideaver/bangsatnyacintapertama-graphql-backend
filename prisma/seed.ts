@@ -3,7 +3,6 @@ import { ConfirmationStatus, Prisma, PrismaClient } from '@prisma/client';
 
 import * as bcrypt from 'bcrypt';
 import { fakeUser, fakeGuest } from './fake-data';
-import { WhatsappQueue } from 'src/@generated';
 
 const prisma = new PrismaClient();
 
@@ -15,14 +14,6 @@ export enum Period {
 
 async function main() {
   console.log('Start seeding ...');
-
-  const abc: WhatsappQueue[] = await prisma.whatsappQueue.findMany({
-    include: { guest: true },
-    where: { status: { equals: 'QUEUE' } },
-  });
-
-  console.log(abc);
-
   // // create fake users
   // const numberOfUsers: number = 100;
   // const users: Prisma.UserCreateManyInput[] = [];

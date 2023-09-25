@@ -1,35 +1,68 @@
-import { Controller, HttpCode, Post, Req } from '@nestjs/common';
+import { Controller, Logger, Post, Req } from '@nestjs/common';
 import { Request } from 'express';
+import { ConfirmationStatus, QueueStatus } from '@prisma/client';
+import { WhatsappStatusController } from '../whatsapp-status/whatsapp-status.controller';
+import { GuestController } from '../guest/guest.controller';
+
+enum IncomingWhatsAppStatus {
+  Sent = 'sent',
+  Read = 'read',
+  Cancel = 'cancel',
+  Received = 'received',
+  Reject = 'reject',
+  // Pending = 'pending',
+}
 
 @Controller('tracking')
 export class WebhookController {
+  private readonly logger = new Logger(WebhookController.name);
+
+  constructor(
+    private readonly whatsappStatusController: WhatsappStatusController,
+    private readonly guestController: GuestController,
+  ) {}
+
   @Post()
-  @HttpCode(204)
-  async trackWhatsAppMessage(@Req() request: Request): Promise<void> {
-    const requestBody = request.body;
+  async trackWhatsAppStatusMessage(@Req() request: Request): Promise<void> {
+    const { id, status, phone, note, deviceId } = request.body;
 
-    // Extract data from the WhatsApp webhook payload
-    const { id, status, phone, note, deviceId } = requestBody;
+    this.logger.log(`
+    Received WhatsApp Message Status Update: 
+    ID: ${id},
+    Status: ${status},
+    Phone: ${phone},
+    Note: ${note},
+    Device ID: ${deviceId}
+    `);
 
-    // Handle the WhatsApp message status data here
-    console.log('Received WhatsApp Message Status Update:');
-    console.log(`ID: ${id}`);
-    console.log(`Status: ${status}`);
-    console.log(`Phone: ${phone}`);
-    console.log(`Note: ${note}`);
-    console.log(`Device ID: ${deviceId}`);
+    const receivedStatus: QueueStatus =
+      IncomingWhatsAppStatus[status] || QueueStatus.QUEUE;
 
-    // You can add your logic here to process the status update as needed.
-    // For example, you can store it in a database or trigger further actions.
+    try {
+      const guestIdByPhone = await this.findGuestIdByPhone(phone);
 
-    return;
+      if (guestIdByPhone) {
+        await this.whatsappStatusController.createOne({
+          data: {
+            refId: id,
+            guest: {
+              connect: { id: guestIdByPhone, whatsapp: { equals: phone } },
+            },
+            status: receivedStatus,
+          },
+        });
+      } else {
+        this.logger.log('Guest not found, status not saved to the database');
+      }
+    } catch (error) {
+      this.logger.error(
+        `Error processing WhatsApp status update: ${error.message}`,
+      );
+    }
   }
 
-  @Post('incoming') // route for incoming WhatsApp messages
-  async receiveIncomingWhatsAppMessage(@Req() request): Promise<void> {
-    const requestBody = request.body;
-
-    // Extract data from the incoming WhatsApp message payload
+  @Post('incoming')
+  async receiveIncomingWhatsAppMessage(@Req() request: Request): Promise<void> {
     const {
       id,
       pushName,
@@ -43,25 +76,79 @@ export class WebhookController {
       deviceId,
       sender,
       timestamp,
-    } = requestBody;
+    } = request.body;
 
-    // Handle the incoming WhatsApp message data here
-    console.log('Received WhatsApp Incoming Message:');
-    console.log(`ID: ${id}`);
-    console.log(`Push Name: ${pushName}`);
-    console.log(`Is Group: ${isGroup}`);
-    console.log(`Message: ${message}`);
-    console.log(`Phone: ${phone}`);
-    console.log(`Message Type: ${messageType}`);
-    console.log(`File: ${file}`);
-    console.log(`MIME Type: ${mimeType}`);
-    console.log(`Device ID: ${deviceId}`);
-    console.log(`Sender: ${sender}`);
-    console.log(`Timestamp: ${timestamp}`);
+    this.logger.log(`
+    Received WhatsApp Incoming Message:
+    ID: ${id}
+    Push Name: ${pushName}
+    Is Group: ${isGroup}
+    Group: ${group}
+    Message: ${message}
+    Phone: ${phone}
+    Message Type: ${messageType}
+    File: ${file}
+    MIME Type: ${mimeType}
+    Device ID: ${deviceId}
+    Sender: ${sender}
+    Timestamp: ${timestamp}
+    `);
 
-    // You can add your logic here to process the incoming message as needed.
-    // For example, you can store it in a database or trigger further actions.
+    const containsTargetWord = this.doesStringContainTargetWord(message);
+    const confirmationStatus = containsTargetWord
+      ? ConfirmationStatus.REJECTED
+      : ConfirmationStatus.CONFIRMED;
 
-    return;
+    try {
+      const guestIdByPhone = await this.findGuestIdByPhone(phone);
+
+      if (guestIdByPhone) {
+        await this.updateGuestConfirmationStatus(
+          guestIdByPhone,
+          confirmationStatus,
+        );
+      } else {
+        this.logger.log(
+          'Guest not found, confirmation status not updated to the database',
+        );
+      }
+    } catch (error) {
+      this.logger.error(
+        `Error processing WhatsApp incoming message: ${error.message}`,
+      );
+    }
+  }
+
+  private async findGuestIdByPhone(phone: number): Promise<string | undefined> {
+    const guest = await this.guestController.findFirst({
+      take: 1,
+      where: { whatsapp: { equals: phone } },
+      select: { id: true },
+    });
+
+    return guest?.id || undefined;
+  }
+
+  private doesStringContainTargetWord(inputString: string): boolean {
+    const targetWords: string[] = [
+      'tidak',
+      'maaf',
+      '2',
+      'ga',
+      'skip',
+      'lain kali',
+    ];
+
+    return targetWords.some((word) => inputString.includes(word));
+  }
+
+  private async updateGuestConfirmationStatus(
+    guestId: string,
+    confirmationStatus: ConfirmationStatus,
+  ): Promise<void> {
+    await this.guestController.updateOne({
+      where: { id: guestId },
+      data: { confirmationStatus: { set: confirmationStatus } },
+    });
   }
 }
