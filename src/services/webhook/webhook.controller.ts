@@ -1,9 +1,11 @@
-import { Controller, Post, Req } from '@nestjs/common';
+import { Controller, HttpCode, Post, Req } from '@nestjs/common';
+import { Request } from 'express';
 
 @Controller('tracking')
 export class WebhookController {
   @Post()
-  async trackWhatsAppMessage(@Req() request): Promise<void> {
+  @HttpCode(204)
+  async trackWhatsAppMessage(@Req() request: Request): Promise<void> {
     const requestBody = request.body;
 
     // Extract data from the WhatsApp webhook payload

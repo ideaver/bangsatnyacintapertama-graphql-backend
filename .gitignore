@@ -3,6 +3,7 @@
 /node_modules
 /files/qrcodes
 /files/invitation
+/src/@generated
 
 # Logs
 logs
