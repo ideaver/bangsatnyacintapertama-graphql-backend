@@ -134,6 +134,12 @@ export class WebhookController {
       data: { confirmationStatus: { set: confirmationStatus } },
     });
 
+    //update all guest in the same group confirmation status in database
+    await this.guestController.updateMany({
+      data: { confirmationStatus: { set: confirmationStatus } },
+      where: { groupMemberOf: { id: { equals: guestPhone.id } } },
+    });
+
     const message =
       confirmationStatus === ConfirmationStatus.CONFIRMED
         ? `Terima kasih atas Jawabannya
