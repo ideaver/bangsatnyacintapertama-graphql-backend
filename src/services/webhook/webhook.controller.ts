@@ -56,6 +56,10 @@ export class WebhookController {
               status: receivedStatus,
             },
           });
+        } else {
+          this.logger.error(
+            'trackWhatsAppStatusMessage: Guest not found, status not created to the database',
+          );
         }
       })
       .catch(() => {
@@ -111,13 +115,13 @@ export class WebhookController {
           await this.updateGuestConfirmationStatus(guestId, confirmationStatus);
         } else {
           this.logger.error(
-            'Guest not found, confirmation status not saved to the database',
+            'receiveIncomingWhatsAppMessage: Guest not found, confirmation status not saved to the database',
           );
         }
       })
       .catch(() => {
         this.logger.error(
-          'findGuestIdByPhone Error, confirmation status not saved to the database',
+          'receiveIncomingWhatsAppMessage: findGuestIdByPhone: Error, confirmation status not saved to the database',
         );
       });
   }
