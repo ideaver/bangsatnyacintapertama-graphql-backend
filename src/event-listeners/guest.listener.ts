@@ -56,6 +56,7 @@ export class GuestListener {
   }
 
   async readInvitationImageFiles(folderPath: string): Promise<string[]> {
+    // Use fs.readdir to read all files in the folder
     return new Promise<string[]>((resolve, reject) => {
       fs.readdir(folderPath, (err, files) => {
         if (err) {
@@ -128,7 +129,9 @@ export class GuestListener {
       // Use Promise.all to upload all files in parallel
       const uploadResultPaths: any[] = await Promise.all(fileUploadPromises);
 
-      this.logger.log('All Invitation Image Files Uploaded to S3.');
+      this.logger.log(
+        `${fileUploadPromises.length} Invitation Image Files Uploaded to S3.`,
+      );
 
       // Save the file paths to the Prisma database
       const invitationImageCreateManyInputArray: Prisma.InvitationImageCreateManyInput[] =
@@ -176,10 +179,21 @@ export class GuestListener {
 
   // Generate and save a QR code for a guest
   private async generateAndSaveQrCode(guestId: string): Promise<string> {
-    const qrCodeUrl = await qrCode.toDataURL(guestId);
     const qrCodePath = `files/qrcodes/${guestId}.png`;
+
+    // Check if the QR code file already exists
+    if (fs.existsSync(qrCodePath)) {
+      return qrCodePath; // Return the path to the existing QR code
+    }
+
+    const qrCodeUrl = await qrCode.toDataURL(guestId);
+
+    // Create the directory if it doesn't exist
     fs.mkdirSync('files/qrcodes', { recursive: true });
+
+    // Save the QR code as a PNG file
     fs.writeFileSync(qrCodePath, qrCodeUrl.split(',')[1], 'base64');
+
     return qrCodePath;
   }
 
@@ -188,6 +202,7 @@ export class GuestListener {
     qrCodeCreateManyInputArray: Prisma.QrCodeCreateManyInput[],
   ) {
     await this.qrCodeController.createMany({
+      skipDuplicates: true, // Skip duplicates
       data: qrCodeCreateManyInputArray,
     });
   }
@@ -214,6 +229,18 @@ export class GuestListener {
     const mergedImageFileName = `${guestId}.png`;
     const outputPath = path.join(outputFolder, mergedImageFileName);
 
+    // Check if the QR code image exists
+    if (!fs.existsSync(qrCodeImagePath)) {
+      this.logger.error(`QR Code Image not found: ${qrCodeImagePath}`);
+      return; // Return the path to the existing image
+    }
+
+    // Check if the output image already exists
+    if (fs.existsSync(outputPath)) {
+      return outputPath; // Return the path to the existing image
+    }
+
+    //else will regenerate
     await fs.promises.mkdir(outputFolder, { recursive: true });
 
     const guestName = `
