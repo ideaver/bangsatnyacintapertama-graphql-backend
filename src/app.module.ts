@@ -29,6 +29,7 @@ import { WebhookModule } from './services/webhook/webhook.module';
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.graphql'),
       playground: false,
+      introspection: true,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
     //for Queue
