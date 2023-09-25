@@ -153,7 +153,7 @@ Dogma Pictures Team`;
       .sendWhatsappMessages(messages)
       .then(() => {
         this.logger.log(
-          `${guestPhone} Confirmation Status Updated to ${confirmationStatus}`,
+          `${guestPhone.whatsapp} Confirmation Status Updated to ${confirmationStatus}`,
         );
       })
       .catch(() => {
