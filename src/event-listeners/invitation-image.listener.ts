@@ -135,6 +135,10 @@ Dogma Pictures Team
   // Find guests without QR codes
   private async findGuestsWithoutWhatsappStatus(): Promise<Guest[]> {
     return this.guestController.findMany({
+      include: {
+        invitationImage: true,
+        groupMemberOf: true,
+      },
       where: { whatsappStatuses: { none: {} } },
     });
   }
