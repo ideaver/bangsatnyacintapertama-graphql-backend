@@ -25,11 +25,7 @@ export class UploaderController {
     private readonly uploaderService: UploaderService,
   ) {}
 
-  async uploadSingleFile(
-    file: FileUpload,
-    userId: string,
-    ratioForImage?: RatioEnum,
-  ) {
+  async uploadSingleFile(file: FileUpload) {
     // Validate user id
     // await this.validateUserId(userId);
 

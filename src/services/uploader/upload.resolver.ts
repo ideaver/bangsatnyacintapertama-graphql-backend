@@ -1,7 +1,7 @@
 import { Resolver, Mutation, Args, Query } from '@nestjs/graphql';
 import { RatioEnum } from './enums/ratio.enum';
 // Ignore the import errors
-// @ts-ignore
+// @ats-ignore
 import { FileUpload, GraphQLUpload } from 'graphql-upload';
 import { UploaderService } from './uploader.service';
 import { UploaderController } from './uploader.controller';
@@ -22,15 +22,8 @@ export class UploaderResolver {
   async uploadSingleFile(
     @Args({ name: 'file', type: () => GraphQLUpload, nullable: true })
     file: FileUpload,
-    @Args('userId', { type: () => String, nullable: false }) userId: string,
-    @Args('ratioForImage', { type: () => RatioEnum, nullable: true })
-    ratioForImage?: RatioEnum,
   ) {
-    return await this.uploaderController.uploadSingleFile(
-      file,
-      userId,
-      ratioForImage,
-    );
+    return await this.uploaderController.uploadSingleFile(file);
   }
 
   // @Mutation(() => [String], {
