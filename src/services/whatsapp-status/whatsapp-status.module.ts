@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
 import { WhatsappStatusResolver } from './whatsapp-status.resolver';
 import { WhatsappStatusController } from './whatsapp-status.controller';
@@ -14,7 +14,7 @@ import { GuestModule } from '../guest/guest.module';
     WhatsappStatusService,
     WhatsappStatusListener,
   ],
-  imports: [GuestModule],
+  imports: [forwardRef(() => GuestModule)],
   exports: [WhatsappStatusController],
 })
 export class WhatsappStatusModule {}
