@@ -161,7 +161,7 @@ export class GuestListener {
       );
 
       // Delete the PNG files from the folder
-      await this.deleteInvitiationImageFilesAndQrCodes(invitationImageFiles);
+      await this.deleteInvitiationImageAndQrCodeFiles(invitationImageFiles);
     } catch (error) {
       this.logger.error('Error uploading invitation image files:', error);
     }
