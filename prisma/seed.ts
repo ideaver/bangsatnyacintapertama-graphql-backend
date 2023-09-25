@@ -14,6 +14,15 @@ export enum Period {
 
 async function main() {
   console.log('Start seeding ...');
+
+  console.log(
+    await prisma.guest.findFirst({
+      take: 1,
+      where: { whatsapp: { equals: 628352523 } },
+      select: { id: true },
+    }),
+  );
+
   // // create fake users
   // const numberOfUsers: number = 100;
   // const users: Prisma.UserCreateManyInput[] = [];

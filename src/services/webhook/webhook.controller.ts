@@ -30,11 +30,13 @@ export class WebhookController {
   async trackWhatsAppStatusMessage(@Req() request: Request): Promise<void> {
     const { id, status, phone, note, deviceId } = request.body;
 
+    const parsedPhone = parseFloat(phone);
+
     this.logger.log(`
     Received WhatsApp Message Status Update: 
     ID: ${id},
     Status: ${status},
-    Phone: ${phone},
+    Phone: ${parsedPhone},
     Note: ${note},
     Device ID: ${deviceId}
     `);
@@ -42,14 +44,14 @@ export class WebhookController {
     const receivedStatus: QueueStatus =
       IncomingWhatsAppStatus[status] || QueueStatus.QUEUE;
 
-    await this.findGuestIdByPhone(phone)
+    await this.findGuestIdByPhone(parsedPhone)
       .then(async (guestId) => {
         if (guestId) {
           await this.whatsappStatusController.createOne({
             data: {
               refId: id,
               guest: {
-                connect: { id: guestId, whatsapp: { equals: phone } },
+                connect: { id: guestId, whatsapp: { equals: parsedPhone } },
               },
               status: receivedStatus,
             },
@@ -80,6 +82,8 @@ export class WebhookController {
       timestamp,
     } = request.body;
 
+    const parsedPhone = parseFloat(phone);
+
     this.logger.log(`
     Received WhatsApp Incoming Message:
     ID: ${id}
@@ -87,7 +91,7 @@ export class WebhookController {
     Is Group: ${isGroup}
     Group: ${group}
     Message: ${message}
-    Phone: ${phone}
+    Phone: ${parsedPhone}
     Message Type: ${messageType}
     File: ${file}
     MIME Type: ${mimeType}
@@ -101,7 +105,7 @@ export class WebhookController {
       ? ConfirmationStatus.REJECTED
       : ConfirmationStatus.CONFIRMED;
 
-    await this.findGuestIdByPhone(phone)
+    await this.findGuestIdByPhone(parsedPhone)
       .then(async (guestId) => {
         if (guestId) {
           await this.updateGuestConfirmationStatus(guestId, confirmationStatus);
@@ -118,14 +122,14 @@ export class WebhookController {
       });
   }
 
-  private async findGuestIdByPhone(phone: number): Promise<string | undefined> {
+  private async findGuestIdByPhone(phone: number): Promise<string | null> {
     const guest = await this.guestController.findFirst({
       take: 1,
       where: { whatsapp: { equals: phone } },
       select: { id: true },
     });
 
-    return guest?.id || undefined;
+    return guest?.id || null;
   }
 
   private doesStringContainTargetWord(inputString: string): boolean {
