@@ -133,7 +133,9 @@ Dogma Pictures Team
           data: whatsappStatusCreateManyInput,
         });
 
-        this.logger.log(count + ' Broadcast Messages Sent To Whatsapp Gateway');
+        this.logger.log(
+          count.count + ' Broadcast Messages Sent To Whatsapp Gateway',
+        );
       }
     } catch (error) {
       this.logger.error(error);
