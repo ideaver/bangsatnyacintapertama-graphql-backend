@@ -139,7 +139,10 @@ export class WebhookController {
         ? `Terima kasih atas Jawabannya
     Sistem kami telah mencatat bahwa anda akan hadir dan kami akan menghubungi lebih lanjut apabila dibutuhkan`
         : `Terima kasih atas Jawabannya
-        Sistem kami telah mencatat bahwa anda tidak hadir`;
+        Sistem kami telah mencatat bahwa anda tidak hadir
+        
+        Salam,
+Dogma Pictures Team`;
 
     const messages: WaMessage[] = [
       { phone: guestPhone.whatsapp, message: message, refId: uuidV4() },
