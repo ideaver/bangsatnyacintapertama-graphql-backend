@@ -137,7 +137,10 @@ export class WebhookController {
     const message =
       confirmationStatus === ConfirmationStatus.CONFIRMED
         ? `Terima kasih atas Jawabannya
-    Sistem kami telah mencatat bahwa anda akan hadir dan kami akan menghubungi lebih lanjut apabila dibutuhkan`
+    Sistem kami telah mencatat bahwa anda akan hadir dan kami akan menghubungi lebih lanjut apabila dibutuhkan
+    
+    Salam,
+Dogma Pictures Team`
         : `Terima kasih atas Jawabannya
         Sistem kami telah mencatat bahwa anda tidak hadir
         
