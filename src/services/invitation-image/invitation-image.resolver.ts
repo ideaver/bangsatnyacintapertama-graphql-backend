@@ -177,4 +177,12 @@ export class InvitationImageResolver {
       invitationImageCountAggregateInput,
     );
   }
+
+  @Query(() => Boolean, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  invitationImageResend() {
+    return this.invitationImageController.resend();
+  }
 }

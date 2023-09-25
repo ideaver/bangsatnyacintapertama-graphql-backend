@@ -92,4 +92,9 @@ export class InvitationImageController {
   async count(invitationImageCountArgs: Prisma.InvitationImageCountArgs) {
     return await this.invitationImageService.count(invitationImageCountArgs);
   }
+
+  async resend() {
+    this.eventEmitter.emit(InvitationImageEvent.Resend);
+    return true;
+  }
 }

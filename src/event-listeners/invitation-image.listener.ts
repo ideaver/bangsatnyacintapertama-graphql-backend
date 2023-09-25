@@ -21,6 +21,15 @@ export class InvitationImageListener {
 
   @OnEvent(InvitationImageEvent.CreatedMany)
   async onInvitationImageCreatedManyEvent() {
+    await this.sendToWhatsappGateway();
+  }
+
+  @OnEvent(InvitationImageEvent.Resend)
+  async onInvitationImageResend() {
+    await this.sendToWhatsappGateway();
+  }
+
+  private async sendToWhatsappGateway() {
     try {
       const guestsWithoutWhatsappStatus =
         await this.findGuestsWithoutWhatsappStatus();
@@ -119,7 +128,6 @@ Dogma Pictures Team
         //   this.logger.error(response);
         //   return;
         // }
-
         // Update whatsapp status status to SENT
         const count = await this.whatsappStatusController.createMany({
           data: whatsappStatusCreateManyInput,
