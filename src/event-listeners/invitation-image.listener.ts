@@ -101,7 +101,7 @@ Dogma Pictures Team
 
         whatsappStatusCreateManyInput.push({
           refId: uuid,
-          message: message,
+          // message: message,
           status: QueueStatus.QUEUE,
           guestId: id,
         });
