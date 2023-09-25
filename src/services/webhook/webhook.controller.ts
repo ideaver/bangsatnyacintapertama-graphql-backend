@@ -42,26 +42,25 @@ export class WebhookController {
     const receivedStatus: QueueStatus =
       IncomingWhatsAppStatus[status] || QueueStatus.QUEUE;
 
-    try {
-      const guestIdByPhone = await this.findGuestIdByPhone(phone).catch(() => {
-        this.logger.log('Guest not found, status not saved to the database');
-        throw new Error();
+    await this.findGuestIdByPhone(phone)
+      .then(async (guestId) => {
+        if (guestId) {
+          await this.whatsappStatusController.createOne({
+            data: {
+              refId: id,
+              guest: {
+                connect: { id: guestId, whatsapp: { equals: phone } },
+              },
+              status: receivedStatus,
+            },
+          });
+        }
+      })
+      .catch(() => {
+        this.logger.error(
+          'findGuestIdByPhone Error, status not created to the database',
+        );
       });
-
-      await this.whatsappStatusController.createOne({
-        data: {
-          refId: id,
-          guest: {
-            connect: { id: guestIdByPhone, whatsapp: { equals: phone } },
-          },
-          status: receivedStatus,
-        },
-      });
-    } catch (error) {
-      this.logger.error(
-        `Error processing WhatsApp status update: ${error.message}`,
-      );
-    }
   }
 
   @Post('incoming')
@@ -102,24 +101,21 @@ export class WebhookController {
       ? ConfirmationStatus.REJECTED
       : ConfirmationStatus.CONFIRMED;
 
-    try {
-      const guestIdByPhone = await this.findGuestIdByPhone(phone);
-
-      if (guestIdByPhone) {
-        await this.updateGuestConfirmationStatus(
-          guestIdByPhone,
-          confirmationStatus,
+    await this.findGuestIdByPhone(phone)
+      .then(async (guestId) => {
+        if (guestId) {
+          await this.updateGuestConfirmationStatus(guestId, confirmationStatus);
+        } else {
+          this.logger.error(
+            'Guest not found, confirmation status not saved to the database',
+          );
+        }
+      })
+      .catch(() => {
+        this.logger.error(
+          'findGuestIdByPhone Error, confirmation status not saved to the database',
         );
-      } else {
-        this.logger.log(
-          'Guest not found, confirmation status not updated to the database',
-        );
-      }
-    } catch (error) {
-      this.logger.error(
-        `Error processing WhatsApp incoming message: ${error.message}`,
-      );
-    }
+      });
   }
 
   private async findGuestIdByPhone(phone: number): Promise<string | undefined> {
@@ -169,6 +165,9 @@ export class WebhookController {
       .sendWhatsappMessages(messages)
       .then(() => {
         this.logger.log(`Confirmation Status Updated to ${confirmationStatus}`);
+      })
+      .catch(() => {
+        this.logger.error(`sendWhatsappMessages Error`);
       });
   }
 }
