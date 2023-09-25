@@ -38,6 +38,7 @@ export class WebhookController {
     await this.findGuestIdByPhone(parsedPhone)
       .then(async (guestId) => {
         if (guestId) {
+          //create status
           await this.whatsappStatusController
             .createOne({
               data: {

@@ -1,17 +1,36 @@
-import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { Injectable, Logger } from '@nestjs/common';
+import { ConfirmationStatus, Prisma, QueueStatus } from '@prisma/client';
 import { WhatsappStatusService } from './whatsapp-status.service';
 import { WhatsappStatusEvent } from 'src/event-listeners/enum/whatsapp-status-event.enum ';
 import { EventEmitter2 } from '@nestjs/event-emitter';
+import { GuestController } from '../guest/guest.controller';
 
 @Injectable()
 export class WhatsappStatusController {
+  private readonly logger = new Logger(WhatsappStatusController.name);
   constructor(
     private readonly whatsappStatusService: WhatsappStatusService,
+    private readonly guestController: GuestController,
     private eventEmitter: EventEmitter2,
   ) {}
 
   async createOne(whatsappStatusCreateArgs: Prisma.WhatsappStatusCreateArgs) {
+    // const guest = whatsappStatusCreateArgs?.data.guest;
+    // const status = whatsappStatusCreateArgs?.data?.status;
+    // //if status is read, update confirmation status
+    // if (status === QueueStatus.DELIVERED) {
+    //   const checkExistingConfirmationStatus = await this.guestController.findOne({
+    //     where: { id: guest.connect.id },
+    //     select: { confirmationStatus: true },
+    //   });
+
+    //   if(checkExistingConfirmationStatus.confirmationStatus === ConfirmationStatus.PENDING){
+    //     await this.guestController.updateOne({
+    //       where: { id: guest.connect.id },
+    //       data: { confirmationStatus: ConfirmationStatus.DELIVERED },
+    //     });
+    //   }
+    // }
     return await this.whatsappStatusService.createOne(whatsappStatusCreateArgs);
   }
 
