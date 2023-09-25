@@ -32,39 +32,36 @@ export class WebhookController {
 
     const parsedPhone = parseFloat(phone);
 
-    this.logger.log(`
-    Received WhatsApp Message Status Update: 
-    ID: ${id},
-    Status: ${status},
-    Phone: ${parsedPhone},
-    Note: ${note},
-    Device ID: ${deviceId}
-    `);
-
     const receivedStatus: QueueStatus =
       IncomingWhatsAppStatus[status] || QueueStatus.QUEUE;
 
     await this.findGuestIdByPhone(parsedPhone)
       .then(async (guestId) => {
         if (guestId) {
-          await this.whatsappStatusController.createOne({
-            data: {
-              refId: id,
-              guest: {
-                connect: { id: guestId, whatsapp: { equals: parsedPhone } },
+          await this.whatsappStatusController
+            .createOne({
+              data: {
+                refId: id,
+                guest: {
+                  connect: { id: guestId, whatsapp: { equals: parsedPhone } },
+                },
+                status: receivedStatus,
               },
-              status: receivedStatus,
-            },
-          });
+            })
+            .catch(() => {
+              this.logger.error(
+                `trackWhatsAppStatusMessage: createOne: Error,${parsedPhone} ${status} status not created to the database`,
+              );
+            });
         } else {
           this.logger.error(
-            'trackWhatsAppStatusMessage: Guest not found, status not created to the database',
+            `trackWhatsAppStatusMessage: Guest ${parsedPhone} not found, ${status} status not created to the database`,
           );
         }
       })
       .catch(() => {
         this.logger.error(
-          'findGuestIdByPhone Error, status not created to the database',
+          `findGuestIdByPhone Error,${parsedPhone} ${status} status not created to the database`,
         );
       });
   }
@@ -88,22 +85,6 @@ export class WebhookController {
 
     const parsedPhone = parseFloat(phone);
 
-    this.logger.log(`
-    Received WhatsApp Incoming Message:
-    ID: ${id}
-    Push Name: ${pushName}
-    Is Group: ${isGroup}
-    Group: ${group}
-    Message: ${message}
-    Phone: ${parsedPhone}
-    Message Type: ${messageType}
-    File: ${file}
-    MIME Type: ${mimeType}
-    Device ID: ${deviceId}
-    Sender: ${sender}
-    Timestamp: ${timestamp}
-    `);
-
     const containsTargetWord = this.doesStringContainTargetWord(message);
     const confirmationStatus = containsTargetWord
       ? ConfirmationStatus.REJECTED
@@ -112,16 +93,23 @@ export class WebhookController {
     await this.findGuestIdByPhone(parsedPhone)
       .then(async (guestId) => {
         if (guestId) {
-          await this.updateGuestConfirmationStatus(guestId, confirmationStatus);
+          await this.updateGuestConfirmationStatus(
+            guestId,
+            confirmationStatus,
+          ).catch(() => {
+            this.logger.error(
+              `receiveIncomingWhatsAppMessage: createOne: Error, ${parsedPhone} ${confirmationStatus} confirmation status not saved to the database`,
+            );
+          });
         } else {
           this.logger.error(
-            'receiveIncomingWhatsAppMessage: Guest not found, confirmation status not saved to the database',
+            `receiveIncomingWhatsAppMessage: Guest ${parsedPhone} not found, ${confirmationStatus} confirmation status not saved to the database`,
           );
         }
       })
       .catch(() => {
         this.logger.error(
-          'receiveIncomingWhatsAppMessage: findGuestIdByPhone: Error, confirmation status not saved to the database',
+          `receiveIncomingWhatsAppMessage: findGuestIdByPhone: Error,${parsedPhone} ${confirmationStatus} confirmation status not saved to the database`,
         );
       });
   }
