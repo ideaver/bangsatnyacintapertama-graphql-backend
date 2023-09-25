@@ -70,20 +70,31 @@ export class GuestListener {
     });
   }
 
-  async deleteInvitiationImageFiles(
-    folderPath: string,
+  async deleteInvitiationImageAndQrCodeFiles(
     filesToDelete: string[],
   ): Promise<void> {
     try {
-      const deletionPromises = filesToDelete.map((filename) => {
-        const filePath = path.join(folderPath, filename);
+      const invitationImagesDeletionPromises = filesToDelete.map((filename) => {
+        const filePath = path.join('files/invitation', filename);
         return fs.promises.unlink(filePath);
       });
 
-      await Promise.all(deletionPromises);
-      this.logger.log('Local Invitation Image Files Deleted.');
+      const qrImagesDeletionPromises = filesToDelete.map((filename) => {
+        const filePath = path.join('files/qrcodes', filename);
+        return fs.promises.unlink(filePath);
+      });
+
+      await Promise.all([
+        invitationImagesDeletionPromises,
+        qrImagesDeletionPromises,
+      ]);
+
+      this.logger.log('Local Invitation Image & QrCodes Files Deleted.');
     } catch (error) {
-      this.logger.error('Error deleting local invitation image files:', error);
+      this.logger.error(
+        'Error deleting local invitation image & qr codes files:',
+        error,
+      );
     }
   }
 
@@ -150,7 +161,7 @@ export class GuestListener {
       );
 
       // Delete the PNG files from the folder
-      await this.deleteInvitiationImageFiles(folderPath, invitationImageFiles);
+      await this.deleteInvitiationImageFilesAndQrCodes(invitationImageFiles);
     } catch (error) {
       this.logger.error('Error uploading invitation image files:', error);
     }
@@ -166,7 +177,7 @@ export class GuestListener {
   // Generate and save a QR code for a guest
   private async generateAndSaveQrCode(guestId: string): Promise<string> {
     const qrCodeUrl = await qrCode.toDataURL(guestId);
-    const qrCodePath = `files/qrcodes/${guestId}_QRCode.png`;
+    const qrCodePath = `files/qrcodes/${guestId}.png`;
     fs.mkdirSync('files/qrcodes', { recursive: true });
     fs.writeFileSync(qrCodePath, qrCodeUrl.split(',')[1], 'base64');
     return qrCodePath;
