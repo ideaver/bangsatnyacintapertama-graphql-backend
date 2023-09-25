@@ -43,21 +43,20 @@ export class WebhookController {
       IncomingWhatsAppStatus[status] || QueueStatus.QUEUE;
 
     try {
-      const guestIdByPhone = await this.findGuestIdByPhone(phone);
-
-      if (guestIdByPhone) {
-        await this.whatsappStatusController.createOne({
-          data: {
-            refId: id,
-            guest: {
-              connect: { id: guestIdByPhone, whatsapp: { equals: phone } },
-            },
-            status: receivedStatus,
-          },
-        });
-      } else {
+      const guestIdByPhone = await this.findGuestIdByPhone(phone).catch(() => {
         this.logger.log('Guest not found, status not saved to the database');
-      }
+        throw new Error();
+      });
+
+      await this.whatsappStatusController.createOne({
+        data: {
+          refId: id,
+          guest: {
+            connect: { id: guestIdByPhone, whatsapp: { equals: phone } },
+          },
+          status: receivedStatus,
+        },
+      });
     } catch (error) {
       this.logger.error(
         `Error processing WhatsApp status update: ${error.message}`,
