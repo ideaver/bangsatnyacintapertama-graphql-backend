@@ -1,7 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfirmationStatus, Prisma, QueueStatus } from '@prisma/client';
 import { WhatsappStatusService } from './whatsapp-status.service';
-import { WhatsappStatusEvent } from 'src/event-listeners/enum/whatsapp-status-event.enum ';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { GuestController } from '../guest/guest.controller';
 
@@ -40,8 +39,6 @@ export class WhatsappStatusController {
     const res = await this.whatsappStatusService.createMany(
       whatsappStatusCreateManyArgs,
     );
-
-    this.eventEmitter.emit(WhatsappStatusEvent.CreatedMany);
 
     return res;
   }
