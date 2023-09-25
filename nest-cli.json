@@ -10,12 +10,7 @@
         "watchAssets": true
       },
       {
-        "include": "../src/services/email/templates/",
-        "outDir": "dist/src/",
-        "watchAssets": true
-      },
-      {
-        "include": "../files/",
+        "include": "../files/template",
         "outDir": "dist/files/",
         "watchAssets": true
       }
