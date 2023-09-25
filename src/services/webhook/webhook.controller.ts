@@ -3,6 +3,9 @@ import { Request } from 'express';
 import { ConfirmationStatus, QueueStatus } from '@prisma/client';
 import { WhatsappStatusController } from '../whatsapp-status/whatsapp-status.controller';
 import { GuestController } from '../guest/guest.controller';
+import { WhatsappGatewayController } from '../whatsapp-gateway/whatsapp-gateway.controller';
+import { WaMessage } from 'src/model/message.model';
+import { v4 as uuidV4 } from 'uuid';
 
 enum IncomingWhatsAppStatus {
   Sent = 'sent',
@@ -20,6 +23,7 @@ export class WebhookController {
   constructor(
     private readonly whatsappStatusController: WhatsappStatusController,
     private readonly guestController: GuestController,
+    private readonly whatsappGatewayController: WhatsappGatewayController,
   ) {}
 
   @Post()
@@ -146,9 +150,26 @@ export class WebhookController {
     guestId: string,
     confirmationStatus: ConfirmationStatus,
   ): Promise<void> {
-    await this.guestController.updateOne({
+    const guestPhone = await this.guestController.updateOne({
       where: { id: guestId },
       data: { confirmationStatus: { set: confirmationStatus } },
     });
+
+    const message =
+      confirmationStatus === ConfirmationStatus.CONFIRMED
+        ? `Terima kasih atas Jawabannya
+    Sistem kami telah mencatat bahwa anda akan hadir dan kami akan menghubungi lebih lanjut apabila dibutuhkan`
+        : `Terima kasih atas Jawabannya
+        Sistem kami telah mencatat bahwa anda tidak hadir`;
+
+    const messages: WaMessage[] = [
+      { phone: guestPhone.whatsapp, message: message, refId: uuidV4() },
+    ];
+
+    await this.whatsappGatewayController
+      .sendWhatsappMessages(messages)
+      .then(() => {
+        this.logger.log(`Confirmation Status Updated to ${confirmationStatus}`);
+      });
   }
 }

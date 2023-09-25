@@ -5,6 +5,6 @@ import { GuestModule } from '../guest/guest.module';
 
 @Module({
   controllers: [WebhookController],
-  imports: [WhatsappStatusModule, GuestModule],
+  imports: [WhatsappStatusModule, GuestModule, WhatsappStatusModule],
 })
 export class WebhookModule {}
