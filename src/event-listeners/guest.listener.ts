@@ -52,7 +52,7 @@ export class GuestListener {
       });
     }
     await this.saveQrCodeToDatabase(qrCodeCreateManyInputArray);
-    await this.uploadInvitationImageFiles();
+    await this.uploadInvitationImageFiles(guestsWithoutQrCodes);
   }
 
   async readInvitationImageFiles(folderPath: string): Promise<string[]> {
@@ -75,16 +75,19 @@ export class GuestListener {
     filesToDelete: string[],
   ): Promise<void> {
     try {
+      // Delete the PNG files from the folder
       const invitationImagesDeletionPromises = filesToDelete.map((filename) => {
         const filePath = path.join('files/invitation', filename);
         return fs.promises.unlink(filePath);
       });
 
+      // Delete the QR code files from the folder
       const qrImagesDeletionPromises = filesToDelete.map((filename) => {
         const filePath = path.join('files/qrcodes', filename);
         return fs.promises.unlink(filePath);
       });
 
+      // Wait for all the deletion promises to resolve
       await Promise.all([
         invitationImagesDeletionPromises,
         qrImagesDeletionPromises,
@@ -99,22 +102,18 @@ export class GuestListener {
     }
   }
 
-  async uploadInvitationImageFiles(): Promise<void> {
-    try {
-      const folderPath = 'files/invitation'; // Change this to the path of your folder
-      const invitationImageFiles =
-        await this.readInvitationImageFiles(folderPath);
+  async processInvitationImagesChunk(
+    folderPath: string,
+    invitationImageFiles: string[],
+    guests: Guest[],
+  ): Promise<void> {
+    const chunkSize = 50;
 
-      if (invitationImageFiles.length === 0) {
-        this.logger.log('No Invitation Image files found in the folder.');
-        return;
-      } else {
-        this.logger.log(
-          `Found ${invitationImageFiles.length} Invitation Image files in the folder. Uploading`,
-        );
-      }
+    // Process the invitation image files in chunks
+    while (invitationImageFiles.length > 0) {
+      const chunk = invitationImageFiles.splice(0, chunkSize);
 
-      const fileUploadPromises = invitationImageFiles.map((filename) => {
+      const fileUploadPromises = chunk.map((filename) => {
         const file: FileUploadDto = {
           filename,
           mimetype: 'image/png',
@@ -123,35 +122,27 @@ export class GuestListener {
             fs.createReadStream(path.join(folderPath, filename)),
         };
 
-        return this.uploaderService.uploadSingleFile({ file: file });
+        return this.uploaderService.uploadSingleFile({ file });
       });
 
-      // Use Promise.all to upload all files in parallel
+      // Upload the invitation image files to S3
       const uploadResultPaths: any[] = await Promise.all(fileUploadPromises);
 
       this.logger.log(
         `${fileUploadPromises.length} Invitation Image Files Uploaded to S3.`,
       );
 
-      // Save the file paths to the Prisma database
       const invitationImageCreateManyInputArray: Prisma.InvitationImageCreateManyInput[] =
         [];
 
+      // Create the InvitationImageCreateManyInput array
       for (const result of uploadResultPaths) {
-        // Parse the URL to get the pathname (file path)
         const parsedUrl = new URL(result);
         const pathname = parsedUrl.pathname;
-
-        // Use path.basename to get the filename with extension
         const filenameWithExtension = path.basename(pathname);
-
-        // Use path.parse to split the filename into parts
         const parsedFilename = path.parse(filenameWithExtension);
-
-        // Extract the filename (without extension) from the parsed filename
         const filenameWithoutExtension = parsedFilename.name;
 
-        path.parse(result).name;
         invitationImageCreateManyInputArray.push({
           id: filenameWithoutExtension,
           guestId: filenameWithoutExtension,
@@ -159,12 +150,46 @@ export class GuestListener {
         });
       }
 
+      // Save the invitation image paths to the database
       await this.saveInvitationImagesToDatabase(
         invitationImageCreateManyInputArray,
       );
 
       // Delete the PNG files from the folder
-      await this.deleteInvitiationImageAndQrCodeFiles(invitationImageFiles);
+      await this.deleteInvitiationImageAndQrCodeFiles(chunk);
+    }
+  }
+
+  async uploadInvitationImageFiles(guests: Guest[]): Promise<void> {
+    try {
+      const folderPath = 'files/invitation'; // Change this to the path of your folder
+      const invitationImageFiles =
+        await this.readInvitationImageFiles(folderPath);
+
+      // Filter the invitation image files to only include those that have a guestId
+      const filterdInvitationImageFiles = invitationImageFiles.filter(
+        (filename) => {
+          const guestIdFromFilename = filename.split('.')[0];
+          return guests.some((guest) => guest.id === guestIdFromFilename);
+        },
+      );
+
+      // Check if there are any invitation image files in the folder
+      if (filterdInvitationImageFiles.length === 0) {
+        this.logger.log('No Invitation Image files found in the folder.');
+        return;
+      } else {
+        this.logger.log(
+          `Found ${filterdInvitationImageFiles.length} Invitation Image files in the folder. Uploading`,
+        );
+      }
+
+      // Process the invitation image files in chunks
+      await this.processInvitationImagesChunk(
+        folderPath,
+        filterdInvitationImageFiles,
+        guests,
+      );
     } catch (error) {
       this.logger.error('Error uploading invitation image files:', error);
     }

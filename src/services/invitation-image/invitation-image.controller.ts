@@ -20,13 +20,12 @@ export class InvitationImageController {
   async createMany(
     invitationImageCreateManyArgs: Prisma.InvitationImageCreateManyArgs,
   ) {
-    const res = await this.invitationImageService.createMany(
-      invitationImageCreateManyArgs,
-    );
-
-    this.eventEmitter.emit(InvitationImageEvent.CreatedMany);
-
-    return res;
+    await this.invitationImageService
+      .createMany(invitationImageCreateManyArgs)
+      .then((res) => {
+        this.eventEmitter.emit(InvitationImageEvent.CreatedMany);
+        return res;
+      });
   }
 
   async findOne(
