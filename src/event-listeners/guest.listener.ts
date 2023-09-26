@@ -332,7 +332,7 @@ export class GuestListener {
           top: 1055,
         },
       ])
-      .png({ compressionLevel: 10 })
+      .png({ compressionLevel: 9 })
       .toFile(outputPath);
 
     return outputPath;
