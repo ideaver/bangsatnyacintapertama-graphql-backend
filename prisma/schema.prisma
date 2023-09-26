@@ -152,7 +152,7 @@ model WhatsappStatus {
 
   guestId String
 
-  guest Guest @relation(fields: [guestId], references: [id])
+  guest Guest @relation(fields: [guestId], references: [id], onDelete: Cascade)
 
   //-------------------------- m relations --------------------------------
 
@@ -176,7 +176,7 @@ model QrCode {
 
   guest Guest @relation(fields: [guestId], references: [id])
 
-  scannedBy User? @relation(fields: [scannedByUserId], references: [id])
+  scannedBy User? @relation(fields: [scannedByUserId], references: [id], onDelete: Cascade)
 
   scannedByUserId String?
 
@@ -196,7 +196,7 @@ model InvitationImage {
 
   guestId String @unique
 
-  guest Guest @relation(fields: [guestId], references: [id])
+  guest Guest @relation(fields: [guestId], references: [id], onDelete: Cascade)
 
   //-------------------------- m relations --------------------------------
 
