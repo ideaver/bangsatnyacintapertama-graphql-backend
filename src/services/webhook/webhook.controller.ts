@@ -49,9 +49,7 @@ export class WebhookController {
         include: { guest: true },
       })
       .then(async (whatsappStatus) => {
-        const guest = whatsappStatus.guest;
-
-        if (guest) {
+        if (whatsappStatus?.guest) {
           //create status
           await this.whatsappStatusController
             .createOne({
@@ -59,7 +57,7 @@ export class WebhookController {
                 refId: id,
                 messageId: id,
                 guest: {
-                  connect: { id: guest.id },
+                  connect: { id: whatsappStatus.guest.id },
                 },
                 status: receivedStatus,
               },
