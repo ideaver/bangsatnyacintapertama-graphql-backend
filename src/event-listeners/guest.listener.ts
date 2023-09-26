@@ -107,7 +107,7 @@ export class GuestListener {
     invitationImageFiles: string[],
     guests: Guest[],
   ): Promise<void> {
-    const chunkSize = 50;
+    const chunkSize = 5;
 
     // Process the invitation image files in chunks
     while (invitationImageFiles.length > 0) {
