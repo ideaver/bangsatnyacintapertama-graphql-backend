@@ -2,6 +2,7 @@ import { Prisma } from '@prisma/client';
 export declare enum WhatsappStatusScalarFieldEnum {
     id = "id",
     refId = "refId",
+    messageId = "messageId",
     message = "message",
     createdAt = "createdAt",
     status = "status",
@@ -3122,6 +3123,7 @@ export declare class WhatsappStatusAvgOrderByAggregateInput {
 export declare class WhatsappStatusCountAggregateInput {
     id?: true;
     refId?: true;
+    messageId?: true;
     message?: true;
     createdAt?: true;
     status?: true;
@@ -3131,6 +3133,7 @@ export declare class WhatsappStatusCountAggregateInput {
 export declare class WhatsappStatusCountAggregate {
     id: number;
     refId: number;
+    messageId: number;
     message: number;
     createdAt: number;
     status: number;
@@ -3140,6 +3143,7 @@ export declare class WhatsappStatusCountAggregate {
 export declare class WhatsappStatusCountOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     refId?: keyof typeof SortOrder;
+    messageId?: keyof typeof SortOrder;
     message?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     status?: keyof typeof SortOrder;
@@ -3152,6 +3156,7 @@ export declare class WhatsappStatusCreateManyGuestInputEnvelope {
 export declare class WhatsappStatusCreateManyGuestInput {
     id?: number;
     refId?: string;
+    messageId?: string;
     message?: string;
     createdAt?: Date | string;
     status?: keyof typeof QueueStatus;
@@ -3159,6 +3164,7 @@ export declare class WhatsappStatusCreateManyGuestInput {
 export declare class WhatsappStatusCreateManyInput {
     id?: number;
     refId?: string;
+    messageId?: string;
     message?: string;
     createdAt?: Date | string;
     status?: keyof typeof QueueStatus;
@@ -3176,12 +3182,14 @@ export declare class WhatsappStatusCreateOrConnectWithoutGuestInput {
 }
 export declare class WhatsappStatusCreateWithoutGuestInput {
     refId?: string;
+    messageId?: string;
     message?: string;
     createdAt?: Date | string;
     status?: keyof typeof QueueStatus;
 }
 export declare class WhatsappStatusCreateInput {
     refId?: string;
+    messageId?: string;
     message?: string;
     createdAt?: Date | string;
     status?: keyof typeof QueueStatus;
@@ -3203,6 +3211,7 @@ export declare class WhatsappStatusGroupByArgs {
 export declare class WhatsappStatusGroupBy {
     id: number;
     refId: string;
+    messageId?: string;
     message?: string;
     createdAt: Date | string;
     status: keyof typeof QueueStatus;
@@ -3221,6 +3230,7 @@ export declare class WhatsappStatusListRelationFilter {
 export declare class WhatsappStatusMaxAggregateInput {
     id?: true;
     refId?: true;
+    messageId?: true;
     message?: true;
     createdAt?: true;
     status?: true;
@@ -3229,6 +3239,7 @@ export declare class WhatsappStatusMaxAggregateInput {
 export declare class WhatsappStatusMaxAggregate {
     id?: number;
     refId?: string;
+    messageId?: string;
     message?: string;
     createdAt?: Date | string;
     status?: keyof typeof QueueStatus;
@@ -3237,6 +3248,7 @@ export declare class WhatsappStatusMaxAggregate {
 export declare class WhatsappStatusMaxOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     refId?: keyof typeof SortOrder;
+    messageId?: keyof typeof SortOrder;
     message?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     status?: keyof typeof SortOrder;
@@ -3245,6 +3257,7 @@ export declare class WhatsappStatusMaxOrderByAggregateInput {
 export declare class WhatsappStatusMinAggregateInput {
     id?: true;
     refId?: true;
+    messageId?: true;
     message?: true;
     createdAt?: true;
     status?: true;
@@ -3253,6 +3266,7 @@ export declare class WhatsappStatusMinAggregateInput {
 export declare class WhatsappStatusMinAggregate {
     id?: number;
     refId?: string;
+    messageId?: string;
     message?: string;
     createdAt?: Date | string;
     status?: keyof typeof QueueStatus;
@@ -3261,6 +3275,7 @@ export declare class WhatsappStatusMinAggregate {
 export declare class WhatsappStatusMinOrderByAggregateInput {
     id?: keyof typeof SortOrder;
     refId?: keyof typeof SortOrder;
+    messageId?: keyof typeof SortOrder;
     message?: keyof typeof SortOrder;
     createdAt?: keyof typeof SortOrder;
     status?: keyof typeof SortOrder;
@@ -3272,6 +3287,7 @@ export declare class WhatsappStatusOrderByRelationAggregateInput {
 export declare class WhatsappStatusOrderByWithAggregationInput {
     id?: keyof typeof SortOrder;
     refId?: keyof typeof SortOrder;
+    messageId?: InstanceType<typeof SortOrderInput>;
     message?: InstanceType<typeof SortOrderInput>;
     createdAt?: keyof typeof SortOrder;
     status?: keyof typeof SortOrder;
@@ -3285,6 +3301,7 @@ export declare class WhatsappStatusOrderByWithAggregationInput {
 export declare class WhatsappStatusOrderByWithRelationInput {
     id?: keyof typeof SortOrder;
     refId?: keyof typeof SortOrder;
+    messageId?: InstanceType<typeof SortOrderInput>;
     message?: InstanceType<typeof SortOrderInput>;
     createdAt?: keyof typeof SortOrder;
     status?: keyof typeof SortOrder;
@@ -3297,6 +3314,7 @@ export declare class WhatsappStatusScalarWhereWithAggregatesInput {
     NOT?: Array<WhatsappStatusScalarWhereWithAggregatesInput>;
     id?: InstanceType<typeof IntWithAggregatesFilter>;
     refId?: InstanceType<typeof StringWithAggregatesFilter>;
+    messageId?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     message?: InstanceType<typeof StringNullableWithAggregatesFilter>;
     createdAt?: InstanceType<typeof DateTimeWithAggregatesFilter>;
     status?: InstanceType<typeof EnumQueueStatusWithAggregatesFilter>;
@@ -3308,6 +3326,7 @@ export declare class WhatsappStatusScalarWhereInput {
     NOT?: Array<WhatsappStatusScalarWhereInput>;
     id?: InstanceType<typeof IntFilter>;
     refId?: InstanceType<typeof StringFilter>;
+    messageId?: InstanceType<typeof StringNullableFilter>;
     message?: InstanceType<typeof StringNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     status?: InstanceType<typeof EnumQueueStatusFilter>;
@@ -3331,6 +3350,7 @@ export declare class WhatsappStatusUncheckedCreateNestedManyWithoutGuestInput {
 export declare class WhatsappStatusUncheckedCreateWithoutGuestInput {
     id?: number;
     refId?: string;
+    messageId?: string;
     message?: string;
     createdAt?: Date | string;
     status?: keyof typeof QueueStatus;
@@ -3338,6 +3358,7 @@ export declare class WhatsappStatusUncheckedCreateWithoutGuestInput {
 export declare class WhatsappStatusUncheckedCreateInput {
     id?: number;
     refId?: string;
+    messageId?: string;
     message?: string;
     createdAt?: Date | string;
     status?: keyof typeof QueueStatus;
@@ -3359,6 +3380,7 @@ export declare class WhatsappStatusUncheckedUpdateManyWithoutGuestNestedInput {
 export declare class WhatsappStatusUncheckedUpdateManyWithoutGuestInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     refId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    messageId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     message?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
@@ -3366,6 +3388,7 @@ export declare class WhatsappStatusUncheckedUpdateManyWithoutGuestInput {
 export declare class WhatsappStatusUncheckedUpdateManyInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     refId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    messageId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     message?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
@@ -3374,6 +3397,7 @@ export declare class WhatsappStatusUncheckedUpdateManyInput {
 export declare class WhatsappStatusUncheckedUpdateWithoutGuestInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     refId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    messageId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     message?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
@@ -3381,6 +3405,7 @@ export declare class WhatsappStatusUncheckedUpdateWithoutGuestInput {
 export declare class WhatsappStatusUncheckedUpdateInput {
     id?: InstanceType<typeof IntFieldUpdateOperationsInput>;
     refId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    messageId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     message?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
@@ -3388,6 +3413,7 @@ export declare class WhatsappStatusUncheckedUpdateInput {
 }
 export declare class WhatsappStatusUpdateManyMutationInput {
     refId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    messageId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     message?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
@@ -3415,12 +3441,14 @@ export declare class WhatsappStatusUpdateWithWhereUniqueWithoutGuestInput {
 }
 export declare class WhatsappStatusUpdateWithoutGuestInput {
     refId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    messageId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     message?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
 }
 export declare class WhatsappStatusUpdateInput {
     refId?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+    messageId?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     message?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
     createdAt?: InstanceType<typeof DateTimeFieldUpdateOperationsInput>;
     status?: InstanceType<typeof EnumQueueStatusFieldUpdateOperationsInput>;
@@ -3437,6 +3465,7 @@ export declare class WhatsappStatusWhereUniqueInput {
     OR?: Array<WhatsappStatusWhereInput>;
     NOT?: Array<WhatsappStatusWhereInput>;
     refId?: InstanceType<typeof StringFilter>;
+    messageId?: InstanceType<typeof StringNullableFilter>;
     message?: InstanceType<typeof StringNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     status?: InstanceType<typeof EnumQueueStatusFilter>;
@@ -3449,6 +3478,7 @@ export declare class WhatsappStatusWhereInput {
     NOT?: Array<WhatsappStatusWhereInput>;
     id?: InstanceType<typeof IntFilter>;
     refId?: InstanceType<typeof StringFilter>;
+    messageId?: InstanceType<typeof StringNullableFilter>;
     message?: InstanceType<typeof StringNullableFilter>;
     createdAt?: InstanceType<typeof DateTimeFilter>;
     status?: InstanceType<typeof EnumQueueStatusFilter>;
@@ -3458,6 +3488,7 @@ export declare class WhatsappStatusWhereInput {
 export declare class WhatsappStatus {
     id: number;
     refId: string;
+    messageId: string | null;
     message: string | null;
     createdAt: Date;
     status: keyof typeof QueueStatus;

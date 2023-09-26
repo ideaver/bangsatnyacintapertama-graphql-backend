@@ -54,7 +54,7 @@ export class WhatsappStatusService {
 
   async findFirst(
     whatsappStatusFindFirstArgs: Prisma.WhatsappStatusFindFirstArgs,
-  ) {
+  ): Promise<WhatsappStatus> {
     try {
       return await this.prisma.whatsappStatus.findFirst(
         whatsappStatusFindFirstArgs,

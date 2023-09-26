@@ -63,6 +63,7 @@ export function fakeGuestComplete() {
 }
 export function fakeWhatsappStatus() {
   return {
+    messageId: undefined,
     message: undefined,
   };
 }
@@ -70,6 +71,7 @@ export function fakeWhatsappStatusComplete() {
   return {
     id: faker.datatype.number(),
     refId: '[object Object]',
+    messageId: undefined,
     message: undefined,
     createdAt: new Date(),
     status: QueueStatus.QUEUE,

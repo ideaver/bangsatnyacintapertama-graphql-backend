@@ -41,26 +41,36 @@ export class WebhookController {
       receivedStatus = QueueStatus.SENT; // Default to QUEUE if the status is unknown
     }
 
-    await this.findGuestIdByPhone(parsedPhone).then(async (guestId) => {
-      if (guestId) {
-        //create status
-        await this.whatsappStatusController
-          .createOne({
-            data: {
-              refId: id,
-              guest: {
-                connect: { id: guestId, whatsapp: { equals: parsedPhone } },
+    await this.whatsappStatusController
+      .findFirst({
+        orderBy: { createdAt: 'desc' },
+        take: 1,
+        where: { messageId: id },
+        include: { guest: true },
+      })
+      .then(async (whatsappStatus) => {
+        const guest = whatsappStatus.guest;
+
+        if (guest) {
+          //create status
+          await this.whatsappStatusController
+            .createOne({
+              data: {
+                refId: id,
+                messageId: id,
+                guest: {
+                  connect: { id: guest.id },
+                },
+                status: receivedStatus,
               },
-              status: receivedStatus,
-            },
-          })
-          .catch(() => {
-            this.logger.error(
-              `trackWhatsAppStatusMessage: createOne: Error,${parsedPhone} ${status} status not created to the database`,
-            );
-          });
-      }
-    });
+            })
+            .catch(() => {
+              this.logger.error(
+                `trackWhatsAppStatusMessage: createOne: Error,${parsedPhone} ${status} status not created to the database`,
+              );
+            });
+        }
+      });
   }
 
   @Post('incoming')

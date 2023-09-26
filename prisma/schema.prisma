@@ -142,6 +142,8 @@ model WhatsappStatus {
 
   refId String @default(uuid())
 
+  messageId String?
+
   message String?
 
   createdAt DateTime @default(now())

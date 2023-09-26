@@ -34,108 +34,138 @@ export class InvitationImageListener {
       const guestsWithoutWhatsappStatus =
         await this.findGuestsWithoutWhatsappStatus();
 
-      const waMediaMessages: WaMediaMessage[] = [];
-      const whatsappStatusCreateManyInput: Prisma.WhatsappStatusCreateManyInput[] =
-        [];
+      const batchSize = 50; // Number of guests to process in each batch
+      let batchCount = 0; // Initialize batch count
 
-      for (const guest of guestsWithoutWhatsappStatus) {
-        const {
-          id,
-          studio,
-          seat,
-          showTime,
-          whatsapp,
-          invitationName,
-          groupMemberOf,
-          groupMemberOfId,
-          invitationImage,
-        } = guest;
+      for (let i = 0; i < guestsWithoutWhatsappStatus.length; i += batchSize) {
+        const guestsBatch = guestsWithoutWhatsappStatus.slice(i, i + batchSize);
 
-        const uuid = uuidV4();
+        const waMediaMessages = [];
+        const whatsappStatusCreateManyInput = [];
 
-        const image = `${invitationImage.path}`;
+        for (const guest of guestsBatch) {
+          const {
+            id,
+            studio,
+            seat,
+            showTime,
+            whatsapp,
+            invitationName,
+            groupMemberOf,
+            groupMemberOfId,
+            invitationImage,
+          } = guest;
 
-        let message = `
-        Halo Bpk/ Ibu ${invitationName}
+          const uuid = uuidV4();
+          const image = invitationImage.path;
 
-Kami dari Dogma Pictures. 
-Dengan ini  bermaksud mengundang Bapak/Ibu ${invitationName} ke Gala Premiere Film Bangsatnya Cinta Pertama directed by Mas Eugene Panji.
+          let message = `
+            Halo Bpk/ Ibu ${invitationName}
+            
+            Kami dari Dogma Pictures. 
+            Dengan ini bermaksud mengundang Bapak/Ibu ${invitationName} ke Gala Premiere Film Bangsatnya Cinta Pertama directed by Mas Eugene Panji.
+    
+            Gala Premiere akan dilaksanakan pada:
+    
+            Tanggal : 28 September 2023
+            Venue    : XXI Epicentrum Kuningan
+            Jl H.R Rasuna Said, Setiabudi, Jakarta Selatan
+            (Informasi jam dan tempat duduk terlampir pada e-invitation)
+    
+            Mohon kiranya Bapak/Ibu dapat memberikan konfirmasi kehadiran Gala Premiere tersebut kepada kami dengan membalas pesan ini  :
+            1. Ya (untuk yang akan Hadir)
+            2. Tidak ( untuk yang Tidak akan Hadir)
+    
+            Contoh Balasan :
+            Ya
+            
+            Atau 
+            
+            Contoh Balasan:
+            1.
+    
+            Catatan : Diharapkan hadir 1 jam sebelum show time (jam tayang) untuk registrasi dan penukaran tiket 
+    
+            Terima kasih,
+            Dogma Pictures Team
+          `;
 
-Gala Premiere akan dilaksanakan pada:
-
-Tanggal : 28 September 2023
-Venue    : XXI Epicentrum Kuningan
-Jl H.R Rasuna Said, Setiabudi, Jakarta Selatan
-(Informasi jam dan tempat duduk terlampir pada e-invitation)
-
-Mohon kiranya Bapak/Ibu dapat memberikan konfirmasi kehadiran Gala Premiere tersebut kepada kami dengan membalas pesan ini  :
-1. Ya (untuk yang akan Hadir)
-2. Tidak ( untuk yang Tidak akan Hadir)
-
-Contoh Balasan :
-Ya
-
-Atau 
-
-Contoh Balasan:
-1.
-
-
-Catatan : Diharapkan hadir 1 jam sebelum show time (jam tayang) untuk registrasi dan penukaran tiket 
-
-Terima kasih,
-Dogma Pictures Team
-        `;
-
-        if (groupMemberOfId === null) {
           const waMediaMessage: WaMediaMessage = {
             refId: uuid,
-            phone: whatsapp,
-            caption: message,
+            phone: groupMemberOfId === null ? whatsapp : groupMemberOf.whatsapp,
+            caption:
+              groupMemberOfId === null
+                ? message
+                : `Extra Ticket Pass: Studio ${studio}, Seat ${seat}, ShowTime ${showTime}`,
             image: image,
           };
 
+          // Add to batch
           waMediaMessages.push(waMediaMessage);
-        } else {
-          message = `Extra Ticket Pass: Studio ${studio}, Seat ${seat}, ShowTime ${showTime} `;
-          const waMediaMessage: WaMediaMessage = {
-            refId: uuid,
-            phone: groupMemberOf.whatsapp,
-            caption: message,
-            image: image,
-          };
 
-          waMediaMessages.push(waMediaMessage);
+          // Add to whatsappStatusCreateManyInput
+          whatsappStatusCreateManyInput.push({
+            refId: uuid,
+            status: QueueStatus.QUEUE,
+            guestId: id,
+          });
         }
 
-        whatsappStatusCreateManyInput.push({
-          refId: uuid,
-          // message: message,
-          status: QueueStatus.QUEUE,
-          guestId: id,
-        });
-      }
+        // Send to Whatsapp Gateway
+        if (waMediaMessages.length > 0) {
+          // Send to Whatsapp Gateway for this batch
+          const response =
+            await this.whatsappGatewayController.sendWhatsappImages(
+              waMediaMessages,
+            );
 
-      if (waMediaMessages.length > 0) {
-        // Send whatsapp messages to whatsapp gateway
-        const response =
-          await this.whatsappGatewayController.sendWhatsappImages(
-            waMediaMessages,
+          // Update Whatsapp Statuses
+          response?.data?.messages?.forEach((message) => {
+            const statusMap = {
+              sent: QueueStatus.SENT,
+              read: QueueStatus.READ,
+              cancel: QueueStatus.ABORT,
+              received: QueueStatus.DELIVERED,
+              reject: QueueStatus.FAILED,
+              pending: QueueStatus.QUEUE,
+            };
+
+            // Default to QUEUE if the status is unknown
+            const receivedStatus =
+              statusMap[message.status.toLocaleLowerCase()] ||
+              QueueStatus.QUEUE; // Default to QUEUE if the status is unknown
+
+            // Find index of element with refId
+            const indexToUpdate = whatsappStatusCreateManyInput.findIndex(
+              (item) => item.refId === message.ref_id,
+            );
+
+            // Update status and messageId
+            if (indexToUpdate !== -1) {
+              // Update status
+              whatsappStatusCreateManyInput[indexToUpdate].status =
+                receivedStatus;
+              // Update messageId
+              whatsappStatusCreateManyInput[indexToUpdate].messageId =
+                message.id;
+            } else {
+              this.logger.error(
+                `Element with refId '${message.ref_id}' not found. to update ${message.status} status`,
+              );
+            }
+          });
+
+          // Save to database
+          const count = await this.whatsappStatusController.createMany({
+            data: whatsappStatusCreateManyInput,
+          });
+
+          batchCount++; // Increment batch count
+
+          this.logger.log(
+            `${response?.data?.messages?.length} of ${waMediaMessages.length} Broadcast Messages Sent To Whatsapp Gateway.  ${count.count} Whatsapp Statuses Saved To Database. - Batch ${batchCount}`,
           );
-
-        // //if response string contain with error words
-        // if (response.message.includes('with error')) {
-        //   this.logger.error(response);
-        //   return;
-        // }
-        // Update whatsapp status status to SENT
-        const count = await this.whatsappStatusController.createMany({
-          data: whatsappStatusCreateManyInput,
-        });
-
-        this.logger.log(
-          count.count + ' Broadcast Messages Sent To Whatsapp Gateway',
-        );
+        }
       }
     } catch (error) {
       this.logger.error(error);
