@@ -31,14 +31,25 @@ export class InvitationImageListener {
 
   private async sendToWhatsappGateway() {
     try {
-      const guestsWithoutWhatsappStatus =
-        await this.GuestFindManyWhereWhatsappStatusNeverSent();
+      const GuestsWhereWhatsappStatusNeverSent =
+        await this.guestFindManyWhereWhatsappStatusNeverSent();
+
+      this.logger.log(
+        `Found ${GuestsWhereWhatsappStatusNeverSent.length} guests need to be sent to Whatsapp Gateway`,
+      );
 
       const batchSize = 50; // Number of guests to process in each batch
       let batchCount = 0; // Initialize batch count
 
-      for (let i = 0; i < guestsWithoutWhatsappStatus.length; i += batchSize) {
-        const guestsBatch = guestsWithoutWhatsappStatus.slice(i, i + batchSize);
+      for (
+        let i = 0;
+        i < GuestsWhereWhatsappStatusNeverSent.length;
+        i += batchSize
+      ) {
+        const guestsBatch = GuestsWhereWhatsappStatusNeverSent.slice(
+          i,
+          i + batchSize,
+        );
 
         const waMediaMessages = [];
         const whatsappStatusCreateManyInputArray: Prisma.WhatsappStatusCreateManyInput[] =
@@ -173,7 +184,7 @@ export class InvitationImageListener {
   }
 
   // Find guests without QR codes
-  private async GuestFindManyWhereWhatsappStatusNeverSent(): Promise<Guest[]> {
+  private async guestFindManyWhereWhatsappStatusNeverSent(): Promise<Guest[]> {
     return this.guestController.findMany({
       include: {
         invitationImage: true,
@@ -183,6 +194,7 @@ export class InvitationImageListener {
         whatsappStatuses: {
           every: { status: { notIn: ['SENT', 'DELIVERED', 'READ'] } },
         },
+        confirmationStatus: null,
       },
     });
   }
