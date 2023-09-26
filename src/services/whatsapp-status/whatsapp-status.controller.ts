@@ -1,17 +1,11 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { ConfirmationStatus, Prisma, QueueStatus } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import { WhatsappStatusService } from './whatsapp-status.service';
-import { EventEmitter2 } from '@nestjs/event-emitter';
-import { GuestController } from '../guest/guest.controller';
 
 @Injectable()
 export class WhatsappStatusController {
   private readonly logger = new Logger(WhatsappStatusController.name);
-  constructor(
-    private readonly whatsappStatusService: WhatsappStatusService,
-    private readonly guestController: GuestController,
-    private eventEmitter: EventEmitter2,
-  ) {}
+  constructor(private readonly whatsappStatusService: WhatsappStatusService) {}
 
   async createOne(whatsappStatusCreateArgs: Prisma.WhatsappStatusCreateArgs) {
     // const guest = whatsappStatusCreateArgs?.data.guest;

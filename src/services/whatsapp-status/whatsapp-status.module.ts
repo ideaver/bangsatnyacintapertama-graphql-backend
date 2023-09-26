@@ -12,7 +12,7 @@ import { GuestModule } from '../guest/guest.module';
     WhatsappStatusController,
     WhatsappStatusService,
   ],
-  imports: [forwardRef(() => GuestModule)],
+  // imports: [forwardRef(() => GuestModule)],
   exports: [WhatsappStatusController],
 })
 export class WhatsappStatusModule {}
