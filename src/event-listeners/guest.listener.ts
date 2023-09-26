@@ -62,10 +62,10 @@ export class GuestListener {
         if (err) {
           reject(err);
         } else {
-          const pngFiles = files.filter(
-            (file) => path.extname(file).toLowerCase() === '.png',
+          const jpgFiles = files.filter(
+            (file) => path.extname(file).toLowerCase() === '.jpg',
           );
-          resolve(pngFiles);
+          resolve(jpgFiles);
         }
       });
     });
@@ -119,7 +119,7 @@ export class GuestListener {
       const fileUploadPromises = chunk.map((filename) => {
         const file: FileUploadDto = {
           filename,
-          mimetype: 'image/png',
+          mimetype: 'image/jpeg',
           encoding: 'base64',
           createReadStream: () =>
             fs.createReadStream(path.join(folderPath, filename)),
@@ -251,7 +251,7 @@ export class GuestListener {
     studioAndSeatText?: string,
     showTimeText?: string,
   ) {
-    const mergedImageFileName = `${guestId}.png`;
+    const mergedImageFileName = `${guestId}.jpg`;
     const outputPath = path.join(outputFolder, mergedImageFileName);
 
     // Check if the QR code image exists
@@ -332,7 +332,8 @@ export class GuestListener {
           top: 1055,
         },
       ])
-      .png({ compressionLevel: 9 })
+      .resize({ width: 800 }) // Reduce image width to 800 pixels (adjust as needed)
+      .jpeg({ quality: 30 }) // Convert to JPEG with specified quality (adjust as needed)
       .toFile(outputPath);
 
     return outputPath;
