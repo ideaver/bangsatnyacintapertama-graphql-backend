@@ -204,7 +204,7 @@ export class GuestListener {
 
   // Generate and save a QR code for a guest
   private async generateAndSaveQrCode(guestId: string): Promise<string> {
-    const qrCodePath = `files/qrcodes/${guestId}.png`;
+    const qrCodePath = `files/qrcodes/${guestId}.jpg`;
 
     // Check if the QR code file already exists
     if (fs.existsSync(qrCodePath)) {
