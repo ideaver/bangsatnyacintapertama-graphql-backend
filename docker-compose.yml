@@ -27,6 +27,7 @@ services:
       - ./volume/certbot/www:/var/www/certbot/:ro
       - ./volume/certbot/conf/:/etc/nginx/ssl/:ro
       - data-volume:/var/www/files:ro
+      - /usr/src/flutter/bangsatnyacintapertama_frontend/build/web:/usr/src/flutter/bangsatnyacintapertama_frontend/build/web:ro
     networks:
       - nestjs-network
 
