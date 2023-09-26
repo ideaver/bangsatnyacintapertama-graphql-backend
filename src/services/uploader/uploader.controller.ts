@@ -76,9 +76,10 @@ export class UploaderController {
     const actualHeaders = worksheet.getRow(1).values as Excel.CellValue[];
 
     // Check if actual headers match the template
-    const headersMatch = expectedHeaders.every((expectedHeader, index) => {
-      const actualHeader = actualHeaders[index];
-      return actualHeader === expectedHeader;
+    const headersMatch = expectedHeaders.every((expectedHeader) => {
+      return actualHeaders.some((actualHeader) =>
+        actualHeader.toString().includes(expectedHeader),
+      );
     });
 
     if (!headersMatch) {
