@@ -133,8 +133,7 @@ export class InvitationImageListener {
 
             // Default to QUEUE if the status is unknown
             const receivedStatus =
-              statusMap[message.status.toLocaleLowerCase()] ||
-              QueueStatus.QUEUE; // Default to QUEUE if the status is unknown
+              statusMap[message.status.toLowerCase()] || QueueStatus.QUEUE; // Default to QUEUE if the status is unknown
 
             // Find index of element with refId
             const indexToUpdate = whatsappStatusCreateManyInputArray.findIndex(
