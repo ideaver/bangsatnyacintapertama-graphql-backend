@@ -332,8 +332,7 @@ export class GuestListener {
           top: 1055,
         },
       ])
-      .resize({ width: 800 }) // Reduce image width to 800 pixels (adjust as needed)
-      .jpeg({ quality: 30 }) // Convert to JPEG with specified quality (adjust as needed)
+      .jpeg({ quality: 60 }) // Convert to JPEG with specified quality (adjust as needed)
       .toFile(outputPath);
 
     return outputPath;
