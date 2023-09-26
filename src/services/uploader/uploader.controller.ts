@@ -73,7 +73,7 @@ export class UploaderController {
     ];
 
     // Get the actual headers from the Excel file
-    const actualHeaders = worksheet.getRow(1).values;
+    const actualHeaders = worksheet.getRow(1).values as Excel.CellValue[];
 
     // Check if actual headers match the template
     const headersMatch = expectedHeaders.every((expectedHeader, index) => {
@@ -83,7 +83,9 @@ export class UploaderController {
 
     if (!headersMatch) {
       throw new Error(
-        'Template format is incorrect. Please check column headers.',
+        `Template format is incorrect. Please check column headers. Expected format: ${expectedHeaders.join(
+          ', ',
+        )}\n` + `Uploaded format: ${actualHeaders.join(', ')}`,
       );
     }
 
@@ -97,7 +99,7 @@ export class UploaderController {
         source: row.getCell(1).text,
         invitationName: row.getCell(2).text,
         contactList: row.getCell(3).text,
-        whatsapp: row.getCell(4).text ? parseInt(row.getCell(5).text) : null,
+        whatsapp: row.getCell(4).text ? parseInt(row.getCell(4).text) : null,
         category: row.getCell(5).text,
         studio: row.getCell(6).text,
         seat: row.getCell(7).text,
