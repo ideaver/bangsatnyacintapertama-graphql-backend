@@ -107,7 +107,10 @@ export class GuestListener {
     invitationImageFiles: string[],
     guests: Guest[],
   ): Promise<void> {
-    const chunkSize = 5;
+    const chunkSize = 30;
+
+    const invitationImageCreateManyInputArray: Prisma.InvitationImageCreateManyInput[] =
+      [];
 
     // Process the invitation image files in chunks
     while (invitationImageFiles.length > 0) {
@@ -132,9 +135,6 @@ export class GuestListener {
         `${fileUploadPromises.length} Invitation Image Files Uploaded to S3.`,
       );
 
-      const invitationImageCreateManyInputArray: Prisma.InvitationImageCreateManyInput[] =
-        [];
-
       // Create the InvitationImageCreateManyInput array
       for (const result of uploadResultPaths) {
         const parsedUrl = new URL(result);
@@ -150,14 +150,14 @@ export class GuestListener {
         });
       }
 
-      // Save the invitation image paths to the database
-      await this.saveInvitationImagesToDatabase(
-        invitationImageCreateManyInputArray,
-      );
-
       // Delete the PNG files from the folder
       await this.deleteInvitiationImageAndQrCodeFiles(chunk);
     }
+
+    // Save the invitation image paths to the database
+    await this.saveInvitationImagesToDatabase(
+      invitationImageCreateManyInputArray,
+    );
   }
 
   async uploadInvitationImageFiles(guests: Guest[]): Promise<void> {
