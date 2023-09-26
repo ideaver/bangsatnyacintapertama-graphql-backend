@@ -41,7 +41,8 @@ export class InvitationImageListener {
         const guestsBatch = guestsWithoutWhatsappStatus.slice(i, i + batchSize);
 
         const waMediaMessages = [];
-        const whatsappStatusCreateManyInput = [];
+        const whatsappStatusCreateManyInputArray: Prisma.WhatsappStatusCreateManyInput[] =
+          [];
 
         for (const guest of guestsBatch) {
           const {
@@ -104,7 +105,7 @@ export class InvitationImageListener {
           waMediaMessages.push(waMediaMessage);
 
           // Add to whatsappStatusCreateManyInput
-          whatsappStatusCreateManyInput.push({
+          whatsappStatusCreateManyInputArray.push({
             refId: uuid,
             status: QueueStatus.QUEUE,
             guestId: id,
@@ -136,17 +137,17 @@ export class InvitationImageListener {
               QueueStatus.QUEUE; // Default to QUEUE if the status is unknown
 
             // Find index of element with refId
-            const indexToUpdate = whatsappStatusCreateManyInput.findIndex(
+            const indexToUpdate = whatsappStatusCreateManyInputArray.findIndex(
               (item) => item.refId === message.ref_id,
             );
 
             // Update status and messageId
             if (indexToUpdate !== -1) {
               // Update status
-              whatsappStatusCreateManyInput[indexToUpdate].status =
+              whatsappStatusCreateManyInputArray[indexToUpdate].status =
                 receivedStatus;
               // Update messageId
-              whatsappStatusCreateManyInput[indexToUpdate].messageId =
+              whatsappStatusCreateManyInputArray[indexToUpdate].messageId =
                 message.id;
             } else {
               this.logger.error(
@@ -157,7 +158,7 @@ export class InvitationImageListener {
 
           // Save to database
           const count = await this.whatsappStatusController.createMany({
-            data: whatsappStatusCreateManyInput,
+            data: whatsappStatusCreateManyInputArray,
           });
 
           batchCount++; // Increment batch count

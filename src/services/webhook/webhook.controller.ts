@@ -49,7 +49,7 @@ export class WebhookController {
         include: { guest: true },
       })
       .then(async (whatsappStatus) => {
-        if (whatsappStatus?.guest) {
+        if (whatsappStatus?.guestId) {
           //create status
           await this.whatsappStatusController
             .createOne({
