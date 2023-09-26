@@ -6,6 +6,7 @@ import { GuestListener } from '../../event-listeners/guest.listener';
 import { QrCodeModule } from '../qr-code/qr-code.module';
 import { PrismaService } from 'prisma/prisma.service';
 import { InvitationImageModule } from '../invitation-image/invitation-image.module';
+import { WhatsappStatusModule } from '../whatsapp-status/whatsapp-status.module';
 
 @Module({
   providers: [
@@ -15,7 +16,7 @@ import { InvitationImageModule } from '../invitation-image/invitation-image.modu
     GuestService,
     GuestListener,
   ],
-  imports: [QrCodeModule, InvitationImageModule],
+  imports: [QrCodeModule, InvitationImageModule, WhatsappStatusModule],
   exports: [GuestController],
 })
 export class GuestModule {}

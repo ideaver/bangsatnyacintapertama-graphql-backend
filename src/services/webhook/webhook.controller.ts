@@ -6,6 +6,7 @@ import { GuestController } from '../guest/guest.controller';
 import { WhatsappGatewayController } from '../whatsapp-gateway/whatsapp-gateway.controller';
 import { WaMessage } from 'src/model/message.model';
 import { v4 as uuidV4 } from 'uuid';
+import { Guest } from 'src/@generated';
 
 @Controller('tracking')
 export class WebhookController {
@@ -95,28 +96,30 @@ export class WebhookController {
       ? ConfirmationStatus.REJECTED
       : ConfirmationStatus.CONFIRMED;
 
-    await this.findGuestIdByPhone(parsedPhone).then(async (guestId) => {
-      if (guestId) {
-        await this.updateGuestConfirmationStatus(
-          guestId,
-          confirmationStatus,
-        ).catch(() => {
-          this.logger.error(
-            `receiveIncomingWhatsAppMessage: createOne: Error, ${parsedPhone} ${confirmationStatus} confirmation status not saved to the database`,
-          );
-        });
+    await this.findGuestByPhone(parsedPhone).then(async (guest) => {
+      if (guest.id) {
+        if (!guest.confirmationStatus) {
+          await this.updateGuestConfirmationStatus(
+            guest.id,
+            confirmationStatus,
+          ).catch(() => {
+            this.logger.error(
+              `receiveIncomingWhatsAppMessage: createOne: Error, ${parsedPhone} ${confirmationStatus} confirmation status not saved to the database`,
+            );
+          });
+        }
       }
     });
   }
 
-  private async findGuestIdByPhone(phone: number): Promise<string | null> {
+  private async findGuestByPhone(phone: number): Promise<Guest | null> {
     const guest = await this.guestController.findFirst({
       take: 1,
       where: { whatsapp: { equals: phone } },
-      select: { id: true },
+      select: { id: true, confirmationStatus: true },
     });
 
-    return guest?.id || null;
+    return guest || null;
   }
 
   private doesStringContainTargetWord(inputString: string): boolean {
