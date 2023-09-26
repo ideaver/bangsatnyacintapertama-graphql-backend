@@ -60,6 +60,33 @@ export class UploaderController {
 
     const worksheet = workbook.getWorksheet(1);
 
+    // Define your template for column headers
+    const expectedHeaders = [
+      'source',
+      'invitationName',
+      'contactList',
+      'whatsapp',
+      'category',
+      'studio',
+      'seat',
+      'show time',
+    ];
+
+    // Get the actual headers from the Excel file
+    const actualHeaders = worksheet.getRow(1).values;
+
+    // Check if actual headers match the template
+    const headersMatch = expectedHeaders.every((expectedHeader, index) => {
+      const actualHeader = actualHeaders[index];
+      return actualHeader === expectedHeader;
+    });
+
+    if (!headersMatch) {
+      throw new Error(
+        'Template format is incorrect. Please check column headers.',
+      );
+    }
+
     const guestCreateManyInput: Prisma.GuestCreateManyInput[] = [];
 
     let previousGuest: Prisma.GuestCreateManyInput | undefined;
