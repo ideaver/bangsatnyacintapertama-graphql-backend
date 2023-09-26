@@ -97,7 +97,7 @@ export class WebhookController {
       : ConfirmationStatus.CONFIRMED;
 
     await this.findGuestByPhone(parsedPhone).then(async (guest) => {
-      if (guest.id) {
+      if (guest) {
         if (!guest.confirmationStatus) {
           await this.updateGuestConfirmationStatus(
             guest.id,
