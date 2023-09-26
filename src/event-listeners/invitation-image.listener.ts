@@ -32,7 +32,7 @@ export class InvitationImageListener {
   private async sendToWhatsappGateway() {
     try {
       const guestsWithoutWhatsappStatus =
-        await this.findGuestsWithoutWhatsappStatus();
+        await this.GuestFindManyWhereWhatsappStatusNeverSent();
 
       const batchSize = 50; // Number of guests to process in each batch
       let batchCount = 0; // Initialize batch count
@@ -173,13 +173,17 @@ export class InvitationImageListener {
   }
 
   // Find guests without QR codes
-  private async findGuestsWithoutWhatsappStatus(): Promise<Guest[]> {
+  private async GuestFindManyWhereWhatsappStatusNeverSent(): Promise<Guest[]> {
     return this.guestController.findMany({
       include: {
         invitationImage: true,
         groupMemberOf: true,
       },
-      where: { whatsappStatuses: { none: {} } },
+      where: {
+        whatsappStatuses: {
+          every: { status: { notIn: ['SENT', 'DELIVERED', 'READ'] } },
+        },
+      },
     });
   }
 }
