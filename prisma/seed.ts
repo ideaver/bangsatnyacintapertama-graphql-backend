@@ -15,12 +15,38 @@ export enum Period {
 async function main() {
   console.log('Start seeding ...');
 
-  console.log(
-    await prisma.guest.findMany({
-      where: { whatsapp: { not: null } },
-      select: { whatsapp: true },
-    }),
-  );
+  // async function findGuestsSharingSameShowTime() {
+  //   const guestsWithSharedSeats = await prisma.guest.findMany({
+  //     where: {
+  //       showTime: {
+  //         not: null, // Filter out guests with no showTime
+  //       },
+  //     },
+  //     select: {
+  //       id: true,
+  //       seat: true,
+  //       showTime: true,
+  //     },
+  //     groupBy: [''      ],
+  //     having: {
+  //       _count: {
+  //         showTime: {
+  //           gte: 2, // Change this value to match the number of guests sharing the same showTime
+  //         },
+  //       },
+  //     },
+  //   });
+
+  //   return guestsWithSharedSeats;
+  // }
+
+  // findGuestsSharingSameShowTime()
+  //   .then((result) => {
+  //     console.log(result);
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //   });
 
   // // create fake users
   // const numberOfUsers: number = 100;

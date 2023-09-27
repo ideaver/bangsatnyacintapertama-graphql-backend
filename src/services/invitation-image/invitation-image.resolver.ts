@@ -1,4 +1,4 @@
-// @ts-nocheck
+// @ts-noscheck
 import { Resolver, Query, Mutation, Args, Float } from '@nestjs/graphql';
 import { Prisma } from '@prisma/client';
 import { Relations } from 'src/utils/relations.decorator';
@@ -184,5 +184,16 @@ export class InvitationImageResolver {
   })
   invitationImageResend() {
     return this.invitationImageController.resend();
+  }
+
+  @Query(() => [String], {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  qrCodeScan(
+    @Args({ type: () => String, name: 'guestIds' })
+    guestId: string[],
+  ): Promise<string> {
+    return this.invitationImageController.zipManyImages(guestId);
   }
 }
