@@ -120,7 +120,7 @@ export class GuestResolver {
     return this.guestController.updateMany(updateManyGuestArgs);
   }
 
-  @Mutation(() => BatchPayload, {
+  @Mutation(() => Boolean, {
     nullable: false,
     description: 'Deskripsinya ada disini loh',
   })
