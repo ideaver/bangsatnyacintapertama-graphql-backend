@@ -125,7 +125,9 @@ export class QrCodeResolver {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
-  async qrCodeDeleteManyScannedToNullByGuestIds(@Args() guestIds: string[]) {
+  async qrCodeDeleteManyScannedToNullByGuestIds(
+    @Args('guestIds', { type: () => [String] }) guestIds: string[],
+  ) {
     return this.qrCodeController.deleteManyScannedToNull(guestIds);
   }
 
