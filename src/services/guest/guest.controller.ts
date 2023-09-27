@@ -15,7 +15,10 @@ export class GuestController {
   ) {}
 
   async createOne(guestCreateArgs: Prisma.GuestCreateArgs) {
-    return await this.guestService.createOne(guestCreateArgs);
+    const createdGuest = await this.guestService.createOne(guestCreateArgs);
+    // Then, emit the event after the database operation is complete
+    this.eventEmitter.emit(GuestEvents.CreatedOne);
+    return createdGuest;
   }
 
   async createMany(guestCreateManyArgs: Prisma.GuestCreateManyArgs) {
@@ -43,6 +46,7 @@ export class GuestController {
   }
 
   async updateOne(guestUpdateOneArgs: Prisma.GuestUpdateArgs) {
+    //TODO: Jika whatsapp diupdate maka hapus whatsapp status yang lama
     return await this.guestService.updateOne(guestUpdateOneArgs);
   }
 
