@@ -66,10 +66,6 @@ import { ServeStaticModule } from '@nestjs/serve-static';
       // disable throwing uncaughtException if an error event is emitted and it has no listeners
       ignoreErrors: false,
     }),
-    //untuk expose file zip
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'files', 'zip'),
-    }),
     ConfigsModule,
     // EmailModule,
     UploaderModule,
