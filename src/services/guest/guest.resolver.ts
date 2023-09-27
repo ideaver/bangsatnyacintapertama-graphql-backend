@@ -124,14 +124,8 @@ export class GuestResolver {
     nullable: false,
     description: 'Deskripsinya ada disini loh',
   })
-  async guestDelete(
-    @Args() deleteOneGuestArgs: DeleteOneGuestArgs,
-    @Relations() relations: GuestSelect,
-  ) {
-    return this.guestController.delete({
-      ...deleteOneGuestArgs,
-      select: relations.select,
-    });
+  async guestDelete(@Args() deleteOneGuestArgs: DeleteOneGuestArgs) {
+    return this.guestController.delete(deleteOneGuestArgs);
   }
 
   @Mutation(() => BatchPayload, {
