@@ -12,6 +12,7 @@ export enum Period {
 
 async function main() {
   console.log('Start seeding ...');
+  console.log(await prisma.user.findMany({ take: 2 }));
 
   // async function findGuestsSharingSameShowTime() {
   //   const guestsWithSharedSeats = await prisma.guest.findMany({
