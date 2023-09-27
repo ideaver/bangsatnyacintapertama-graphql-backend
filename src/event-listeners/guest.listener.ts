@@ -34,6 +34,11 @@ export class GuestListener {
     await this.generateAndUploadInvitationImage();
   }
 
+  @OnEvent(GuestEvents.UpdatedOne)
+  async onGuestUpdatedOneEvent() {
+    await this.generateAndUploadInvitationImage();
+  }
+
   private async generateAndUploadInvitationImage() {
     const guestsWithoutQrCodes = await this.findGuestsWithoutQrCodes();
     const qrCodeCreateManyInputArray: Prisma.QrCodeCreateManyInput[] = [];

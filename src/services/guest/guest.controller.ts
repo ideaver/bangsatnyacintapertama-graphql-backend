@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { Prisma, QueueStatus } from '@prisma/client';
 import { GuestService } from './guest.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
@@ -8,6 +8,7 @@ import { Guest } from 'src/@generated';
 
 @Injectable()
 export class GuestController {
+  private readonly logger = new Logger(GuestController.name);
   constructor(
     private readonly guestService: GuestService,
     private eventEmitter: EventEmitter2,
@@ -47,7 +48,48 @@ export class GuestController {
 
   async updateOne(guestUpdateOneArgs: Prisma.GuestUpdateArgs) {
     //TODO: Jika whatsapp diupdate maka hapus whatsapp status yang lama
-    return await this.guestService.updateOne(guestUpdateOneArgs);
+    //TODO: Jika seat,studio,show diganti maka harus regenerate qr code dan invitation code
+
+    //Delete invitation image and qrcode
+    guestUpdateOneArgs.data.invitationImage = null;
+    guestUpdateOneArgs.data.qrcode = null;
+
+    const res = await this.guestService.updateOne(guestUpdateOneArgs);
+
+    this.logger.log('guest data updated. regenerate invitation image');
+    this.eventEmitter.emit(GuestEvents.UpdatedOne);
+
+    return res;
+
+    // const getCurrentGuestInfo: Guest = await this.findOne({
+    //   where: { id: guestUpdateOneArgs.where.id },
+    //   include: { whatsappStatuses: true, groupMemberOf: true },
+    // });
+
+    // if (getCurrentGuestInfo) {
+    //   return this.createOne({
+    //     select: guestUpdateOneArgs.select,
+    //     data: {
+    //       invitationName: getCurrentGuestInfo.invitationName,
+    //       source: getCurrentGuestInfo.source,
+    //       confirmationStatus: getCurrentGuestInfo.confirmationStatus,
+    //       whatsapp: getCurrentGuestInfo.whatsapp,
+    //       showTime: getCurrentGuestInfo.showTime,
+    //       seat: getCurrentGuestInfo.seat,
+    //       studio: getCurrentGuestInfo.studio,
+    //       contactList: getCurrentGuestInfo.contactList,
+    //       category: getCurrentGuestInfo.category,
+    //       createdAt: getCurrentGuestInfo.createdAt,
+    //       updatedAt: new Date(),
+    //       whatsappStatuses: {
+    //         createMany: { data: getCurrentGuestInfo.whatsappStatuses },
+    //       },
+    //       groupMemberOf: {
+    //         connect: { id: getCurrentGuestInfo.groupMemberOf.id },
+    //       },
+    //     },
+    //   });
+    // }
   }
 
   async updateMany(guestUpdateManyArgs: Prisma.GuestUpdateManyArgs) {

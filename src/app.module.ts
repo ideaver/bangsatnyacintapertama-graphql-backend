@@ -22,6 +22,7 @@ import { QrCodeModule } from './services/qr-code/qr-code.module';
 import { InvitationImageModule } from './services/invitation-image/invitation-image.module';
 import { WhatsappGatewayModule } from './services/whatsapp-gateway/whatsapp-gateway.module';
 import { WebhookModule } from './services/webhook/webhook.module';
+import { MessageReportModule } from './services/message-report/message-report.module';
 
 @Module({
   imports: [

@@ -16,10 +16,9 @@ async function main() {
   console.log('Start seeding ...');
 
   console.log(
-    await prisma.guest.findFirst({
-      take: 1,
-      where: { whatsapp: { equals: 628352523 } },
-      select: { id: true },
+    await prisma.guest.findMany({
+      where: { whatsapp: { not: null } },
+      select: { whatsapp: true },
     }),
   );
 

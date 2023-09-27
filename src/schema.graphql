@@ -292,6 +292,7 @@ type WhatsappStatusAvgAggregate {
 type WhatsappStatusCountAggregate {
   id: Int!
   refId: Int!
+  messageId: Int!
   message: Int!
   createdAt: Int!
   status: Int!
@@ -302,6 +303,7 @@ type WhatsappStatusCountAggregate {
 type WhatsappStatusMaxAggregate {
   id: Int
   refId: String
+  messageId: String
   message: String
   createdAt: DateTime
   status: QueueStatus
@@ -320,6 +322,7 @@ enum QueueStatus {
 type WhatsappStatusMinAggregate {
   id: Int
   refId: String
+  messageId: String
   message: String
   createdAt: DateTime
   status: QueueStatus
@@ -333,6 +336,7 @@ type WhatsappStatusSumAggregate {
 type WhatsappStatus {
   id: Int!
   refId: String!
+  messageId: String
   message: String
   createdAt: DateTime!
   status: QueueStatus!
@@ -354,6 +358,37 @@ type ScanResponse {
   isSuccess: Boolean!
   message: String!
   qrData: QrCode!
+}
+
+type Phone {
+  from: String!
+  to: String!
+}
+
+type DateObject {
+  created_at: String!
+  updated_at: String!
+}
+
+type MessageDto {
+  id: String!
+  phone: Phone!
+  category: String!
+  text: String!
+  URL_file: String
+  status: String!
+  type: String!
+  ref_id: String!
+  date: DateObject!
+}
+
+type MessageReportResponse {
+  status: Boolean!
+  totalData: Int!
+  perPage: String!
+  page: String!
+  totalPage: Int!
+  message: [MessageDto!]!
 }
 
 type Query {
@@ -424,6 +459,9 @@ type Query {
   invitationImageCount(where: InvitationImageWhereInput, orderBy: [InvitationImageOrderByWithRelationInput!], cursor: InvitationImageWhereUniqueInput, take: Int, skip: Int, distinct: [InvitationImageScalarFieldEnum!]): Float
 
   """Deskripsinya ada disini loh"""
+  invitationImageResend: Boolean
+
+  """Deskripsinya ada disini loh"""
   whatsappStatusFindOne(where: WhatsappStatusWhereUniqueInput!): WhatsappStatus
 
   """Deskripsinya ada disini loh"""
@@ -437,6 +475,9 @@ type Query {
 
   """Deskripsinya ada disini loh"""
   whatsappStatusCount(where: WhatsappStatusWhereInput, orderBy: [WhatsappStatusOrderByWithRelationInput!], cursor: WhatsappStatusWhereUniqueInput, take: Int, skip: Int, distinct: [WhatsappStatusScalarFieldEnum!]): Float
+
+  """Deskripsinya ada disini loh"""
+  getAllReports: [MessageReportResponse!]
 }
 
 input GuestWhereUniqueInput {
@@ -755,6 +796,7 @@ input WhatsappStatusWhereInput {
   NOT: [WhatsappStatusWhereInput!]
   id: IntFilter
   refId: StringFilter
+  messageId: StringNullableFilter
   message: StringNullableFilter
   createdAt: DateTimeFilter
   status: EnumQueueStatusFilter
@@ -1116,6 +1158,7 @@ input WhatsappStatusWhereUniqueInput {
   OR: [WhatsappStatusWhereInput!]
   NOT: [WhatsappStatusWhereInput!]
   refId: StringFilter
+  messageId: StringNullableFilter
   message: StringNullableFilter
   createdAt: DateTimeFilter
   status: EnumQueueStatusFilter
@@ -1126,6 +1169,7 @@ input WhatsappStatusWhereUniqueInput {
 input WhatsappStatusOrderByWithRelationInput {
   id: SortOrder
   refId: SortOrder
+  messageId: SortOrderInput
   message: SortOrderInput
   createdAt: SortOrder
   status: SortOrder
@@ -1136,6 +1180,7 @@ input WhatsappStatusOrderByWithRelationInput {
 enum WhatsappStatusScalarFieldEnum {
   id
   refId
+  messageId
   message
   createdAt
   status
@@ -1145,6 +1190,7 @@ enum WhatsappStatusScalarFieldEnum {
 input WhatsappStatusCountAggregateInput {
   id: Boolean
   refId: Boolean
+  messageId: Boolean
   message: Boolean
   createdAt: Boolean
   status: Boolean
@@ -1163,6 +1209,7 @@ input WhatsappStatusSumAggregateInput {
 input WhatsappStatusMinAggregateInput {
   id: Boolean
   refId: Boolean
+  messageId: Boolean
   message: Boolean
   createdAt: Boolean
   status: Boolean
@@ -1172,6 +1219,7 @@ input WhatsappStatusMinAggregateInput {
 input WhatsappStatusMaxAggregateInput {
   id: Boolean
   refId: Boolean
+  messageId: Boolean
   message: Boolean
   createdAt: Boolean
   status: Boolean
@@ -1182,7 +1230,7 @@ type Mutation {
   """
   Header wajib ada apollo-require-preflight = true agar tidak CSRF error. File JPG akan dicompress
   """
-  uploadSingleFile(file: Upload, userId: String!, ratioForImage: RatioEnum): BatchPayload
+  uploadSingleFile(file: Upload): BatchPayload
 
   """Deskripsinya ada disini loh"""
   guestCreateOne(data: GuestCreateInput!): Guest
@@ -1194,13 +1242,13 @@ type Mutation {
   guestUpdateOne(data: GuestUpdateInput!, where: GuestWhereUniqueInput!): Guest
 
   """Deskripsinya ada disini loh"""
-  guestUpdateMany(data: GuestUpdateManyMutationInput!, where: GuestWhereInput): Guest
+  guestUpdateMany(data: GuestUpdateManyMutationInput!, where: GuestWhereInput): BatchPayload
 
   """Deskripsinya ada disini loh"""
   guestDelete(where: GuestWhereUniqueInput!): Boolean!
 
   """Deskripsinya ada disini loh"""
-  guestDeleteMany(where: GuestWhereInput): Boolean!
+  guestDeleteMany(where: GuestWhereInput): BatchPayload!
 
   """Deskripsinya ada disini loh"""
   qrCodeCreateOne(data: QrCodeCreateInput!): QrCode
@@ -1278,20 +1326,6 @@ type Mutation {
 
 """The `Upload` scalar type represents a file upload."""
 scalar Upload
-
-"""
-Available ratios for images, SQUARE = 192x192, MODERN = 1920X1080 MODER_PORTRAIT = 1080x1920, OLD = 1400x1050, OLD_PORTRAIT = 1050x1400, BANNER = 1128x192, ULTRA_WIDE = 2560x1080, SUPER_WIDE = 3840x1080
-"""
-enum RatioEnum {
-  SQUARE
-  MODERN
-  MODERN_PORTRAIT
-  OLD
-  OLD_PORTRAIT
-  BANNER
-  ULTRA_WIDE
-  SUPER_WIDE
-}
 
 input GuestCreateInput {
   id: String
@@ -1411,6 +1445,7 @@ input WhatsappStatusCreateNestedManyWithoutGuestInput {
 
 input WhatsappStatusCreateWithoutGuestInput {
   refId: String
+  messageId: String
   message: String
   createdAt: DateTime
   status: QueueStatus
@@ -1429,6 +1464,7 @@ input WhatsappStatusCreateManyGuestInputEnvelope {
 input WhatsappStatusCreateManyGuestInput {
   id: Int
   refId: String
+  messageId: String
   message: String
   createdAt: DateTime
   status: QueueStatus
@@ -1726,6 +1762,7 @@ input WhatsappStatusUpsertWithWhereUniqueWithoutGuestInput {
 
 input WhatsappStatusUpdateWithoutGuestInput {
   refId: StringFieldUpdateOperationsInput
+  messageId: NullableStringFieldUpdateOperationsInput
   message: NullableStringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   status: EnumQueueStatusFieldUpdateOperationsInput
@@ -1751,6 +1788,7 @@ input WhatsappStatusScalarWhereInput {
   NOT: [WhatsappStatusScalarWhereInput!]
   id: IntFilter
   refId: StringFilter
+  messageId: StringNullableFilter
   message: StringNullableFilter
   createdAt: DateTimeFilter
   status: EnumQueueStatusFilter
@@ -1759,6 +1797,7 @@ input WhatsappStatusScalarWhereInput {
 
 input WhatsappStatusUpdateManyMutationInput {
   refId: StringFieldUpdateOperationsInput
+  messageId: NullableStringFieldUpdateOperationsInput
   message: NullableStringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   status: EnumQueueStatusFieldUpdateOperationsInput
@@ -2204,6 +2243,7 @@ input InvitationImageUpdateManyMutationInput {
 
 input WhatsappStatusCreateInput {
   refId: String
+  messageId: String
   message: String
   createdAt: DateTime
   status: QueueStatus
@@ -2246,6 +2286,7 @@ input GuestCreateOrConnectWithoutWhatsappStatusesInput {
 input WhatsappStatusCreateManyInput {
   id: Int
   refId: String
+  messageId: String
   message: String
   createdAt: DateTime
   status: QueueStatus
@@ -2254,6 +2295,7 @@ input WhatsappStatusCreateManyInput {
 
 input WhatsappStatusUpdateInput {
   refId: StringFieldUpdateOperationsInput
+  messageId: NullableStringFieldUpdateOperationsInput
   message: NullableStringFieldUpdateOperationsInput
   createdAt: DateTimeFieldUpdateOperationsInput
   status: EnumQueueStatusFieldUpdateOperationsInput

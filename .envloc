@@ -10,7 +10,7 @@ MYSQL_USER: bangsat
 MYSQL_PASSWORD: bangsat123456
 MYSQL_ROOT_PASSWORD=bangsat123456
 MYSQL_DATABASE=bangsat
-DATABASE_URL=mysql://bangsat:bangsat123456@localhost:3306/bangsat
+DATABASE_URL=mysql://bangsat:bangsat123456@103.226.138.104:3306/bangsat
 
 # Redis configuration
 REDIS_PORT=6379
