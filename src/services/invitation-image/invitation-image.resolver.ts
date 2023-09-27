@@ -186,12 +186,12 @@ export class InvitationImageResolver {
     return this.invitationImageController.resend();
   }
 
-  @Query(() => [String], {
+  @Query(() => String, {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
   invitationImageZipMany(
-    @Args({ type: () => String, name: 'guestIds' })
+    @Args({ type: () => [String], name: 'guestIds' })
     guestId: string[],
   ): Promise<string> {
     return this.invitationImageController.zipMany(guestId);
