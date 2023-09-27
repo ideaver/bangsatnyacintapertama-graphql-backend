@@ -1,8 +1,6 @@
-import { faker } from '@faker-js/faker';
 import { ConfirmationStatus, Prisma, PrismaClient } from '@prisma/client';
 
 import * as bcrypt from 'bcrypt';
-import { fakeUser, fakeGuest } from './fake-data';
 
 const prisma = new PrismaClient();
 

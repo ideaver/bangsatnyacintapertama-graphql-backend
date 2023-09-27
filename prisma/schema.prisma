@@ -11,10 +11,10 @@ generator client {
   // binaryTargets = ["native", "debian-openssl-1.1.x"]
 }
 
-generator fake_data {
-  provider = "prisma-generator-fake-data"
-  output   = "./fake-data.ts"
-}
+// generator fake_data {
+//   provider = "prisma-generator-fake-data"
+//   output   = "./fake-data.ts"
+// }
 
 generator nestgraphql {
   provider                              = "node node_modules/prisma-nestjs-graphql"
