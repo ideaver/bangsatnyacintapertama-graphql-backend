@@ -22,7 +22,6 @@ import { QrCodeModule } from './services/qr-code/qr-code.module';
 import { InvitationImageModule } from './services/invitation-image/invitation-image.module';
 import { WhatsappGatewayModule } from './services/whatsapp-gateway/whatsapp-gateway.module';
 import { WebhookModule } from './services/webhook/webhook.module';
-import { ServeStaticModule } from '@nestjs/serve-static';
 
 @Module({
   imports: [
