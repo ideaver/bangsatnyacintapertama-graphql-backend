@@ -18,6 +18,7 @@ export class GuestController {
   async createOne(guestCreateArgs: Prisma.GuestCreateArgs) {
     const createdGuest = await this.guestService.createOne(guestCreateArgs);
     // Then, emit the event after the database operation is complete
+    this.logger.log('1 Guest data created. id' + createdGuest.id);
     this.eventEmitter.emit(GuestEvents.CreatedOne);
     return createdGuest;
   }
@@ -97,6 +98,7 @@ export class GuestController {
   }
 
   async delete(guestDeleteArgs: Prisma.GuestDeleteArgs) {
+    this.logger.log('1 Guest data deleted. id' + guestDeleteArgs.where.id);
     return await this.guestService.delete(guestDeleteArgs);
   }
 
