@@ -60,31 +60,41 @@ export class QrCodeController {
     const qrCode = await this.qrCodeService.findFirst({
       where: {
         guestId: { equals: guestId },
-        scannedAt: { equals: null },
       },
       include: { guest: true, scannedBy: true },
     });
 
-    // if (qrCode) {
-    //   return await this.qrCodeService.updateOne({
-    //     where: {
-    //       id: qrCode.id,
-    //     },
-    //     data: {
-    //       scanned: true,
-    //     },
-    //   });
-    // } else {
-    //   return {
-    //     isSuccess: false,
-    //     message: 'QR Code untuk pengguna ini telah terpakai semua',
-    //     qrData: null,
-    //     userData: this.userController.findOne({ where: { id: userId } }),
-    //   };
-    // }
+    if (qrCode) {
+      // if qr code has not been scanned, update the qr code
+      if (!qrCode.scannedAt) {
+        await this.qrCodeService.updateOne({
+          where: {
+            id: qrCode.id,
+          },
+          data: {
+            scannedAt: new Date(),
+          },
+        });
+
+        // return the qr code
+        return {
+          isSuccess: true,
+          message: 'Berhasil Scan Qr Code',
+          qrData: qrCode,
+        };
+      } else {
+        // return the qr code
+        return {
+          isSuccess: false,
+          message: 'Qr Code sudah pernah di Scan',
+          qrData: qrCode,
+        };
+      }
+    }
+
     return {
-      isSuccess: true,
-      message: 'QR Code berhasil di scan',
+      isSuccess: false,
+      message: 'Tidak ditemukan pengguna dengan QR code tersebut',
       qrData: qrCode,
     };
   }
