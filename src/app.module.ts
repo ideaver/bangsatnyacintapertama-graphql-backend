@@ -22,7 +22,7 @@ import { QrCodeModule } from './services/qr-code/qr-code.module';
 import { InvitationImageModule } from './services/invitation-image/invitation-image.module';
 import { WhatsappGatewayModule } from './services/whatsapp-gateway/whatsapp-gateway.module';
 import { WebhookModule } from './services/webhook/webhook.module';
-import { MessageReportModule } from './services/message-report/message-report.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
 
 @Module({
   imports: [
@@ -65,6 +65,10 @@ import { MessageReportModule } from './services/message-report/message-report.mo
       verboseMemoryLeak: true,
       // disable throwing uncaughtException if an error event is emitted and it has no listeners
       ignoreErrors: false,
+    }),
+    //untuk expose file zip
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'files', 'zip'),
     }),
     ConfigsModule,
     // EmailModule,
