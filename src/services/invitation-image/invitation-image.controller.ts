@@ -104,7 +104,7 @@ export class InvitationImageController {
     return true;
   }
 
-  async zipManyImages(guestIds: string[]): Promise<string> {
+  async zipMany(guestIds: string[]): Promise<string> {
     const invitationImages = await this.findMany({
       select: { path: true },
       where: {

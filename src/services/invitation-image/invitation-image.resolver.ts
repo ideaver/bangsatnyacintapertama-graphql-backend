@@ -190,10 +190,10 @@ export class InvitationImageResolver {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
-  qrCodeScan(
+  invitationImageZipMany(
     @Args({ type: () => String, name: 'guestIds' })
     guestId: string[],
   ): Promise<string> {
-    return this.invitationImageController.zipManyImages(guestId);
+    return this.invitationImageController.zipMany(guestId);
   }
 }
