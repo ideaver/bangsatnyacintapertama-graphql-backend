@@ -16,7 +16,7 @@ async function bootstrap() {
   const port = configService.get<number>('APP_PORT');
   const environment = configService.get<string>('NODE_ENV');
 
-  //supaya client bisa download file dan image
+  //supaya client bisa download file dan image.test
   app.enableCors({
     origin: '*', // You can specify the allowed origins here (e.g., 'http://example.com')
     methods: 'GET,PUT,PATCH,POST,DELETE',
