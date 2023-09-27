@@ -112,7 +112,7 @@ export class GuestResolver {
     });
   }
 
-  @Mutation(() => Guest, {
+  @Mutation(() => BatchPayload, {
     nullable: true,
     description: 'Deskripsinya ada disini loh',
   })
@@ -134,7 +134,7 @@ export class GuestResolver {
     });
   }
 
-  @Mutation(() => Boolean, {
+  @Mutation(() => BatchPayload, {
     nullable: false,
     description: 'Deskripsinya ada disini loh',
   })
