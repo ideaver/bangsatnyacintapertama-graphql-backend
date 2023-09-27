@@ -51,8 +51,8 @@ export class GuestController {
     //TODO: Jika seat,studio,show diganti maka harus regenerate qr code dan invitation code
 
     //Delete invitation image and qrcode
-    guestUpdateOneArgs.data.invitationImage = null;
-    guestUpdateOneArgs.data.qrcode = null;
+    guestUpdateOneArgs.data.invitationImage = { delete: {} };
+    guestUpdateOneArgs.data.qrcode = { delete: {} };
 
     const res = await this.guestService.updateOne(guestUpdateOneArgs);
 
