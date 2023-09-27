@@ -55,6 +55,26 @@ export class QrCodeController {
     return await this.qrCodeService.count(qrCodeCountArgs);
   }
 
+  async deleteManyScannedToNull(guestIds: string[]) {
+    return await this.updateMany({
+      data: {
+        scannedAt: {
+          set: null,
+        },
+        scannedByUserId: { set: null },
+      },
+      where: {
+        guest: {
+          is: {
+            id: {
+              in: guestIds,
+            },
+          },
+        },
+      },
+    });
+  }
+
   async scan(guestId: string): Promise<ScanResponse> {
     // get the first qr code that matches the user id and has not been scanned
     const qrCode = await this.qrCodeService.findFirst({

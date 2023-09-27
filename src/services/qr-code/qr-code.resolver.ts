@@ -1,4 +1,4 @@
-// @ts-nocheck
+// @tss-nocheck
 import { Resolver, Query, Mutation, Args, Float } from '@nestjs/graphql';
 import { Prisma } from '@prisma/client';
 import { Relations } from 'src/utils/relations.decorator';
@@ -119,6 +119,14 @@ export class QrCodeResolver {
   })
   async qrCodeUpdateMany(@Args() updateManyQrCodeArgs: UpdateManyQrCodeArgs) {
     return this.qrCodeController.updateMany(updateManyQrCodeArgs);
+  }
+
+  @Mutation(() => BatchPayload, {
+    nullable: true,
+    description: 'Deskripsinya ada disini loh',
+  })
+  async qrCodeDeleteManyScannedToNullByGuestIds(@Args() guestIds: string[]) {
+    return this.qrCodeController.deleteManyScannedToNull(guestIds);
   }
 
   @Mutation(() => Boolean, {
