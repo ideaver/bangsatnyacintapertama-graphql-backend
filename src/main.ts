@@ -16,7 +16,14 @@ async function bootstrap() {
   const port = configService.get<number>('APP_PORT');
   const environment = configService.get<string>('NODE_ENV');
 
-  // app.enableCors();
+  //supaya client bisa download file dan image
+  app.enableCors({
+    origin: '*', // You can specify the allowed origins here (e.g., 'http://example.com')
+    methods: 'GET,PUT,PATCH,POST,DELETE',
+    allowedHeaders:
+      'Origin, X-Requested-With, Content-Type, Accept, Content-Disposition', // Add Content-Disposition
+  });
+
   app.use(
     graphqlUploadExpress({
       maxFileSize: 250000000, // max is 250mb

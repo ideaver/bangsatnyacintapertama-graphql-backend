@@ -97,7 +97,7 @@ model Guest {
 
   groupMemberOf Guest? @relation("GroupMembers", fields: [groupMemberOfId], references: [id])
 
-  confirmationStatus ConfirmationStatus? @default(UNCONFIRMED)
+  confirmationStatus ConfirmationStatus @default(UNCONFIRMED)
 
   //-------------------------- m relations --------------------------------
 
