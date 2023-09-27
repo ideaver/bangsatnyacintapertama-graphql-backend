@@ -98,12 +98,26 @@ export class GuestController {
   }
 
   async delete(guestDeleteArgs: Prisma.GuestDeleteArgs) {
-    this.logger.log('1 Guest data deleted. id' + guestDeleteArgs.where.id);
-    return await this.guestService.delete(guestDeleteArgs);
+    await this.guestService.updateOne({
+      data: { deletedAt: new Date() },
+      where: { id: guestDeleteArgs.where.id },
+    });
+
+    this.logger.log('1 Guest data soft deleted. id' + guestDeleteArgs.where.id);
+
+    return true;
+    // return await this.guestService.delete(guestDeleteArgs);
   }
 
   async deleteMany(guestDeleteManyArgs: Prisma.GuestDeleteManyArgs) {
-    return await this.guestService.deleteMany(guestDeleteManyArgs);
+    const res = await this.guestService.updateMany({
+      data: { deletedAt: new Date() },
+      where: guestDeleteManyArgs.where,
+    });
+
+    this.logger.log(res.count + ' Guest data soft deleted. id');
+
+    return res;
   }
 
   async aggregate(guestAggregateArgs: Prisma.GuestAggregateArgs) {

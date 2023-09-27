@@ -77,8 +77,7 @@ export class GuestService {
 
   async deleteMany(guestDeleteManyArgs: Prisma.GuestDeleteManyArgs) {
     try {
-      await this.prisma.guest.deleteMany(guestDeleteManyArgs);
-      return true;
+      return await this.prisma.guest.deleteMany(guestDeleteManyArgs);
     } catch (err) {
       throw new IGraphQLError({ code: 123456, err: err });
     }
